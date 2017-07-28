@@ -74,12 +74,7 @@ angular.module('starter.controllers', [])
   }
   $scope.addMetric = function(metrics) {
     metrics.push({
-      text: "Untitled",
-      row: 1,
-      column:1,
-      style: {
-
-      }
+      text: "Untitled"
     })
   }
 

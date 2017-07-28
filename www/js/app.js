@@ -8,7 +8,6 @@ angular.module('starter', [
   'ionic', 
   'starter.controllers',
   'starter.directives.contenteditable',
-  'angular-medium-editor'
 ])
 
   .run(function($ionicPlatform, $rootScope, $ionicSideMenuDelegate) {

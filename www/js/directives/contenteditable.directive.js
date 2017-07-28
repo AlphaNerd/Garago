@@ -1,40 +1,90 @@
 angular.module('starter.directives.contenteditable', [])
 
-.directive("contenteditable", function($timeout) {
-  return {
-    restrict: "A",
-    require: "ngModel",
-    link: function(scope, element, attrs, ngModel) {
-      var maxCount = 10 //// number of keystrokes between saves
-      var currCount = 0
-      var timer = 2000 //// milliseconds till save if feqCount not met
-      var saveDelay;
-      element.on('input', function($event) {
-          console.log("Keystroke: ",$event)
-          if(currCount < maxCount){
+  .directive("contenteditable", function($timeout) {
+    function toInnerText(value) {
+      var tempEl = document.createElement('div'),
+        text;
+      tempEl.innerHTML = value;
+      text = tempEl.textContent || '';
+      return text.trim();
+    }
+    return {
+      restrict: "A",
+      require: "ngModel",
+      scope: { bindOptions: '=' },
+
+      link: function(scope, element, attrs, ngModel) {
+        angular.element(element).addClass('selectable-with-editor');
+        // Global MediumEditor
+        ngModel.editor = new MediumEditor(element, scope.bindOptions);
+
+        ////////////////////////////////////////////////////////
+        ////////////// SAVING & SAVE DELAY
+        ////////////////////////////////////////////////////////
+        var maxCount = 10 //// number of keystrokes between saves
+        var currCount = 0
+        var timer = 2000 //// milliseconds till save if feqCount not met
+        var saveDelay;
+
+        var clickingCallback = function($event) {
+          console.log('clicked: ',$event)
+        };
+        element.bind('click', clickingCallback);
+
+        element.on('input', function($event) {
+          console.log("Keystroke: ", $event)
+          if (currCount < maxCount) {
             $timeout.cancel(saveDelay);
-            saveDelay = $timeout(function(){
-                console.log("Save Data: ",[$event.target.innerHTML],[element],[attrs],[ngModel])
-            },1000)
+            saveDelay = $timeout(function() {
+              console.log("Save Data: ", [$event.target.innerHTML], [element], [attrs], [ngModel])
+              // console.log()
+            }, 1000)
             currCount += 1
           }
-          if(currCount == maxCount){
-            console.log("Save Data: ",[$event.target.innerHTML],[element],[attrs],[ngModel])
+          if (currCount == maxCount) {
+            console.log("Save Data: ", [$event.target.innerHTML], [element], [attrs], [ngModel])
             currCount = 0
           }
-      });
+        });
+        function read() {
+          ngModel.$setViewValue(element.html());
+        }
 
-      function read() {
-        ngModel.$setViewValue(element.html());
+        ngModel.$render = function() {
+          ngModel.editor.setContent(ngModel.$viewValue || "");
+          var placeholder = ngModel.editor.getExtensionByName('placeholder');
+          if (placeholder) {
+            placeholder.updatePlaceholder(element[0]);
+          }
+        };
+
+        ngModel.$isEmpty = function(value) {
+          if (/[<>]/.test(value)) {
+            return toInnerText(value).length === 0;
+          } else if (value) {
+            return value.length === 0;
+          } else {
+            return true;
+          }
+        };
+
+        ngModel.editor.subscribe('editableInput', function (event, editable) {
+          ngModel.$setViewValue(editable.innerHTML.trim());
+        });
+
+        scope.$watch('bindOptions', function(bindOptions) {
+          ngModel.editor.init(element, bindOptions);
+        });
+
+        scope.$on('$destroy', function() {
+          ngModel.editor.destroy();
+        });
+
+        element.bind("blur keyup change", function() {
+          scope.$apply(read);
+        });
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
       }
-
-      ngModel.$render = function() {
-        element.html(ngModel.$viewValue || "");
-      };
-
-      element.bind("blur keyup change", function() {
-        scope.$apply(read);
-      });
-    }
-  };
-});
+    };
+  });

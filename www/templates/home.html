@@ -3,11 +3,11 @@
     <h1 contenteditable ng-model="reportTitle">{{reportTitle}}</h1>
     <div class="columns">
       <div class="column animated pulse" ng-repeat="column in DATA">
-        <div class="title" ng-model="column.title" ng-style="column.style" contenteditable medium-editor bind-options="{'toolbar': {'buttons': ['bold', 'italic', 'underline']}}" data-placeholder="Enter a description">{{column.title}}</div>
+        <div class="title" ng-model="column.title" ng-style="column.style" contenteditable>{{column.title}}</div>
         <div class="metrics">
           <ul>
             <!-- <li class="metric" contenteditable ng-model="metric.text" ng-repeat="metric in column.metrics">{{metric.text}}</li> -->
-            <li ng-model="metric.text" contenteditable medium-editor bind-options="{'toolbar': {'buttons': ['bold', 'italic', 'underline']}}" data-placeholder="Enter a description"></li>
+            <li ng-model="metric.text" ng-repeat="metric in column.metrics" contenteditable></li>
             <i class="fa fa-minus-circle" aria-hidden="true" ng-click="minusMetric(column.metrics)"></i>
           	<i class="fa fa-plus-circle" aria-hidden="true" ng-click="addMetric(column.metrics)"></i>
           </ul>
