@@ -1,1 +1,90 @@
 /* Empty. Add your own CSS if you like */
+
+
+/*body{
+  background:#333;
+  color:#fff;
+}*/
+
+ul {
+  padding-left: 20px;
+  list-style: disc;
+}
+
+[contenteditable]:hover {
+  border: 1px dashed #ccc;
+  margin:-1px;
+}
+
+h1[contenteditable]:hover {
+	margin-bottom: 9px;
+}
+
+.columns {
+  display: -webkit-flex;
+  display: flex;
+  width: 100%;
+}
+
+.column:hover {
+  border: 1px dashed #ccc;
+  margin:-1px;
+}
+
+.column {
+  display: inline-block;
+  padding: 5px;
+  width: 33.33%;
+}
+
+.column .title {
+    padding: 20px 20px 20px 30px;
+    position: relative;
+}
+
+.column .title:before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    height: 100%;
+    width: 20px;
+    background: url(../img/arrow-back.png);
+    background-repeat: no-repeat;
+    top: 0%;
+    background-size: cover;
+}
+.column .title:after {
+    content: "";
+    position: absolute;
+    right: 0px;
+    height: 100%;
+    width: 20px;
+    background: url(../img/arrow-point.png);
+    background-repeat: no-repeat;
+    top: 0%;
+    background-size: cover;
+}
+
+#ActionPlan .scroll{
+	padding:50px 150px;
+}
+
+.medium-editor-toolbar-actions {
+	    display: block;
+	    border-radius: 5px!important;
+	    overflow: hidden;
+	    border: 1px solid #333;
+}
+
+.medium-editor-toolbar li button{
+	background: #000;
+	color:#fff;
+	border: none;
+}
+
+.medium-toolbar-arrow-under:after {
+	font-family: "FontAwesome";
+     border-style: none!important; 
+    content: '\f0d7'!important;
+    bottom: 9px!important;
+}
