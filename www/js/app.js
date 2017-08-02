@@ -7,6 +7,7 @@
 angular.module('starter', [
   'ionic', 
   'starter.controllers',
+  'starter.factory.mockdata',
   'starter.directives.contenteditable',
 ])
 

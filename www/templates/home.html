@@ -1,20 +1,44 @@
 <ion-view view-title="Garago">
   <ion-content id="ActionPlan">
-    <h1 contenteditable ng-model="reportTitle">{{reportTitle}}</h1>
-    <div class="columns">
-      <div class="column animated pulse" ng-repeat="column in DATA">
-        <div class="title" ng-model="column.title" ng-style="column.style" contenteditable>{{column.title}}</div>
-        <div class="metrics">
-          <ul>
-            <!-- <li class="metric" contenteditable ng-model="metric.text" ng-repeat="metric in column.metrics">{{metric.text}}</li> -->
-            <li ng-model="metric.text" ng-repeat="metric in column.metrics" contenteditable></li>
-            <i class="fa fa-minus-circle" aria-hidden="true" ng-click="minusMetric(column.metrics)"></i>
-          	<i class="fa fa-plus-circle" aria-hidden="true" ng-click="addMetric(column.metrics)"></i>
-          </ul>
-        </div>
+    <div class="action-plan">
+      <div class="plan-title">
+        <h1 contenteditable locked="false" ng-model="reportTitle">{{reportTitle}}</h1>
       </div>
-      <i class="fa fa-plus-circle" aria-hidden="true" ng-click="addColumn()"></i>
+      <div class="columns">
+        <div class="column header" ng-repeat="column in DATA.columns track by $index" column="{{$index}}">
+          <div class="title" ng-model="column.title" ng-style="column.style" contenteditable locked="{{column.locked}}">
+            {{column.title}}
+          </div>
+          <i class="fa fa-minus-circle" aria-hidden="true" ng-click="deleteColumn()"></i>
+        </div>
+        <i class="fa fa-plus-circle" aria-hidden="true" ng-click="addColumn()"></i>
+      </div>
+      <div class="rows">
+        <div class="item warning" ng-show="DATA.rows.length == 0"> You need to add some rows of data.</div>
+        <div class="row-container" ng-repeat="row in DATA.rows track by $index">
+          <div class="row-header" ng-model="row.title" contenteditable></div>
+          <div class="row">
+            <i class="fa fa-minus-circle" aria-hidden="true" ng-click="deleteRow($index)"></i>
+            <div class="item" ng-repeat="item in row.items track by $index" column="{{$index}}" row="{{row.id}}">
+              <div class="content" ng-model="item.content" contenteditable locked="{{item.locked}}"></div>
+              <div class="controls">
+                <i class="fa" ng-class="item.locked ? 'fa-lock' : 'fa-unlock'" aria-hidden="true" ng-click="item.locked = !item.locked"></i>
+                <i class="fa fa-picture-o" aria-hidden="true"></i>
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+              </div>
+            </div>
+            <i class="fa fa-bars" aria-hidden="true"></i>
+          </div>
+        </div>
+        <i class="fa fa-plus-circle" aria-hidden="true" ng-click="addRow()"></i>
+      </div>
     </div>
-    <br/> {{DATA}}
   </ion-content>
 </ion-view>
+<!-- <div class="metrics">
+  <ul>
+    <li ng-model="metric.text" ng-repeat="metric in column.metrics" contenteditable></li>
+    <i class="fa fa-minus-circle" aria-hidden="true" ng-click="minusMetric(column.metrics)"></i>
+  	<i class="fa fa-plus-circle" aria-hidden="true" ng-click="addMetric(column.metrics)"></i>
+  </ul>
+</div> -->

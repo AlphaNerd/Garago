@@ -1,6 +1,6 @@
 angular.module('starter.directives.contenteditable', [])
 
-  .directive("contenteditable", function($timeout) {
+  .directive("contenteditable", function($timeout, $mockdata) {
     function toInnerText(value) {
       var tempEl = document.createElement('div'),
         text;
@@ -11,9 +11,15 @@ angular.module('starter.directives.contenteditable', [])
     return {
       restrict: "A",
       require: "ngModel",
-      scope: { bindOptions: '=' },
+      scope: { 
+        bindOptions: '=',
+        row: '=',
+        column: '=',
+        locked: '@'
+      },
 
       link: function(scope, element, attrs, ngModel) {
+        console.log(attrs.locked)
         angular.element(element).addClass('selectable-with-editor');
         // Global MediumEditor
         ngModel.editor = new MediumEditor(element, scope.bindOptions);
@@ -26,10 +32,9 @@ angular.module('starter.directives.contenteditable', [])
         var timer = 2000 //// milliseconds till save if feqCount not met
         var saveDelay;
 
-        var clickingCallback = function($event) {
+        element.bind('click', function($event) {
           console.log('clicked: ',$event)
-        };
-        element.bind('click', clickingCallback);
+        });
 
         element.on('input', function($event) {
           console.log("Keystroke: ", $event)

@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $rootScope, $ionicSideMenuDelegate) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $rootScope, $ionicSideMenuDelegate, $mockdata) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -10,74 +10,23 @@ angular.module('starter.controllers', [])
     console.log("AppCtrl Loaded.")
   });
 
-  // $rootScope.isMobile = ionic.Platform.isIOS() || ionic.Platform.isAndroid();
-  // if ($rootScope.isMobile) {
-  //   console.log("Device is Mobile")
-  // } else {
-  //   console.log("Device is NOT Mobile")
-  //   $timeout(function() {
-  //     $ionicSideMenuDelegate.toggleLeft(true)
-  //   }, 50)
-  // }
-
-  /// Check active menu item
-  $scope.isItemActive = function(item) {
-    return false
-  };
-
   $scope.reportTitle = "Title Goes Here"
 
-  $scope.DATA = [{
-    title: "Example",
-    metrics: [{
-      text: "Something",
-    }],
-    style: {
-      'background': Please.make_color(),
-      'color': '#fff'
-    }
-  }, {
-    title: "Example 2",
-    metrics: [{
-      text: "Something",
-      style: {
-        'width':'100%'
-      }
-    }],
-    style: {
-      'background': Please.make_color(),
-      'color': '#fff'
-    }
-  }, {
-    title: "Example 3",
-    metrics: [{
-      text: "Something"
-    }],
-    style: {
-      'background': Please.make_color(),
-      'color': '#fff'
-    }
-  }]
-
-
-  $scope.addColumn = function() {
-    $scope.DATA.push({
-      title: "New Column",
-      style: {
-        'background': Please.make_color(),
-        'color': '#fff'
-      },
-      metrics: [{
-        text: "Something"
-      }]
-    })
-  }
-  $scope.addMetric = function(metrics) {
-    metrics.push({
-      text: "Untitled"
-    })
+  $scope.DATA = $mockdata.get()
+  $scope.addColumn = function(){
+    $mockdata.addColumn()
   }
 
-  console.log($scope.DATA)
+  $scope.addRow = function(){
+    $mockdata.addRow()
+  }
+
+  $scope.deleteRow = function(index){
+    $mockdata.deleteRow(index)
+  }
+
+  $scope.deleteColumn = function(index){
+    $mockdata.deleteColumn(index)
+  }
 
 })
