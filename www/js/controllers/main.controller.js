@@ -43,7 +43,13 @@ angular.module('starter.controllers', [])
     $mockdata.moveRow($index,$data,$event)
   }
 
-  $scope.onMilestoneMove = function($event){
-    console.log("Move: ",$event)
+  $scope.onDragMove = function($event){
+    console.log("Move: ",[$event])
   }
+
+  $scope.toggleLock = function(item){
+    $mockdata.toggleLock(item)
+    
+  }
+
 })

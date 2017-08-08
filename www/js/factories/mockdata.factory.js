@@ -52,6 +52,7 @@ angular.module('starter.factory.mockdata', [])
             id: newData.rows.length,
             items: createEmptyRow()
           })
+          deferred.resolve(true)
         }, 50)
         return deferred.promise
       },
@@ -60,6 +61,7 @@ angular.module('starter.factory.mockdata', [])
         $timeout(function() {
           console.log(index)
           newData.rows.splice(index, 1)
+          deferred.resolve(true)
         }, 50)
         return deferred.promise
       },
@@ -71,6 +73,7 @@ angular.module('starter.factory.mockdata', [])
           angular.forEach(newData.rows, function(val, key) {
             val.items.splice(key, 1)
           })
+          deferred.resolve(true)
         }, 50)
         return deferred.promise
       },
@@ -83,6 +86,7 @@ angular.module('starter.factory.mockdata', [])
           angular.forEach(newData.rows, function(val, key) {
             val.items.move(prev, index)
           })
+          deferred.resolve(true)
         }, 50)
         return deferred.promise
       },
@@ -92,6 +96,15 @@ angular.module('starter.factory.mockdata', [])
           var prev = event.element[0].attributes.row.value
           console.log(prev, index, [data], [event])
           newData.rows.move(prev, index)
+          deferred.resolve(true)
+        }, 50)
+        return deferred.promise
+      },
+      toggleLock: function(item) {
+        var deferred = $q.defer()
+        $timeout(function() {
+        	item.locked = !item.locked
+          	deferred.resolve(true)
         }, 50)
         return deferred.promise
       }
