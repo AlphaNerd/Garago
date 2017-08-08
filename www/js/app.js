@@ -9,6 +9,7 @@ angular.module('starter', [
   'starter.controllers',
   'starter.factory.mockdata',
   'starter.directives.contenteditable',
+  'ngDraggable'
 ])
 
   .run(function($ionicPlatform, $rootScope, $ionicSideMenuDelegate) {

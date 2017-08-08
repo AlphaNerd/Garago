@@ -4,22 +4,27 @@
       <div class="plan-title">
         <h1 contenteditable locked="false" ng-model="reportTitle">{{reportTitle}}</h1>
       </div>
+      <div class="milestones-containes">
+        <div class="milestone">
+          <i class="fa fa-map-pin" aria-hidden="true" ng-drag="true" ng-drag-move="onMilestoneMove()"></i>
+        </div>
+      </div>
       <div class="columns">
-        <div class="column header" ng-repeat="column in DATA.columns track by $index" column="{{$index}}">
+        <div class="column header" ng-drag="true" ng-drag-data="column" ng-repeat="column in DATA.columns track by $index" column="{{$index}}" ng-drag="true" ng-drop="true" ng-drop-success="onColDropComplete($index,$data,$event)" ng-mouseenter="columnTools = true" ng-mouseleave="columnTools = false">
           <div class="title" ng-model="column.title" ng-style="column.style" contenteditable locked="{{column.locked}}">
             {{column.title}}
           </div>
-          <i class="fa fa-minus-circle" aria-hidden="true" ng-click="deleteColumn()"></i>
+          <i class="fa fa-minus-circle" aria-hidden="true" ng-click="deleteColumn()" ng-show="columnTools"></i>
         </div>
         <i class="fa fa-plus-circle" aria-hidden="true" ng-click="addColumn()"></i>
       </div>
       <div class="rows">
         <div class="item warning" ng-show="DATA.rows.length == 0"> You need to add some rows of data.</div>
-        <div class="row-container" ng-repeat="row in DATA.rows track by $index">
+        <div class="row-container" ng-repeat="row in DATA.rows track by $index" ng-drag="true" ng-drop="true" ng-drop-success="onRowDropComplete($index,$data,$event)" ng-drag-data="row" row="{{$index}}" ng-mouseenter="rowTools = true" ng-mouseleave="rowTools = false">
           <div class="row-header" ng-model="row.title" contenteditable></div>
           <div class="row">
-            <i class="fa fa-minus-circle" aria-hidden="true" ng-click="deleteRow($index)"></i>
-            <div class="item" ng-repeat="item in row.items track by $index" column="{{$index}}" row="{{row.id}}">
+            <i class="fa fa-minus-circle" aria-hidden="true" ng-click="deleteRow($index)" ng-show="rowTools"></i>
+            <div class="item" ng-repeat="item in row.items track by $index" column="{{$index}}" row="{{$index}}">
               <div class="content" ng-model="item.content" contenteditable locked="{{item.locked}}"></div>
               <div class="controls">
                 <i class="fa" ng-class="item.locked ? 'fa-lock' : 'fa-unlock'" aria-hidden="true" ng-click="item.locked = !item.locked"></i>
@@ -27,8 +32,8 @@
                 <i class="fa fa-pencil" aria-hidden="true"></i>
               </div>
             </div>
-            <i class="fa fa-bars" aria-hidden="true"></i>
           </div>
+          <i class="fa fa-bars" aria-hidden="true" ng-drag-handle></i>
         </div>
         <i class="fa fa-plus-circle" aria-hidden="true" ng-click="addRow()"></i>
       </div>
@@ -42,3 +47,16 @@
   	<i class="fa fa-plus-circle" aria-hidden="true" ng-click="addMetric(column.metrics)"></i>
   </ul>
 </div> -->
+
+
+
+<!--- 
+
+$ajax calls will include:
+
+status: String
+- change, edit, new, update, delete, style, position, lock,
+text: data
+id: int
+
+-->

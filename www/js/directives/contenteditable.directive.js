@@ -41,13 +41,13 @@ angular.module('starter.directives.contenteditable', [])
           if (currCount < maxCount) {
             $timeout.cancel(saveDelay);
             saveDelay = $timeout(function() {
-              console.log("Save Data: ", [$event.target.innerHTML], [element], [attrs], [ngModel])
+              console.log("Edit Data: ", [$event.target.innerHTML], [element], [attrs], [ngModel])
               // console.log()
             }, 1000)
             currCount += 1
           }
           if (currCount == maxCount) {
-            console.log("Save Data: ", [$event.target.innerHTML], [element], [attrs], [ngModel])
+            console.log("Edit Data: ", [$event.target.innerHTML], [element], [attrs], [ngModel])
             currCount = 0
           }
         });

@@ -9,16 +9,22 @@ angular.module('starter.controllers', [])
   $scope.$on('$ionicView.enter', function(e) {
     console.log("AppCtrl Loaded.")
   });
+  
+  $timeout(function(){
+    $ionicSideMenuDelegate.canDragContent(false)
+  },50)
 
   $scope.reportTitle = "Title Goes Here"
 
   $scope.DATA = $mockdata.get()
   $scope.addColumn = function(){
     $mockdata.addColumn()
+    // save new
   }
 
   $scope.addRow = function(){
     $mockdata.addRow()
+    /// save new
   }
 
   $scope.deleteRow = function(index){
@@ -29,4 +35,15 @@ angular.module('starter.controllers', [])
     $mockdata.deleteColumn(index)
   }
 
+  $scope.onColDropComplete = function($index, $data ,$event){
+    $mockdata.moveColumn($index,$data,$event)
+  }
+
+  $scope.onRowDropComplete = function($index, $data ,$event){
+    $mockdata.moveRow($index,$data,$event)
+  }
+
+  $scope.onMilestoneMove = function($event){
+    console.log("Move: ",$event)
+  }
 })
