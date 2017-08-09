@@ -20,9 +20,14 @@ angular.module('starter.directives.contenteditable', [])
 
       link: function(scope, element, attrs, ngModel) {
         console.log(attrs.locked)
+        var editorOptions = {
+          toolbar: {
+              buttons: ['bold', 'italic', 'quote','underline','strikethrough','orderedlist','unorderedlist','justifyLeft','justifyRight','justifyCenter','justifyFull','html','removeFormat'],
+          }
+        }
         angular.element(element).addClass('selectable-with-editor');
         // Global MediumEditor
-        ngModel.editor = new MediumEditor(element, scope.bindOptions);
+        ngModel.editor = new MediumEditor(element, editorOptions);
 
         ////////////////////////////////////////////////////////
         ////////////// SAVING & SAVE DELAY

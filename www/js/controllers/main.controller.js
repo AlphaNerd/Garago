@@ -16,7 +16,10 @@ angular.module('starter.controllers', [])
 
   $scope.reportTitle = "Title Goes Here"
 
-  $scope.DATA = $mockdata.get()
+  $mockdata.get().then(function(res){
+    $scope.DATA = res
+  })
+
   $scope.addColumn = function(){
     $mockdata.addColumn()
     // save new
@@ -49,7 +52,7 @@ angular.module('starter.controllers', [])
 
   $scope.toggleLock = function(item){
     $mockdata.toggleLock(item)
-    
+
   }
 
 })

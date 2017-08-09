@@ -1,5 +1,5 @@
 <ion-view view-title="Garago">
-  <ion-content id="ActionPlan">
+  <ion-content id="ActionPlan" scroll="true">
     <div class="action-plan">
       <div class="plan-title">
         <h1 contenteditable locked="false" ng-model="reportTitle">{{reportTitle}}</h1>
@@ -10,10 +10,9 @@
         </div>
       </div> -->
       <div class="columns">
-        <div class="column header" ng-drag="true" ng-drag-data="column" ng-repeat="column in DATA.columns track by $index" column="{{$index}}" ng-drag="true" ng-drop="true" ng-drop-success="onColDropComplete($index,$data,$event)" ng-mouseenter="columnTools = true" ng-mouseleave="columnTools = false">
-          <div class="title" ng-model="column.title" ng-style="column.style" contenteditable locked="{{column.locked}}">
-            {{column.title}}
-          </div>
+        <div class="column header" ng-drag-data="column" ng-repeat="column in DATA.columns track by $index" column="{{$index}}" ng-drag="true" ng-drop="true" ng-drop-success="onColDropComplete($index,$data,$event)" ng-mouseenter="columnTools = true" ng-mouseleave="columnTools = false">
+          <div class="column-number">{{$index+1}}</div>
+          <div class="title" ng-model="column.title" ng-style="column.style" contenteditable locked="{{column.locked}}"></div>
           <i class="fa fa-minus-circle" aria-hidden="true" ng-click="deleteColumn()" ng-show="columnTools"></i>
         </div>
         <i class="fa fa-plus-circle" aria-hidden="true" ng-click="addColumn()"></i>
@@ -28,8 +27,8 @@
               <div class="content" ng-model="item.content" contenteditable locked="{{item.locked}}"></div>
               <div class="controls">
                 <i class="fa" ng-class="item.locked ? 'fa-lock' : 'fa-unlock'" aria-hidden="true" ng-click="toggleLock(item)"></i>
-                <i class="fa fa-picture-o" aria-hidden="true"></i>
-                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <!-- <i class="fa fa-picture-o" aria-hidden="true"></i>
+                <i class="fa fa-pencil" aria-hidden="true"></i> -->
               </div>
             </div>
           </div>

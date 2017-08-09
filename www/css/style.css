@@ -6,6 +6,19 @@
   color:#fff;
 }*/
 
+#ActionPlan {
+  background: #f3f3f3;
+}
+
+#ActionPlan .scroll {
+  /*height: 100%;*/
+}
+
+#ActionPlan .scroll .action-plan {
+  height: 100%;
+  background: #fff;
+}
+
 h1 {
   margin: 0;
   text-align: center;
@@ -17,8 +30,9 @@ ul {
 }
 
 [contenteditable]:hover {
-  border: 1px dashed #ccc;
+  border: 1px dashed #03A9F4;
   margin: -1px;
+  cursor: pointer;
 }
 
 .columns {
@@ -33,7 +47,13 @@ ul {
   position: absolute;
   right: -20px;
   font-size: 24px;
-  top: 25%;
+  top: 30%;
+  color: #ddd;
+}
+
+.columns>i.fa.fa-plus-circle:hover {
+  color: #333;
+  cursor:pointer;
 }
 
 .row {
@@ -48,20 +68,33 @@ ul {
   left: -20px;
   font-size: 24px;
   z-index: 3;
-  top: 25%;
+  top: 30%;
+  color:#ddd;
 }
 
 .rows {
   position: relative;
 }
 
+.row i.fa.fa-minus-circle:hover{
+  cursor: pointer;
+  color:#333;
+}
+
 .rows i.fa.fa-plus-circle {
   position: absolute;
   left: 50%;
   font-size: 24px;
-  bottom: -10px;
-  z-index: 2
+  bottom: -30px;
+  z-index: 2;
+  color: #ddd;
 }
+
+.rows i.fa.fa-plus-circle:hover {
+  color: #333;
+  cursor:pointer;
+}
+
 
 
 
@@ -161,7 +194,7 @@ ul {
 
 .item .content {
   position: relative;
-  width: 90%;
+  width: 95%;
   padding: 5px;
   font-size: 12px;
 }
@@ -176,6 +209,7 @@ ul {
 
 .controls i:hover {
   color: #333;
+  cursor:pointer;
 }
 
 .controls {
@@ -198,11 +232,11 @@ ul {
 }
 
 .row-header {
-  padding: 10px 0 0 5px;
-  width: 99%;
-  border-bottom: 2px solid #999;
-  color: #999;
-  font-weight: 900;
+    padding: 10px 0 0 5px;
+    width: 100%;
+    border-bottom: 4px solid #999;
+    color: #999;
+    font-weight: 900;
 }
 
 .column i.fa.fa-minus-circle {
@@ -211,6 +245,11 @@ ul {
   font-size: 24px;
   bottom: -10px;
   z-index: 5;
+  color:#ddd;
+}
+.column i.fa.fa-minus-circle:hover{
+  color:#333;
+  cursor: pointer;
 }
 
 .row-container {
@@ -221,14 +260,15 @@ ul {
 
 .row-container>i.fa.fa-bars {
   position: absolute;
-  right: 10px;
+  right: 1%;
   font-size: 24px;
   color: #ddd;
   top: 50%;
 }
 
-.row i.fa.fa-bars:hover {
+.row-container i.fa.fa-bars:hover {
   color: #333;
+  cursor: pointer;
 }
 
 .plan-title {
@@ -237,83 +277,23 @@ ul {
 
 
 .action-plan {
-  padding: 30px;
+  margin: 50px;
   background: #fff;
+  padding: 30px;
 }
 
 
-
-
-
-
-/*
-[ng-drag] {
-  -moz-user-select: -moz-none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+.column.header .column-number.ng-binding {
+    position: absolute;
+    z-index: 10;
+    right: 10%;
+    top: 35%;
+    font-size: 30px;
+    text-align: right;
+    color: #fff;
+    opacity: 0.50;
 }
 
-[ng-drag] {
-  width: 100px;
-  height: 100px;
-  background: rgba(255, 0, 0, 0.5);
-  color: white;
-  text-align: center;
-  padding-top: 40px;
-  display: block;
-  cursor: move;
+.plan-title h1 {
+    color: #888;
 }
-
-[ng-drag].one {
-  background: rgba(255, 0, 0, 0.5);
-}
-
-[ng-drag].two {
-  background: rgba(0, 255, 0, 0.5);
-}
-
-[ng-drag].three {
-  background: rgba(0, 0, 255, 0.5);
-}
-
-[ng-drag].drag-over {
-  border: solid 1px red;
-}
-
-[ng-drag].dragging {
-  opacity: 0.5;
-}
-
-[ng-drop] {
-  background: rgba(0, 0, 0, 0.25);
-  text-align: center;
-  display: block;
-  position: relative;
-  padding: 20px;
-  width: 140px;
-  height: 140px;
-  float: left;
-}
-
-[ng-drop].drag-enter {
-  border: solid 5px red;
-}
-
-[ng-drop] span.title {
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 200px;
-  height: 20px;
-  margin-left: -100px;
-  margin-top: -10px;
-}
-
-[ng-drop] div {
-  position: relative;
-  z-index: 2;
-}
-*/

@@ -13,7 +13,13 @@ angular.module('starter.factory.mockdata', [])
     };
     var obj = {
       get: function() {
-        return newData
+      	var deferred = $q.defer()
+      	$ionicLoading.show({ template: "Loading data..." })
+        $timeout(function() {
+        	deferred.resolve(newData)
+        	$ionicLoading.hide()
+        },0)
+        return deferred.promise
       },
       addColumn: function() {
         var deferred = $q.defer()
