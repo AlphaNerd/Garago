@@ -15,30 +15,37 @@
     <ion-content id="SettingsMenu">
       <div class="tabs-top">
         <div class="tabs tabs-icon-left">
-          <a class="tab-item">
-          <i class="icon ion-home"></i>
-          Home
-        </a>
-          <a class="tab-item">
-          <i class="icon ion-star"></i>
-          Favorites
-        </a>
-          <a class="tab-item">
-          <i class="icon ion-gear-a"></i>
+          <a class="tab-item" ng-click="settingsTabsSelect('settings')">
+          <i class="fa fa-gear"></i>
           Settings
+        </a>
+          <a class="tab-item" ng-click="settingsTabsSelect('styles')">
+          <i class="fa fa-paint-brush"></i>
+          Styles
         </a>
         </div>
       </div>
-      <div class="settings-container">
-        <li class="item item-toggle" ng-click="toggleEnumeration(showEmuneration)">
-          Show Emuneration
-          <label class="toggle toggle-assertive">
-            <input type="checkbox" ng-model="showEmuneration">
-            <div class="track">
-              <div class="handle"></div>
-            </div>
-          </label>
-        </li>
+      <div class="panel-selection" ng-switch="settingsTabs">
+        
+        <div class="settings-container" ng-switch-when="settings">
+          <li class="item item-toggle" ng-click="toggleEnumeration(showEmuneration)">
+            Show Emuneration
+            <label class="toggle toggle-assertive">
+              <input type="checkbox" ng-model="showEmuneration">
+              <div class="track">
+                <div class="handle"></div>
+              </div>
+            </label>
+          </li>
+        </div>
+
+        <div class="styles-container" ng-switch-when="styles">
+          <div class="color-selection">
+            <div>Title:</div>
+            <div md-color-picker ng-model="valueObj"></div>
+          </div>
+        </div>
+
       </div>
     </ion-content>
   </ion-side-menu>

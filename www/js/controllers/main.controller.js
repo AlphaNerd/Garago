@@ -1,68 +1,79 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $rootScope, $ionicSideMenuDelegate, $mockdata) {
+  .controller('AppCtrl', function($scope, $ionicModal, $timeout, $rootScope, $ionicSideMenuDelegate, $mockdata) {
 
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  $scope.$on('$ionicView.enter', function(e) {
-    console.log("AppCtrl Loaded.")
-  });
-  
-  $timeout(function(){
-    $ionicSideMenuDelegate.canDragContent(false)
-  },50)
+    // With the new view caching in Ionic, Controllers are only called
+    // when they are recreated or on app start, instead of every page change.
+    // To listen for when this page is active (for example, to refresh data),
+    // listen for the $ionicView.enter event:
+    $scope.$on('$ionicView.enter', function(e) {
+      console.log("AppCtrl Loaded.")
+    });
 
-  $scope.reportTitle = $mockdata.getReportTitle()
+    $timeout(function() {
+      $ionicSideMenuDelegate.canDragContent(false)
+    }, 50)
 
-  $scope.showEmuneration = false
+    $mockdata.getTheme().then(function(res) {
+      $scope.theme = res
+      console.log($scope.theme)
+    })
 
-  $mockdata.get().then(function(res){
-    $scope.DATA = res
+    $scope.reportTitle = $mockdata.getReportTitle()
+
+    $scope.showEmuneration = false
+
+    $scope.settingsTabs = 'settings'
+
+    $mockdata.get().then(function(res) {
+      $scope.DATA = res
+    })
+
+    $scope.addColumn = function() {
+      $mockdata.addColumn()
+      // save new
+    }
+
+    $scope.addRow = function() {
+      $mockdata.addRow()
+      /// save new
+    }
+
+    $scope.deleteRow = function(index) {
+      $mockdata.deleteRow(index)
+    }
+
+    $scope.deleteColumn = function(index) {
+      $mockdata.deleteColumn(index)
+    }
+
+    $scope.onColDropComplete = function($index, $data, $event) {
+      $mockdata.moveColumn($index, $data, $event)
+    }
+
+    $scope.onRowDropComplete = function($index, $data, $event) {
+      $mockdata.moveRow($index, $data, $event)
+    }
+
+    $scope.onDragMove = function($event) {
+      console.log("Move: ", [$event])
+    }
+
+    $scope.toggleLock = function(item) {
+      $mockdata.toggleLock(item)
+
+    }
+
+    $scope.openSettings = function() {
+      $ionicSideMenuDelegate.toggleRight()
+    }
+
+    $scope.toggleEnumeration = function() {
+      $scope.showEmuneration = !$scope.showEmuneration
+    }
+
+    $scope.settingsTabsSelect = function(selection) {
+      $scope.settingsTabs = selection
+    }
+
   })
-
-  $scope.addColumn = function(){
-    $mockdata.addColumn()
-    // save new
-  }
-
-  $scope.addRow = function(){
-    $mockdata.addRow()
-    /// save new
-  }
-
-  $scope.deleteRow = function(index){
-    $mockdata.deleteRow(index)
-  }
-
-  $scope.deleteColumn = function(index){
-    $mockdata.deleteColumn(index)
-  }
-
-  $scope.onColDropComplete = function($index, $data ,$event){
-    $mockdata.moveColumn($index,$data,$event)
-  }
-
-  $scope.onRowDropComplete = function($index, $data ,$event){
-    $mockdata.moveRow($index,$data,$event)
-  }
-
-  $scope.onDragMove = function($event){
-    console.log("Move: ",[$event])
-  }
-
-  $scope.toggleLock = function(item){
-    $mockdata.toggleLock(item)
-
-  }
-
-  $scope.openSettings = function(){
-    $ionicSideMenuDelegate.toggleRight()
-  }
-
-  $scope.toggleEnumeration = function(){
-    $scope.showEmuneration = !$scope.showEmuneration
-  }
-
-})

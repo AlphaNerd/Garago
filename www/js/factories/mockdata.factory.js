@@ -120,6 +120,27 @@ angular.module('starter.factory.mockdata', [])
       },
       getReportTitle: function(){
       	return "Your Title Here"
+      },
+      saveReportTitle: function(){
+      	console.log("Save new plan title")
+      },
+      getTheme: function(){
+      	var deferred = $q.defer()
+      	$timeout(function(){
+      		var theme = {
+      			title: {
+      				'color': 'red'
+      			},
+      			core: {
+      				'color': 'green'
+      			},
+      			colors: {
+
+      			}
+      		}
+      		return theme
+      	},50)
+      	return	deferred.promise
       }
     }
     return obj

@@ -9,7 +9,9 @@ angular.module('starter', [
   'starter.controllers',
   'starter.factory.mockdata',
   'starter.directives.contenteditable',
-  'ngDraggable'
+  'ngDraggable',
+  'ngMaterial',
+  'mdColorPicker'
 ])
 
   .run(function($ionicPlatform, $rootScope, $ionicSideMenuDelegate) {

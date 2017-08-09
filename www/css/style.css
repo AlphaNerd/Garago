@@ -33,6 +33,7 @@ ul {
   border: 1px dashed #03A9F4;
   margin: -1px;
   cursor: pointer;
+  padding-bottom: 3px;
 }
 
 .columns {
@@ -330,4 +331,24 @@ ul {
 #SettingsMenu .settings-container{
   position: relative;
   top:44px;
+}
+
+#SettingsMenu .tab-item, .tabs-icon-left > .tabs .tab-item, .tabs-icon-right.tabs .tab-item, .tabs-icon-right > .tabs .tab-item {
+    font-size: 14px;
+}
+
+#SettingsMenu .panel-selection {
+    padding: 44px 10px 10px 10px;
+}
+
+#SettingsMenu md-input-container {
+    display: inline-block;
+    position: relative;
+    padding: 2px;
+    margin: 18px 0;
+    vertical-align: middle;
+}
+
+#ActionPlan .footer {
+    margin: 20px 0;
 }
