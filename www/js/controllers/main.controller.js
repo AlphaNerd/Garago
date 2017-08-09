@@ -14,16 +14,22 @@ angular.module('starter.controllers', [])
       $ionicSideMenuDelegate.canDragContent(false)
     }, 50)
 
-    $mockdata.getTheme().then(function(res) {
-      $scope.theme = res
-      console.log($scope.theme)
-    })
-
     $scope.reportTitle = $mockdata.getReportTitle()
 
     $scope.showEmuneration = false
 
     $scope.settingsTabs = 'settings'
+
+    $scope.themeData = $mockdata.getTheme()
+
+    //// color picker options
+    $scope.pickerSettings = {
+        label: "Choose a color",
+        icon: "",
+        default: $scope.themeData.colors[0],
+        genericPalette: false,
+        history: false
+    };
 
     $mockdata.get().then(function(res) {
       $scope.DATA = res

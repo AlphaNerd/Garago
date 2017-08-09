@@ -13,12 +13,17 @@ angular.module('starter.factory.mockdata', [])
     };
     var obj = {
       get: function() {
-      	var deferred = $q.defer()
-      	$ionicLoading.show({ template: "Loading data..." })
-        $timeout(function() {
-        	deferred.resolve(newData)
-        	$ionicLoading.hide()
-        },0)
+        var deferred = $q.defer()
+        var params = JSON.stringify()
+        $ionicLoading.show({ template: "Loading data..." })
+        $http.get("/sm/plans/planningJson/"+reqParams).then(function(res) {
+          deferred.resolve(res)
+          $ionicLoading.hide()
+        })
+        // $timeout(function() {
+        //  deferred.resolve(newData)
+        //  $ionicLoading.hide()
+        // },0)
         return deferred.promise
       },
       addColumn: function() {
@@ -109,38 +114,26 @@ angular.module('starter.factory.mockdata', [])
       toggleLock: function(item) {
         var deferred = $q.defer()
         $timeout(function() {
-        	item.locked = !item.locked
-          	deferred.resolve(true)
+          item.locked = !item.locked
+          deferred.resolve(true)
         }, 50)
         return deferred.promise
       },
-      toggleEmuneration: function(state){
-      	state = !state
-      	return state
+      toggleEmuneration: function(state) {
+        state = !state
+        return state
       },
-      getReportTitle: function(){
-      	return "Your Title Here"
+      getReportTitle: function() {
+        return "Your Title Here"
       },
-      saveReportTitle: function(){
-      	console.log("Save new plan title")
+      saveReportTitle: function() {
+        console.log("Save new plan title")
       },
-      getTheme: function(){
-      	var deferred = $q.defer()
-      	$timeout(function(){
-      		var theme = {
-      			title: {
-      				'color': 'red'
-      			},
-      			core: {
-      				'color': 'green'
-      			},
-      			colors: {
-
-      			}
-      		}
-      		return theme
-      	},50)
-      	return	deferred.promise
+      getTheme: function() {
+        var theme = {
+          colors: [Please.make_color(), Please.make_color(), Please.make_color()]
+        }
+        return theme
       }
     }
     return obj
@@ -246,3 +239,9 @@ var newData = {
     }]
   }]
 }
+
+
+var reqParams = {
+    "Event": { "id": "4", "status": "edit", "posEvent": "Title Or Axis Or metrics or propertyPlaning or line or column", "data": "data for change", "line": "2", "column": "3" },
+    "propertyPlaning": { "Planing_id": "1", "historical_planing_id": "1", "lock": "no", "titre": "titre plans", "photo": "name.extension", "optionPlaning": "long term", "style_planing": { "color": "red", "Red": "#FF00000" } 
+  }

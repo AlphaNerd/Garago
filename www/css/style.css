@@ -1,5 +1,5 @@
 /* Empty. Add your own CSS if you like */
-
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
 
 /*body{
   background:#333;
@@ -297,6 +297,7 @@ ul {
 
 .plan-title h1 {
     color: #888;
+    font-family: 'Pacifico', cursive;
 }
 
 .plan-settings{
@@ -338,7 +339,7 @@ ul {
 }
 
 #SettingsMenu .panel-selection {
-    padding: 44px 10px 10px 10px;
+    padding: 50px 10px 10px 10px;
 }
 
 #SettingsMenu md-input-container {
@@ -349,6 +350,21 @@ ul {
     vertical-align: middle;
 }
 
-#ActionPlan .footer {
+#SettingsMenu .footer {
     margin: 20px 0;
+}
+
+
+#SettingsMenu .color-selection{
+  position: relative;
+}
+
+
+#SettingsMenu .color-selection > div {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#SettingsMenu .color-selection [md-color-picker]{
+
 }
