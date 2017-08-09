@@ -242,6 +242,24 @@ var newData = {
 
 
 var reqParams = {
-    "Event": { "id": "4", "status": "edit", "posEvent": "Title Or Axis Or metrics or propertyPlaning or line or column", "data": "data for change", "line": "2", "column": "3" },
-    "propertyPlaning": { "Planing_id": "1", "historical_planing_id": "1", "lock": "no", "titre": "titre plans", "photo": "name.extension", "optionPlaning": "long term", "style_planing": { "color": "red", "Red": "#FF00000" } 
+    "Event": { 
+      "id": "4", 
+      "status": "edit", 
+      "posEvent": "Title Or Axis Or metrics or propertyPlaning or line or column", 
+      "data": "data for change", 
+      "line": "2", 
+      "column": "3" 
+    },
+    "propertyPlaning": { 
+      "Planing_id": "1", 
+      "historical_planing_id": "1", 
+      "lock": "no", 
+      "titre": "titre plans", 
+      "photo": "name.extension", 
+      "optionPlaning": "long term", 
+      "style_planing": { 
+        "color": "red", 
+        "Red": "#FF00000" 
+      } 
+    }
   }
