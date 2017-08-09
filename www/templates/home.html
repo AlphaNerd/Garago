@@ -1,6 +1,9 @@
 <ion-view view-title="Garago">
   <ion-content id="ActionPlan" scroll="true">
     <div class="action-plan">
+      <div class="plan-settings">
+        <i class="fa fa-gears" ng-click="openSettings()"></i>
+      </div>
       <div class="plan-title">
         <h1 contenteditable locked="false" ng-model="reportTitle">{{reportTitle}}</h1>
       </div>
@@ -11,7 +14,7 @@
       </div> -->
       <div class="columns">
         <div class="column header" ng-drag-data="column" ng-repeat="column in DATA.columns track by $index" column="{{$index}}" ng-drag="true" ng-drop="true" ng-drop-success="onColDropComplete($index,$data,$event)" ng-mouseenter="columnTools = true" ng-mouseleave="columnTools = false">
-          <div class="column-number">{{$index+1}}</div>
+          <div class="column-number" ng-init="showEmuneration = false" ng-if="showEmuneration">{{$index+1}}</div>
           <div class="title" ng-model="column.title" ng-style="column.style" contenteditable locked="{{column.locked}}"></div>
           <i class="fa fa-minus-circle" aria-hidden="true" ng-click="deleteColumn()" ng-show="columnTools"></i>
         </div>
@@ -43,12 +46,9 @@
   <ul>
     <li ng-model="metric.text" ng-repeat="metric in column.metrics" contenteditable></li>
     <i class="fa fa-minus-circle" aria-hidden="true" ng-click="minusMetric(column.metrics)"></i>
-  	<i class="fa fa-plus-circle" aria-hidden="true" ng-click="addMetric(column.metrics)"></i>
+    <i class="fa fa-plus-circle" aria-hidden="true" ng-click="addMetric(column.metrics)"></i>
   </ul>
 </div> -->
-
-
-
 <!--- 
 
 $ajax calls will include:

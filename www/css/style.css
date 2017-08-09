@@ -297,3 +297,37 @@ ul {
 .plan-title h1 {
     color: #888;
 }
+
+.plan-settings{
+  float:right;
+}
+
+.plan-settings i{
+  font-size:30px;
+  color:#bbb;
+}
+
+.plan-settings i:hover{
+  color:#333;
+  cursor: pointer;
+
+}
+
+
+.menu-header h3 {
+    padding: 15px;
+    color:#333;
+}
+
+#SettingsMenu .item.activated{
+  background:none;
+}
+
+#SettingsMenu .tabs-top > .tabs, .tabs.tabs-top {
+    top: 0px;
+}
+
+#SettingsMenu .settings-container{
+  position: relative;
+  top:44px;
+}

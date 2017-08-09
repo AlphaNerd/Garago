@@ -14,7 +14,9 @@ angular.module('starter.controllers', [])
     $ionicSideMenuDelegate.canDragContent(false)
   },50)
 
-  $scope.reportTitle = "Title Goes Here"
+  $scope.reportTitle = $mockdata.getReportTitle()
+
+  $scope.showEmuneration = false
 
   $mockdata.get().then(function(res){
     $scope.DATA = res
@@ -53,6 +55,14 @@ angular.module('starter.controllers', [])
   $scope.toggleLock = function(item){
     $mockdata.toggleLock(item)
 
+  }
+
+  $scope.openSettings = function(){
+    $ionicSideMenuDelegate.toggleRight()
+  }
+
+  $scope.toggleEnumeration = function(){
+    $scope.showEmuneration = !$scope.showEmuneration
   }
 
 })

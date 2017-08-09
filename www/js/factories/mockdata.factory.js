@@ -113,6 +113,13 @@ angular.module('starter.factory.mockdata', [])
           	deferred.resolve(true)
         }, 50)
         return deferred.promise
+      },
+      toggleEmuneration: function(state){
+      	state = !state
+      	return state
+      },
+      getReportTitle: function(){
+      	return "Your Title Here"
       }
     }
     return obj

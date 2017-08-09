@@ -11,7 +11,37 @@
     </ion-nav-bar> -->
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
-
+  <ion-side-menu side="right" width="450">
+    <ion-content id="SettingsMenu">
+      <div class="tabs-top">
+        <div class="tabs tabs-icon-left">
+          <a class="tab-item">
+          <i class="icon ion-home"></i>
+          Home
+        </a>
+          <a class="tab-item">
+          <i class="icon ion-star"></i>
+          Favorites
+        </a>
+          <a class="tab-item">
+          <i class="icon ion-gear-a"></i>
+          Settings
+        </a>
+        </div>
+      </div>
+      <div class="settings-container">
+        <li class="item item-toggle" ng-click="toggleEnumeration(showEmuneration)">
+          Show Emuneration
+          <label class="toggle toggle-assertive">
+            <input type="checkbox" ng-model="showEmuneration">
+            <div class="track">
+              <div class="handle"></div>
+            </div>
+          </label>
+        </li>
+      </div>
+    </ion-content>
+  </ion-side-menu>
   <ion-side-menu side="left">
     <!-- <ion-header-bar class="bar-stable">
       <h1 class="title">Left</h1>
