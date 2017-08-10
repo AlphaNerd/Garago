@@ -1,0 +1,329 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"fo",
+				"form\t$this->Form->create()"
+			],
+			[
+				"for",
+				"fractionner.png"
+			],
+			[
+				"fore",
+				"for($i=1;$i<=$axe['Axis']['line'];$i"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 354.0,
+		"last_filter": "liste",
+		"selected_items":
+		[
+			[
+				"liste",
+				"Preferences: SublimeLint Settings – Default"
+			],
+			[
+				"ins",
+				"Indexing Status"
+			],
+			[
+				"",
+				"Bookmarks: Toggle"
+			],
+			[
+				"code stat",
+				"CodeFormatter: Show PHP Transformations"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"code C",
+				"SublimeCodeIntel: Enable Live Autocompletion for Current Language"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"php",
+				"Snippet: PHP: getter"
+			],
+			[
+				"code ",
+				"PHP CodeBeautifier"
+			],
+			[
+				"live",
+				"LiveReload: Help"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"insall",
+				"Package Control: Install Local Dependency"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"clo",
+				"Color Picker"
+			],
+			[
+				"html",
+				"HTMLBeautify"
+			],
+			[
+				"emo",
+				"Emoji: Insert Emoji"
+			],
+			[
+				"boxy",
+				"Boxy Theme: Configuration"
+			],
+			[
+				"font ",
+				"Code Folding: Fold Tag Attributes"
+			],
+			[
+				"star",
+				"SublimeServer: Start SublimeServer"
+			],
+			[
+				"ma",
+				"Material Theme: Extras"
+			],
+			[
+				"Snippet: ",
+				"Snippet: html"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Add Repository"
+			]
+		],
+		"width": 398.0
+	},
+	"console":
+	{
+		"height": 164.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/bilel/AppData/Roaming/Sublime Text 3/Packages/User/AdvancedNewFile.sublime-settings",
+		"/C/Users/bilel/AppData/Roaming/Sublime Text 3/Packages/sublimelint/SublimeLint.sublime-settings",
+		"/D/examp/htdocs/sou_project/sm/app/Controller/PlansController.php",
+		"/D/examp/htdocs/sou_project/sm/app/View/Plans/index.ctp",
+		"/C/Users/bilel/AppData/Roaming/Sublime Text 3/Packages/User/42-headers.sublime-settings",
+		"/D/examp/htdocs/sou_project/sm/app/View/Plans/detail_plan.ctp",
+		"/D/examp/htdocs/sou_project/sm/app/webroot/css/main.css",
+		"/D/examp/htdocs/sou_project/sm/app/Model/DetailPlan.php",
+		"/D/examp/htdocs/sou_project/sm/app/View/Axes/add.ctp",
+		"/C/Users/bilel/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/bilel/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
+		"/D/examp/htdocs/sou_project/sm/app/View/Plans/get_planning.ctp",
+		"/D/examp/htdocs/sou_project/fileupload/assets/js/form-builder.js",
+		"/C/Users/bilel/AppData/Roaming/Sublime Text 3/Packages/Package Control/Package Control.sublime-settings"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 158.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"this",
+			"newPl"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 29.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "add.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Users\\bilel\\AppData\\Roaming\\Sublime Text 3\\Packages\\User\\AdvancedNewFile.sublime-settings"
+			],
+			[
+				"detail_",
+				"sm\\app\\View\\Plans\\detail_plan.ctp"
+			],
+			[
+				"plans/ind",
+				"sm\\app\\View\\Plans\\index.ctp"
+			],
+			[
+				"planco",
+				"sm\\app\\Controller\\PlansController.php"
+			],
+			[
+				"plancon",
+				"sm\\app\\Controller\\PlansController.php"
+			],
+			[
+				"main",
+				"sm\\app\\webroot\\css\\main.css"
+			],
+			[
+				"deta",
+				"sm\\app\\View\\Plans\\detail_plan.ctp"
+			],
+			[
+				"detail",
+				"sm\\app\\Model\\DetailPlan.php"
+			],
+			[
+				"detai",
+				"sm\\app\\View\\Plans\\detail_plan.ctp"
+			],
+			[
+				"main.css",
+				"sm\\app\\webroot\\css\\main.css"
+			],
+			[
+				"controllerpl",
+				"sm\\app\\Controller\\PlansController.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 242.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

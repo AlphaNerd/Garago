@@ -1,0 +1,1100 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2017-03-13 08:38-0400\n"
+"PO-Revision-Date: 2017-03-30 13:28-0400\n"
+"Language-Team: EMAIL@ADDRESS\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.11\n"
+"Last-Translator: \n"
+"Language: en_CA\n"
+
+#: Controller/ActionsController.php:29;61;86
+msgid "Invalid action"
+msgstr ""
+
+#: Controller/ActionsController.php:44;65
+msgid "The action has been saved"
+msgstr ""
+
+#: Controller/ActionsController.php:47;68
+msgid "The action could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/ActionsController.php:90
+msgid "Action deleted"
+msgstr ""
+
+#: Controller/ActionsController.php:93
+msgid "Action was not deleted"
+msgstr ""
+
+#: Controller/CategoriesController.php:29;61;86
+msgid "Invalid category"
+msgstr ""
+
+#: Controller/CategoriesController.php:44;65
+msgid "The category has been saved"
+msgstr ""
+
+#: Controller/CategoriesController.php:47;68
+msgid "The category could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/CategoriesController.php:90
+msgid "Category deleted"
+msgstr ""
+
+#: Controller/CategoriesController.php:93
+msgid "Category was not deleted"
+msgstr ""
+
+#: Controller/CustomersController.php:29;61;86
+msgid "Invalid customer"
+msgstr ""
+
+#: Controller/CustomersController.php:44;65
+msgid "The customer has been saved"
+msgstr ""
+
+#: Controller/CustomersController.php:47;68
+msgid "The customer could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/CustomersController.php:90
+msgid "Customer deleted"
+msgstr ""
+
+#: Controller/CustomersController.php:93
+msgid "Customer was not deleted"
+msgstr ""
+
+#: Controller/DocumentsController.php:29;158;183
+msgid "Invalid document"
+msgstr ""
+
+#: Controller/DocumentsController.php:124;162
+msgid "The document has been saved"
+msgstr ""
+
+#: Controller/DocumentsController.php:128;165
+msgid "The document could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/DocumentsController.php:187
+msgid "Document deleted"
+msgstr ""
+
+#: Controller/DocumentsController.php:190
+msgid "Document was not deleted"
+msgstr ""
+
+#: Controller/LanguagesController.php:29;61;86
+msgid "Invalid Language"
+msgstr ""
+
+#: Controller/LanguagesController.php:44;65
+msgid "The Language has been saved"
+msgstr ""
+
+#: Controller/LanguagesController.php:47;68
+msgid "The Language could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/LanguagesController.php:90
+msgid "Language deleted"
+msgstr ""
+
+#: Controller/LanguagesController.php:93
+msgid "Language was not deleted"
+msgstr ""
+
+#: Controller/SectorsController.php:29;61;86
+msgid "Invalid sector"
+msgstr ""
+
+#: Controller/SectorsController.php:44;65
+msgid "The sector has been saved"
+msgstr ""
+
+#: Controller/SectorsController.php:47;68
+msgid "The sector could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/SectorsController.php:90
+msgid "Sector deleted"
+msgstr ""
+
+#: Controller/SectorsController.php:93
+msgid "Sector was not deleted"
+msgstr ""
+
+#: Controller/UsersController.php:39
+msgid "Welcome, "
+msgstr ""
+
+#: Controller/UsersController.php:44
+msgid "Invalid username or password - This user appears to be deleted..."
+msgstr ""
+
+#: Controller/UsersController.php:47
+msgid "Invalid username or password"
+msgstr ""
+
+#: Controller/UsersController.php:118
+msgid "Welcome back, "
+msgstr ""
+
+#: Controller/UsersController.php:120
+msgid "Welcome to our community, "
+msgstr ""
+
+#: Controller/UsersController.php:125
+msgid "Unknown Error could not verify the user: "
+msgstr ""
+
+#: Controller/UsersController.php:152
+msgid "The user has been created"
+msgstr ""
+
+#: Controller/UsersController.php:155
+msgid "The user could not be created. Please, try again."
+msgstr ""
+
+#: Controller/UsersController.php:176
+msgid "The user has been updated"
+msgstr ""
+
+#: Controller/UsersController.php:179
+msgid "Unable to update your user."
+msgstr ""
+
+#: Controller/UsersController.php:201
+msgid "User deleted"
+msgstr ""
+
+#: Controller/UsersController.php:204
+msgid "User was not deleted"
+msgstr ""
+
+#: Controller/UsersController.php:221
+msgid "User re-activated"
+msgstr ""
+
+#: Controller/UsersController.php:224
+msgid "User was not re-activated"
+msgstr ""
+
+#: View/Actions/add.ctp:4
+msgid "Add Action"
+msgstr ""
+
+#: View/Actions/add.ctp:12 View/Actions/edit.ctp:13 View/Attachments/add.ctp:13
+#: View/Attachments/edit.ctp:14 View/DocumentCategories/add.ctp:10
+#: View/DocumentCategories/edit.ctp:11 View/DocumentCustomers/add.ctp:10
+#: View/DocumentCustomers/edit.ctp:11 View/DocumentSectors/add.ctp:10
+#: View/DocumentSectors/edit.ctp:11 View/Documents/edit.ctp:16
+#: View/Languages/add.ctp:31 View/Languages/edit.ctp:35
+msgid "Submit"
+msgstr "envoyer"
+
+#: View/Actions/add.ctp:15 View/Actions/edit.ctp:16
+#: View/Actions/index.ctp:2;10;42 View/Actions/view.ctp:32
+#: View/Attachments/add.ctp:16 View/Attachments/edit.ctp:17
+#: View/Attachments/index.ctp:11;44 View/Attachments/view.ctp:37
+#: View/Categories/index.ctp:23 View/Categories/view.ctp:17
+#: View/Customers/index.ctp:23 View/Customers/view.ctp:17
+#: View/DocumentCategories/add.ctp:13 View/DocumentCategories/edit.ctp:14
+#: View/DocumentCategories/index.ctp:8;38 View/DocumentCategories/view.ctp:22
+#: View/DocumentCustomers/add.ctp:13 View/DocumentCustomers/edit.ctp:14
+#: View/DocumentCustomers/index.ctp:8;38 View/DocumentCustomers/view.ctp:22
+#: View/DocumentSectors/add.ctp:13 View/DocumentSectors/edit.ctp:14
+#: View/DocumentSectors/index.ctp:8;38 View/DocumentSectors/view.ctp:22
+#: View/Documents/edit.ctp:19 View/Documents/index.ctp:13;48
+#: View/Documents/view.ctp:47;76;112;145;178;211 View/Languages/index.ctp:24
+#: View/Languages/view.ctp:22 View/Sectors/index.ctp:23
+#: View/Sectors/view.ctp:17
+msgid "Actions"
+msgstr ""
+
+#: View/Actions/add.ctp:18 View/Actions/edit.ctp:20 View/Actions/view.ctp:36
+msgid "List Actions"
+msgstr ""
+
+#: View/Actions/edit.ctp:4 View/Actions/view.ctp:34
+msgid "Edit Action"
+msgstr ""
+
+#: View/Actions/edit.ctp:19 View/Actions/index.ctp:22
+#: View/Attachments/edit.ctp:20 View/Attachments/index.ctp:24
+#: View/Categories/edit.ctp:6 View/Customers/edit.ctp:7
+#: View/DocumentCategories/edit.ctp:17 View/DocumentCategories/index.ctp:18
+#: View/DocumentCustomers/edit.ctp:17 View/DocumentCustomers/index.ctp:18
+#: View/DocumentSectors/edit.ctp:17 View/DocumentSectors/index.ctp:18
+#: View/Documents/edit.ctp:22 View/Documents/index.ctp:28
+#: View/Documents/view.ctp:91;124;157;190;223 View/Languages/edit.ctp:7
+#: View/Sectors/edit.ctp:7
+msgid "Delete"
+msgstr "supprimer"
+
+#: View/Actions/edit.ctp:19 View/Actions/index.ctp:22 View/Actions/view.ctp:35
+#: View/Attachments/edit.ctp:20 View/Attachments/index.ctp:24
+#: View/Attachments/view.ctp:40 View/Categories/edit.ctp:6
+#: View/Categories/index.ctp:31 View/Categories/view.ctp:20
+#: View/Customers/edit.ctp:7 View/Customers/index.ctp:31
+#: View/Customers/view.ctp:20 View/DocumentCategories/edit.ctp:17
+#: View/DocumentCategories/index.ctp:18 View/DocumentCategories/view.ctp:25
+#: View/DocumentCustomers/edit.ctp:17 View/DocumentCustomers/index.ctp:18
+#: View/DocumentCustomers/view.ctp:25 View/DocumentSectors/edit.ctp:17
+#: View/DocumentSectors/index.ctp:18 View/DocumentSectors/view.ctp:25
+#: View/Documents/edit.ctp:22 View/Documents/index.ctp:28
+#: View/Documents/view.ctp:50;91;124;157;190;223 View/Languages/edit.ctp:7
+#: View/Languages/index.ctp:34 View/Languages/view.ctp:25
+#: View/Sectors/edit.ctp:7 View/Sectors/index.ctp:31 View/Sectors/view.ctp:20
+msgid "Are you sure you want to delete # %s?"
+msgstr ""
+
+#: View/Actions/index.ctp:20 View/Attachments/index.ctp:22
+#: View/DocumentCategories/index.ctp:16 View/DocumentCustomers/index.ctp:16
+#: View/DocumentSectors/index.ctp:16 View/Documents/index.ctp:26
+#: View/Documents/view.ctp:89;122;155;188;221
+msgid "View"
+msgstr ""
+
+#: View/Actions/index.ctp:21 View/Attachments/index.ctp:23
+#: View/DocumentCategories/index.ctp:17 View/DocumentCustomers/index.ctp:17
+#: View/DocumentSectors/index.ctp:17 View/Documents/index.ctp:27
+#: View/Documents/view.ctp:90;123;156;189;222
+msgid "Edit"
+msgstr ""
+
+#: View/Actions/index.ctp:30 View/Attachments/index.ctp:32
+#: View/Categories/index.ctp:39 View/Customers/index.ctp:39
+#: View/DocumentCategories/index.ctp:26 View/DocumentCustomers/index.ctp:26
+#: View/DocumentSectors/index.ctp:26 View/Documents/index.ctp:36
+#: View/Languages/index.ctp:42 View/Sectors/index.ctp:40
+msgid ""
+"Page {:page} of {:pages}, showing {:current} records out of {:count} total, "
+"starting on record {:start}, ending on {:end}"
+msgstr ""
+
+#: View/Actions/index.ctp:35 View/Attachments/index.ctp:37
+#: View/Categories/index.ctp:44 View/Customers/index.ctp:44
+#: View/DocumentCategories/index.ctp:31 View/DocumentCustomers/index.ctp:31
+#: View/DocumentSectors/index.ctp:31 View/Documents/index.ctp:41
+#: View/Languages/index.ctp:47 View/Sectors/index.ctp:45
+#: View/Users/index.ctp:43
+msgid "previous"
+msgstr ""
+
+#: View/Actions/index.ctp:37 View/Attachments/index.ctp:39
+#: View/Categories/index.ctp:46 View/Customers/index.ctp:46
+#: View/DocumentCategories/index.ctp:33 View/DocumentCustomers/index.ctp:33
+#: View/DocumentSectors/index.ctp:33 View/Documents/index.ctp:43
+#: View/Languages/index.ctp:49 View/Sectors/index.ctp:47
+#: View/Users/index.ctp:45
+msgid "next"
+msgstr ""
+
+#: View/Actions/index.ctp:44 View/Actions/view.ctp:37
+msgid "New Action"
+msgstr ""
+
+#: View/Actions/view.ctp:2
+msgid "Action"
+msgstr ""
+
+#: View/Actions/view.ctp:4 View/Attachments/view.ctp:4
+#: View/Categories/view.ctp:4 View/Customers/view.ctp:4
+#: View/DocumentCategories/view.ctp:4 View/DocumentCustomers/view.ctp:4
+#: View/DocumentSectors/view.ctp:4 View/Documents/view.ctp:4;70;109;142;175;208
+#: View/Languages/view.ctp:4 View/Sectors/view.ctp:4
+msgid "Id"
+msgstr ""
+
+#: View/Actions/view.ctp:9 View/Attachments/view.ctp:29
+#: View/DocumentCategories/view.ctp:9 View/DocumentCustomers/view.ctp:9
+#: View/DocumentSectors/view.ctp:9 View/Documents/view.ctp:75;110;143;176;209
+msgid "Document Id"
+msgstr ""
+
+#: View/Actions/view.ctp:14
+msgid "Profile Id"
+msgstr ""
+
+#: View/Actions/view.ctp:19
+msgid "Type"
+msgstr ""
+
+#: View/Actions/view.ctp:24
+msgid "Date Action"
+msgstr ""
+
+#: View/Actions/view.ctp:35
+msgid "Delete Action"
+msgstr ""
+
+#: View/Attachments/add.ctp:4
+msgid "Add Attachment"
+msgstr ""
+
+#: View/Attachments/add.ctp:19 View/Attachments/edit.ctp:21
+#: View/Attachments/view.ctp:41 View/Documents/edit.ctp:24
+#: View/Documents/index.ctp:51 View/Documents/view.ctp:53
+msgid "List Attachments"
+msgstr ""
+
+#: View/Attachments/edit.ctp:4 View/Attachments/view.ctp:39
+msgid "Edit Attachment"
+msgstr ""
+
+#: View/Attachments/index.ctp:2
+msgid "Attachments"
+msgstr ""
+
+#: View/Attachments/index.ctp:46 View/Attachments/view.ctp:42
+#: View/Documents/edit.ctp:25 View/Documents/index.ctp:52
+#: View/Documents/view.ctp:54;100
+msgid "New Attachment"
+msgstr ""
+
+#: View/Attachments/view.ctp:2
+msgid "Attachment"
+msgstr ""
+
+#: View/Attachments/view.ctp:9 View/Documents/view.ctp:9;71
+#: View/Languages/view.ctp:9
+msgid "Name"
+msgstr ""
+
+#: View/Attachments/view.ctp:14 View/Documents/view.ctp:29;72
+msgid "Keyword"
+msgstr ""
+
+#: View/Attachments/view.ctp:19 View/Documents/view.ctp:73
+msgid "Url"
+msgstr ""
+
+#: View/Attachments/view.ctp:24 View/Documents/view.ctp:74
+msgid "Extension"
+msgstr ""
+
+#: View/Attachments/view.ctp:40
+msgid "Delete Attachment"
+msgstr ""
+
+#: View/Categories/add.ctp:7
+msgid "List Category"
+msgstr ""
+
+#: View/Categories/add.ctp:15
+msgid "Add Category"
+msgstr ""
+
+#: View/Categories/edit.ctp:9 View/Categories/view.ctp:21
+msgid "List Categories"
+msgstr ""
+
+#: View/Categories/edit.ctp:16 View/Categories/view.ctp:19
+msgid "Edit Category"
+msgstr ""
+
+#: View/Categories/index.ctp:7 View/Categories/view.ctp:22
+msgid "New Category"
+msgstr ""
+
+#: View/Categories/index.ctp:16 View/Categories/view.ctp:2
+#: View/Layouts/default.ctp:150 View/Pages/index.ctp:316
+msgid "Category"
+msgstr ""
+
+#: View/Categories/view.ctp:9 View/Customers/view.ctp:9
+#: View/Documents/view.ctp:24
+msgid "Description"
+msgstr ""
+
+#: View/Categories/view.ctp:20
+msgid "Delete Category"
+msgstr ""
+
+#: View/Customers/add.ctp:8 View/Customers/edit.ctp:10
+#: View/Customers/view.ctp:21
+msgid "List Customers"
+msgstr ""
+
+#: View/Customers/add.ctp:16
+msgid "Add Customer"
+msgstr ""
+
+#: View/Customers/edit.ctp:17 View/Sectors/edit.ctp:17 View/Sectors/view.ctp:19
+msgid "Edit Sector"
+msgstr ""
+
+#: View/Customers/index.ctp:7 View/Customers/view.ctp:22
+msgid "New Customer"
+msgstr ""
+
+#: View/Customers/index.ctp:16 View/Customers/view.ctp:2
+msgid "Customer"
+msgstr ""
+
+#: View/Customers/view.ctp:19
+msgid "Edit Customer"
+msgstr ""
+
+#: View/Customers/view.ctp:20
+msgid "Delete Customer"
+msgstr ""
+
+#: View/DocumentCategories/add.ctp:4
+msgid "Add Document Category"
+msgstr ""
+
+#: View/DocumentCategories/add.ctp:16 View/DocumentCategories/edit.ctp:18
+#: View/DocumentCategories/view.ctp:26 View/Documents/edit.ctp:26
+#: View/Documents/index.ctp:53 View/Documents/view.ctp:55
+msgid "List Document Categories"
+msgstr ""
+
+#: View/DocumentCategories/edit.ctp:4 View/DocumentCategories/view.ctp:24
+msgid "Edit Document Category"
+msgstr ""
+
+#: View/DocumentCategories/index.ctp:2
+msgid "Document Categories"
+msgstr ""
+
+#: View/DocumentCategories/index.ctp:40 View/DocumentCategories/view.ctp:27
+#: View/Documents/edit.ctp:27 View/Documents/index.ctp:54
+#: View/Documents/view.ctp:56;133
+msgid "New Document Category"
+msgstr ""
+
+#: View/DocumentCategories/view.ctp:2
+msgid "Document Category"
+msgstr ""
+
+#: View/DocumentCategories/view.ctp:14 View/Documents/view.ctp:111
+msgid "Categorie Id"
+msgstr ""
+
+#: View/DocumentCategories/view.ctp:25
+msgid "Delete Document Category"
+msgstr ""
+
+#: View/DocumentCustomers/add.ctp:4
+msgid "Add Document Customer"
+msgstr ""
+
+#: View/DocumentCustomers/add.ctp:16 View/DocumentCustomers/edit.ctp:18
+#: View/DocumentCustomers/view.ctp:26 View/Documents/edit.ctp:28
+#: View/Documents/index.ctp:55 View/Documents/view.ctp:57
+msgid "List Document Customers"
+msgstr ""
+
+#: View/DocumentCustomers/edit.ctp:4 View/DocumentCustomers/view.ctp:24
+msgid "Edit Document Customer"
+msgstr ""
+
+#: View/DocumentCustomers/index.ctp:2
+msgid "Document Customers"
+msgstr ""
+
+#: View/DocumentCustomers/index.ctp:40 View/DocumentCustomers/view.ctp:27
+#: View/Documents/edit.ctp:29 View/Documents/index.ctp:56
+#: View/Documents/view.ctp:58;166
+msgid "New Document Customer"
+msgstr ""
+
+#: View/DocumentCustomers/view.ctp:2
+msgid "Document Customer"
+msgstr ""
+
+#: View/DocumentCustomers/view.ctp:14 View/Documents/view.ctp:144
+msgid "Customer Id"
+msgstr ""
+
+#: View/DocumentCustomers/view.ctp:25
+msgid "Delete Document Customer"
+msgstr ""
+
+#: View/DocumentSectors/add.ctp:4
+msgid "Add Document Sector"
+msgstr ""
+
+#: View/DocumentSectors/add.ctp:16 View/DocumentSectors/edit.ctp:18
+#: View/DocumentSectors/view.ctp:26 View/Documents/edit.ctp:32
+#: View/Documents/index.ctp:59 View/Documents/view.ctp:61
+msgid "List Document Sectors"
+msgstr ""
+
+#: View/DocumentSectors/edit.ctp:4 View/DocumentSectors/view.ctp:24
+msgid "Edit Document Sector"
+msgstr ""
+
+#: View/DocumentSectors/index.ctp:2
+msgid "Document Sectors"
+msgstr ""
+
+#: View/DocumentSectors/index.ctp:40 View/DocumentSectors/view.ctp:27
+#: View/Documents/edit.ctp:33 View/Documents/index.ctp:60
+#: View/Documents/view.ctp:62;232
+msgid "New Document Sector"
+msgstr ""
+
+#: View/DocumentSectors/view.ctp:2
+msgid "Document Sector"
+msgstr ""
+
+#: View/DocumentSectors/view.ctp:14 View/Documents/view.ctp:210
+msgid "Sector Id"
+msgstr ""
+
+#: View/DocumentSectors/view.ctp:25
+msgid "Delete Document Sector"
+msgstr ""
+
+#: View/Documents/add.ctp:220
+msgid "Select your Sector"
+msgstr ""
+
+#: View/Documents/add.ctp:240
+msgid "Select your Language "
+msgstr ""
+
+#: View/Documents/add.ctp:259
+msgid "Select your Categorie"
+msgstr ""
+
+#: View/Documents/add.ctp:279
+msgid "Select your Customer"
+msgstr ""
+
+#: View/Documents/edit.ctp:4 View/Documents/view.ctp:49
+msgid "Edit Document"
+msgstr ""
+
+#: View/Documents/edit.ctp:23 View/Documents/view.ctp:51
+msgid "List Documents"
+msgstr ""
+
+#: View/Documents/edit.ctp:30 View/Documents/index.ctp:57
+#: View/Documents/view.ctp:59
+msgid "List Document Languges"
+msgstr ""
+
+#: View/Documents/edit.ctp:31 View/Documents/index.ctp:58
+#: View/Documents/view.ctp:60;199
+msgid "New Document Language"
+msgstr ""
+
+#: View/Documents/index.ctp:2
+msgid "Documents"
+msgstr ""
+
+#: View/Documents/index.ctp:50 View/Documents/view.ctp:52
+msgid "New Document"
+msgstr ""
+
+#: View/Documents/view.ctp:2 View/Layouts/default.ctp:155
+msgid "Document"
+msgstr ""
+
+#: View/Documents/view.ctp:14
+msgid "Country"
+msgstr ""
+
+#: View/Documents/view.ctp:19
+msgid "Them"
+msgstr ""
+
+#: View/Documents/view.ctp:34
+msgid "Price"
+msgstr ""
+
+#: View/Documents/view.ctp:39
+msgid "Creation Date"
+msgstr ""
+
+#: View/Documents/view.ctp:50
+msgid "Delete Document"
+msgstr ""
+
+#: View/Documents/view.ctp:66
+msgid "Related Attachments"
+msgstr ""
+
+#: View/Documents/view.ctp:105
+msgid "Related Document Categories"
+msgstr ""
+
+#: View/Documents/view.ctp:138
+msgid "Related Document Customers"
+msgstr ""
+
+#: View/Documents/view.ctp:171
+msgid "Related Document Languges"
+msgstr ""
+
+#: View/Documents/view.ctp:177
+msgid "Language Id"
+msgstr ""
+
+#: View/Documents/view.ctp:204
+msgid "Related Document Sectors"
+msgstr ""
+
+#: View/Languages/add.ctp:8
+msgid "List Languages"
+msgstr ""
+
+#: View/Languages/add.ctp:16
+msgid "Add Language"
+msgstr ""
+
+#: View/Languages/edit.ctp:10 View/Languages/view.ctp:26
+msgid "List Languges"
+msgstr ""
+
+#: View/Languages/edit.ctp:17
+msgid "Edit languages"
+msgstr ""
+
+#: View/Languages/edit.ctp:22 View/Languages/view.ctp:24
+msgid "Edit Language"
+msgstr ""
+
+#: View/Languages/index.ctp:7 View/Languages/view.ctp:27
+msgid "New Language"
+msgstr ""
+
+#: View/Languages/index.ctp:16
+msgid "Languages"
+msgstr ""
+
+#: View/Languages/view.ctp:2 View/Layouts/default.ctp:151
+#: View/Pages/index.ctp:292
+msgid "Language"
+msgstr ""
+
+#: View/Languages/view.ctp:14
+msgid "Abbreviation"
+msgstr ""
+
+#: View/Languages/view.ctp:25
+msgid "Delete Language"
+msgstr ""
+
+#: View/Layouts/default.ctp:149 View/Pages/index.ctp:305
+#: View/Sectors/view.ctp:2
+msgid "Sector"
+msgstr ""
+
+#: View/Layouts/default.ctp:152 View/Pages/index.ctp:326
+msgid "Customers"
+msgstr ""
+
+#: View/Layouts/default.ctp:154
+msgid "Search"
+msgstr ""
+
+#: View/Pages/index.ctp:273
+msgid "Search for..."
+msgstr "Search for"
+
+#: View/Pages/index.ctp:275
+msgid "Go!"
+msgstr "ok"
+
+#: View/Pages/index.ctp:336
+msgid "Type File"
+msgstr ""
+
+#: View/Pages/index.ctp:345
+msgid "From"
+msgstr ""
+
+#: View/Pages/index.ctp:351
+msgid "To"
+msgstr ""
+
+#: View/Sectors/add.ctp:8 View/Sectors/edit.ctp:10 View/Sectors/view.ctp:21
+msgid "List Sectors"
+msgstr ""
+
+#: View/Sectors/add.ctp:16
+msgid "Add Sector"
+msgstr ""
+
+#: View/Sectors/index.ctp:7 View/Sectors/view.ctp:22
+msgid "New Sector"
+msgstr ""
+
+#: View/Sectors/index.ctp:16
+msgid "Sectors"
+msgstr ""
+
+#: View/Sectors/view.ctp:9
+msgid "Decription"
+msgstr ""
+
+#: View/Sectors/view.ctp:20
+msgid "Delete Sector"
+msgstr ""
+
+#: View/Users/edit.ctp:5
+msgid "Edit User"
+msgstr ""
+
+#: Model/Langue.php:validation for field nom
+msgid "notempty"
+msgstr ""
+
+#: Model/User.php:validation for field username
+msgid "A username is required"
+msgstr ""
+
+#: Model/User.php:validation for field username
+msgid "Usernames must be between 5 to 15 characters"
+msgstr ""
+
+#: Model/User.php:validation for field username
+msgid "This username is already in use"
+msgstr ""
+
+#: Model/User.php:validation for field password
+msgid "A password is required"
+msgstr ""
+
+#: Model/User.php:validation for field password;validation password_update
+msgid "Password must have a mimimum of 6 characters"
+msgstr ""
+
+#: Model/User.php:validation for field email
+msgid "Please provide a valid email address."
+msgstr ""
+
+#: Model/User.php:validation for field email
+msgid "This email is already in use"
+msgstr ""
+
+#: Model/User.php:validation for field email
+msgid "Usernames must be between 6 to 60 characters"
+msgstr ""
+
+#: Model/User.php:validation for field password_confirm_update
+msgid "Both passwords must match."
+msgstr ""
+
+#: Plugin/CakePdf/Pdf/CakePdf.php:281
+msgid "Engine is not loaded"
+msgstr ""
+
+#: Plugin/CakePdf/Pdf/CakePdf.php:367
+msgid "Pdf engines must extend \"AbstractPdfEngine\""
+msgstr ""
+
+#: Plugin/CakePdf/Pdf/CakePdf.php:388
+msgid "Crypto is not loaded"
+msgstr ""
+
+#: Plugin/CakePdf/Pdf/CakePdf.php:398
+msgid "Pdf crypto \"%s\" not found"
+msgstr ""
+
+#: Plugin/CakePdf/Pdf/CakePdf.php:401
+msgid "Crypto engine must extend \"AbstractPdfCrypto\""
+msgstr ""
+
+#: Plugin/CakePdf/View/PdfView.php:76
+msgid "Controller attribute $pdfConfig is not correct or missing"
+msgstr ""
+
+#: Plugin/DebugKit/Console/Command/BenchmarkShell.php:43
+msgid "-> Testing :url"
+msgstr ""
+
+#: Plugin/DebugKit/Console/Command/BenchmarkShell.php:69
+msgid "Total Requests made: :requests"
+msgstr ""
+
+#: Plugin/DebugKit/Console/Command/BenchmarkShell.php:70
+msgid "Total Time elapsed: :duration (seconds)"
+msgstr ""
+
+#: Plugin/DebugKit/Console/Command/BenchmarkShell.php:74
+msgid "Requests/Second: :rps req/sec"
+msgstr ""
+
+#: Plugin/DebugKit/Console/Command/BenchmarkShell.php:78
+msgid "Average request time: :average-time seconds"
+msgstr ""
+
+#: Plugin/DebugKit/Console/Command/BenchmarkShell.php:82
+msgid "Standard deviation of average request time: :std-dev"
+msgstr ""
+
+#: Plugin/DebugKit/Console/Command/BenchmarkShell.php:86
+msgid "Longest/shortest request: :longest sec/:shortest sec"
+msgstr ""
+
+#: Plugin/DebugKit/Console/Command/BenchmarkShell.php:134
+msgid ""
+"Allows you to obtain some rough benchmarking statisticsabout a fully "
+"qualified URL."
+msgstr ""
+
+#: Plugin/DebugKit/Console/Command/BenchmarkShell.php:139
+msgid "The URL to request."
+msgstr ""
+
+#: Plugin/DebugKit/Console/Command/BenchmarkShell.php:144
+msgid "Number of iterations to perform."
+msgstr ""
+
+#: Plugin/DebugKit/Console/Command/BenchmarkShell.php:148
+msgid ""
+"Maximum total time for all iterations, in seconds.If a single iteration "
+"takes more than the tiemout, only one request will be made"
+msgstr ""
+
+#: Plugin/DebugKit/Console/Command/BenchmarkShell.php:152
+msgid ""
+"Example Use: `cake benchmark --n 10 --t 100 http://localhost/testsite`. "
+"<info>Note:</info> this benchmark does not include browser render times."
+msgstr ""
+
+#: Plugin/DebugKit/Controller/Component/ToolbarComponent.php:162
+msgid "Component initialization"
+msgstr ""
+
+#: Plugin/DebugKit/Controller/Component/ToolbarComponent.php:284
+msgid "Controller action"
+msgstr ""
+
+#: Plugin/DebugKit/Controller/Component/ToolbarComponent.php:287
+msgid "Controller action start"
+msgstr ""
+
+#: Plugin/DebugKit/Controller/Component/ToolbarComponent.php:307
+msgid "Processing toolbar state"
+msgstr ""
+
+#: Plugin/DebugKit/Controller/Component/ToolbarComponent.php:330
+msgid "Processing toolbar data"
+msgstr ""
+
+#: Plugin/DebugKit/Controller/Component/ToolbarComponent.php:365
+msgid "Controller render start"
+msgstr ""
+
+#: Plugin/DebugKit/Controller/Component/ToolbarComponent.php:448
+msgid "Could not load DebugToolbar panel %s"
+msgstr ""
+
+#: Plugin/DebugKit/Lib/DebugTimer.php:135
+msgid "Core Processing (Derived from $_SERVER[\"REQUEST_TIME\"])"
+msgstr ""
+
+#: Plugin/DebugKit/Lib/FireCake.php:317
+msgid "Headers already sent in %s on line %s. Cannot send log data to FirePHP."
+msgstr ""
+
+#: Plugin/DebugKit/Lib/FireCake.php:338
+msgid "Incorrect parameter count for FireCake::fb()"
+msgstr ""
+
+#: Plugin/DebugKit/Lib/FireCake.php:417
+msgid "Maximum number (99,999) of messages reached!"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/debug_toolbar.ctp:24
+msgid "There are no active panels. You must enable a panel to see its output."
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/environment_panel.ctp:21
+msgid "App Constants"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/environment_panel.ctp:37
+msgid "CakePHP Constants"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/environment_panel.ctp:53
+msgid "PHP Environment"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/environment_panel.ctp:71
+msgid "Hidef Environment"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/history_panel.ctp:20
+msgid "Request History"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/history_panel.ctp:22
+msgid "No previous requests logged."
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/history_panel.ctp:24
+msgid "previous requests available"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/history_panel.ctp:26
+msgid "Restore to current request"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/include_panel.ctp:20
+msgid "Included Files"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/log_panel.ctp:20
+msgid "Logs"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/log_panel.ctp:28
+msgid "Time"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/log_panel.ctp:28
+#: Plugin/DebugKit/View/Elements/timer_panel.ctp:43;67
+msgid "Message"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/log_panel.ctp:39
+msgid "There were no log entries made this request"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/request_panel.ctp:20
+msgid "Request"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/request_panel.ctp:28
+msgid "No post data."
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/request_panel.ctp:37
+msgid "No querystring data."
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/request_panel.ctp:50
+msgid "Current Route"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/session_panel.ctp:20
+msgid "Session"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/sqllog_panel.ctp:25
+msgid "Sql Logs"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/sqllog_panel.ctp:39
+msgid "Total Time: %s ms <br />Total Queries: %s queries"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/sqllog_panel.ctp:48
+msgid "Query Explain:"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/sqllog_panel.ctp:51
+msgid "Click an \"Explain\" link above, to see the query explanation."
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/sqllog_panel.ctp:56
+msgid "No active database connections"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/timer_panel.ctp:36
+msgid "Memory"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/timer_panel.ctp:39
+msgid "Peak Memory Use"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/timer_panel.ctp:43
+msgid "Memory use"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/timer_panel.ctp:56
+msgid "Timers"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/timer_panel.ctp:58
+msgid "%s (ms)"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/timer_panel.ctp:59
+msgid "Total Request Time:"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/timer_panel.ctp:68
+msgid "Time in ms"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/timer_panel.ctp:69
+msgid "Graph"
+msgstr ""
+
+#: Plugin/DebugKit/View/Elements/variables_panel.ctp:20
+msgid "View Variables"
+msgstr ""
+
+#: Plugin/DebugKit/View/Helper/DebugTimerHelper.php:47
+msgid "Rendering View"
+msgstr ""
+
+#: Plugin/DebugKit/View/Helper/DebugTimerHelper.php:62
+msgid "Rendering %s"
+msgstr ""
+
+#: Plugin/DebugKit/View/Helper/DebugTimerHelper.php:88
+msgid "View render complete"
+msgstr ""
+
+#: Plugin/DebugKit/View/Helper/HtmlToolbarHelper.php:198
+msgid "Explain"
+msgstr ""
+
+#: Plugin/DebugKit/View/Helper/SimpleGraphHelper.php:82
+msgid "Starting %sms into the request, taking %sms"
+msgstr ""
+
+#: Plugin/DebugKit/View/Helper/TidyHelper.php:105
+msgid "No markup errors found"
+msgstr ""
+
+#: Plugin/DebugKit/View/Helper/ToolbarHelper.php:191
+msgid "maybe slow"
+msgstr ""
+
+#: Plugin/DebugKit/Console/Command/WhitespaceShell.php:92
+msgid "Absolute path or relative to APP."
+msgstr ""
+
+#: View/Errors/error400.ctp:22 View/Errors/error500.ctp:22
+msgid "Error"
+msgstr ""
+
+#: View/Errors/error400.ctp:24
+msgid "The requested address %s was not found on this server."
+msgstr ""
+
+#: View/Errors/error500.ctp:23
+msgid "An Internal Error Has Occurred."
+msgstr ""
+
+#: View/Layouts/error.ctp:20
+msgid "CakePHP: the rapid development php framework"
+msgstr ""
+
+#: webroot/test.php:95
+msgid "Debug setting does not allow access to this url."
+msgstr ""

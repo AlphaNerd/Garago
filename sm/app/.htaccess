@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    Options +FollowSymLinks
+    RewriteRule    ^$    webroot/    [L]
+    RewriteRule    (.*) webroot/$1    [L]
+    php_value upload_max_filesize 4048M
+	php_value post_max_size 4048M
+	php_value memory_limit 4048M
+
+</IfModule>
+RewriteBase /

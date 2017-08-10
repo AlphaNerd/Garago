@@ -11,19 +11,40 @@ angular.module('starter.factory.mockdata', [])
       this.splice(new_index, 0, this.splice(old_index, 1)[0]);
       return this; // for testing purposes
     };
+
     var obj = {
       get: function() {
-        var deferred = $q.defer()
-        var params = JSON.stringify()
         $ionicLoading.show({ template: "Loading data..." })
-        $http.get("/sm/plans/planningJson/"+reqParams).then(function(res) {
-          deferred.resolve(res)
-          $ionicLoading.hide()
-        })
-        // $timeout(function() {
-        //  deferred.resolve(newData)
-        //  $ionicLoading.hide()
-        // },0)
+
+        var deferred = $q.defer()
+        
+        // var request = $http({
+        //     method: "get",
+        //     url: "http://dev.goforms.ca/sm/plans",
+        //     data: {
+        //         Event: "",
+        //         Id: ""
+        //     },
+        //     headers: { 
+        //       'Content-Type': 'application/x-www-form-urlencoded' 
+        //     }
+        // })
+
+        // request.success(function (data) {
+        //   console.log(data)
+        //   deferred.resolve(data)
+        // })
+
+        // $http.get("#/app/sm/Controller/PlansController.php?action=planingJson()").then(function(res) {
+        //   console.log(res)
+        //   deferred.resolve(res)
+        //   $ionicLoading.hide()
+        // })
+
+        $timeout(function() {
+         deferred.resolve(newData)
+         $ionicLoading.hide()
+        },0)
         return deferred.promise
       },
       addColumn: function() {
