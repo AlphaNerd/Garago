@@ -19,7 +19,7 @@ angular.module('starter.directives.contenteditable', [])
       },
 
       link: function(scope, element, attrs, ngModel) {
-        console.log(attrs.locked)
+        // console.log(attrs.locked || 'n/a')
         var editorOptions = {
           toolbar: {
               buttons: ['bold', 'italic', 'quote','underline','strikethrough','orderedlist','unorderedlist','justifyLeft','justifyRight','justifyCenter','justifyFull','html','removeFormat'],

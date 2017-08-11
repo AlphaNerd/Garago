@@ -11,40 +11,53 @@ angular.module('starter.factory.mockdata', [])
       this.splice(new_index, 0, this.splice(old_index, 1)[0]);
       return this; // for testing purposes
     };
+    function convertToParams(params) {
+      var str = "";
+      for (var key in params) {
+        if (str != "") {
+          str += "&";
+        }
+        str += key + "=" + encodeURIComponent(params[key]);
+      }
+      console.log(str)
+      return str
+    }
 
     var obj = {
-      get: function() {
+      ////////////////////////////////////////////////////////////
+      // @params
+      getPlan: function(params) {
         $ionicLoading.show({ template: "Loading data..." })
 
         var deferred = $q.defer()
+        console.log(params)
         
-        // var request = $http({
-        //     method: "get",
-        //     url: "http://dev.goforms.ca/sm/plans",
-        //     data: {
-        //         Event: "",
-        //         Id: ""
-        //     },
-        //     headers: { 
-        //       'Content-Type': 'application/x-www-form-urlencoded' 
-        //     }
-        // })
+        $http.get("http://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
+          deferred.resolve(res)
+          $ionicLoading.hide()
+        })
 
-        // request.success(function (data) {
-        //   console.log(data)
-        //   deferred.resolve(data)
-        // })
-
-        // $http.get("#/app/sm/Controller/PlansController.php?action=planingJson()").then(function(res) {
-        //   console.log(res)
-        //   deferred.resolve(res)
-        //   $ionicLoading.hide()
-        // })
-
-        $timeout(function() {
-         deferred.resolve(newData)
-         $ionicLoading.hide()
-        },0)
+        // $timeout(function() {
+        //  deferred.resolve(newData)
+        //  $ionicLoading.hide()
+        // },0)
+        return deferred.promise
+      },
+      newPlan: function(){
+        var deferred = $q.defer()
+        var params = {
+          id: null,
+          status: "new",
+          posEvent: "plan",
+          data: null,
+          Planing_id: null,
+          historical_planing_id: null,
+          image: null
+        }
+        $http.get("http://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
+          deferred.resolve(res)
+          $ionicLoading.hide()
+        })
         return deferred.promise
       },
       addColumn: function() {
@@ -77,15 +90,28 @@ angular.module('starter.factory.mockdata', [])
         }, 50)
         return deferred.promise
       },
-      addRow: function() {
+      addRow: function(data) {
         var deferred = $q.defer()
-        $timeout(function() {
-          newData.rows.push({
-            id: newData.rows.length,
-            items: createEmptyRow()
-          })
-          deferred.resolve(true)
-        }, 50)
+        var params = {
+          status: "new",
+          posEvent: "axis",
+          data: null,
+          planing_id: data.id,
+          historical_planing_id: data.historical_id,
+          image: null
+        }
+        $http.get("http://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
+          console.log(res)
+          deferred.resolve(res)
+          $ionicLoading.hide()
+        })
+        // $timeout(function() {
+        //   newData.rows.push({
+        //     id: newData.rows.length,
+        //     items: createEmptyRow()
+        //   })
+        //   deferred.resolve(true)
+        // }, 50)
         return deferred.promise
       },
       deleteRow: function(index, obj) {
@@ -260,27 +286,3 @@ var newData = {
     }]
   }]
 }
-
-
-var reqParams = {
-    "Event": { 
-      "id": "4", 
-      "status": "edit", 
-      "posEvent": "Title Or Axis Or metrics or propertyPlaning or line or column", 
-      "data": "data for change", 
-      "line": "2", 
-      "column": "3" 
-    },
-    "propertyPlaning": { 
-      "Planing_id": "1", 
-      "historical_planing_id": "1", 
-      "lock": "no", 
-      "titre": "titre plans", 
-      "photo": "name.extension", 
-      "optionPlaning": "long term", 
-      "style_planing": { 
-        "color": "red", 
-        "Red": "#FF00000" 
-      } 
-    }
-  }

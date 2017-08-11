@@ -75,6 +75,7 @@ ul {
 
 .rows {
   position: relative;
+  margin-bottom: 50px;
 }
 
 .row i.fa.fa-minus-circle:hover{
@@ -367,4 +368,21 @@ ul {
 
 #SettingsMenu .color-selection [md-color-picker]{
 
+}
+
+.footer-container {
+    position: relative;
+    margin: 10px 0;
+}
+
+.footer-container .logo-bottom {
+    position: absolute;
+    right: 100px;
+    max-width: 150px;
+    top:0;
+}
+
+.footer-container .logo-bottom img{
+    width:100%;
+    height: auto;
 }

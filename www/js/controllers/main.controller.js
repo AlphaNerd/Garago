@@ -24,15 +24,24 @@ angular.module('starter.controllers', [])
 
     //// color picker options
     $scope.pickerSettings = {
-        label: "Choose a color",
-        icon: "",
-        default: $scope.themeData.colors[0],
-        genericPalette: false,
-        history: false
+      label: "Choose a color",
+      icon: "",
+      default: $scope.themeData.colors[0],
+      genericPalette: false,
+      history: false
     };
 
-    $mockdata.get().then(function(res) {
-      $scope.DATA = res
+    $mockdata.getPlan({
+      id: null,
+      status: "get",
+      posEvent: "plan",
+      data: null,
+      planing_id: 1,
+      historical_planing_id: 1,
+      image: null
+    }).then(function(res) {
+      console.log("Initial Data: ", res)
+      $scope.DATA = res.data
     })
 
     $scope.addColumn = function() {
@@ -40,8 +49,9 @@ angular.module('starter.controllers', [])
       // save new
     }
 
-    $scope.addRow = function() {
-      $mockdata.addRow()
+    $scope.addRow = function(data) {
+      console.log(data)
+      $mockdata.addRow(data)
       /// save new
     }
 
@@ -80,6 +90,17 @@ angular.module('starter.controllers', [])
 
     $scope.settingsTabsSelect = function(selection) {
       $scope.settingsTabs = selection
+    }
+
+    $scope.getStyle = {
+      'background': Please.make_color(),
+      'color': '#fff'
+    }
+
+    $scope.createNewPlan = function(){
+        $mockdata.newPlan().then(function(res){
+          console.log(res)
+        })
     }
 
   })
