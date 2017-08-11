@@ -32,15 +32,15 @@ angular.module('starter.factory.mockdata', [])
         var deferred = $q.defer()
         console.log(params)
         
-        $http.get("http://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
-          deferred.resolve(res)
-          $ionicLoading.hide()
-        })
+        // $http.get("http://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
+        //   deferred.resolve(res)
+        //   $ionicLoading.hide()
+        // })
 
-        // $timeout(function() {
-        //  deferred.resolve(newData)
-        //  $ionicLoading.hide()
-        // },0)
+        $timeout(function() {
+         deferred.resolve(newData)
+         $ionicLoading.hide()
+        },0)
         return deferred.promise
       },
       newPlan: function(){
