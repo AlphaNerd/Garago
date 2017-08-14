@@ -5,7 +5,7 @@
         <i class="fa fa-gears" ng-click="openSettings()"></i>
       </div>
       <div class="plan-title">
-        <h1 contenteditable locked="false" ng-model="reportTitle" ng-style="{'color':themeData.colors[0]}">{{reportTitle}}</h1>
+        <h1 contenteditable locked="false" ng-model="reportTitle" ng-style="{'color':'themeData.colors[0]'}">{{reportTitle}}</h1>
       </div>
       <!-- <div class="milestones-containes">
         <div class="milestone">
@@ -13,21 +13,21 @@
         </div>
       </div> -->
       <div class="columns">
-        <div class="column header" ng-drag-data="column" ng-repeat="column in DATA.columns track by $index" column="{{$index}}" ng-drag="true" ng-drop="true" ng-drop-success="onColDropComplete($index,$data,$event)" ng-mouseenter="columnTools = true" ng-mouseleave="columnTools = false">
+        <div class="column header" ng-drag-data="column" ng-repeat="column in DATA.typePlan track by $index" id="{{column.id}}" type="type" column="{{$index}}" ng-drag="true" ng-drop="true" ng-drop-success="onColDropComplete($index,$data,$event)" ng-mouseenter="columnTools = true" ng-mouseleave="columnTools = false">
           <div class="column-number" ng-init="showEmuneration = false" ng-if="showEmuneration">{{$index+1}}</div>
-          <div class="title" ng-model="column.title" ng-style="column.style" contenteditable locked="{{column.locked}}"></div>
-          <i class="fa fa-minus-circle" aria-hidden="true" ng-click="deleteColumn()" ng-show="columnTools"></i>
+          <div class="title" ng-model="column.TypePlan.description" ng-style="getStyle" contenteditable locked="{{column.locked || false}}"></div>
+          <i class="fa fa-minus-circle" aria-hidden="true" ng-click="deleteColumn($index,DATA)" ng-show="columnTools"></i>
         </div>
-        <i class="fa fa-plus-circle" aria-hidden="true" ng-click="addColumn()"></i>
+        <i class="fa fa-plus-circle" aria-hidden="true" ng-click="addColumn($index,DATA)"></i>
       </div>
       <div class="rows">
         <div class="item warning" ng-show="DATA.rows.length == 0"> You need to add some rows of data.</div>
-        <div class="row-container" ng-repeat="row in DATA.rows track by $index" ng-drag="true" ng-drop="true" ng-drop-success="onRowDropComplete($index,$data,$event)" ng-drag-data="row" row="{{$index}}" ng-mouseenter="rowTools = true" ng-mouseleave="rowTools = false">
-          <div class="row-header" ng-model="row.title" contenteditable></div>
+        <div class="row-container" ng-repeat="row in DATA.axis track by $index" ng-drag="true" ng-drop="true" ng-drop-success="onRowDropComplete($index,$data,$event)" ng-drag-data="row" row="{{$index}}" ng-mouseenter="rowTools = true" ng-mouseleave="rowTools = false">
+          <div class="row-header" ng-model="row.Axis.title" contenteditable></div>
           <div class="row">
-            <i class="fa fa-minus-circle" aria-hidden="true" ng-click="deleteRow($index)" ng-show="rowTools"></i>
-            <div class="item" ng-repeat="item in row.items track by $index" column="{{$index}}" row="{{$index}}">
-              <div class="content" ng-model="item.content" contenteditable locked="{{item.locked}}"></div>
+            <i class="fa fa-minus-circle" aria-hidden="true" ng-click="deleteRow($index,row)" ng-show="rowTools"></i>
+            <div class="item" ng-repeat="item in row.detail_planning track by $index" column="{{$index}}" row="{{$index}}">
+              <div class="content" ng-model="item.DetailPlan.content" id="{{item.DetailPlan.id}}" contenteditable locked="{{item.locked}}"></div>
               <div class="controls">
                 <i class="fa" ng-class="item.locked ? 'fa-lock' : 'fa-unlock'" aria-hidden="true" ng-click="toggleLock(item)"></i>
                 <!-- <i class="fa fa-picture-o" aria-hidden="true"></i>
@@ -37,10 +37,16 @@
           </div>
           <i class="fa fa-bars" aria-hidden="true" ng-drag-handle></i>
         </div>
-        <i class="fa fa-plus-circle" aria-hidden="true" ng-click="addRow()"></i>
+        <i class="fa fa-plus-circle" aria-hidden="true" ng-click="addRow(DATA)"></i>
       </div>
-      <div class="footer" ng-model="footerText" contenteditable></div>
+      <div class="footer-container">
+        <div ng-model="footerText" contenteditable></div>
+        <div class="logo-bottom">
+          <img src="http://v2.garagosoftware.com/wp-content/uploads/2017/03/garago-blanc.png">
+        </div>
+      </div>
     </div>
+    <div class="button button-block button-large" ng-click="createNewPlan()">Create Plan</div>
   </ion-content>
 </ion-view>
 <!-- <div class="metrics">

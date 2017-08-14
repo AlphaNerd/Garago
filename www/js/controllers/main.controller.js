@@ -44,23 +44,44 @@ angular.module('starter.controllers', [])
       $scope.DATA = res.data
     })
 
-    $scope.addColumn = function() {
-      $mockdata.addColumn()
-      // save new
+    $scope.addColumn = function(index,data) {
+      console.log(data)
+      $mockdata.addColumn(data).then(function(res){
+        $scope.DATA = res.data
+      })
     }
 
     $scope.addRow = function(data) {
+      $mockdata.addRow(data).then(function(res){
+        $scope.DATA.axis.push({
+          Axis: res.data[0],
+          detail_planning: res.data[1]
+        })
+      })
+    }
+
+    $scope.deleteRow = function(index,obj) {
+      $mockdata.deleteRow(index,obj).then(function(res){
+        console.log($scope.DATA)
+        if(res.data[0] == "<"){
+          console.log("Error in deleting")
+        }else{
+          $scope.DATA.axis.splice(index, 1)
+        }
+      })
+    }
+
+    $scope.deleteColumn = function(index,data) {
       console.log(data)
-      $mockdata.addRow(data)
-      /// save new
-    }
-
-    $scope.deleteRow = function(index) {
-      $mockdata.deleteRow(index)
-    }
-
-    $scope.deleteColumn = function(index) {
-      $mockdata.deleteColumn(index)
+      $mockdata.deleteColumn(index,data).then(function(res){
+        console.log($scope.DATA)
+        if(res.data[0] == "<"){
+          console.log("Error in deleting")
+        }else{
+          console.log($scope.DATA)
+          $scope.DATA.typePlan.splice(index, 1)
+        }
+      })
     }
 
     $scope.onColDropComplete = function($index, $data, $event) {

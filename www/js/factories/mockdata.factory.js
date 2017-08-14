@@ -19,7 +19,7 @@ angular.module('starter.factory.mockdata', [])
         }
         str += key + "=" + encodeURIComponent(params[key]);
       }
-      console.log(str)
+      // console.log(str)
       return str
     }
 
@@ -27,20 +27,12 @@ angular.module('starter.factory.mockdata', [])
       ////////////////////////////////////////////////////////////
       // @params
       getPlan: function(params) {
-        $ionicLoading.show({ template: "Loading data..." })
-
         var deferred = $q.defer()
         console.log(params)
-        
-        // $http.get("http://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
-        //   deferred.resolve(res)
-        //   $ionicLoading.hide()
-        // })
+        $http.get("http://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
+          deferred.resolve(res)
 
-        $timeout(function() {
-         deferred.resolve(newData)
-         $ionicLoading.hide()
-        },0)
+        })
         return deferred.promise
       },
       newPlan: function(){
@@ -56,43 +48,51 @@ angular.module('starter.factory.mockdata', [])
         }
         $http.get("http://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
           deferred.resolve(res)
-          $ionicLoading.hide()
         })
         return deferred.promise
       },
-      addColumn: function() {
+      addColumn: function(data) {
         var deferred = $q.defer()
-        //// simulate async call - replace $timeout with $http request
-        $ionicLoading.show({ template: "Adding Column..." })
-        $timeout(function() {
-          newData.columns.push({
-            id: 0,
-            title: "Type your text",
-            style: {
-              'background': Please.make_color(),
-              'color': '#fff'
-            },
-            locked: true
-          })
-          angular.forEach(newData.rows, function(val, key) {
-            val.items.push({
-              id: 0,
-              content: "",
-              style: {
-                'background': Please.make_color(),
-                'color': '#fff'
-              },
-              locked: false
-            })
-          })
-          $ionicLoading.hide()
-          deferred.resolve(true)
-        }, 50)
+        console.log("Data In:", data)
+        var params = {
+          id: null,
+          status: "new",
+          posEvent: "column",
+          data: null,
+          planing_id: data.id,
+          historical_planing_id: data.historical_id,
+          image: null
+        }
+        console.log("URI: ",JSON.stringify(params))
+        $http.get("http://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
+          console.log(res)
+          deferred.resolve(res)
+        })
+        return deferred.promise
+      },
+      deleteColumn: function(index, data) {
+        var deferred = $q.defer()
+        var params = {
+          id:data.typePlan[index].TypePlan.id,
+          status: "delete",
+          posEvent: "column",
+          data: null,
+          planing_id: data.id,
+          historical_planing_id: data.historical_id,
+          image: null
+        }
+        console.log("URI: ",JSON.stringify(params))
+        $http.get("http://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
+          console.log(res)
+          deferred.resolve(res)
+        })
         return deferred.promise
       },
       addRow: function(data) {
+        console.log(data)
         var deferred = $q.defer()
         var params = {
+          id:null,
           status: "new",
           posEvent: "axis",
           data: null,
@@ -100,39 +100,30 @@ angular.module('starter.factory.mockdata', [])
           historical_planing_id: data.historical_id,
           image: null
         }
+        console.log("URI: ",JSON.stringify(params))
         $http.get("http://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
           console.log(res)
           deferred.resolve(res)
-          $ionicLoading.hide()
         })
-        // $timeout(function() {
-        //   newData.rows.push({
-        //     id: newData.rows.length,
-        //     items: createEmptyRow()
-        //   })
-        //   deferred.resolve(true)
-        // }, 50)
         return deferred.promise
       },
-      deleteRow: function(index, obj) {
+      deleteRow: function(index,data) {
         var deferred = $q.defer()
-        $timeout(function() {
-          console.log(index)
-          newData.rows.splice(index, 1)
-          deferred.resolve(true)
-        }, 50)
-        return deferred.promise
-      },
-      deleteColumn: function(index, obj) {
-        var deferred = $q.defer()
-        $timeout(function() {
-          console.log(index)
-          newData.columns.splice(index, 1)
-          angular.forEach(newData.rows, function(val, key) {
-            val.items.splice(key, 1)
-          })
-          deferred.resolve(true)
-        }, 50)
+        console.log(data)
+        var params = {
+          id:data.Axis.id,
+          status: "delete",
+          posEvent: "axis",
+          data: null,
+          planing_id: null,
+          historical_planing_id: data.Axis.historical_plan_id,
+          image: null
+        }
+        console.log("URI: ",JSON.stringify(params))
+        $http.get("http://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
+          console.log(res)
+          deferred.resolve(res)
+        })
         return deferred.promise
       },
       moveColumn: function(index, data, event) {
@@ -156,6 +147,24 @@ angular.module('starter.factory.mockdata', [])
           newData.rows.move(prev, index)
           deferred.resolve(true)
         }, 50)
+        return deferred.promise
+      },
+      edit: function(id,data){
+        var deferred = $q.defer()
+        var params = {
+          id: id,
+          status: "edit",
+          posEvent: "type",
+          data: data,
+          planing_id: null,
+          historical_planing_id: null,
+          image: null
+        }
+        console.log(JSON.stringify(params))
+        $http.get("http://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
+          console.log(res)
+          deferred.resolve(res)
+        })
         return deferred.promise
       },
       toggleLock: function(item) {

@@ -15,9 +15,16 @@ angular.module('starter.directives.contenteditable', [])
         bindOptions: '=',
         row: '=',
         column: '=',
-        locked: '@'
+        locked: '@',
+        id: '@'
       },
-
+      controller: function($scope,$mockdata){
+        $scope.edit = function(id,data){
+          $mockdata.edit(id,data).then(function(res){
+            console.log("Edit Response: ",res)
+          })
+        }
+      },
       link: function(scope, element, attrs, ngModel) {
         // console.log(attrs.locked || 'n/a')
         var editorOptions = {
@@ -46,8 +53,7 @@ angular.module('starter.directives.contenteditable', [])
           if (currCount < maxCount) {
             $timeout.cancel(saveDelay);
             saveDelay = $timeout(function() {
-              console.log("Edit Data: ", [$event.target.innerHTML], [element], [attrs], [ngModel])
-              // console.log()
+              scope.edit(attrs.id,$event.target.innerText.replace("\n",""))
             }, 1000)
             currCount += 1
           }
