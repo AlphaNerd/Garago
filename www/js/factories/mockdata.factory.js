@@ -29,7 +29,7 @@ angular.module('starter.factory.mockdata', [])
       getPlan: function(params) {
         var deferred = $q.defer()
         console.log(params)
-        $http.get("http://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
+        $http.get("https://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
           deferred.resolve(res)
 
         })
@@ -46,7 +46,7 @@ angular.module('starter.factory.mockdata', [])
           historical_planing_id: null,
           image: null
         }
-        $http.get("http://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
+        $http.get("https://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
           deferred.resolve(res)
         })
         return deferred.promise
@@ -64,7 +64,7 @@ angular.module('starter.factory.mockdata', [])
           image: null
         }
         console.log("URI: ",JSON.stringify(params))
-        $http.get("http://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
+        $http.get("https://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
           console.log(res)
           deferred.resolve(res)
         })
@@ -82,7 +82,7 @@ angular.module('starter.factory.mockdata', [])
           image: null
         }
         console.log("URI: ",JSON.stringify(params))
-        $http.get("http://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
+        $http.get("https://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
           console.log(res)
           deferred.resolve(res)
         })
@@ -101,7 +101,7 @@ angular.module('starter.factory.mockdata', [])
           image: null
         }
         console.log("URI: ",JSON.stringify(params))
-        $http.get("http://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
+        $http.get("https://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
           console.log(res)
           deferred.resolve(res)
         })
@@ -120,7 +120,7 @@ angular.module('starter.factory.mockdata', [])
           image: null
         }
         console.log("URI: ",JSON.stringify(params))
-        $http.get("http://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
+        $http.get("https://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
           console.log(res)
           deferred.resolve(res)
         })
@@ -162,7 +162,7 @@ angular.module('starter.factory.mockdata', [])
           image: null
         }
         console.log(JSON.stringify(params))
-        $http.get("http://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
+        $http.get("https://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
           console.log(res)
           deferred.resolve(res)
         })
@@ -180,7 +180,7 @@ angular.module('starter.factory.mockdata', [])
           image: null
         }
         console.log(JSON.stringify(params))
-        $http.get("http://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
+        $http.get("https://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
           console.log(res)
           deferred.resolve(res)
         })
