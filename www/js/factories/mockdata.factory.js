@@ -128,6 +128,15 @@ angular.module('starter.factory.mockdata', [])
       },
       moveColumn: function(index, data, event) {
         var deferred = $q.defer()
+        var params = {
+          id: from,
+          status: "move",
+          posEvent: "column",
+          data: destination,
+          planing_id: data.id,
+          historical_planing_id: data.historical_id,
+          image: null
+        }
         $timeout(function() {
           var prev = event.element[0].attributes.column.value
           console.log(prev, index, [data], [event])
@@ -139,14 +148,24 @@ angular.module('starter.factory.mockdata', [])
         }, 50)
         return deferred.promise
       },
-      moveRow: function(index, data, event) {
+      moveRow: function(destination, data, event) {
+        console.log([destination],[data],[event])
         var deferred = $q.defer()
-        $timeout(function() {
-          var prev = event.element[0].attributes.row.value
-          console.log(prev, index, [data], [event])
-          newData.rows.move(prev, index)
-          deferred.resolve(true)
-        }, 50)
+        var from = data.axis.id
+        var params = {
+          id: from,
+          status: "move",
+          posEvent: "axis",
+          data: destination,
+          planing_id: data.id,
+          historical_planing_id: data.historical_id,
+          image: null
+        }
+        console.log(JSON.stringify(params))
+        $http.get("http://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
+          console.log(res)
+          deferred.resolve(res)
+        })
         return deferred.promise
       },
       edit: function(id,data){
