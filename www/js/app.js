@@ -4,18 +4,31 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', [
-  'ionic', 
-  'starter.controllers',
-  'starter.factory.mockdata',
-  'starter.directives.contenteditable',
+angular.module('garago', [
+  'ionic',
+  'garago.controllers',
+  'garago.controllers.actionplan',
+  'garago.controllers.dashboard',
+  'garago.controllers.library',
+  'garago.factory.api',
+  'garago.factory.mockApi',
+  'garago.directives.contenteditable',
+  'garago.filters.keyboardShortcut',
   'ngDraggable',
   'ngMaterial',
   'mdColorPicker'
 ])
 
-  .run(function($ionicPlatform, $rootScope, $ionicSideMenuDelegate) {
-    $ionicPlatform.ready(function() {
+  .constant('$ionicLoadingConfig', {
+    template: '<div>' +
+    '<ion-spinner icon="lines" class="spinner-assertive"></ion-spinner>' +
+    '</div>' +
+    '<div>Loading View...</div>',
+    duration: 1500,
+  })
+
+  .run(function ($ionicPlatform, $rootScope, $ionicSideMenuDelegate, $timeout) {
+    $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
       if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -29,31 +42,74 @@ angular.module('starter', [
         StatusBar.styleDefault();
       }
 
+      $rootScope.isMobile = ionic.Platform.isIOS() || ionic.Platform.isAndroid();
+      if(!$rootScope.isMobile){
+        $timeout(function(){
+          $ionicSideMenuDelegate.toggleLeft()
+        },100)
+      }
 
     });
   })
 
-  .config(function($stateProvider, $urlRouterProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $mdIconProvider) {
+    $mdIconProvider.defaultIconSet('img/icons/sets/core-icons.svg', 24);
+
     $stateProvider
 
       .state('app', {
         url: '/app',
         abstract: true,
         templateUrl: 'templates/menu.html',
-        controller: 'AppCtrl'
+        controller: 'ParentCtrl'
       })
 
-      .state('app.home', {
-        url: '/home',
+      .state('app.dashboard', {
+        url: '/dashboard',
         views: {
           'menuContent': {
-            templateUrl: 'templates/home.html'
+            templateUrl: 'templates/dashboard.html',
+            controller: 'DashboardCtrl'
           }
         }
       })
 
+      .state('app.listplan', {
+        url: '/listplan',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/actionplan.html',
+            controller: 'ActionPlanCtrl',
+            resolve: {
+              initData: function ($garagoAPI, $mockApi, $ionicLoading) {
+                $ionicLoading.show()
+                return $garagoAPI.getPlan().then(function (res) {
+                  console.log("Action Plan View Resolve: ",res)
+                  if(res.hasOwnProperty("historical_id")){
+                      console.log("Action plan found.")
+                      $ionicLoading.hide()
+                      return res
+                  }else{
+                      return false
+                      $ionicLoading.hide()
+                  }
+                })
+              }
+            }
+          }
+        }
+      })
 
+      .state('app.library', {
+        url: '/library',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/library.html',
+            controller: 'LibraryCtrl'
+          }
+        }
+      })
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/home');
+    $urlRouterProvider.otherwise('/app/listplan');
   });

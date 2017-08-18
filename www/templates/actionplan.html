@@ -1,0 +1,62 @@
+<ion-view view-title="Action Plan">
+  <ion-nav-bar class="bar-stable" ng-if="isMobile">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+
+    <ion-nav-buttons side="left">
+      <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-hide="{{menuOpen}}">
+      </button>
+    </ion-nav-buttons>
+
+    <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear" ng-click="createNewPlan()"><i class="fa fa-icon fa-plus"></i></button>
+      </ion-nav-buttons>
+
+  </ion-nav-bar>
+  <ion-content id="ActionPlan" scroll="true">
+    <div class="action-plan">
+      <div class="plan-settings">
+        <i class="fa fa-gears" ng-click="openSettings()"></i>
+      </div>
+      <div class="plan-title">
+        <h1 ng-attr-contenteditable="true" locked="false" ng-model="reportTitle" ng-style="{'color':'themeData.colors[0]'}">{{reportTitle}}</h1>
+      </div>
+      <!-- <div class="milestones-containes">
+        <div class="milestone">
+          <i class="fa fa-map-pin" aria-hidden="true" ng-drag="true" ng-drag-move="onDragMove($event)" ng-drop="true"></i>
+        </div>
+      </div> -->
+      <div class="columns">
+        <div class="column header" ng-drag-data="column" ng-repeat="column in DATA.typePlan track by $index" id="{{column.id+1}}" type="type" column="{{$index}}" ng-drag="true" ng-drop="true" ng-drop-success="onColDropComplete($index,$data,$event,DATA)" ng-mouseenter="columnTools = true" ng-mouseleave="columnTools = false">
+          <div class="column-number" ng-init="showEmuneration = false" ng-if="showEmuneration">{{$index+1}}</div>
+          <div class="title" ng-model="column.TypePlan.description" ng-style="{{::column.TypePlan.style}}" ng-attr-contenteditable="true" locked="{{column.locked || false}}" id="{{column.TypePlan.id}}" type="type"></div>
+          <i class="fa fa-minus-circle" aria-hidden="true" ng-click="deleteColumn($index,DATA)" ng-show="columnTools"></i>
+        </div>
+        <i class="fa fa-plus-circle" aria-hidden="true" ng-click="addColumn($index,DATA)"></i>
+      </div>
+      <div class="rows">
+        <div class="item warning" ng-show="DATA.rows.length == 0"> You need to add some rows of data.</div>
+        <div class="row-container" ng-repeat="row in DATA.axis track by $index" ng-drag="true" ng-drop="true" ng-drop-success="onRowDropComplete($index,$data,$event)" ng-drag-data="DATA" row="{{$index}}" ng-mouseenter="rowTools = true" ng-mouseleave="rowTools = false" id="{{row.id}}">
+          <div class="row-header" ng-model="row.Axis.title" ng-attr-contenteditable="true" id="{{row.Axis.id}}" type="axis"></div>
+          <div class="row">
+            <i class="fa fa-minus-circle" aria-hidden="true" ng-click="deleteRow($index,row)" ng-show="rowTools"></i>
+            <div class="item" ng-repeat="item in row.detail_planning track by $index" column="{{$index}}" row="{{$index}}">
+              <div class="content" ng-model="item.DetailPlan.content" id="{{item.DetailPlan.id}}" ng-attr-contenteditable="{{item.DetailPlan.locked}}" locked="{{item.DetailPlan.locked}}" id="{{item.DetailPlan.id}}" type="cell"></div>
+              <div class="controls">
+                <i class="fa" ng-class="item.DetailPlan.locked ? 'fa-unlock' : 'fa-lock'" aria-hidden="true" ng-click="toggleLock(item,row)"></i>
+              </div>
+            </div>
+          </div>
+          <i class="fa fa-bars" aria-hidden="true" ng-drag-handle></i>
+        </div>
+        <i class="fa fa-plus-circle" aria-hidden="true" ng-click="addRow(DATA)"></i>
+      </div>
+      <div class="footer-container">
+        <div ng-model="footerText" ng-attr-contenteditable="true"></div>
+        <div class="logo-bottom">
+          <img src="http://v2.garagosoftware.com/wp-content/uploads/2017/03/garago-blanc.png">
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

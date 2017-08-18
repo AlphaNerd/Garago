@@ -1,6 +1,6 @@
-angular.module('starter.factory.mockdata', [])
+angular.module('garago.factory.mockApi', [])
 
-  .factory('$mockdata', ['$http', '$timeout', '$q', '$ionicLoading', function($http, $timeout, $q, $ionicLoading) {
+  .factory('$mockApi', ['$http', '$timeout', '$q', '$ionicLoading', function($http, $timeout, $q, $ionicLoading) {
     Array.prototype.move = function(old_index, new_index) {
       if (new_index >= this.length) {
         var k = new_index - this.length;
@@ -22,16 +22,46 @@ angular.module('starter.factory.mockdata', [])
       // console.log(str)
       return str
     }
-
     var obj = {
-      ////////////////////////////////////////////////////////////
-      // @params
-      getPlan: function(params) {
+      ////// used for testing remote server is working
+      test: function(){
         var deferred = $q.defer()
-        console.log(params)
-        $http.get("https://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
+        var params = {
+          id: null,
+          status: "new",
+          posEvent: "plan",
+          data: null,
+          Planing_id: null,
+          historical_planing_id: null,
+          image: null
+        }
+        // console.log(convertToParams(params))
+        $http.post("http://dev.goforms.ca/sm/plans/test?" + convertToParams(params)).then(function(res) { 
           deferred.resolve(res)
-
+        })
+        return deferred.promise
+      },
+      getPlan: function() {
+        var deferred = $q.defer()
+        var params = {
+          id: null,
+          status: "get",
+          posEvent: "plan",
+          data: null,
+          planing_id: 1,
+          historical_planing_id: 1,
+          image: null
+        }
+        // console.log(convertToParams(params))
+        $http.post("http://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
+          console.log("Successfully retrieved plan:",res)
+          angular.forEach(res.data.typePlan,function(val,key){
+            val.TypePlan.style = {
+              'background': Please.make_color(),
+              'color':'#fff'
+            }
+          })
+          deferred.resolve(res.data)
         })
         return deferred.promise
       },
@@ -46,7 +76,7 @@ angular.module('starter.factory.mockdata', [])
           historical_planing_id: null,
           image: null
         }
-        $http.get("https://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
+        $http.post("http://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
           deferred.resolve(res)
         })
         return deferred.promise
@@ -64,7 +94,7 @@ angular.module('starter.factory.mockdata', [])
           image: null
         }
         console.log("URI: ",JSON.stringify(params))
-        $http.get("https://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
+        $http.get("http://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
           console.log(res)
           deferred.resolve(res)
         })
@@ -82,7 +112,7 @@ angular.module('starter.factory.mockdata', [])
           image: null
         }
         console.log("URI: ",JSON.stringify(params))
-        $http.get("https://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
+        $http.get("http://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
           console.log(res)
           deferred.resolve(res)
         })
@@ -101,7 +131,7 @@ angular.module('starter.factory.mockdata', [])
           image: null
         }
         console.log("URI: ",JSON.stringify(params))
-        $http.get("https://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
+        $http.get("http://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
           console.log(res)
           deferred.resolve(res)
         })
@@ -120,7 +150,7 @@ angular.module('starter.factory.mockdata', [])
           image: null
         }
         console.log("URI: ",JSON.stringify(params))
-        $http.get("https://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
+        $http.get("http://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
           console.log(res)
           deferred.resolve(res)
         })
@@ -162,13 +192,14 @@ angular.module('starter.factory.mockdata', [])
           image: null
         }
         console.log(JSON.stringify(params))
-        $http.get("https://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
+        $http.get("http://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
           console.log(res)
           deferred.resolve(res)
         })
         return deferred.promise
       },
       edit: function(id,data){
+        console.log(id,data)
         var deferred = $q.defer()
         var params = {
           id: id,
@@ -180,7 +211,7 @@ angular.module('starter.factory.mockdata', [])
           image: null
         }
         console.log(JSON.stringify(params))
-        $http.get("https://dev.goforms.ca/sm/plans/planingJson/" + convertToParams(params)).then(function(res) {
+        $http.get("http://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
           console.log(res)
           deferred.resolve(res)
         })
@@ -228,89 +259,4 @@ function createEmptyRow() {
     })
   }
   return data
-}
-
-var newData = {
-  columns: [{
-    id: 0,
-    title: "Some Title",
-    style: {
-      'background': Please.make_color(),
-      'color': '#fff'
-    },
-    locked: true
-  }, {
-    id: 1,
-    title: "Some Other Title",
-    style: {
-      'background': Please.make_color(),
-      'color': '#fff'
-    },
-    locked: false
-  }, {
-    id: 1,
-    title: "Some Other Title",
-    style: {
-      'background': Please.make_color(),
-      'color': '#fff'
-    },
-    locked: false
-  }],
-  rows: [{
-    id: 0,
-    title: "Title Here",
-    items: [{
-      id: 0,
-      content: "<b>Some</b> content",
-      style: {
-        'background': Please.make_color(),
-        'color': '#fff'
-      },
-      locked: false
-    }, {
-      id: 0,
-      content: "<b>Some</b> new content",
-      style: {
-        'background': Please.make_color(),
-        'color': '#fff'
-      },
-      locked: true
-    }, {
-      id: 0,
-      content: "<b>Some</b> other content",
-      style: {
-        'background': Please.make_color(),
-        'color': '#fff'
-      },
-      locked: false
-    }]
-  }, {
-    id: 1,
-    title: "Title Here",
-    items: [{
-      id: 0,
-      content: "<b>Some</b> content",
-      style: {
-        'background': Please.make_color(),
-        'color': '#fff'
-      },
-      locked: true
-    }, {
-      id: 0,
-      content: "<b>Some</b> new content",
-      style: {
-        'background': Please.make_color(),
-        'color': '#fff'
-      },
-      locked: false
-    }, {
-      id: 0,
-      content: "<b>Some</b> other content",
-      style: {
-        'background': Please.make_color(),
-        'color': '#fff'
-      },
-      locked: false
-    }]
-  }]
 }

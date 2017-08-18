@@ -1,6 +1,6 @@
-angular.module('starter.directives.contenteditable', [])
+angular.module('garago.directives.contenteditable', [])
 
-  .directive("contenteditable", function($timeout, $mockdata) {
+  .directive("contenteditable", function($timeout, $garagoAPI) {
     function toInnerText(value) {
       var tempEl = document.createElement('div'),
         text;
@@ -18,9 +18,9 @@ angular.module('starter.directives.contenteditable', [])
         locked: '@',
         id: '@'
       },
-      controller: function($scope,$mockdata){
-        $scope.edit = function(id,data){
-          $mockdata.edit(id,data).then(function(res){
+      controller: function($scope,$garagoAPI){
+        $scope.edit = function(attrs,data){
+          $garagoAPI.editCell(attrs.id,data, attrs.type).then(function(res){
             console.log("Edit Response: ",res)
           })
         }
@@ -45,7 +45,8 @@ angular.module('starter.directives.contenteditable', [])
         var saveDelay;
 
         element.bind('click', function($event) {
-          console.log('clicked: ',$event)
+          console.log('clicked: ',$event,attrs)
+
         });
 
         element.on('input', function($event) {
@@ -53,7 +54,7 @@ angular.module('starter.directives.contenteditable', [])
           if (currCount < maxCount) {
             $timeout.cancel(saveDelay);
             saveDelay = $timeout(function() {
-              scope.edit(attrs.id,$event.target.innerText.replace("\n",""))
+              scope.edit(attrs,$event.target.innerHTML.replace("\n",""))
             }, 1000)
             currCount += 1
           }

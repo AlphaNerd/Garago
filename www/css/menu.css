@@ -1,7 +1,36 @@
-#MainMenu .menu-header img{
+#MainMenu .menu-header .logo{
+	width:100%;
+	max-width:40%;
+	margin:0 auto;
+}
+
+#MainMenu .menu-header .logo img{
 	width:100%;
 }
 
-#MainMenu .menu-header{
-	padding:30px;
+#MainMenu .menu-header {
+	padding: 10px 10px;
+	min-height: 150px;
+}
+
+#MainMenu .scroll{
+	height:100%
+}
+
+#MainMenu .scroll .slider{
+	height:100%
+}
+
+#MainMenu .slider-slide {
+    position: relative;
+    display: block;
+    float: left;
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+    background: #2b3a41;
+}
+
+#MainMenu .item-complex .item-content{
+	background-color:rgba(0,0,0,0)!important;
 }
