@@ -156,12 +156,20 @@ ul {
   font-style: italic;
 }
 
+
 [contenteditable].row-header:hover {
   border: 1px dashed #03A9F4;
   margin: 0px;
   cursor: pointer;
   padding-bottom: 2px;
   /* border-bottom: 4px dashed #03A9F4; */
+}
+
+[contenteditable][locked="true"]:hover {
+  border: 0px dashed #C7C7C7;
+  margin: 0px;
+  cursor: default;
+  padding-bottom: 3px;
 }
 
 .medium-editor-toolbar-actions {
@@ -310,7 +318,7 @@ ul {
 }
 
 .plan-title h1 {
-    color: #888;
+    color: #0d4678;
     font-family: 'Pacifico', cursive;
 }
 

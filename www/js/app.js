@@ -53,8 +53,11 @@ angular.module('garago', [
   })
 
   .config(function ($stateProvider, $urlRouterProvider, $mdIconProvider) {
-    $mdIconProvider.defaultIconSet('img/icons/sets/core-icons.svg', 24);
 
+    $mdIconProvider
+    .iconSet('social', 'img/icons/sets/social-icons.svg', 24)
+    .defaultIconSet('img/icons/sets/core-icons.svg', 24);
+    
     $stateProvider
 
       .state('app', {

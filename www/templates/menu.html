@@ -24,24 +24,33 @@
             <div class="logo">
               <img src="http://dev.goforms.ca/assets/img/app/profile/garago.png">
             </div>
+            <div class="mail">
+                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+            </div>
+            <div class="profile">
+              
+            </div>
+            <div class="search">
+
+            </div>
           </div>
-          <ion-list>
+          <ion-list class="menu-list">
 
             <ion-item menu-close href="#/app/dashboard">
-              Dashboard
+              <i class="fa fa-tachometer" aria-hidden="true"></i> &nbsp; Dashboard
             </ion-item>
 
-            <div ng-repeat="group in MENU_ACTIONPLAN">
-              <ion-item class="item-stable" ng-click="toggleGroup(group)" ng-class="{active: isGroupShown(group)}">
-                {{group.name}} &nbsp; <i class="icon fa" ng-class="isGroupShown(group) ? 'fa-minus' : 'fa-plus'"></i> 
+            <div class="menu-group" ng-repeat="group in MENU_ACTIONPLAN">
+              <ion-item class="item-stable header" ng-click="toggleGroup(group)" ng-class="{active: isGroupShown(group)}">
+                  &nbsp;<i class="fa fa-cubes" aria-hidden="true"></i> &nbsp; {{group.name}} &nbsp; <i class="icon fa" ng-class="isGroupShown(group) ? 'fa-minus' : 'fa-plus'"></i>
               </ion-item>
               <ion-item class="item-accordion" menu-close ng-repeat="item in group.items" ng-show="isGroupShown(group)" href="{{item.link}}">
-                {{item.title}}
+                  <i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp;{{item.title}}
               </ion-item>
             </div>
 
             <ion-item menu-close href="#/app/library">
-              Smart Library
+              <i class="fa fa-server" aria-hidden="true"></i> &nbsp; Smart Library
             </ion-item>
 
           </ion-list>
@@ -49,16 +58,23 @@
 
         <ion-slide>
           <div class="user-preferences">
-            <ion-list>
-              <div ng-repeat="group in MENU">
-                <ion-item class="item-stable" ng-click="toggleGroup(group)" ng-class="{active: isGroupShown(group)}">
-                  <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i> &nbsp; Group {{group.name}}
-                </ion-item>
-                <ion-item class="item-accordion" ng-repeat="item in group.items" ng-show="isGroupShown(group)">
-                  {{item.title}}
-                </ion-item>
-              </div>
-            </ion-list>
+            <div class="padding">
+              <md-switch ng-model="data.cb1" aria-label="Switch 1">
+                Switch 1: {{ data.cb1 }}
+              </md-switch>
+              <md-switch ng-model="data.cb1" aria-label="Switch 1">
+                Switch 1: {{ data.cb1 }}
+              </md-switch>
+              <md-switch ng-model="data.cb1" aria-label="Switch 1">
+                Switch 1: {{ data.cb1 }}
+              </md-switch>
+              <md-switch ng-model="data.cb1" aria-label="Switch 1">
+                Switch 1: {{ data.cb1 }}
+              </md-switch>
+              <md-switch ng-model="data.cb1" aria-label="Switch 1">
+                Switch 1: {{ data.cb1 }}
+              </md-switch>
+            </div>
           </div>
         </ion-slide>
 

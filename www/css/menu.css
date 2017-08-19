@@ -1,7 +1,7 @@
-#MainMenu .menu-header .logo{
-	width:100%;
-	max-width:40%;
-	margin:0 auto;
+#MainMenu .menu-header .logo {
+    width: 100%;
+    max-width: 60%;
+    padding: 20px 20px 10px 20px;
 }
 
 #MainMenu .menu-header .logo img{
@@ -9,8 +9,9 @@
 }
 
 #MainMenu .menu-header {
-	padding: 10px 10px;
-	min-height: 150px;
+    padding: 0px 0px;
+    min-height: 150px;
+    background: #fff;
 }
 
 #MainMenu .scroll{
@@ -33,4 +34,74 @@
 
 #MainMenu .item-complex .item-content{
 	background-color:rgba(0,0,0,0)!important;
+}
+
+#MainMenu .item {
+    border-color: rgba(221, 221, 221, 0);
+    background-color: rgba(255, 255, 255, 0);
+    color: #fff;
+    position: relative;
+    z-index: 2;
+    display: block;
+    margin: -1px;
+    padding: 6px 6px 6px 0px;
+    border-width: 1px;
+    border-style: solid;
+    font-size: 16px;
+}
+
+#MainMenu .menu-group{
+	padding: 0 0 0 0px;
+}
+
+#MainMenu .menu-group ion-item.item-accordion.item.item-complex {
+    padding: 6px 6px 6px 15px;
+    background: #162a3a;
+}
+
+.menu-group .icon.fa.fa-plus{
+	float:right;
+	margin-right:10px
+}
+
+.menu-group .icon.fa.fa-minus{
+	float:right;
+	margin-right:10px
+}
+
+#MainMenu .menu-group .item-complex .item-content {
+    padding: 5px 49px 6px 25px;
+}
+
+#MainMenu .menu-group ion-item{
+	padding-bottom:0px!important;
+}
+
+#MainMenu .menu-group ion-item:first-child {
+    padding: 16px 6px!important;
+}
+
+#MainMenu .menu-group ion-item:last-child{
+	margin-bottom:10px!important;
+}
+
+.menu-group .header {
+    padding: 6px 6px 6px 10px!important;
+}
+
+#MainMenu ion-item:hover {
+	background: #1c5481;
+	transition: all 1s ease;
+}
+
+#MainMenu .menu-group ion-item.item-accordion.item.item-complex:hover{
+	background: #1c5481;
+	transition: all 0.5s ease;
+}
+
+.menu-header .mail {
+    position: absolute;
+    top: 17px;
+    right: 23px;
+    font-size: 26px;
 }
