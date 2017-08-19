@@ -1,0 +1,15 @@
+
+#Library .search {
+    background: #2b3a41;
+}
+
+#Library .file-dashboard .list.card {
+    width: 48%;
+    float: left;
+    margin: 20px 1%;
+}
+
+#Library .warning h1 {
+    color: #bbb;
+    padding: 30px 5%;
+}

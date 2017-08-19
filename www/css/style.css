@@ -40,7 +40,7 @@ ul {
   border: 1px dashed #03A9F4;
   margin: -1px;
   cursor: pointer;
-  padding-bottom: 3px;
+  padding-bottom: 0px;
 }
 
 .columns {
@@ -307,9 +307,9 @@ ul {
 
 
 .action-plan {
-  margin: 5%;
+  margin: 1%;
   background: #fff;
-  padding: 30px;
+  padding: 5%;
 }
 
 

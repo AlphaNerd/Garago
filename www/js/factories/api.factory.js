@@ -40,7 +40,7 @@ angular.module('garago.factory.api', [])
           image: null
         }
         // console.log(convertToParams(params))
-        $http.post("https://dev.goforms.ca/sm/plans/test?" + convertToParams(params)).then(function(res) { 
+        $http.post("http://dev.goforms.ca/sm/plans/test?" + convertToParams(params)).then(function(res) { 
           deferred.resolve(res)
         })
         return deferred.promise
@@ -56,8 +56,8 @@ angular.module('garago.factory.api', [])
           historical_planing_id: 1,
           image: null
         }
-        console.info("URI: https://dev.goforms.ca/sm/plans/planingJson/?",convertToParams(params))
-        $http.post("https://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
+        console.info("URI: http://dev.goforms.ca/sm/plans/planingJson/?",convertToParams(params))
+        $http.post("http://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
           /// add a splash of color
           angular.forEach(res.data.typePlan,function(val,key){
             val.TypePlan.style = {
@@ -80,8 +80,8 @@ angular.module('garago.factory.api', [])
           historical_planing_id: null,
           image: null,
         }
-        console.info("URI: https://dev.goforms.ca/sm/plans/planingJson/?",convertToParams(params))
-        $http.post("https://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
+        console.info("URI: http://dev.goforms.ca/sm/plans/planingJson/?",convertToParams(params))
+        $http.post("http://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
           deferred.resolve(res)
         })
         return deferred.promise
@@ -94,8 +94,8 @@ angular.module('garago.factory.api', [])
           planing_id: data.id,
           historical_planing_id: data.historical_id,
         }
-        console.info("URI: https://dev.goforms.ca/sm/plans/planingJson/?",convertToParams(params))
-        $http.post("https://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
+        console.info("URI: http://dev.goforms.ca/sm/plans/planingJson/?",convertToParams(params))
+        $http.post("http://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
           console.info(res)
           deferred.resolve(res)
         })
@@ -113,7 +113,7 @@ angular.module('garago.factory.api', [])
           image: null
         }
         console.info("URI: ",JSON.stringify(params))
-        $http.post("https://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
+        $http.post("http://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
           console.log(res)
           deferred.resolve(res)
         })
@@ -131,7 +131,7 @@ angular.module('garago.factory.api', [])
           image: null
         }
         console.info("URI: ",JSON.stringify(params))
-        $http.post("https://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
+        $http.post("http://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
           console.log(res)
           deferred.resolve(res)
         })
@@ -149,7 +149,7 @@ angular.module('garago.factory.api', [])
           image: null
         }
         console.info("URI: ",JSON.stringify(params))
-        $http.post("https://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
+        $http.post("http://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
           console.log(res)
           deferred.resolve(res)
         })
@@ -164,7 +164,7 @@ angular.module('garago.factory.api', [])
           historical_planing_id: $rootScope.DATA.historical_id,
         }
         console.info("URI: ",convertToParams(params))
-        $http.post("https://dev.goforms.ca/sm/plans/moveRow/?" + convertToParams(params)).then(function(res) {
+        $http.post("http://dev.goforms.ca/sm/plans/moveRow/?" + convertToParams(params)).then(function(res) {
           console.log(res)
           deferred.resolve(res)
         })
@@ -180,7 +180,7 @@ angular.module('garago.factory.api', [])
           historical_planing_id: data.historical_id,
         }
         console.info(convertToParams(params))
-        $http.post("https://dev.goforms.ca/sm/plans/moveAxis/?" + convertToParams(params)).then(function(res) {
+        $http.post("http://dev.goforms.ca/sm/plans/moveAxis/?" + convertToParams(params)).then(function(res) {
           console.log(res)
           deferred.resolve(res)
         })
@@ -198,7 +198,7 @@ angular.module('garago.factory.api', [])
           image: null
         }
         console.info(convertToParams(params))
-        $http.post("https://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
+        $http.post("http://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
           console.log(res)
           deferred.resolve(res)
         })
@@ -213,7 +213,7 @@ angular.module('garago.factory.api', [])
           historical_planing_id: $rootScope.DATA.historical_id,
         }
         console.info(convertToParams(params))
-        $http.post("https://dev.goforms.ca/sm/plans/lockedUnlockedCellById/?" + convertToParams(params)).then(function(res) {
+        $http.post("http://dev.goforms.ca/sm/plans/lockedUnlockedCellById/?" + convertToParams(params)).then(function(res) {
           console.log(res)
           deferred.resolve(res)
         })
@@ -234,6 +234,14 @@ angular.module('garago.factory.api', [])
           colors: [Please.make_color(), Please.make_color(), Please.make_color()]
         }
         return theme
+      },
+      searchFiles: function(search){
+        var deferred = $q.defer()
+        $http.get("/filesearch/"+search).then(function(res) {
+          console.log(res)
+          deferred.resolve(res)
+        })
+        return deferred.promise
       }
     }
     return obj

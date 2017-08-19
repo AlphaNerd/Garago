@@ -105,3 +105,11 @@
     right: 23px;
     font-size: 26px;
 }
+
+#MainMenu i.fa.fa-chevron-right {
+    font-size: 12px;
+}
+
+#MainMenu .slider-pager .slider-pager-page{
+    color:#fff;
+}

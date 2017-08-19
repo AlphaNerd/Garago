@@ -9,7 +9,7 @@ angular.module('garago.directives.contenteditable', [])
       return text.trim();
     }
     return {
-      restrict: "A",
+      restrict: "AEC",
       require: "ngModel",
       scope: { 
         bindOptions: '=',

@@ -16,10 +16,6 @@ angular.module('garago.controllers', [])
         title: "Latest Plan",
         link: "#/app/listplan",
         class: ""
-      },{
-        title: "New Plan",
-        link: "#/app/listplan",
-        class: ""
       }]
     }];
  

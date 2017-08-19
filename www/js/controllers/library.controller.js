@@ -10,13 +10,15 @@ angular.module('garago.controllers.library', [])
       console.log("LibraryCtrl Loaded.")
     });
 
-    $timeout(function() {
-      // $ionicSideMenuDelegate.canDragContent(false)
-      if(!$rootScope.isMobile){
-        $ionicSideMenuDelegate.toggleLeft()
+    $scope.searchFiles = function(search){
+      if(search.length > 0){
+        $garagoAPI.searchFiles(search.toLowerCase()).then(function(res){
+          console.log("Search returned: ",res)
+          $scope.searchResults = res
+        })
+      }else{
+        $scope.searchResults = []
       }
-    }, 50)
-
-    
+    }
 
   })

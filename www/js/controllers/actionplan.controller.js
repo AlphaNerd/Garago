@@ -5,44 +5,18 @@ angular.module('garago.controllers.actionplan', [])
 
         $rootScope.DATA = initData
 
-        $scope.settings = {
-            printLayout: true,
-            showRuler: true,
-            showSpellingSuggestions: true,
-            presentationMode: 'edit'
-        };
-
-        $scope.sampleAction = function (name, ev) {
-            $mdDialog.show($mdDialog.alert()
-                .title(name)
-                .textContent('You triggered the "' + name + '" action')
-                .ok('Great')
-                .targetEvent(ev)
-            );
-        };
-
         $scope.reportTitle = $garagoAPI.getReportTitle()
 
         $scope.showEmuneration = false
 
-        $scope.settingsTabs = 'settings'
-
         $scope.themeData = $garagoAPI.getTheme()
 
-        //// color picker options
-        $scope.pickerSettings = {
-            label: "Choose a color",
-            icon: "",
-            default: $scope.themeData.colors[0],
-            genericPalette: false,
-            history: false
-        };
-
         $scope.docLock = false;
-        $scope.docLockToggle = function(){
+        $scope.docLockToggle = function () {
             $scope.docLock = !$scope.docLock
             console.log($scope.docLock)
         }
+
         function refresh() {
             $garagoAPI.getPlan({
                 id: null,
@@ -114,9 +88,9 @@ angular.module('garago.controllers.actionplan', [])
             $scope.showEmuneration = !$scope.showEmuneration
         }
 
-        $scope.createNewPlan = function () {
+        $rootScope.createNewPlan = function () {
             $garagoAPI.newPlan().then(function (res) {
-                console.log(res)
+                console.log("New plan created: ", res)
                 $scope.DATA = res.data
             })
         }
@@ -147,7 +121,7 @@ angular.module('garago.controllers.actionplan', [])
         }
     })
 
-    .controller('GridBottomSheetCtrl', function ($scope, $mdBottomSheet) {
+    .controller('GridBottomSheetCtrl', function ($scope, $mdBottomSheet, $rootScope, $ionicPopup) {
         $scope.items = [
             { name: 'Create New', icon: 'file-o' },
             { name: 'Duplicate', icon: 'clone' },
@@ -159,6 +133,21 @@ angular.module('garago.controllers.actionplan', [])
 
         $scope.listItemClick = function ($index) {
             var clickedItem = $scope.items[$index];
+            if ($index == 0) {
+                var confirmPopup = $ionicPopup.confirm({
+                    title: 'Warning',
+                    template: 'Are you sure you leave current plan?'
+                });
+
+                confirmPopup.then(function (res) {
+                    if (res) {
+                        console.log('You are sure');
+                        $rootScope.createNewPlan()
+                    } else {
+                        console.log('You are not sure');
+                    }
+                });
+            }
             $mdBottomSheet.hide(clickedItem);
         };
     })

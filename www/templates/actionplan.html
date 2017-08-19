@@ -47,8 +47,10 @@
           <div class="row">
             <i class="fa fa-minus-circle" aria-hidden="true" ng-click="deleteRow($index,row)" ng-show="rowTools"></i>
             <div class="item" ng-repeat="item in row.detail_planning track by $index" column="{{$index}}" row="{{$index}}">
+              
               <div class="content" ng-model="item.DetailPlan.content" id="{{item.DetailPlan.id}}" ng-attr-contenteditable="{{item.DetailPlan.locked}}"
                 locked="{{!item.DetailPlan.locked}}" id="{{item.DetailPlan.id}}" type="cell"></div>
+
               <div class="controls">
                 <i class="fa" ng-class="item.DetailPlan.locked ? 'fa-unlock' : 'fa-lock'" aria-hidden="true" ng-click="toggleLock(item,row)"></i>
               </div>
