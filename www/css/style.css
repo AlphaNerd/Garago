@@ -1,10 +1,17 @@
 /* Empty. Add your own CSS if you like */
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
 
-/*body{
-  background:#333;
-  color:#fff;
-}*/
+i.fa {
+  font-size: 20px;
+}
+
+md-icon.fa.fa-bars {
+  font-size: 23px;
+}
+
+.plan-options {
+  position: absolute;
+}
 
 #ActionPlan {
   background: #f3f3f3;
@@ -295,7 +302,7 @@ ul {
 
 .plan-title {
   margin: 0 auto 50px auto;
-  max-width: 90%;
+  max-width: 600px;
 }
 
 

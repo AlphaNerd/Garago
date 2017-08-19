@@ -17,7 +17,8 @@
   <ion-content id="ActionPlan" scroll="true">
     <div class="action-plan">
       <div class="plan-settings">
-        <i class="fa" ng-class="docLock ? 'fa-lock':'fa-unlock' " ng-click="docLockToggle()"></i>
+        <i class="fa" ng-class="docLock ? 'fa-lock':'fa-unlock' " ng-click="docLockToggle()"></i>&nbsp;&nbsp;&nbsp;
+        <i class="fa fa-bars" ng-click="showGridBottomSheet()"></i>
       </div>
       <div class="plan-title">
         <h1 ng-attr-contenteditable="{{!dockLock}}" ng-model="reportTitle" ng-style="{'color':'themeData.colors[0]'}">{{reportTitle}}</h1>
@@ -62,9 +63,6 @@
         <div class="logo-bottom">
           <img src="http://v2.garagosoftware.com/wp-content/uploads/2017/03/garago-blanc.png">
         </div>
-      </div>
-      <div class="">
-        <md-button flex="50" class="md-primary md-raised" ng-click="showGridBottomSheet()">Admin Tools</md-button>
       </div>
     </div>
   </ion-content>

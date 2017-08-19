@@ -114,10 +114,6 @@ angular.module('garago.controllers.actionplan', [])
             $scope.showEmuneration = !$scope.showEmuneration
         }
 
-        $scope.settingsTabsSelect = function (selection) {
-            $scope.settingsTabs = selection
-        }
-
         $scope.createNewPlan = function () {
             $garagoAPI.newPlan().then(function (res) {
                 console.log(res)
@@ -129,15 +125,15 @@ angular.module('garago.controllers.actionplan', [])
             $scope.alert = '';
             $mdBottomSheet.show({
                 templateUrl: 'templates/actionplan-admincontrols.html',
-                controller: 'GridBottomSheetCtrl',
+                controller: 'GridBottomSheetCtrl', ///// this controller is in this file at bottom
                 clickOutsideToClose: true
             }).then(function (clickedItem) {
-                $mdToast.show(
-                    $mdToast.simple()
-                        .textContent(clickedItem['name'] + ' clicked!')
-                        .position('top right')
-                        .hideDelay(1500)
-                );
+                // $mdToast.show(
+                //     $mdToast.simple()
+                //         .textContent(clickedItem['name'] + ' clicked!')
+                //         .position('top right')
+                //         .hideDelay(1500)
+                // );
             }).catch(function (error) {
                 // User clicked outside or hit escape
             });
@@ -153,12 +149,12 @@ angular.module('garago.controllers.actionplan', [])
 
     .controller('GridBottomSheetCtrl', function ($scope, $mdBottomSheet) {
         $scope.items = [
-            { name: 'Lock & Save', icon: 'hangout' },
-            { name: 'Share via Email', icon: 'mail' },
-            { name: 'Print', icon: 'message' },
-            { name: 'Edit', icon: 'copy2' },
-            { name: 'Facebook', icon: 'facebook' },
-            { name: 'Twitter', icon: 'twitter' },
+            { name: 'Create New', icon: 'file-o' },
+            { name: 'Duplicate', icon: 'clone' },
+            { name: 'Delete', icon: 'times' },
+            { name: 'Edit', icon: 'pencil' },
+            { name: 'Lock', icon: 'lock' },
+            { name: 'Share', icon: 'share' },
         ];
 
         $scope.listItemClick = function ($index) {

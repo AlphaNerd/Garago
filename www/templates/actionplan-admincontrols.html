@@ -7,7 +7,7 @@
             <md-list-item ng-repeat="item in items">
                 <div>
                     <md-button class="md-grid-item-content" ng-click="listItemClick($index)">
-                        <md-icon md-svg-src="{{item.icon}}"></md-icon>
+                        <i class="fa fa-{{item.icon}}"></i>
                         <div class="md-grid-text"> {{ item.name }} </div>
                     </md-button>
                 </div>
