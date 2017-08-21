@@ -16,7 +16,10 @@ angular.module('garago', [
   'garago.filters.keyboardShortcut',
   'ngDraggable',
   'ngMaterial',
-  'mdColorPicker'
+  'ngAnimate',
+  'mdColorPicker',
+  'ngDroplet',
+  'akoenig.deckgrid'
 ])
 
   .constant('$ionicLoadingConfig', {
@@ -108,7 +111,17 @@ angular.module('garago', [
         views: {
           'menuContent': {
             templateUrl: 'templates/library.html',
-            controller: 'LibraryCtrl'
+            controller: 'LibraryCtrl',
+            resolve: {
+              userFilesData: function ($garagoAPI, $mockApi, $ionicLoading) {
+                $ionicLoading.show()
+                return $garagoAPI.getAllUserFiles().then(function (res) {
+                  console.log("Library View Resolve: ",res)
+                  $ionicLoading.hide()                  
+                  return res
+                })
+              }
+            }
           }
         }
       })

@@ -1,5 +1,5 @@
 <ion-view view-title="Smart Library">
-    <!-- <ion-nav-bar class="bar-stable">
+  <!-- <ion-nav-bar class="bar-stable">
         <ion-nav-back-button>
         </ion-nav-back-button>
 
@@ -13,66 +13,107 @@
         </ion-nav-buttons>
 
     </ion-nav-bar> -->
-    <ion-content id="Library" scroll="true">
-        <div class="search animated slideInDown">
-            <div class="item item-input-inset">
-                <label class="item-input-wrapper">
-                      <input type="text" placeholder="Search" ng-model="search.text" ng-change="searchFiles(search.text)">
-                    </label>
-                <button class="button button-small">Filters</button>
-            </div>
+  <ion-content id="Library" scroll="true">
+    <div class="search animated slideInDown">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i> &nbsp;
+        <input class="main-search" type="text" placeholder="Search" ng-model="search.text" ng-change="searchFiles(search.text)">
+      </label>
+      <div class="filters">
+        <i class="fa fa-filter" ng-model="showFilters" ng-click="toggleFilters()"></i>
+      </div>
+    </div>
+    <div class="filter-panel" ng-class="showFilters ? 'open':'close'" ng-show="showFilters">
+      <i class="fa fa-retweet" ng-click=""></i>
+      <i class="fa fa-calendar" ng-click=""></i>
+      <div class="toggle" style="float:right">
+        <md-switch ng-model="data.cb1" aria-label="Switch 1">
+          Filter
+        </md-switch>
+      </div>
+    </div>
+    <div class="search-results">
+      <div class="warning" ng-if="!searchResults.data">
+        <h1>No results.</h1>
+      </div>
+      <div class="list card" ng-repeat="item in searchResults.data track by $index" ng-if="item">
+        <div class="item item-avatar">
+          <img src="https://cdn0.iconfinder.com/data/icons/HTML5/512/HTML_Logo.png">
+          <h2>{{item.file_name}}</h2>
+          <p>Modified: {{item.modified | date:'fullDate'}}</p>
+          <div class="options">
+            <md-menu>
+              <md-button aria-label="Open menu with custom trigger" class="md-icon-button" ng-click="$mdMenu.open()">
+                <i md-menu-origin md-svg-icon="call:textsms" class="fa fa-ellipsis-v"></i>
+              </md-button>
+              <md-menu-content width="4" ng-click="$mdMenu.close()">
+                <md-menu-item ng-repeat="item in ['Edit', 'Delete', 'Share']">
+                  <md-button>
+                    {{item}}
+                  </md-button>
+                </md-menu-item>
+            </md-menu>
+          </div>
         </div>
-        <div class="warning" ng-if="!searchResults.data">
-            <h1>Please provide search term...</h1>
+        <div class="item item-body" ng-if="item.description">
+          <p>{{item.description}}</p>
         </div>
-        <div class="list card" ng-repeat="item in searchResults.data track by $index" ng-if="item">
-            <div class="item item-avatar">
-                <img src="https://cdn0.iconfinder.com/data/icons/HTML5/512/HTML_Logo.png">
-                <h2>{{item.file_name}}</h2>
-                <p>Last modified: {{item.modified | date:'fullDate'}}</p>
-            </div>
-            <div class="item item-body">
-                <p>{{item.description}}</p>
-                <p>{{item.data}}</p>
-                <p>
-                    <a href="{{item.download}}" class="subdued">Download</a>
-                    <a href="#" class="subdued">Share</a>
-                </p>
-            </div>
-
+      </div>
+    </div>
+    <div class="file-dashboard animated fadeIn">
+      <div class="list card">
+        <div class="item item-avatar">
+          <i class="fa fa-upload" aria-hidden="true"></i>
+          <h2>Upload File</h2>
+          <p>doc,pdf,txt,jpg,png</p>
         </div>
-        <div class="file-dashboard animated fadeIn">
-            <div class="list card">
-                <div class="item item-avatar">
-                    <img src="https://cdn0.iconfinder.com/data/icons/HTML5/512/HTML_Logo.png">
-                    <h2>My Documents</h2>
-                    <p></p>
-                </div>
-                <div class="item item-body">
-                    <p ng-repeat="item in allfiles track by $index">{{item.description}}</p>
-                    <p>
-                        <a href="{{item.download}}" class="subdued">Total Files: [var]</a>
-                        <a href="#" class="subdued">Total Storage: [var]</a>
-                    </p>
-                </div>
-
-            </div>
-            <div class="list card">
-                <div class="item item-avatar">
-                    <img src="https://cdn0.iconfinder.com/data/icons/HTML5/512/HTML_Logo.png">
-                    <h2>Shared Documents</h2>
-                    <p></p>
-                </div>
-                <div class="item item-body">
-                    <p>{{item.description}}</p>
-                    <p>{{item.data}}</p>
-                    <p>
-                        <a href="{{item.download}}" class="subdued">Download</a>
-                        <a href="#" class="subdued">Share</a>
-                    </p>
-                </div>
-
-            </div>
+        <div class="item item-body">
+          <droplet ng-model="interface" class="drop-zone">
+            <h3>Drop File(s) Here</h3>
+          </droplet>
+          <div ng-repeat="model in interface.getFiles(interface.FILE_TYPES.VALID)">
+            <droplet-preview ng-model="model" ng-show="model.isImage()"></droplet-preview>
+            <section class="filename" ng-show="!model.isImage()">{{model.file.name}}</section>
+          </div>
+          <md-chips ng-model="searchTags" name="tagName" readonly="false" md-removable="true" md-max-chips="10" placeholder="Enter tag...">
+            <md-chip-template>
+              <strong>{{$chip}}</strong>
+            </md-chip-template>
+          </md-chips>
+          <p>Tags can help you find files quicker when searching. Add up to 10 tags.</p>
+          <div class="button button-balanced button-block" ng-click="interface.uploadFiles()">Upload</div>
         </div>
-    </ion-content>
+      </div>
+      <div class="list card">
+        <div class="item item-avatar">
+          <i class="fa fa-folder-o" aria-hidden="true"></i>
+          <h2>My Folder</h2>
+          <p>Stats &amp; Quick Reference</p>
+        </div>
+        <div class="item item-body">
+          <p ng-repeat="item in userFiles">
+            <span>Filename: <a href="#">{{item.name}}</a></span>
+            <span class="modified">
+                            <span>Modified: {{item.modified | date:'shortDate'}}</span>
+            </span>
+          </p>
+        </div>
+      </div>
+      <div class="list card">
+        <div class="item item-avatar">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+          <h2>Shared Documents</h2>
+          <p></p>
+        </div>
+        <div class="item item-body">
+          <p>{{item.description}}</p>
+          <p>{{item.data}}</p>
+          <p>
+            <a href="{{item.download}}" class="subdued">Download</a>
+            <a href="#" class="subdued">Share</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </ion-content>
 </ion-view>

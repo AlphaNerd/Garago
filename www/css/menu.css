@@ -1,7 +1,11 @@
 #MainMenu .menu-header .logo {
     width: 100%;
-    max-width: 60%;
-    padding: 20px 20px 10px 20px;
+    max-width: 50%;
+    padding: 0;
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+    top: 67px;
 }
 
 #MainMenu .menu-header .logo img{
@@ -32,11 +36,11 @@
     background: #2b3a41;
 }
 
-#MainMenu .item-complex .item-content{
+#MainMenu #Menu .item-complex .item-content{
 	background-color:rgba(0,0,0,0)!important;
 }
 
-#MainMenu .item {
+#MainMenu #Menu .item {
     border-color: rgba(221, 221, 221, 0);
     background-color: rgba(255, 255, 255, 0);
     color: #fff;
@@ -50,11 +54,11 @@
     font-size: 16px;
 }
 
-#MainMenu .menu-group{
+#MainMenu #Menu .menu-group{
 	padding: 0 0 0 0px;
 }
 
-#MainMenu .menu-group ion-item.item-accordion.item.item-complex {
+#MainMenu #Menu .menu-group ion-item.item-accordion.item.item-complex {
     padding: 6px 6px 6px 15px;
     background: #162a3a;
 }
@@ -69,32 +73,28 @@
 	margin-right:10px
 }
 
-#MainMenu .menu-group .item-complex .item-content {
-    padding: 5px 49px 6px 25px;
+#MainMenu #Menu .menu-group .item-complex .item-content {
+    padding: 5px 49px 10px 25px;    
 }
 
-#MainMenu .menu-group ion-item{
+#MainMenu #Menu .menu-group ion-item{
 	padding-bottom:0px!important;
 }
 
-#MainMenu .menu-group ion-item:first-child {
-    padding: 16px 6px!important;
-}
-
-#MainMenu .menu-group ion-item:last-child{
-	margin-bottom:10px!important;
+#MainMenu #Menu .menu-group ion-item:first-child {
+    padding: 22px 12px!important;
 }
 
 .menu-group .header {
     padding: 6px 6px 6px 10px!important;
 }
 
-#MainMenu ion-item:hover {
+#MainMenu #Menu ion-item:hover {
 	background: #1c5481;
 	transition: all 1s ease;
 }
 
-#MainMenu .menu-group ion-item.item-accordion.item.item-complex:hover{
+#MainMenu #Menu .menu-group ion-item.item-accordion.item.item-complex:hover{
 	background: #1c5481;
 	transition: all 0.5s ease;
 }
@@ -102,14 +102,72 @@
 .menu-header .mail {
     position: absolute;
     top: 17px;
-    right: 23px;
+    right: 17px;
     font-size: 26px;
 }
 
-#MainMenu i.fa.fa-chevron-right {
+#MainMenu .menu-header .badge {
+    position: absolute;
+    top: -8px;
+    background: red;
+    color: #fff;
+    right: -10px;
+    padding: 1px 6px;
+    border-radius: 100%;
+    font-size: 11px;
+}
+
+#MainMenu #Menu i.fa.fa-chevron-right {
     font-size: 12px;
 }
 
 #MainMenu .slider-pager .slider-pager-page{
     color:#fff;
+}
+
+#MainMenu .profile {
+    width: 25px;
+    height: 25px;
+    background: url(https://image.flaticon.com/icons/png/512/21/21294.png);
+    background-size: cover;
+    border-radius: 100%;
+    position: absolute;
+    top: 16px;
+    left: 11px;
+}
+
+#MainMenu #Messages .profile {
+    right: 15px;
+    left:inherit;
+}
+
+#MainMenu #Messages .menu {
+    width: 25px;
+    height: 25px;
+    background: none;
+    background-size: cover;
+    border-radius: 0;
+    position: absolute;
+    top: 16px;
+    left: 11px;
+}
+
+#MainMenu #UserProfile .profile {
+    right: 15px;
+    left:inherit;
+}
+
+#MainMenu #UserProfile .menu {
+    width: 25px;
+    height: 25px;
+    background: none;
+    background-size: cover;
+    border-radius: 0;
+    position: absolute;
+    top: 16px;
+    left: 11px;
+}
+
+#MainMenu ion-item.active:not(.header){
+    background: #1c5481!important;
 }

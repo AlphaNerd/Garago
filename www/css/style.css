@@ -1,5 +1,19 @@
 /* Empty. Add your own CSS if you like */
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
+@import url('https://fonts.googleapis.com/css?family=Patua+One');
+
+.bar.bar-stable {
+    border-color: #b2b2b2;
+    background-color: #2b3a41;
+}
+
+.bar.bar-stable i, .bar.bar-stable .button{
+  color:#fff;
+}
+
+[ng-click]{
+  cursor: pointer;
+}
 
 i.fa {
   font-size: 20px;
@@ -19,6 +33,10 @@ md-icon.fa.fa-bars {
 
 #ActionPlan .scroll {
   /*height: 100%;*/
+}
+
+#ActionPlan .locked{
+  color:#bc4747
 }
 
 #ActionPlan .scroll .action-plan {
@@ -425,5 +443,57 @@ ul {
   .column .title {
     padding: 20px 20px 20px 20px;
     text-align: center;
+  }
+}
+
+#ActionPlan .plan-owner {
+  color: #bbb;
+}
+
+#ActionPlan .project-controls {
+    font-size: 9px;
+    color: blue;
+    position: absolute;
+    bottom: -2px;
+}
+
+#ActionPlan .project-controls i{
+  font-size: 9px
+}
+
+
+.project-controls {
+    opacity: 1;
+}
+.project-controls.ng-enter {
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    opacity: 0;
+}
+.project-controls.ng-enter-active {
+    opacity: 1;
+}
+
+.project-controls.ng-leave {
+    -webkit-transition: 0.25s;
+    transition: 0.25s;
+    opacity: 1;
+}
+.project-controls.ng-leave-active {
+    opacity: 0;
+}
+
+
+#NewProject .scroll {
+    height: 100%;
+}
+
+.menu-toggle{
+  display:none;
+}
+
+@media (max-width:768px){
+  .menu-toggle{
+    display:block;
   }
 }

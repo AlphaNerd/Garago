@@ -1,11 +1,11 @@
-<ion-view view-title="Action Plan">
+<ion-view view-title="">
 
-  <ion-nav-bar class="bar-stable" ng-if="isMobile">
+  <ion-nav-bar class="bar-stable">
     <ion-nav-back-button>
     </ion-nav-back-button>
 
     <ion-nav-buttons side="left">
-      <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-hide="{{menuOpen}}">
+      <button class="button button-icon button-clear ion-navicon menu-toggle" menu-toggle="left">
       </button>
     </ion-nav-buttons>
 
@@ -17,8 +17,12 @@
   <ion-content id="ActionPlan" scroll="true">
     <div class="action-plan">
       <div class="plan-settings">
-        <i class="fa" ng-class="docLock ? 'fa-lock':'fa-unlock' " ng-click="docLockToggle()"></i>&nbsp;&nbsp;&nbsp;
-        <i class="fa fa-bars" ng-click="showGridBottomSheet()"></i>
+        <i class="fa" ng-class="docLock ? 'fa-lock locked':'fa-unlock' " ng-click="docLockToggle(docLock)"></i>&nbsp;&nbsp;&nbsp;
+        <i class="fa fa-cogs" ng-click="showGridBottomSheet()"></i>
+      </div>
+      <div class="plan-owner">
+        <div class="owner">Owner: Jeffrey Coleman</div>
+        <div class="finalized">Finalized: n/a</div>
       </div>
       <div class="plan-title">
         <h1 ng-attr-contenteditable="{{!dockLock}}" ng-model="reportTitle" ng-style="{'color':'themeData.colors[0]'}">{{reportTitle}}</h1>
@@ -52,8 +56,18 @@
                 locked="{{!item.DetailPlan.locked}}" id="{{item.DetailPlan.id}}" type="cell"></div>
 
               <div class="controls">
-                <i class="fa" ng-class="item.DetailPlan.locked ? 'fa-unlock' : 'fa-lock'" aria-hidden="true" ng-click="toggleLock(item,row)"></i>
+                <i class="fa" ng-class="item.DetailPlan.locked ? 'fa-unlock' : 'fa-lock locked'" aria-hidden="true" ng-click="toggleLock(item,row)"></i>
               </div>
+              
+              <div class="project-controls" ng-if="docLock && $index == activityColumn && !item.DetailPlan.projects">
+                  <i class="fa fa-icon fa-plus"></i>
+                  <span ng-click="openModal()">Create Project</span>
+              </div>
+              <div class="project-controls" ng-if="docLock && $index == activityColumn && item.DetailPlan.projects">
+                  <i class="fa fa-icon fa-pencil"></i>
+                  <a href="#">Edit Project</a>
+              </div>
+
             </div>
           </div>
           <i class="fa fa-bars" aria-hidden="true" ng-drag-handle></i>

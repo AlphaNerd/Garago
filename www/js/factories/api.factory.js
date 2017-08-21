@@ -76,8 +76,8 @@ angular.module('garago.factory.api', [])
           status: "new",
           posEvent: "plan",
           data: setColorScheme(),
-          Planing_id: null,
-          historical_planing_id: null,
+          planing_id: $rootScope.DATA.id,
+          historical_planing_id: $rootScope.DATA.historical_id,
           image: null,
         }
         console.info("URI: http://dev.goforms.ca/sm/plans/planingJson/?",convertToParams(params))
@@ -91,8 +91,8 @@ angular.module('garago.factory.api', [])
         var params = {
           status: "new",
           posEvent: "column",
-          planing_id: data.id,
-          historical_planing_id: data.historical_id,
+          planing_id: $rootScope.DATA.id,
+          historical_planing_id: $rootScope.DATA.historical_id,
         }
         console.info("URI: http://dev.goforms.ca/sm/plans/planingJson/?",convertToParams(params))
         $http.post("http://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
@@ -108,8 +108,8 @@ angular.module('garago.factory.api', [])
           status: "delete",
           posEvent: "column",
           data: null,
-          planing_id: data.id,
-          historical_planing_id: data.historical_id,
+          planing_id: $rootScope.DATA.id,
+          historical_planing_id: $rootScope.DATA.historical_id,
           image: null
         }
         console.info("URI: ",JSON.stringify(params))
@@ -126,8 +126,8 @@ angular.module('garago.factory.api', [])
           status: "new",
           posEvent: "axis",
           data: null,
-          planing_id: data.id,
-          historical_planing_id: data.historical_id,
+          planing_id: $rootScope.DATA.id,
+          historical_planing_id: $rootScope.DATA.historical_id,
           image: null
         }
         console.info("URI: ",JSON.stringify(params))
@@ -144,8 +144,8 @@ angular.module('garago.factory.api', [])
           status: "delete",
           posEvent: "axis",
           data: null,
-          planing_id: null,
-          historical_planing_id: data.Axis.historical_plan_id,
+          planing_id: $rootScope.DATA.id,
+          historical_planing_id: $rootScope.DATA.historical_id,
           image: null
         }
         console.info("URI: ",JSON.stringify(params))
@@ -176,8 +176,8 @@ angular.module('garago.factory.api', [])
         var params = {
           id: from,
           destination: index+1,
-          planing_id: data.id,
-          historical_planing_id: data.historical_id,
+          planing_id: $rootScope.DATA.id,
+          historical_planing_id: $rootScope.DATA.historical_id,
         }
         console.info(convertToParams(params))
         $http.post("http://dev.goforms.ca/sm/plans/moveAxis/?" + convertToParams(params)).then(function(res) {
@@ -238,8 +238,21 @@ angular.module('garago.factory.api', [])
       searchFiles: function(search){
         var deferred = $q.defer()
         $http.get("/filesearch/"+search).then(function(res) {
-          console.log(res)
           deferred.resolve(res)
+        })
+        return deferred.promise
+      },
+      getAllUserFiles: function(search){
+        var deferred = $q.defer()
+        $http.get("/user/files/").then(function(res) {
+          deferred.resolve(res.data)
+        })
+        return deferred.promise
+      },
+      getRandomUserImage: function(data){
+        var deferred = $q.defer()
+        $http.get("https://randomuser.me/api/").then(function(res) {
+          deferred.resolve(res.results[0].picture.medium)
         })
         return deferred.promise
       }

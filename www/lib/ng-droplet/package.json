@@ -1,0 +1,47 @@
+{
+  "name": "ng-droplet",
+  "version": "0.7.0",
+  "description": "Angular.js HTML5 file uploading with drag & drop and image/file preview.",
+  "main": "dist/ng-droplet.min.js",
+  "scripts": {
+    "test": "gulp test",
+    "build": "gulp build"
+  },
+  "engines": {
+    "node": ">=4.1.1 <7.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Wildhoney/ngDroplet.git"
+  },
+  "keywords": [
+    "image",
+    "upload",
+    "html5",
+    "drag",
+    "drop"
+  ],
+  "author": "Adam Timberlake <adam.timberlake@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Wildhoney/ngDroplet/issues"
+  },
+  "homepage": "https://github.com/Wildhoney/ngDroplet",
+  "dependencies": {},
+  "devDependencies": {
+    "bower": "^1.8.0",
+    "express": "^4.14.0",
+    "gulp": "^3.9.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-karma": "0.0.5",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.0.0",
+    "jasmine-core": "^2.5.2",
+    "js-yaml": "^3.7.0",
+    "jshint": "^2.9.4",
+    "karma": "^1.4.0",
+    "karma-firefox-launcher": "^1.0.0",
+    "karma-jasmine": "^1.1.0",
+    "multer": "^1.2.1"
+  }
+}
