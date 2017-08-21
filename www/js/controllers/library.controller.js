@@ -13,7 +13,6 @@ angular.module('garago.controllers.library', [])
     $scope.searchTags = []
     $scope.tags = []
 
-    $scope.showFilters = false
     $scope.toggleFilters = function(data){
       $scope.showFilters = !$scope.showFilters
     }

@@ -5,33 +5,37 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 angular.module('garago', [
-  'ionic',
-  'garago.controllers',
-  'garago.controllers.actionplan',
-  'garago.controllers.dashboard',
-  'garago.controllers.library',
-  'garago.factory.api',
-  'garago.factory.mockApi',
-  'garago.directives.contenteditable',
-  'garago.filters.keyboardShortcut',
-  'ngDraggable',
-  'ngMaterial',
-  'ngAnimate',
-  'mdColorPicker',
-  'ngDroplet',
-  'akoenig.deckgrid'
-])
+    'ionic',
+    'garago.controllers',
+    'garago.controllers.login',
+    'garago.controllers.actionplan',
+    'garago.controllers.dashboard',
+    'garago.controllers.library',
+    'garago.controllers.register',
+    'garago.controllers.intro',
+    'garago.factory.api',
+    'garago.factory.mockApi',
+    'garago.factory.utility',
+    'garago.directives.contenteditable',
+    'garago.filters.keyboardShortcut',
+    'ngDraggable',
+    'ngMaterial',
+    'ngAnimate',
+    'mdColorPicker',
+    'ngDroplet',
+    'akoenig.deckgrid'
+  ])
 
   .constant('$ionicLoadingConfig', {
     template: '<div>' +
-    '<ion-spinner icon="lines" class="spinner-assertive"></ion-spinner>' +
-    '</div>' +
-    '<div>Loading View...</div>',
+      '<ion-spinner icon="lines" class="spinner-assertive"></ion-spinner>' +
+      '</div>' +
+      '<div>Loading View...</div>',
     duration: 1500,
   })
 
-  .run(function ($ionicPlatform, $rootScope, $ionicSideMenuDelegate, $timeout) {
-    $ionicPlatform.ready(function () {
+  .run(function($ionicPlatform, $rootScope, $ionicSideMenuDelegate, $timeout) {
+    $ionicPlatform.ready(function() {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
       if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -46,21 +50,26 @@ angular.module('garago', [
       }
 
       $rootScope.isMobile = ionic.Platform.isIOS() || ionic.Platform.isAndroid();
-      if(!$rootScope.isMobile){
-        $timeout(function(){
+      if (!$rootScope.isMobile) {
+        $timeout(function() {
           $ionicSideMenuDelegate.toggleLeft()
-        },100)
+        }, 100)
       }
 
     });
   })
 
-  .config(function ($stateProvider, $urlRouterProvider, $mdIconProvider) {
+  .config(function($stateProvider, $urlRouterProvider, $mdIconProvider) {
+    ///// Parse DB Init
+    var ParseAppName = "rusticoresort"
+    var ParseServerURL = 'https://rustico-resort-server.herokuapp.com/parse'
+    Parse.initialize(ParseAppName);
+    Parse.serverURL = ParseServerURL
 
     $mdIconProvider
-    .iconSet('social', 'img/icons/sets/social-icons.svg', 24)
-    .defaultIconSet('img/icons/sets/core-icons.svg', 24);
-    
+      .iconSet('social', 'img/icons/sets/social-icons.svg', 24)
+      .defaultIconSet('img/icons/sets/core-icons.svg', 24);
+
     $stateProvider
 
       .state('app', {
@@ -68,6 +77,24 @@ angular.module('garago', [
         abstract: true,
         templateUrl: 'templates/menu.html',
         controller: 'ParentCtrl'
+      })
+
+      .state('intro', {
+        url: '/intro',
+        templateUrl: 'templates/intro.html',
+        controller: 'IntroCtrl'
+      })
+
+      .state('register', {
+        url: '/register',
+        templateUrl: 'templates/register.html',
+        controller: 'RegisterUserCtrl'
+      })
+
+      .state('login', {
+        url: '/login',
+        templateUrl: 'templates/login.html',
+        controller: 'LoginCtrl'
       })
 
       .state('app.dashboard', {
@@ -87,17 +114,17 @@ angular.module('garago', [
             templateUrl: 'templates/actionplan.html',
             controller: 'ActionPlanCtrl',
             resolve: {
-              initData: function ($garagoAPI, $mockApi, $ionicLoading) {
+              initData: function($garagoAPI, $ionicLoading) {
                 $ionicLoading.show()
-                return $garagoAPI.getPlan().then(function (res) {
-                  console.log("Action Plan View Resolve: ",res)
-                  if(res.hasOwnProperty("historical_id")){
-                      console.log("Action plan found.")
-                      $ionicLoading.hide()
-                      return res
-                  }else{
-                      return false
-                      $ionicLoading.hide()
+                return $garagoAPI.getPlan().then(function(res) {
+                  console.log("Action Plan View Resolve: ", res)
+                  if (res.hasOwnProperty("historical_id")) {
+                    console.log("Action plan found.")
+                    $ionicLoading.hide()
+                    return res
+                  } else {
+                    return false
+                    $ionicLoading.hide()
                   }
                 })
               }
@@ -113,11 +140,11 @@ angular.module('garago', [
             templateUrl: 'templates/library.html',
             controller: 'LibraryCtrl',
             resolve: {
-              userFilesData: function ($garagoAPI, $mockApi, $ionicLoading) {
+              userFilesData: function($garagoAPI, $mockApi, $ionicLoading) {
                 $ionicLoading.show()
-                return $garagoAPI.getAllUserFiles().then(function (res) {
-                  console.log("Library View Resolve: ",res)
-                  $ionicLoading.hide()                  
+                return $garagoAPI.getAllUserFiles().then(function(res) {
+                  console.log("Library View Resolve: ", res)
+                  $ionicLoading.hide()
                   return res
                 })
               }
@@ -127,5 +154,5 @@ angular.module('garago', [
       })
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/listplan');
+    $urlRouterProvider.otherwise('/intro');
   });

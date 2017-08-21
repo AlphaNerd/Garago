@@ -1,18 +1,14 @@
 <ion-view view-title="">
-
   <ion-nav-bar class="bar-stable">
     <ion-nav-back-button>
     </ion-nav-back-button>
-
     <ion-nav-buttons side="left">
       <button class="button button-icon button-clear ion-navicon menu-toggle" menu-toggle="left">
       </button>
     </ion-nav-buttons>
-
     <ion-nav-buttons side="right">
       <button class="button button-icon button-clear" ng-click="createNewPlan()"><i class="fa fa-icon fa-plus"></i></button>
     </ion-nav-buttons>
-
   </ion-nav-bar>
   <ion-content id="ActionPlan" scroll="true">
     <div class="action-plan">
@@ -22,7 +18,7 @@
       </div>
       <div class="plan-owner">
         <div class="owner">Owner: Jeffrey Coleman</div>
-        <div class="finalized">Finalized: n/a</div>
+        <div class="finalized">Finalized: {{(FINALIZED | date:'medium') || 'n/a'}}</div>
       </div>
       <div class="plan-title">
         <h1 ng-attr-contenteditable="{{!dockLock}}" ng-model="reportTitle" ng-style="{'color':'themeData.colors[0]'}">{{reportTitle}}</h1>
@@ -33,39 +29,40 @@
         </div>
       </div> -->
       <div class="columns">
-        <div class="column header" ng-drag-data="column" ng-repeat="column in DATA.typePlan track by $index" id="{{column.id+1}}"
-          type="type" column="{{$index}}" ng-drag="true" ng-drop="true" ng-drop-success="onColDropComplete($index,$data,$event,DATA)"
-          ng-mouseenter="columnTools = true" ng-mouseleave="columnTools = false">
+        <div class="column header" ng-drag-data="column" ng-repeat="column in DATA.typePlan track by $index" id="{{column.id+1}}" type="type" column="{{$index}}" ng-drag="true" ng-drop="true" ng-drop-success="onColDropComplete($index,$data,$event,DATA)" ng-mouseenter="columnTools = true" ng-mouseleave="columnTools = false">
           <div class="column-number" ng-init="showEmuneration = false" ng-if="showEmuneration">{{$index+1}}</div>
-          <div class="title" ng-model="column.TypePlan.description" ng-style="{{::column.TypePlan.style}}" ng-attr-contenteditable="{{!dockLock}}"
-            locked="{{column.locked || false}}" id="{{column.TypePlan.id}}" type="type"></div>
+          <div class="title" ng-model="column.TypePlan.description" ng-style="{{::column.TypePlan.style}}" ng-attr-contenteditable="{{!dockLock}}" locked="{{column.locked || false}}" id="{{column.TypePlan.id}}" type="type"></div>
           <i class="fa fa-minus-circle" aria-hidden="true" ng-click="deleteColumn($index,DATA)" ng-show="columnTools"></i>
         </div>
         <i class="fa fa-plus-circle" aria-hidden="true" ng-click="addColumn($index,DATA)"></i>
       </div>
       <div class="rows">
         <div class="item warning" ng-show="DATA.rows.length == 0"> You need to add some rows of data.</div>
-        <div class="row-container" ng-repeat="row in DATA.axis track by $index" ng-drag="true" ng-drop="true" ng-drop-success="onRowDropComplete($index,$data,$event)"
-          ng-drag-data="DATA" row="{{$index}}" ng-mouseenter="rowTools = true" ng-mouseleave="rowTools = false" id="{{row.id}}">
+        <div class="row-container" ng-repeat="row in DATA.axis track by $index" ng-drag="true" ng-drop="true" ng-drop-success="onRowDropComplete($index,$data,$event)" ng-drag-data="DATA" row="{{$index}}" ng-mouseenter="rowTools = true" ng-mouseleave="rowTools = false" id="{{row.id}}">
           <div class="row-header" ng-model="row.Axis.title" ng-attr-contenteditable="{{!dockLock}}" id="{{row.Axis.id}}" type="axis"></div>
           <div class="row">
             <i class="fa fa-minus-circle" aria-hidden="true" ng-click="deleteRow($index,row)" ng-show="rowTools"></i>
             <div class="item" ng-repeat="item in row.detail_planning track by $index" column="{{$index}}" row="{{$index}}">
+              <div class="content" ng-model="item.DetailPlan.content" id="{{item.DetailPlan.id}}" ng-attr-contenteditable="{{item.DetailPlan.locked}}" locked="{{!item.DetailPlan.locked}}" id="{{item.DetailPlan.id}}" type="cell"></div>
               
-              <div class="content" ng-model="item.DetailPlan.content" id="{{item.DetailPlan.id}}" ng-attr-contenteditable="{{item.DetailPlan.locked}}"
-                locked="{{!item.DetailPlan.locked}}" id="{{item.DetailPlan.id}}" type="cell"></div>
-
               <div class="controls">
                 <i class="fa" ng-class="item.DetailPlan.locked ? 'fa-unlock' : 'fa-lock locked'" aria-hidden="true" ng-click="toggleLock(item,row)"></i>
               </div>
-              
-              <div class="project-controls" ng-if="docLock && $index == activityColumn && !item.DetailPlan.projects">
+
+              <ul class="projects" ng-repeat="item in row.detail_planning[activityColumn].DetailPlan.projects" ng-if="$index == activityColumn">
+                <li>{{item.Project.title}}</li>
+              </ul>
+              <ul class="activities"></ul>
+
+              <div class="project-controls" ng-if="docLock && $index == activityColumn">
+                <span class="block">
                   <i class="fa fa-icon fa-plus"></i>
-                  <span ng-click="openModal()">Create Project</span>
-              </div>
-              <div class="project-controls" ng-if="docLock && $index == activityColumn && item.DetailPlan.projects">
-                  <i class="fa fa-icon fa-pencil"></i>
-                  <a href="#">Edit Project</a>
+                  <span ng-click="openModal()">Project</span>
+                </span>
+                <span class="block">
+                  <i class="fa fa-icon fa-plus"></i>
+                  <span ng-click="openModal()">Activity</span>
+                </span>
               </div>
 
             </div>

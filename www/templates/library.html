@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="search-results">
-      <div class="warning" ng-if="!searchResults.data">
+      <div class="warning" ng-if="!searchResults.data || searchResults.data.length < 1">
         <h1>No results.</h1>
       </div>
       <div class="list card" ng-repeat="item in searchResults.data track by $index" ng-if="item">

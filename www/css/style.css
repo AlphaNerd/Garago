@@ -461,6 +461,17 @@ ul {
   font-size: 9px
 }
 
+#ActionPlan .activity-controls {
+    font-size: 9px;
+    color: blue;
+    position: absolute;
+    bottom: -2px;
+}
+
+#ActionPlan .activity-controls i{
+  font-size: 9px
+}
+
 
 .project-controls {
     opacity: 1;
@@ -483,6 +494,27 @@ ul {
     opacity: 0;
 }
 
+.activity-controls {
+    opacity: 1;
+}
+.activity-controls.ng-enter {
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    opacity: 0;
+}
+.activity-controls.ng-enter-active {
+    opacity: 1;
+}
+
+.activity-controls.ng-leave {
+    -webkit-transition: 0.25s;
+    transition: 0.25s;
+    opacity: 1;
+}
+.activity-controls.ng-leave-active {
+    opacity: 0;
+}
+
 
 #NewProject .scroll {
     height: 100%;
@@ -496,4 +528,9 @@ ul {
   .menu-toggle{
     display:block;
   }
+}
+
+
+md-switch span {
+    color: #fff;
 }

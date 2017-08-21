@@ -1,0 +1,55 @@
+<ion-view id="intro" class="">
+  <div class="logo">
+    <img src="../img/logo.png">
+  </div>
+  <ion-slide-box on-slide-changed="slideHasChanged($index)" active-slide="slideNum">
+    <ion-slide>
+      <br/>
+      <br/>
+      <br/>
+      <p>
+        Some business tag line here (1)
+        <div class="intro-image">
+          <img src="https://pas-wordpress-media.s3.amazonaws.com/content/uploads/2016/05/onboarding.jpg">
+        </div>
+      </p>
+    </ion-slide>
+    <ion-slide>
+      <br/>
+      <br/>
+      <br/>
+      <p>
+        Some business tag line here (2)
+        <div class="intro-image">
+          <img src="http://www.appdopt.com/wp-content/uploads/2017/06/welcome-videos-and-introductions.png">
+        </div>
+      </p>
+    </ion-slide>
+    <ion-slide>
+      <br/>
+      <br/>
+      <br/>
+      <p>
+        Some business tag line here (3)
+        <div class="intro-image">
+          <img src="http://www.appdopt.com/wp-content/uploads/2017/06/quiz-and-test-skills.png">
+        </div>
+      </p>
+    </ion-slide>
+    <ion-slide>
+      <br/>
+      <br/>
+      <br/>
+      <p>
+        Some business tag line here (4)
+        <div class="intro-image">
+          <img src="http://cdn.ttgtmedia.com/visuals/IoTAgenda/business_of_iot/iotagenda_article_001.jpg">
+        </div>
+      </p>
+    </ion-slide>
+  </ion-slide-box>
+  <div class="intro-controls">
+    <div class="button button-block button-balanced" ng-click="nextSlide()">{{buttonLabel}}</div>
+    <div class="skip" ng-hide="slideNum == (totalSlides-1)" ng-click="skipSlide()">Login</div>
+  </div>
+</ion-view>

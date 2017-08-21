@@ -1,0 +1,74 @@
+<ion-view id="register" class="register">
+    <ion-slide-box on-slide-changed="slideHasChanged($index)" active-slide="slideNum">
+        <ion-slide>
+            <ion-content scroll="true" direction="y">
+                <div class="logo">
+                    <img src="../img/logo.png">
+                </div>
+                <form name="userRegister" class="list slide1 register list-inset" ng-submit="register(newUser)">
+                    <div class="list">
+                        <md-input-container class="md-block">
+                            <label>First Name</label>
+                            <input name="firstName" ng-model="newUser.firstName" type="text" required>
+                        </md-input-container>
+                        <!-- <label class="item item-input item-floating-label">
+                            <span class="input-label">First Name</span>
+                            <input name="firstName" ng-model="newUser.firstName" type="text" placeholder="First Name" required>
+                            <p ng-show="userRegister.firstName.$invalid && !userRegister.firstName.$empty && !userRegister.firstName.$pristine" class="help-block">Your first name is required.</p>
+                        </label> -->
+                        <md-input-container class="md-block">
+                            <label>Last Name</label>
+                            <input name="lastName" ng-model="newUser.lastName" type="text" required>
+                        </md-input-container>
+                        <!-- <label class="item item-input item-floating-label">
+                            <span class="input-label">Last Name</span>
+                            <input name="lastName" ng-model="newUser.lastName" type="text" placeholder="Last Name" required>
+                            <p ng-show="userRegister.lastName.$invalid && !userRegister.lastName.$empty && !userRegister.lastName.$pristine" class="help-block">Your last name is required.</p>
+                        </label> -->
+                        <md-input-container class="md-block">
+                            <label>Email</label>
+                            <input name="email" ng-model="newUser.email" type="email" required>
+                        </md-input-container>
+                       <!--  <label class="item item-input item-floating-label">
+                            <span class="input-label">Email Address</span>
+                            <input name="email" ng-model="newUser.email" type="email" placeholder="Email Address" required>
+                            <p ng-show="userRegister.email.$empty && !userRegister.email.$pristine" class="help-block">Your email is required.</p>
+                            <p ng-show="userRegister.email.$invalid && !userRegister.email.$pristine" class="help-block">Enter a valid email.</p>
+                        </label> -->
+                        <md-input-container class="md-block">
+                            <label>Confirm Email</label>
+                            <input name="emailConfirm" ng-model="newUser.emailConfirm" type="email" required>
+                        </md-input-container>
+                        <!-- <label class="item item-input item-floating-label">
+                            <span class="input-label">Confirm Email Address</span>
+                            <input name="emailConfirm" ng-model="newUser.emailConfirm" type="email" placeholder="Confirm Email Address" required>
+                            <p ng-show="userRegister.emailConfirm.$invalid && !userRegister.emailConfirm.$pristine" class="help-block">A valid email is required.</p>
+                            <p ng-show="newUser.email != newUser.emailConfirm && userRegister.email.$valid &&  !userRegister.emailConfirm.$pristine && !userRegister.emailConfirm.$empty" class="help-block">Emails do not match</p>
+                        </label> -->
+                        <md-input-container class="md-block">
+                            <label>Password</label>
+                            <input ng-model="newUser.password" type="password" required>
+                        </md-input-container>
+                        <!-- <label class="item item-input item-floating-label">
+                            <span class="input-label">Password</span>
+                            <input ng-model="newUser.password" type="password" placeholder="Password">
+                        </label> -->
+                        <md-input-container class="md-block">
+                            <label>Confirm Password</label>
+                            <input ng-model="newUser.passwordConfirm" type="password" required>
+                        </md-input-container>
+                        <!-- <label class="item item-input item-floating-label">
+                            <span class="input-label">Confirm Password</span>
+                            <input ng-model="newUser.passwordConfirm" type="password" placeholder="Confirm Password">
+                        </label> -->
+                    </div>
+                    <div type="submit" class="button button-block button-balanced" ng-click="register(newUser)">Sign Up</div>
+                    <div class="skip" ng-hide="slideNum == (totalSlides-1)" ng-click="cancelReg()">Cancel</div>
+                </form>
+                </br>
+                </br>
+                </br>
+            </ion-content>
+        </ion-slide>
+    </ion-slide-box>
+</ion-view>

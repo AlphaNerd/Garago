@@ -36,6 +36,7 @@ angular.module('garago.controllers.actionplan', [])
               confirmPopup.then(function(res) {
                 if (res) {
                     $scope.docLock = !$scope.docLock
+                    $scope.FINALIZED = new Date()
                     console.log($scope.docLock)
                 } else {
                   console.log('You are not sure');
@@ -43,6 +44,7 @@ angular.module('garago.controllers.actionplan', [])
               });
         }else{
             $scope.docLock = !$scope.docLock
+            $scope.FINALIZED = ''
             console.log($scope.docLock)
         }
     }

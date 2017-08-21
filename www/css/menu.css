@@ -16,6 +16,7 @@
     padding: 0px 0px;
     min-height: 150px;
     background: #fff;
+    position: relative;
 }
 
 #MainMenu .scroll{
@@ -170,4 +171,48 @@
 
 #MainMenu ion-item.active:not(.header){
     background: #1c5481!important;
+}
+
+
+#Messages .user-messages .menu-header .logo i {
+    color: #f3f3f3;
+    font-size: 100px;
+}
+
+#Messages .user-messages .menu-header .logo{
+    top:30px;
+}
+
+
+#UserProfile .user-messages .menu-header .logo i {
+    color: #f3f3f3;
+    font-size: 100px;
+}
+
+#UserProfile .user-messages .menu-header .logo {
+    top: 20px;
+    border-radius: 100%;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+}
+
+.logout.padding {
+    position: absolute;
+    width: 100%;
+    bottom: 50px;
+}
+
+.user-name {
+    color: #333;
+    z-index: 100;
+    height: 20px;
+    width: 100%;
+    position: absolute;
+    bottom: 5px;
+    text-align: center;
+}
+
+.user-prefs {
+    padding: 20px;
 }

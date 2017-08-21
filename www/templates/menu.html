@@ -23,10 +23,10 @@
               <img src="http://dev.goforms.ca/assets/img/app/profile/garago.png">
             </div>
             <div class="mail">
-              <i class="fa fa-envelope-o" aria-hidden="true"></i>
+              <i class="fa fa-envelope-o" aria-hidden="true" ng-click="gotoSlide(1)"></i>
               <div class="badge animated bounceIn">5</div>
             </div>
-            <div class="profile">
+            <div class="profile" ng-click="gotoSlide(2)">
               <div class="image"></div>
               <div class="badge animated bounceIn">1</div>
             </div>
@@ -58,19 +58,19 @@
           <div class="user-messages">
             <div class="menu-header">
               <div class="logo">
-                Message Image
+                <i class="fa fa-comments"></i>
               </div>
               <div class="menu">
-                <i class="fa fa-bars" aria-hidden="true"></i>
+                <i class="fa fa-bars" aria-hidden="true" ng-click="gotoSlide(0)"></i>
               </div>
-              <div class="profile">
+              <div class="profile" ng-click="gotoSlide(2)">
                 <div class="image"></div>
                 <div class="badge animated bounceIn">1</div>
               </div>
             </div>
             <div class="list">
               <a class="item item-avatar" href="#">
-                  <img ng-src="http://keenthemes.com/preview/metronic/theme/assets/pages/media/profile/profile_user.jpg">
+                  <img ng-src="{{CurrentUser.attributes.imageFile._url}}" ng-click="getNewImage()">
                   <h2>Jeff</h2>
                   <p>Are you free for meeting?</p>
                 </a>
@@ -95,19 +95,25 @@
         <ion-slide id="UserProfile">
           <div class="user-messages">
             <div class="menu-header">
+              <div class="user-name">Jeffrey Coleman</div>
               <div class="logo">
-                User Profile Image
+                <img ng-src="{{CurrentUser.attributes.imageFile._url}}" ng-click="getNewImage()">
               </div>
               <div class="menu">
-                <i class="fa fa-bars" aria-hidden="true"></i>
+                <i class="fa fa-bars" aria-hidden="true" ng-click="gotoSlide(0)"></i>
               </div>
               <div class="mail">
-                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                <i class="fa fa-envelope-o" aria-hidden="true" ng-click="gotoSlide(1)"></i>
                 <div class="badge animated bounceIn">5</div>
               </div>
             </div>
-            <div class="padding">
-              Profile
+            <div class="user-prefs">
+              <md-switch ng-model="data.cb2" aria-label="Switch 2" ng-true-value="'On'" ng-false-value="'Off'" class="md-warn">
+                Notiifications: {{ data.cb2 || 'Off' }}
+              </md-switch>
+            </div>
+            <div class="logout padding">
+              <div class="button button-block button-assertive" ng-click="logout()">Logout</div>
             </div>
           </div>
         </ion-slide>

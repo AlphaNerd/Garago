@@ -1,0 +1,55 @@
+#register {
+    text-align: center;
+    color: #333;
+    background: #fff;
+}
+#register .logo {
+    width: 100%;
+    max-width: 250px;
+    margin: 50px auto;
+}
+
+#register .logo img {
+    width: 100%;
+    height: auto;
+}
+
+#register .logo {
+    margin-bottom: 30px;
+}
+
+#register .slider{
+    height:100%;
+}
+
+#register .slider-pager{
+    display:none;
+}
+
+#register .item-floating-label .input-label.has-input{
+    text-align: left;
+}
+
+#register label {
+    text-align: left;
+}
+
+#register input{
+    color:#333!important;
+    border-bottom:1px solid #777!important;
+}
+
+#register label{
+    color:#333!important;
+}
+
+#register .list-inset {
+    background-color: #fff;
+    max-width: 400px;
+}
+
+#register form {
+    width: 80%;
+    margin: 50px auto 0 auto;
+
+}
