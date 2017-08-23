@@ -156,6 +156,7 @@ angular.module('garago.factory.api', [])
         return deferred.promise
       },
       moveColumn: function(index, data, event) {
+        console.log(data)
         var deferred = $q.defer()
         var params = {
           id: data.TypePlan.id,
