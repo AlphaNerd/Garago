@@ -61,8 +61,8 @@ angular.module('garago', [
 
   .config(function($stateProvider, $urlRouterProvider, $mdIconProvider) {
     ///// Parse DB Init
-    var ParseAppName = "rusticoresort"
-    var ParseServerURL = 'https://rustico-resort-server.herokuapp.com/parse'
+    var ParseAppName = "GaragoApi"
+    var ParseServerURL = 'https://garago-api-baas.herokuapp.com/parse'
     Parse.initialize(ParseAppName);
     Parse.serverURL = ParseServerURL
 
