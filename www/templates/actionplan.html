@@ -55,12 +55,12 @@
               <ul class="activities"></ul>
 
               <div class="project-controls">
-                <span class="">
+                <span class="" ng-if="!docLock && $index == activityColumn">
                   <i class="fa fa-icon fa-plus"></i>
                   <span ng-click="openModal()">Project</span>
                 </span>
-                <span class="">
-                  <i class="fa fa-icon fa-plus" ng-if="docLock"></i>
+                <span class="" ng-if="docLock && $index == activityColumn">
+                  <i class="fa fa-icon fa-plus"></i>
                   <span ng-click="openModal()">Activity</span>
                 </span>
               </div>
