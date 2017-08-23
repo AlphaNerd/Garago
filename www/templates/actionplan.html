@@ -31,7 +31,7 @@
       <div class="columns">
         <div class="column header" ng-drag-data="column" ng-repeat="column in DATA.typePlan track by $index" id="{{column.id+1}}" type="type" column="{{$index}}" ng-drag="true" ng-drop="true" ng-drop-success="onColDropComplete($index,$data,$event,DATA)" ng-mouseenter="columnTools = true" ng-mouseleave="columnTools = false">
           <div class="column-number" ng-init="showEmuneration = false" ng-if="showEmuneration">{{$index+1}}</div>
-          <div class="title" ng-model="column.TypePlan.description" ng-style="{{::column.TypePlan.style}}" ng-attr-contenteditable="{{!dockLock}}" locked="{{column.locked || false}}" id="{{column.TypePlan.id}}" type="type"></div>
+          <div class="title" ng-model="column.TypePlan.description" ng-style="{{column.TypePlan.style}}" ng-attr-contenteditable="{{!dockLock}}" locked="{{column.locked || false}}" id="{{column.TypePlan.id}}" type="type"></div>
           <i class="fa fa-minus-circle" aria-hidden="true" ng-click="deleteColumn($index,DATA)" ng-show="columnTools"></i>
         </div>
         <i class="fa fa-plus-circle" aria-hidden="true" ng-click="addColumn($index,DATA)"></i>
@@ -74,7 +74,7 @@
       <div class="footer-container">
         <div ng-model="footerText" ng-attr-contenteditable="{{!dockLock}}"></div>
         <div class="logo-bottom">
-          <img src="https://v2.garagosoftware.com/wp-content/uploads/2017/03/garago-blanc.png">
+          <!-- <img src="https://v2.garagosoftware.com/wp-content/uploads/2017/03/garago-blanc.png"> -->
         </div>
       </div>
     </div>
