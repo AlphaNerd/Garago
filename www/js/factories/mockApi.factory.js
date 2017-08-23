@@ -36,7 +36,7 @@ angular.module('garago.factory.mockApi', [])
           image: null
         }
         // console.log(convertToParams(params))
-        $http.post("http://dev.goforms.ca/sm/plans/test?" + convertToParams(params)).then(function(res) { 
+        $http.post("https://dev.goforms.ca/sm/plans/test?" + convertToParams(params)).then(function(res) { 
           deferred.resolve(res)
         })
         return deferred.promise
@@ -53,7 +53,7 @@ angular.module('garago.factory.mockApi', [])
           image: null
         }
         // console.log(convertToParams(params))
-        $http.post("http://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
+        $http.post("https://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
           console.log("Successfully retrieved plan:",res)
           angular.forEach(res.data.typePlan,function(val,key){
             val.TypePlan.style = {
@@ -76,7 +76,7 @@ angular.module('garago.factory.mockApi', [])
           historical_planing_id: null,
           image: null
         }
-        $http.post("http://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
+        $http.post("https://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
           deferred.resolve(res)
         })
         return deferred.promise
@@ -94,7 +94,7 @@ angular.module('garago.factory.mockApi', [])
           image: null
         }
         console.log("URI: ",JSON.stringify(params))
-        $http.get("http://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
+        $http.get("https://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
           console.log(res)
           deferred.resolve(res)
         })
@@ -112,7 +112,7 @@ angular.module('garago.factory.mockApi', [])
           image: null
         }
         console.log("URI: ",JSON.stringify(params))
-        $http.get("http://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
+        $http.get("https://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
           console.log(res)
           deferred.resolve(res)
         })
@@ -131,7 +131,7 @@ angular.module('garago.factory.mockApi', [])
           image: null
         }
         console.log("URI: ",JSON.stringify(params))
-        $http.get("http://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
+        $http.get("https://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
           console.log(res)
           deferred.resolve(res)
         })
@@ -150,7 +150,7 @@ angular.module('garago.factory.mockApi', [])
           image: null
         }
         console.log("URI: ",JSON.stringify(params))
-        $http.get("http://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
+        $http.get("https://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
           console.log(res)
           deferred.resolve(res)
         })
@@ -192,7 +192,7 @@ angular.module('garago.factory.mockApi', [])
           image: null
         }
         console.log(JSON.stringify(params))
-        $http.get("http://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
+        $http.get("https://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
           console.log(res)
           deferred.resolve(res)
         })
@@ -211,7 +211,7 @@ angular.module('garago.factory.mockApi', [])
           image: null
         }
         console.log(JSON.stringify(params))
-        $http.get("http://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
+        $http.get("https://dev.goforms.ca/sm/plans/planingJson/?" + convertToParams(params)).then(function(res) {
           console.log(res)
           deferred.resolve(res)
         })
