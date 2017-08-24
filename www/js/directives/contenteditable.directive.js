@@ -1,6 +1,6 @@
 angular.module('garago.directives.contenteditable', [])
 
-  .directive("contenteditable", function($timeout, $garagoAPI) {
+  .directive("contenteditable", function($timeout, $garagoAPI, $rootScope) {
     function toInnerText(value) {
       var tempEl = document.createElement('div'),
         text;
@@ -20,8 +20,13 @@ angular.module('garago.directives.contenteditable', [])
       },
       controller: function($scope,$garagoAPI){
         $scope.edit = function(attrs,data){
-          $garagoAPI.editCell(attrs.id,data, attrs.type).then(function(res){
-            console.log("Edit Response: ",res)
+          $rootScope.DATA.save({
+            success:function(res){
+              console.log("SAVED")
+            },
+            error: function(e,r){
+              console.warn(e,r)
+            }
           })
         }
       },

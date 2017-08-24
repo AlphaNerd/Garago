@@ -25,8 +25,12 @@ angular.module('garago.controllers', [])
       name: "Action Plans",
       class: 'columns',
       items: [{
+        title: "My Plans",
+        link: "#/app/actionplans",
+        class: "list"
+      },{
         title: "Latest Plan",
-        link: "#/app/listplan",
+        link: "#/app/actionplan/",
         class: "clock-o"
       }, {
         title: "Comment",

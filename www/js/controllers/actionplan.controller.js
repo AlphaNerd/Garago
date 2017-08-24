@@ -12,62 +12,32 @@ angular.module('garago.controllers.actionplan', [])
     initData,
     $mdBottomSheet,
     $mdToast,
-    $ionicPopup) {
+    $ionicPopup,
+    $ionicLoading) {
 
     console.log("Action Plan Controller Loaded")
 
     $rootScope.DATA = initData
 
-    $scope.reportTitle = $garagoAPI.getReportTitle()
-
-    $scope.showEmuneration = false
-
-    $scope.themeData = $garagoAPI.getTheme()
-
-    /// Toggle Document Lock
-    $scope.docLock = false;
-    $scope.docLockToggle = function(obj) {
-        if(!obj){
-            var confirmPopup = $ionicPopup.confirm({
-                title: 'Warning',
-                template: 'Are you sure you want to lock this plan? This cannot be undone without Admin Access'
-              });
-
-              confirmPopup.then(function(res) {
-                if (res) {
-                    $scope.docLock = !$scope.docLock
-                    $scope.FINALIZED = new Date()
-                    console.log($scope.docLock)
-                } else {
-                  console.log('You are not sure');
-                }
-              });
-        }else{
-            $scope.docLock = !$scope.docLock
-            $scope.FINALIZED = ''
-            console.log($scope.docLock)
-        }
-    }
-
-    /// resfresh RESTful data
-    function refresh() {
-      $garagoAPI.getPlan({
-        id: null,
-        status: "get",
-        posEvent: "plan",
-        data: null,
-        planing_id: 1,
-        historical_planing_id: 1,
-        image: null
-      }).then(function(res) {
-        $scope.DATA = res
-      })
-    }
-
     //////// PARSE LIVE QUERY ////////////////
     var ActionPlans = Parse.Object.extend("ActionPlans")
-    var query = new Parse.Query(ActionPlans);
-    var ACTIONPLANS = query.subscribe();
+    var query1 = new Parse.Query(ActionPlans)
+    query1.exists("title")
+    query1.exists("rows")
+    query1.exists("columns")
+    query1.descending("createdAt")
+    query1.equalTo("members",Parse.User.current().id)
+
+    var query2 = new Parse.Query(ActionPlans)
+    query2.exists("title")
+    query2.exists("rows")
+    query2.exists("columns")
+    query2.descending("createdAt")
+    query2.equalTo("owners",Parse.User.current().id)
+
+    var mainQuery = Parse.Query.or(query1, query2);
+    
+    var ACTIONPLANS = mainQuery.subscribe();
 
     ACTIONPLANS.on('open', function() {
      console.log('subscription opened for ActionPlans');
@@ -94,85 +64,47 @@ angular.module('garago.controllers.actionplan', [])
     });
 
 
-    $rootScope.createNewActionPlan = function() {
+    $scope.createNewActionPlan = function() {
+      $ionicLoading.show({
+        template: '<i class="icon ion-loading-c"></i><div>Creating new Action Plan...</div>',
+        duration: 1000
+      })
       Parse.Cloud.run('createNewActionPlan', { 
         title: 'My New Action Plan',
         description: 'Some example description'
       }).then(function(res) {
-        console.log(res)
+        $ionicLoading.hide()
+        console.log([res.attributes])
       });
-      // $garagoAPI.newPlan().then(function(res) {
-      //   console.log("New plan created: ", res)
-      //   $scope.DATA = res.data
-      // })
     }
 
-    ///// Calculate Activity Column Position
-    $scope.locateActivitiesColumn = function(data) {
-      var obj = data ? data : $scope.DATA
-      angular.forEach(obj.typePlan, function(val, key) {
-        if (val.TypePlan.description == "Activities") {
-          $scope.activityColumn = key
+    /// Toggle Document Lock
+    $scope.docLock = false;
+    $scope.docLockToggle = function(obj) {
+        if(!obj){
+            var confirmPopup = $ionicPopup.confirm({
+                title: 'Warning',
+                template: 'Are you sure you want to lock this plan? This cannot be undone without Admin Access'
+              });
+
+              confirmPopup.then(function(res) {
+                if (res) {
+                    $scope.docLock = !$scope.docLock
+                    $scope.FINALIZED = new Date()
+                    console.log($scope.docLock)
+                } else {
+                  console.log('You are not sure');
+                }
+              });
+        }else{
+            $scope.docLock = !$scope.docLock
+            $scope.FINALIZED = ''
+            console.log($scope.docLock)
         }
-      })
-    }
-    $scope.locateActivitiesColumn()
-
-    $scope.addColumn = function(index, data) {
-      $garagoAPI.addColumn(data).then(function(res) {
-        $scope.DATA = res.data
-      })
-    }
-
-    $scope.addRow = function(data) {
-      $garagoAPI.addRow(data).then(function(res) {
-        $scope.DATA = res.data
-      })
-    }
-
-    $scope.deleteRow = function(index, obj) {
-      $garagoAPI.deleteRow(index, obj).then(function(res) {
-        $scope.DATA = res.data
-      })
-    }
-
-    $scope.deleteColumn = function(index, data) {
-      console.log(data)
-      $garagoAPI.deleteColumn(index, data).then(function(res) {
-        $scope.DATA = res.data
-      })
-    }
-
-    $scope.onColDropComplete = function($index, $data, $event) {
-      $garagoAPI.moveColumn($index, $data, $event).then(function(res) {
-        $scope.DATA = res.data
-      })
-    }
-
-    $scope.onRowDropComplete = function($index, $data, $event) {
-      $garagoAPI.moveRow($index, $data, $event).then(function(res) {
-        $scope.DATA = res.data
-      })
-    }
-
-    $scope.onDragMove = function($event) {
-      console.log("Move: ", [$event])
-    }
-
-    $scope.toggleLock = function(item, row) {
-      console.log(item, row)
-      $garagoAPI.toggleLock(item).then(function(res) {
-        console.log(res)
-        item.DetailPlan.locked = !item.DetailPlan.locked
-      })
     }
 
     $scope.openSettings = function() {
       $ionicSideMenuDelegate.toggleRight()
-    }
-
-    $scope.toggleEnumeration = function() {
-      $scope.showEmuneration = !$scope.showEmuneration
     }
 
     $scope.showGridBottomSheet = function() {
@@ -219,11 +151,9 @@ angular.module('garago.controllers.actionplan', [])
     });
 
     if (initData == false) {
-      $garagoAPI.newPlan().then(function(res) {
-        console.log(res)
-        $scope.DATA = res.data
-      })
+      $scope.createNewActionPlan()
     }
+
   })
 
   .controller('GridBottomSheetCtrl', function($scope, $mdBottomSheet, $rootScope, $ionicPopup) {

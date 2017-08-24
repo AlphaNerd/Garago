@@ -6,7 +6,7 @@ angular.module('garago.controllers.login', [])
     // console.log("Login Ctrl Loaded")
 
     $scope.login = function(data) {
-      // console.log("Log in user with: ",data)
+      console.log("Log in user with: ",data)
       $ionicLoading.show({
         template: '<ion-spinner class="spinner-balanced"></ion-spinner>',
         animation: 'fade-in',
@@ -14,18 +14,9 @@ angular.module('garago.controllers.login', [])
       });
       Parse.User.logIn(data.email, data.password, {
         success: function(user) {
-          // Do stuff after successful login.
-          // console.warn("User logged in: ", user)
-
-          var shadmeadows = {
-            user: user,
-            showIntro: false
-          }
-
-          $localstorage.setObject("shadmeadows", shadmeadows)
           $rootScope.CurrentUser = user;
           $ionicLoading.hide()
-          $state.go("app.listplan")
+          $state.go("app.actionplan")
         },
         error: function(user, error) {
           // The login failed. Check error to see why.
@@ -34,7 +25,7 @@ angular.module('garago.controllers.login', [])
             title: 'Error!',
             template: error.message
           }).then(function(res){
-            $state.go("app.listplan")
+            $state.go("app.actionplan")
           });
           // console.log("Error logging in: ", error, [data])
         }
