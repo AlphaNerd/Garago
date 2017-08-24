@@ -64,24 +64,8 @@ angular.module('garago.controllers.actionplan', [])
       })
     }
 
-    /////////////////////////////
-    /////// Subscriptions ///////
-    /////////////////////////////
-    var ActionPlans = Parse.Object.extend("ActionPlans");
-    var query = new Parse.Query('ActionPlans');
-    query.equalTo("users",Parse.User.current())
-    
-    var ACTIONPLANS = query.subscribe();
-    ACTIONPLANS.on('open', () => {
-     console.log('subscription opened');
-    });
-    ACTIONPLANS.on('update', () => {
-     console.log('subscription updated');
-    });
-
     $rootScope.createNewPlan = function() {
-      var newPlan = new ActionPlans()
-      newPlan.set("data",{test:"message"})
+      var newPlan = new ActionPlans($scope.DATA)
       newPlan.save({
         success: function(res){
           console.info(res)

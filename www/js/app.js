@@ -61,10 +61,12 @@ angular.module('garago', [
 
   .config(function($stateProvider, $urlRouterProvider, $mdIconProvider) {
     ///// Parse DB Init
-    var ParseAppName = "GaragoApi"
-    var ParseServerURL = 'https://garago-api-baas.herokuapp.com/parse'
-    Parse.initialize(ParseAppName);
-    Parse.serverURL = ParseServerURL
+    // var ParseAppName = "GaragoApi"
+    // var ParseServerURL = 'https://garago-api-baas.herokuapp.com/parse'
+    // Parse.initialize(ParseAppName);
+    // Parse.serverURL = ParseServerURL
+    Parse.initialize("garagoapi");
+    Parse.serverURL = 'https://garago-api-baas.herokuapp.com/parse';
 
     $mdIconProvider
       .iconSet('social', 'img/icons/sets/social-icons.svg', 24)
