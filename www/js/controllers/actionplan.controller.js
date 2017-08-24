@@ -81,7 +81,7 @@ angular.module('garago.controllers.actionplan', [])
 
     $rootScope.createNewPlan = function() {
       var newPlan = new ActionPlans()
-      newPlan.set("data",$scope.DATA)
+      newPlan.set("data",{test:"message"})
       newPlan.save({
         success: function(res){
           console.info(res)
@@ -95,7 +95,6 @@ angular.module('garago.controllers.actionplan', [])
       //   $scope.DATA = res.data
       // })
     }
-    
 
 
     ///// Calculate Activity Column Position
