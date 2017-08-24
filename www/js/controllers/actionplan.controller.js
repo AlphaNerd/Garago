@@ -64,13 +64,45 @@ angular.module('garago.controllers.actionplan', [])
       })
     }
 
+    /////////////////////////////
+    /////// Subscriptions ///////
+    /////////////////////////////
+    var ActionPlans = Parse.Object.extend("ActionPlans");
+    var query = new Parse.Query('ActionPlans');
+    query.equalTo("users",Parse.User.current())
+    
+    var ACTIONPLANS = query.subscribe();
+    ACTIONPLANS.on('open', () => {
+     console.log('subscription opened');
+    });
+    ACTIONPLANS.on('update', () => {
+     console.log('subscription updated');
+    });
+
+    $rootScope.createNewPlan = function() {
+      var newPlan = new ActionPlans()
+      newPlan.set("data",$scope.DATA)
+      newPlan.save({
+        success: function(res){
+          console.info(res)
+        },
+        error: function(e,r){
+          console.warn(e,r)
+        }
+      })
+      // $garagoAPI.newPlan().then(function(res) {
+      //   console.log("New plan created: ", res)
+      //   $scope.DATA = res.data
+      // })
+    }
+    
+
 
     ///// Calculate Activity Column Position
     $scope.locateActivitiesColumn = function(data) {
       var obj = data ? data : $scope.DATA
       angular.forEach(obj.typePlan, function(val, key) {
         if (val.TypePlan.description == "Activities") {
-          console.info(key)
           $scope.activityColumn = key
         }
       })
@@ -132,13 +164,6 @@ angular.module('garago.controllers.actionplan', [])
 
     $scope.toggleEnumeration = function() {
       $scope.showEmuneration = !$scope.showEmuneration
-    }
-
-    $rootScope.createNewPlan = function() {
-      $garagoAPI.newPlan().then(function(res) {
-        console.log("New plan created: ", res)
-        $scope.DATA = res.data
-      })
     }
 
     $scope.showGridBottomSheet = function() {
