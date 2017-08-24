@@ -16,6 +16,7 @@ angular.module('garago', [
     'garago.factory.api',
     'garago.factory.mockApi',
     'garago.factory.utility',
+    'garago.factory.parse',
     'garago.directives.contenteditable',
     'garago.filters.keyboardShortcut',
     'ngDraggable',

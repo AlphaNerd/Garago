@@ -64,22 +64,48 @@ angular.module('garago.controllers.actionplan', [])
       })
     }
 
-    $rootScope.createNewPlan = function() {
-      var newPlan = new ActionPlans($scope.DATA)
-      newPlan.save({
-        success: function(res){
-          console.info(res)
-        },
-        error: function(e,r){
-          console.warn(e,r)
-        }
-      })
+    //////// PARSE LIVE QUERY ////////////////
+    var ActionPlans = Parse.Object.extend("ActionPlans")
+    var query = new Parse.Query(ActionPlans);
+    var ACTIONPLANS = query.subscribe();
+
+    ACTIONPLANS.on('open', function() {
+     console.log('subscription opened for ActionPlans');
+    });
+
+    ACTIONPLANS.on('create', function(object) {
+      console.log('object created');
+    });
+
+    ACTIONPLANS.on('update', function(object) {
+      console.log('object updated', object);
+    });
+
+    ACTIONPLANS.on('leave', function(object) {
+      console.log('object left');
+    });
+
+    ACTIONPLANS.on('delete', function(object) {
+      console.log('object deleted');
+    });
+
+    ACTIONPLANS.on('close', function() {
+      console.log('subscription closed');
+    });
+
+
+    $rootScope.createNewActionPlan = function() {
+      Parse.Cloud.run('createNewActionPlan', { 
+        title: 'My New Action Plan',
+        description: 'Some example description'
+      }).then(function(res) {
+        console.log(res)
+      });
       // $garagoAPI.newPlan().then(function(res) {
       //   console.log("New plan created: ", res)
       //   $scope.DATA = res.data
       // })
     }
-
 
     ///// Calculate Activity Column Position
     $scope.locateActivitiesColumn = function(data) {
