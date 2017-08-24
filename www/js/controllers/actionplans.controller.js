@@ -49,7 +49,7 @@ angular.module('garago.controllers.actionplans', [])
 
     ACTIONPLANS.on('create', function(object) {
       console.log('object created');
-      $scope.DATA.push(object)
+      $scope.DATA.unshift(object)
       $scope.$apply()
     });
 

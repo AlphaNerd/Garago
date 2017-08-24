@@ -17,49 +17,42 @@ angular.module('garago.controllers.actionplan', [])
 
     console.log("Action Plan Controller Loaded")
 
-    $rootScope.DATA = initData
+    ///// Initial Data loaded via Route Resolve in app.js
+    $scope.DATA = initData
 
     //////// PARSE LIVE QUERY ////////////////
     var ActionPlans = Parse.Object.extend("ActionPlans")
     var query1 = new Parse.Query(ActionPlans)
-    query1.exists("title")
-    query1.exists("rows")
-    query1.exists("columns")
-    query1.descending("createdAt")
+    query1.equalTo("objectId", $scope.DATA.id)
     query1.equalTo("members",Parse.User.current().id)
 
     var query2 = new Parse.Query(ActionPlans)
-    query2.exists("title")
-    query2.exists("rows")
-    query2.exists("columns")
-    query2.descending("createdAt")
+    query2.equalTo("objectId",$scope.DATA.id)
     query2.equalTo("owners",Parse.User.current().id)
 
     var mainQuery = Parse.Query.or(query1, query2);
 
-    var ACTIONPLANS = mainQuery.subscribe();
+    var ACTIONPLAN = mainQuery.subscribe();
 
-    ACTIONPLANS.on('open', function() {
-     console.log('subscription opened for ActionPlans');
+    ACTIONPLAN.on('open', function() {
+     console.log('subscription opened for ActionPlan');
     });
 
-    ACTIONPLANS.on('create', function(object) {
-      console.log('object created');
-    });
-
-    ACTIONPLANS.on('update', function(object) {
+    ACTIONPLAN.on('update', function(object) {
       console.log('object updated', object);
+      $rootScope.DATA = object
+      $scope.$apply()
     });
 
-    ACTIONPLANS.on('leave', function(object) {
+    ACTIONPLAN.on('leave', function(object) {
       console.log('object left');
     });
 
-    ACTIONPLANS.on('delete', function(object) {
+    ACTIONPLAN.on('delete', function(object) {
       console.log('object deleted');
     });
 
-    ACTIONPLANS.on('close', function() {
+    ACTIONPLAN.on('close', function() {
       console.log('subscription closed');
     });
 

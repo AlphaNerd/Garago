@@ -17,7 +17,7 @@
         <i class="fa fa-cogs" ng-click="showGridBottomSheet()"></i>
       </div>
       <div class="plan-owner">
-        <div class="owner">Owner: Jeffrey Coleman</div>
+        <div class="owner">Owner: {{CurrentUser.attributes.username}}</div>
         <div class="finalized">Created: {{(DATA.createdAt | date:'medium') || 'n/a'}}</div>
         <div class="finalized">Finalized: {{(FINALIZED | date:'medium') || 'n/a'}}</div>
       </div>
