@@ -36,7 +36,7 @@ angular.module('garago.controllers.actionplan', [])
     query2.equalTo("owners",Parse.User.current().id)
 
     var mainQuery = Parse.Query.or(query1, query2);
-    
+
     var ACTIONPLANS = mainQuery.subscribe();
 
     ACTIONPLANS.on('open', function() {
@@ -62,21 +62,6 @@ angular.module('garago.controllers.actionplan', [])
     ACTIONPLANS.on('close', function() {
       console.log('subscription closed');
     });
-
-
-    $scope.createNewActionPlan = function() {
-      $ionicLoading.show({
-        template: '<i class="icon ion-loading-c"></i><div>Creating new Action Plan...</div>',
-        duration: 1000
-      })
-      Parse.Cloud.run('createNewActionPlan', { 
-        title: 'My New Action Plan',
-        description: 'Some example description'
-      }).then(function(res) {
-        $ionicLoading.hide()
-        console.log([res.attributes])
-      });
-    }
 
     /// Toggle Document Lock
     $scope.docLock = false;

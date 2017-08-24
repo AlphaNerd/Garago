@@ -1,6 +1,6 @@
 angular.module('garago.controllers', [])
 
-  .controller('ParentCtrl', function($scope, $ionicModal, $timeout, $rootScope, $ionicSideMenuDelegate, $ionicSlideBoxDelegate, $garagoAPI, $window) {
+  .controller('ParentCtrl', function($scope, $ionicModal, $timeout, $rootScope, $ionicSideMenuDelegate, $ionicSlideBoxDelegate, $garagoAPI, $window, $ionicLoading) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -19,6 +19,20 @@ angular.module('garago.controllers', [])
         $rootScope.CurrentUser = {}
         $state.go("login")
       })
+    }
+
+    $scope.createNewActionPlan = function() {
+      $ionicLoading.show({
+        template: '<i class="icon ion-loading-c"></i><div>Creating new Action Plan...</div>',
+        duration: 1000
+      })
+      Parse.Cloud.run('createNewActionPlan', { 
+        title: 'My New Action Plan',
+        description: 'Some example description'
+      }).then(function(res) {
+        $ionicLoading.hide()
+        console.log([res.attributes])
+      });
     }
 
     $scope.MENU_ACTIONPLAN = [{
