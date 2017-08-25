@@ -40,7 +40,7 @@ angular.module('garago.controllers.actionplan', [])
 
     ACTIONPLAN.on('update', function(object) {
       console.log('object updated', object);
-      $rootScope.DATA = object
+      $scope.DATA = object
       $scope.$apply()
     });
 
@@ -56,29 +56,124 @@ angular.module('garago.controllers.actionplan', [])
       console.log('subscription closed');
     });
 
-    /// Toggle Document Lock
-    $scope.docLock = false;
-    $scope.docLockToggle = function(obj) {
-        if(!obj){
-            var confirmPopup = $ionicPopup.confirm({
-                title: 'Warning',
-                template: 'Are you sure you want to lock this plan? This cannot be undone without Admin Access'
-              });
+    $scope.createNewActionPlan = function() {
+      $ionicLoading.show({
+        template: '<i class="icon ion-loading-c"></i><div>Creating new Action Plan...</div>',
+        duration: 1000
+      })
+      Parse.Cloud.run('createNewActionPlan', { 
+        title: 'My New Action Plan',
+        description: 'Some example description'
+      }).then(function(res) {
+        $scope.DATA = res
+        $ionicLoading.hide()
+      });
+    }
 
-              confirmPopup.then(function(res) {
-                if (res) {
-                    $scope.docLock = !$scope.docLock
-                    $scope.FINALIZED = new Date()
-                    console.log($scope.docLock)
-                } else {
-                  console.log('You are not sure');
-                }
-              });
-        }else{
-            $scope.docLock = !$scope.docLock
-            $scope.FINALIZED = ''
-            console.log($scope.docLock)
+    $scope.addRow = function(){
+      console.log($scope.DATA)
+      var columns = []
+      angular.forEach($scope.DATA.attributes.columns,function(val,key){
+        columns.push({
+          text: "null",
+          locked: false
+        })
+      })
+      var rows = $scope.DATA.attributes.rows
+      rows.push({
+        title: "Axis",
+        columns: columns
+      })
+      $scope.DATA.set("rows",rows)
+      $scope.DATA.save()
+    }
+
+    $scope.deleteRow = function(index){
+      var rows = $scope.DATA.attributes.rows
+      rows.splice(index,1)
+      $scope.DATA.set("rows",rows)
+      $scope.DATA.save()
+    }
+
+    $scope.addColumn = function(){
+      var columns = $scope.DATA.attributes.columns
+      columns.push({
+        title: "New Column",
+        style: {
+          "background":"#f3f3f3",
+          "color":"#333"
         }
+      })
+      //// add extra column to rows
+      var rows = []
+      angular.forEach($scope.DATA.attributes.rows,function(val,key){
+        var row = $scope.DATA.attributes.rows[key]
+        row.columns.push({
+          text: "Untitled",
+          locked: false
+        })
+        rows.push(row)
+      })
+      $scope.DATA.set("rows",rows)
+      $scope.DATA.set("columns",columns)
+      $scope.DATA.save()
+    }
+
+    $scope.deleteColumn = function(index){
+      console.log($scope.DATA)
+      //// delete a column header
+      var columns = $scope.DATA.attributes.columns
+      console.log(columns[index])
+      var obj = columns.splice(index,1)
+      //// delete corresponding rows
+      var rows = []
+      angular.forEach($scope.DATA.attributes.rows,function(val,key){
+        var row = $scope.DATA.attributes.rows[key]
+        var obj = row.columns.splice(index,1)
+        rows.push(row)
+      })
+      $scope.DATA.set("rows",rows)
+      $scope.DATA.set("columns",columns)
+      $scope.DATA.save()
+    }
+
+    ///// Move Items In Array
+    Array.prototype.move = function(old_index, new_index) {
+      if (new_index >= this.length) {
+        var k = new_index - this.length;
+        while ((k--) + 1) {
+          this.push(undefined);
+        }
+      }
+      this.splice(new_index, 0, this.splice(old_index, 1)[0]);
+      return this; // for testing purposes
+    };
+
+    $scope.moveColumn = function(index,data,event){
+      var from = event.element[0].attributes.col.value
+      var columns = $scope.DATA.attributes.columns
+      columns.move(from,index)
+      var rows = $scope.DATA.attributes.rows
+      angular.forEach(rows,function(val,key){
+        var columns = val.columns
+        columns.move(from,index)
+      })
+      $scope.DATA.set("rows",rows)
+      $scope.DATA.set("columns",columns)
+      $scope.DATA.save()
+    }
+
+    $scope.moveRow = function(index,data,event){
+      var from = event.element[0].attributes.row.value
+      var rows = $scope.DATA.attributes.rows
+      rows.move(from,index)
+      $scope.DATA.set("rows",rows)
+      $scope.DATA.save()
+    }
+
+    $scope.$toggleCellLock = function(item){
+      item.locked = !item.locked
+      $scope.DATA.save()
     }
 
     $scope.openSettings = function() {
@@ -128,13 +223,26 @@ angular.module('garago.controllers.actionplan', [])
       // Execute action
     });
 
-    if (initData == false) {
-      $scope.createNewActionPlan()
+    if(!initData){
+      var confirmPopup = $ionicPopup.confirm({
+          title: 'Warning',
+          template: 'You do not have any plans. Do you want to create one?'
+        });
+
+        confirmPopup.then(function(res) {
+          if (res) {
+              $scope.createNewActionPlan()
+          } else {
+            console.log('You are not sure');
+            $state.go("app.dashboard")
+          }
+        });
+      
     }
 
   })
 
-  .controller('GridBottomSheetCtrl', function($scope, $mdBottomSheet, $rootScope, $ionicPopup) {
+  .controller('GridBottomSheetCtrl', function($scope, $mdBottomSheet, $scope, $ionicPopup) {
     $scope.items = [
       { name: 'Create New', icon: 'file-o' },
       { name: 'Duplicate', icon: 'clone' },
@@ -155,7 +263,7 @@ angular.module('garago.controllers.actionplan', [])
         confirmPopup.then(function(res) {
           if (res) {
             console.log('You are sure');
-            $rootScope.createNewPlan()
+            $scope.createNewPlan()
           } else {
             console.log('You are not sure');
           }

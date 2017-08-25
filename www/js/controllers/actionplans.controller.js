@@ -48,9 +48,15 @@ angular.module('garago.controllers.actionplans', [])
     });
 
     ACTIONPLANS.on('create', function(object) {
-      console.log('object created');
-      $scope.DATA.unshift(object)
-      $scope.$apply()
+      console.log('object created',[object]);
+      if($scope.DATA){
+        object.set("class",["new"])
+          $scope.DATA.unshift(object)
+          $scope.$apply()
+      }else{
+        $scope.DATA = [object]
+        $scope.$apply()
+      }
     });
 
     ACTIONPLANS.on('update', function(object) {

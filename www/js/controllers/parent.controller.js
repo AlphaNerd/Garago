@@ -21,20 +21,6 @@ angular.module('garago.controllers', [])
       })
     }
 
-    $scope.createNewActionPlan = function() {
-      $ionicLoading.show({
-        template: '<i class="icon ion-loading-c"></i><div>Creating new Action Plan...</div>',
-        duration: 1000
-      })
-      Parse.Cloud.run('createNewActionPlan', { 
-        title: 'My New Action Plan',
-        description: 'Some example description'
-      }).then(function(res) {
-        $ionicLoading.hide()
-        console.log([res.attributes])
-      });
-    }
-
     $scope.MENU_ACTIONPLAN = [{
       name: "Action Plans",
       class: 'columns',

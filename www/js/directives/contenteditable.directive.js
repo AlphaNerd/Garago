@@ -11,21 +11,20 @@ angular.module('garago.directives.contenteditable', [])
     return {
       restrict: "AEC",
       require: "ngModel",
-      scope: { 
-        bindOptions: '=',
-        row: '=',
-        column: '=',
-        locked: '@',
-        id: '@'
-      },
-      controller: function($scope,$garagoAPI){
+      scope: false,
+      transclude: true,
+      controller: function($scope){
+        this.DATA = function () {
+          return $scope.DATA;
+        }
         $scope.edit = function(attrs,data){
-          $rootScope.DATA.save({
-            success:function(res){
-              console.log("SAVED")
+          console.log([this.DATA])
+          this.DATA.save({
+            success: function(res){
+              console.log(res)
             },
-            error: function(e,r){
-              console.warn(e,r)
+            error:function(e,r){
+              console.log(e,r)
             }
           })
         }
@@ -49,13 +48,12 @@ angular.module('garago.directives.contenteditable', [])
         var timer = 2000 //// milliseconds till save if feqCount not met
         var saveDelay;
 
-        element.bind('click', function($event) {
-          console.log('clicked: ',$event,attrs)
-
-        });
+        // element.bind('click', function($event) {
+        //   console.log('clicked: ',$event,attrs)
+        // });
 
         element.on('input', function($event) {
-          console.log("Keystroke: ", $event)
+          // console.log("Keystroke: ", $event)
           if (currCount < maxCount) {
             $timeout.cancel(saveDelay);
             saveDelay = $timeout(function() {
@@ -64,7 +62,6 @@ angular.module('garago.directives.contenteditable', [])
             currCount += 1
           }
           if (currCount == maxCount) {
-            console.log("Edit Data: ", [$event.target.innerHTML], [element], [attrs], [ngModel])
             currCount = 0
           }
         });
