@@ -7,7 +7,9 @@
       </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-      <button class="button button-icon button-clear" ng-click="createNewActionPlan()"><i class="fa fa-icon fa-plus"></i></button>
+      <button class="button button-icon button-clear" ng-click="createNewActionPlan()"><i class="fa fa-icon fa-plus"></i></button>&nbsp;&nbsp;
+      <button class="button button-icon button-clear" ng-click="showDelete()"><i class="fa fa-icon fa-minus"></i></button>&nbsp;&nbsp;
+      <button class="button button-icon button-clear" ng-click="showReorder()"><i class="fa fa-icon fa-sort"></i></button>&nbsp;&nbsp;
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content id="ActionPlansList" scroll="true">
@@ -22,10 +24,10 @@
         <ion-option-button class="button-positive" ng-click="share(item)">
           Share
         </ion-option-button>
-        <ion-option-button class="button-assertive" ng-click="delete(item)">
+        <ion-option-button class="button-assertive" ng-click="deletePlan(item)">
           Delete
         </ion-option-button>
-        <ion-delete-button class="ion-minus-circled" ng-click="items.splice($index, 1)">
+        <ion-delete-button class="fa fa-minus-circle" ng-click="deletePlan(item,$index)">
         </ion-delete-button>
         <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(item, $fromIndex, $toIndex)">
         </ion-reorder-button>

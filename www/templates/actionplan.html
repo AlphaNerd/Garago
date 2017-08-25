@@ -22,7 +22,7 @@
         <div class="finalized">Finalized: {{(FINALIZED | date:'medium') || 'n/a'}}</div>
       </div>
       <div class="plan-title">
-        <h1 ng-attr-contenteditable="{{!docLock}}" ng-model="DATA.attributes.title"></h1>
+        <h1 ng-attr-contenteditable="{{false}}" ng-model="DATA.attributes.title"></h1>
       </div>
       <!-- <div class="milestones-containes">
         <div class="milestone">
@@ -31,7 +31,7 @@
       </div> -->
       <div class="columns">
         <div class="column header" ng-drag-data="column" ng-repeat="column in DATA.attributes.columns track by $index" ng-drag="true" ng-drop="true" ng-drop-success="moveColumn($index,$data,$event)" ng-mouseenter="columnTools = true" ng-mouseleave="columnTools = false" col="{{$index}}">
-          <div class="title" ng-style="{{column.style}}">{{column.title}}</div>
+          <div class="title" ng-style="{{column.style}}" ng-model="column.title" ng-attr-contenteditable="{{true}}"></div>
           <i class="fa fa-minus-circle" aria-hidden="true" ng-click="deleteColumn($index)" ng-show="columnTools"></i>
         </div>
         <i class="fa fa-plus-circle" aria-hidden="true" ng-click="addColumn()"></i>
@@ -39,11 +39,12 @@
       <div class="rows">
         <div class="item warning" ng-show="DATA.attributes.rows.length == 0"> You need to add some rows of data.</div>
         <div class="row-container" ng-repeat="row in DATA.attributes.rows track by $index" ng-drag="true" ng-drop="true" ng-drop-success="moveRow($index,$data,$event)" ng-drag-data="DATA" ng-mouseenter="rowTools = true" ng-mouseleave="rowTools = false" row="{{$index}}">
-          <div class="row-header">{{row.title}}</div>
+          <div class="row-header" ng-model="row.title" ng-attr-contenteditable="{{true}}"></div>
           <div class="row">
             <i class="fa fa-minus-circle" aria-hidden="true" ng-click="deleteRow($index)" ng-show="rowTools"></i>
+            
             <div class="item" ng-repeat="item in row.columns track by $index">
-              <div class="content">{{item.text}}</div>
+              <div class="content" ng-model="item.text" ng-attr-contenteditable="{{true}}"></div>
               
               <div class="controls">
                 <i class="fa" ng-class="!item.locked ? 'fa-unlock' : 'fa-lock locked'" aria-hidden="true" ng-click="$toggleCellLock(item)"></i>
@@ -55,11 +56,11 @@
               <ul class="activities"></ul>
 
               <div class="project-controls">
-                <span class="" ng-if="!docLock">
+                <span class="" ng-if="isActivityColumn()">
                   <i class="fa fa-icon fa-plus"></i>
                   <span ng-click="openModal()">Project</span>
                 </span>
-                <span class="" ng-if="docLock">
+                <span class="" ng-if="isActivityColumn()">
                   <i class="fa fa-icon fa-plus"></i>
                   <span ng-click="openModal()">Activity</span>
                 </span>

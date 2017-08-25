@@ -12,6 +12,7 @@ angular.module('garago.factory.parse', [])
       return this; // for testing purposes
     };
     var ActionPlans = Parse.Object.extend("ActionPlans")
+    var Messages = Parse.Object.extend("Messages")
     var obj = {
       ////// used for testing remote server is working
       getUsersLastActionPlan: function() {
@@ -67,10 +68,11 @@ angular.module('garago.factory.parse', [])
         query2.equalTo("owners", Parse.User.current().id)
 
         var mainQuery = Parse.Query.or(query1, query2);
+        mainQuery.ascending("weight")
 
         mainQuery.find({
           success: function(res) {
-            console.log("Found latest Action Plan: ", [res])
+            console.log("Found All User Action Plans: ", [res])
           },
           error: function(e, r) {
             console.log(e, r)
@@ -98,6 +100,35 @@ angular.module('garago.factory.parse', [])
         }).then(function(res) {
           if (res[0]) {
             deferred.resolve(res[0])
+          } else {
+            deferred.resolve(false)
+          }
+        })
+        return deferred.promise
+      },
+      getUserMessages: function(res){
+        var deferred = $q.defer()
+        var query1 = new Parse.Query(Messages)
+        query1.equalTo("sentFrom", Parse.User.current())
+
+        var query2 = new Parse.Query(Messages)
+        query2.equalTo("sentTo", Parse.User.current())
+
+        var mainQuery = Parse.Query.or(query1, query2);
+        mainQuery.descending("createdAt")
+        mainQuery.limit(10)
+        mainQuery.include("sentTo")
+        mainQuery.include("sentFrom")
+        mainQuery.find({
+          success: function(res) {
+            console.log("FFound User Messages: ", [res])
+          },
+          error: function(e, r) {
+            console.log(e, r)
+          }
+        }).then(function(res) {
+          if (res) {
+            deferred.resolve(res)
           } else {
             deferred.resolve(false)
           }

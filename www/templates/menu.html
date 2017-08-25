@@ -69,26 +69,11 @@
               </div>
             </div>
             <div class="list">
-              <a class="item item-avatar" href="#">
-                  <img ng-src="{{CurrentUser.attributes.imageFile._url}}" ng-click="getNewImage()">
-                  <h2>Jeff</h2>
-                  <p>Are you free for meeting?</p>
-                </a>
-              <a class="item item-avatar" href="#">
-                  <img ng-src="https://image.freepik.com/free-icon/male-user-profile-picture_318-37825.jpg">
-                  <h2>Bilel</h2>
-                  <p>Yes, I am here now.</p>
-                </a>
-              <a class="item item-avatar" href="#">
-                  <img ng-src="https://image.freepik.com/free-icon/male-user-profile-picture_318-37825.jpg">
-                  <h2>Robert</h2>
-                  <p>Can we join in?</p>
-                </a>
-              <a class="item item-avatar" href="#">
-                  <img ng-src="https://image.freepik.com/free-icon/male-user-profile-picture_318-37825.jpg">
-                  <h2>Francis</h2>
-                  <p>I'll be right there</p>
-                </a>
+              <a class="item item-avatar" ng-repeat="message in MESSAGES">
+                <img ng-src="{{CurrentUser.attributes.imageFile._url}}" ng-click="getNewImage()">
+                <h2>{{message.attributes.sentFrom.username}}</h2>
+                <p>{{message.attributes.message}}</p>
+              </a>
             </div>
           </div>
         </ion-slide>

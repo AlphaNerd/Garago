@@ -109,7 +109,7 @@ angular.module('garago.controllers.actionplan', [])
       angular.forEach($scope.DATA.attributes.rows,function(val,key){
         var row = $scope.DATA.attributes.rows[key]
         row.columns.push({
-          text: "Untitled",
+          text: "null",
           locked: false
         })
         rows.push(row)
@@ -178,6 +178,17 @@ angular.module('garago.controllers.actionplan', [])
 
     $scope.openSettings = function() {
       $ionicSideMenuDelegate.toggleRight()
+    }
+
+    $scope.isActivityColumn = function(index){
+      angular.forEach($scope.DATA.attributes.rows.columns,function(val,key){
+        console.log(val.title)
+        if(val.title.toLowerCase() == "activities"){
+          return true
+        }else{
+          return false
+        }
+      })
     }
 
     $scope.showGridBottomSheet = function() {

@@ -33,7 +33,7 @@ angular.module('garago.directives.contenteditable', [])
         // console.log(attrs.locked || 'n/a')
         var editorOptions = {
           toolbar: {
-              buttons: ['bold', 'italic', 'quote','underline','strikethrough','orderedlist','unorderedlist','justifyLeft','justifyRight','justifyCenter','justifyFull','html','removeFormat'],
+              buttons: ['bold', 'italic', 'removeFormat'],
           }
         }
         angular.element(element).addClass('selectable-with-editor');
@@ -65,6 +65,7 @@ angular.module('garago.directives.contenteditable', [])
             currCount = 0
           }
         });
+
         function read() {
           ngModel.$setViewValue(element.html());
         }

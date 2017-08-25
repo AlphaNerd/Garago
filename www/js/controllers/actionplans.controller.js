@@ -8,12 +8,14 @@ angular.module('garago.controllers.actionplans', [])
     $rootScope,
     $ionicSideMenuDelegate,
     $garagoAPI,
+    $parseAPI,
     $mockApi,
     initData,
     $mdBottomSheet,
     $mdToast,
     $ionicPopup,
-    $ionicLoading) {
+    $ionicLoading,
+    $ionicListDelegate) {
 
     console.log("Action Plan Controller Loaded")
 
@@ -74,5 +76,55 @@ angular.module('garago.controllers.actionplans', [])
     ACTIONPLANS.on('close', function() {
       console.log('subscription closed');
     });
+
+    ///// Move Items In Array
+    Array.prototype.move = function(old_index, new_index) {
+      if (new_index >= this.length) {
+        var k = new_index - this.length;
+        while ((k--) + 1) {
+          this.push(undefined);
+        }
+      }
+      this.splice(new_index, 0, this.splice(old_index, 1)[0]);
+      return this; // for testing purposes
+    };
+
+    $scope.deletePlan = function(myObject,index){
+        console.log(myObject)
+        myObject.destroy({
+          success: function(myObject) {
+            // The object was deleted from the Parse Cloud.
+            $scope.DATA.splice(index,1)
+            console.log("deleted")
+            $ionicListDelegate.closeOptionButtons()
+            $parseAPI.getAllUserActionPlans().then(function(res){
+                $scope.DATA = res
+            })
+          },
+          error: function(myObject, error) {
+            // The delete failed.
+            // error is a Parse.Error with an error code and message.
+            console.log(error)
+          }
+        });
+    }
+
+    $scope.showReorder = function(){
+        $scope.shouldShowReorder = !$scope.shouldShowReorder
+        return $scope.shouldShowReorder
+    }
+
+    $scope.showDelete = function(){
+        $scope.shouldShowDelete = !$scope.shouldShowDelete
+        return $scope.shouldShowDelete
+    }
+
+    $scope.reorderItem = function(index,from,to){
+      $scope.DATA.move(from,to)
+      angular.forEach($scope.DATA,function(val,key){
+        val.set("weight",key)
+        val.save()
+      })
+    }
 
   })
