@@ -17,6 +17,10 @@ angular.module('garago.controllers.dashboard', [])
       }
     }, 50)
 
+    $scope.shouldShowDelete = false;
+    $scope.shouldShowReorder = false;
+    $scope.listCanSwipe = true
+
     $parseAPI.getUserOrganizations().then(function (res) {
       console.log("User's Organizations: ", [res])
       $scope.ORGANIZATIONS = res
@@ -26,6 +30,15 @@ angular.module('garago.controllers.dashboard', [])
       console.log("User's Teams: ", [res])
       $scope.TEAMS = res
     })
+
+    $parseAPI.getAllUserProjects().then(function (res) {
+      console.log("User's Teams: ", [res])
+      $scope.PROJECTS = res
+    })
+
+    $scope.toggleProjectOrder = function(){
+      $scope.PROJECTS.reverse()
+    }
 
     ////////////////////////////////////////////////////////////////
     //////// PARSE LIVE QUERY - ORGANIZATIONS ////////////////
@@ -134,5 +147,58 @@ angular.module('garago.controllers.dashboard', [])
         console.log('subscription closed');
     });
 
+
+    ////////////////////////////////////////////////
+    //////// PARSE LIVE QUERY - Projects ////////////////
+    ////////////////////////////////////////////////
+    var Projects = Parse.Object.extend("Projects")
+    var query1 = new Parse.Query(Projects)
+    // query1.equalTo("members", Parse.User.current().id)
+
+    var query2 = new Parse.Query(Projects)
+    // query2.equalTo("owners", Parse.User.current().id)
+
+    var mainQuery = Parse.Query.or(query1, query2);
+
+    var PROJECTS = mainQuery.subscribe();
+
+    PROJECTS.on('open', function () {
+        console.log('subscription opened for PROJECTS');
+    });
+
+    PROJECTS.on('create', function (object) {
+        console.log('object created', [object]);
+        if ($scope.PROJECTS) {
+            object.set("class", ["new"])
+            $scope.PROJECTS.unshift(object)
+            $scope.$apply()
+        } else {
+            $scope.PROJECTS = [object]
+            $scope.$apply()
+        }
+    });
+
+    PROJECTS.on('update', function (object) {
+        console.log('object updated', object);
+        for (i = 0; i < $scope.PROJECTS.length; i++) {
+            var obj = $scope.PROJECTS[i]
+            if (obj.id == object.id) {
+                obj = object
+                $scope.$apply()
+            }
+        }
+    });
+
+    PROJECTS.on('leave', function (object) {
+        console.log('object left');
+    });
+
+    PROJECTS.on('delete', function (object) {
+        console.log('object deleted');
+    });
+
+    PROJECTS.on('close', function () {
+        console.log('subscription closed');
+    });
 
   })

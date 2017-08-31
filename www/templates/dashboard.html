@@ -15,35 +15,63 @@
     </ion-nav-bar>
     <ion-content id="Dashboard" scroll="true">
 
-        <div class="card">
+        <div class="card my-organizations">
             <div class="item item-divider">
                 My Organizations
             </div>
-            <div class="item item-text-wrap" ng-repeat="item in ORGANIZATIONS track by $index">
-                <i class="fa fa-building"></i> &nbsp; {{item.attributes.name}}
-                <p>{{item.attributes.description}}</p>
-                <div class="add-user">
-                    <i class="fa fa-user-plus"></i>
-                </div>
-            </div>
+            <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
+                <ion-item ng-repeat="item in ORGANIZATIONS" class="item-thumbnail-left">
+
+                    <img ng-src="{{item.img}}">
+                    <h2><b>{{item.attributes.name}}</b></h2>
+                    <p>{{item.attributes.description}}</p>
+                    <ion-option-button class="button-positive" ng-click="share(item)">
+                        <i class="fa fa-user-plus"></i>
+                    </ion-option-button>
+                    <ion-option-button class="button-info" ng-click="edit(item)">
+                        Edit
+                    </ion-option-button>
+                    <ion-delete-button class="ion-minus-circled" ng-click="items.splice($index, 1)">
+                    </ion-delete-button>
+                    <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(item, $fromIndex, $toIndex)">
+                    </ion-reorder-button>
+
+                </ion-item>
+            </ion-list>
             <div class="item item-divider">
-                <i class="fa fa-share"></i>
+                <i class="fa fa-ellipsis-h"></i>
             </div>
         </div>
 
-        <div class="card">
+        <div class="card my-teams">
             <div class="item item-divider">
                 My Teams
             </div>
             <div class="item item-text-wrap" ng-repeat="item in TEAMS track by $index">
-                <i class="fa fa-building"></i> &nbsp; {{item.attributes.name}}
-                <p ng-if="item.attributes.organization">Parent Organization: {{item.attributes.organization.attributes.name}}</p>
+                <i class="fa fa-users"></i> &nbsp; {{item.attributes.name}}
+                <p ng-if="item.attributes.organization">Parent Organization: <b>{{item.attributes.organization.attributes.name}}</b></p>
                 <div class="add-user">
                     <i class="fa fa-user-plus"></i>
                 </div>
             </div>
             <div class="item item-divider">
-                <i class="fa fa-share"></i>
+                <i class="fa fa-ellipsis-h"></i>
+            </div>
+        </div>
+
+        <div class="card my-projects">
+            <div class="item item-divider">
+                My Projects
+                <i class="fa fa-retweet" ng-click="toggleProjectOrder()"></i>
+            </div>
+            <div class="item item-text-wrap" ng-repeat="item in PROJECTS track by $index">
+                <i class="fa fa-folder"></i> &nbsp; {{item.attributes.name}}
+                <div class="add-user">
+                        {{item.attributes.total_budget | currency:'$'}}
+                </div>
+            </div>
+            <div class="item item-divider">
+                <i class="fa fa-ellipsis-h"></i>
             </div>
         </div>
 

@@ -21,7 +21,7 @@ angular.module('garago.factory.parse', [])
       ////////////////////////////////////////////////
       ////// Get all projects the current user is a member or owner of
       ////////////////////////////////////////////////
-      getAllUserAProjects: function(){
+      getAllUserProjects: function(){
         var deferred = $q.defer()
 
         var query1 = new Parse.Query(Projects)
@@ -31,6 +31,7 @@ angular.module('garago.factory.parse', [])
         query2.equalTo("owners", Parse.User.current().id)
 
         var mainQuery = Parse.Query.or(query1, query2);
+        mainQuery.descending("total_budget")
         mainQuery.find({
           success: function(res) {
             console.log("Found user's projects: ", [res[0]])

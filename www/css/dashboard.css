@@ -9,3 +9,7 @@
     top: 25px;
     right: 10px;
 }
+
+#Dashboard .card.my-projects i.fa.fa-retweet {
+    float: right;
+}

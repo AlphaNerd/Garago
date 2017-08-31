@@ -218,7 +218,7 @@ angular.module('garago', [
             resolve: {
               initData: function ($ionicLoading, $parseAPI) {
                 $ionicLoading.show()
-                return $parseAPI.getAllUserAProjects().then(function (res) {
+                return $parseAPI.getAllUserProjects().then(function (res) {
                   console.log("Projects List View Resolve: ", [res])
                   $ionicLoading.hide()
                   return res

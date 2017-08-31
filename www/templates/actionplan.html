@@ -34,7 +34,7 @@
           <div class="title" ng-style="{{column.style}}" ng-model="column.title" ng-attr-contenteditable="{{DATA.attributes.ACL.permissionsById[CurrentUser.id].write}}"></div>
           <i class="fa fa-minus-circle" aria-hidden="true" ng-click="deleteColumn($index)" ng-show="columnTools" ng-if="DATA.attributes.ACL.permissionsById[CurrentUser.id].write"></i>
         </div>
-        <i class="fa fa-plus-circle" aria-hidden="true" ng-click="addColumn()"></i>
+        <i class="fa fa-plus-circle" aria-hidden="true" ng-click="addColumn()" ng-if="DATA.attributes.ACL.permissionsById[CurrentUser.id].write"></i>
       </div>
       <div class="rows">
         <div class="item warning" ng-show="DATA.attributes.rows.length == 0"> You need to add some rows of data.</div>
@@ -68,7 +68,7 @@
 
             </div>
           </div>
-          <i class="fa fa-bars" aria-hidden="true" ng-drag-handle></i>
+          <i class="fa fa-bars" aria-hidden="true" ng-attr-ng-drag-handle="{{DATA.attributes.ACL.permissionsById[CurrentUser.id].write}}"></i>
         </div>
         <i class="fa fa-plus-circle" aria-hidden="true" ng-click="addRow(DATA)" ng-if="DATA.attributes.ACL.permissionsById[CurrentUser.id].write"></i>
       </div>
