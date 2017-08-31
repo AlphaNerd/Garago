@@ -15,7 +15,8 @@ angular.module('garago.controllers.actionplans', [])
     $mdToast,
     $ionicPopup,
     $ionicLoading,
-    $ionicListDelegate) {
+    $ionicListDelegate,
+    $ionicModal) {
 
     console.log("Action Plan Controller Loaded")
 
@@ -133,5 +134,19 @@ angular.module('garago.controllers.actionplans', [])
         val.save()
       })
     }
+
+    $ionicModal.fromTemplateUrl('templates/modals/shareById.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.modal = modal;
+    });
+    $scope.openShareModal = function() {
+      $ionicListDelegate.closeOptionButtons()
+      $scope.modal.show();
+    };
+    $scope.closeModal = function() {
+      $scope.modal.hide();
+    };
 
   })
