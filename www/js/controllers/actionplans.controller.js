@@ -63,6 +63,13 @@ angular.module('garago.controllers.actionplans', [])
 
     ACTIONPLANS.on('update', function(object) {
       console.log('object updated', object);
+      for(i=0;i<$scope.DATA.length;i++){
+        var obj = $scope.DATA[i]
+        if(obj.id == object.id){
+          obj = object
+          $scope.$apply()
+        }
+      }
     });
 
     ACTIONPLANS.on('leave', function(object) {

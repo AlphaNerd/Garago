@@ -1,0 +1,11 @@
+#Dashboard .card {
+    width: 48%;
+    margin:1%;
+    float:left;
+}
+
+#Dashboard .card .add-user {
+    position: absolute;
+    top: 25px;
+    right: 10px;
+}

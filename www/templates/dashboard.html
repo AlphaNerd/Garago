@@ -1,4 +1,4 @@
-<ion-view view-title="Your Dashboard">
+<ion-view view-title="My Dashboard">
     <ion-nav-bar class="bar-stable">
         <ion-nav-back-button>
         </ion-nav-back-button>
@@ -14,6 +14,38 @@
 
     </ion-nav-bar>
     <ion-content id="Dashboard" scroll="true">
-        Dashboard
+
+        <div class="card">
+            <div class="item item-divider">
+                My Organizations
+            </div>
+            <div class="item item-text-wrap" ng-repeat="item in ORGANIZATIONS track by $index">
+                <i class="fa fa-building"></i> &nbsp; {{item.attributes.name}}
+                <p>{{item.attributes.description}}</p>
+                <div class="add-user">
+                    <i class="fa fa-user-plus"></i>
+                </div>
+            </div>
+            <div class="item item-divider">
+                <i class="fa fa-share"></i>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="item item-divider">
+                My Teams
+            </div>
+            <div class="item item-text-wrap" ng-repeat="item in TEAMS track by $index">
+                <i class="fa fa-building"></i> &nbsp; {{item.attributes.name}}
+                <p ng-if="item.attributes.organization">Parent Organization: {{item.attributes.organization.attributes.name}}</p>
+                <div class="add-user">
+                    <i class="fa fa-user-plus"></i>
+                </div>
+            </div>
+            <div class="item item-divider">
+                <i class="fa fa-share"></i>
+            </div>
+        </div>
+
     </ion-content>
 </ion-view>

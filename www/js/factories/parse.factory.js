@@ -13,8 +13,101 @@ angular.module('garago.factory.parse', [])
     };
     var ActionPlans = Parse.Object.extend("ActionPlans")
     var Messages = Parse.Object.extend("Messages")
+    var Organizations = Parse.Object.extend("Organizations")
+    var Teams = Parse.Object.extend("Teams")
+    var Projects = Parse.Object.extend("Projects")
+
     var obj = {
-      ////// used for testing remote server is working
+      ////////////////////////////////////////////////
+      ////// Get all projects the current user is a member or owner of
+      ////////////////////////////////////////////////
+      getAllUserAProjects: function(){
+        var deferred = $q.defer()
+
+        var query1 = new Parse.Query(Projects)
+        query1.equalTo("members", Parse.User.current().id)
+
+        var query2 = new Parse.Query(Projects)
+        query2.equalTo("owners", Parse.User.current().id)
+
+        var mainQuery = Parse.Query.or(query1, query2);
+        mainQuery.find({
+          success: function(res) {
+            console.log("Found user's projects: ", [res[0]])
+          },
+          error: function(e, r) {
+            console.log(e, r)
+          }
+        }).then(function(res) {
+          if (res[0]) {
+            deferred.resolve(res)
+          } else {
+            deferred.resolve(false)
+          }
+        })
+        return deferred.promise
+      },
+      ////////////////////////////////////////////////
+      ////// Get all organizations the current user is a member or owner of
+      ////////////////////////////////////////////////
+      getUserOrganizations: function(data){
+        var deferred = $q.defer()
+
+        var query1 = new Parse.Query(Organizations)
+        query1.equalTo("members", Parse.User.current().id)
+
+        var query2 = new Parse.Query(Organizations)
+        query2.equalTo("owners", Parse.User.current().id)
+
+        var mainQuery = Parse.Query.or(query1, query2);
+        mainQuery.find({
+          success: function(res) {
+            console.log("Found user's organizations: ", [res[0]])
+          },
+          error: function(e, r) {
+            console.log(e, r)
+          }
+        }).then(function(res) {
+          if (res[0]) {
+            deferred.resolve(res)
+          } else {
+            deferred.resolve(false)
+          }
+        })
+        return deferred.promise
+      },
+      ////////////////////////////////////////////////
+      ////// Get all teams the current user is a member or owner of
+      ////////////////////////////////////////////////
+      getUserTeams: function(data){
+        var deferred = $q.defer()
+
+        var query1 = new Parse.Query(Teams)
+        query1.equalTo("members", Parse.User.current().id)
+
+        var query2 = new Parse.Query(Teams)
+        query2.equalTo("owners", Parse.User.current().id)
+
+        var mainQuery = Parse.Query.or(query1, query2);
+        mainQuery.find({
+          success: function(res) {
+            console.log("Found user's teams: ", [res[0]])
+          },
+          error: function(e, r) {
+            console.log(e, r)
+          }
+        }).then(function(res) {
+          if (res[0]) {
+            deferred.resolve(res)
+          } else {
+            deferred.resolve(false)
+          }
+        })
+        return deferred.promise
+      },
+      ////////////////////////////////////////////////
+      ////// Get the current user's most recent action plan
+      ////////////////////////////////////////////////
       getUsersLastActionPlan: function() {
         var deferred = $q.defer()
         var query1 = new Parse.Query(ActionPlans)
@@ -50,16 +143,19 @@ angular.module('garago.factory.parse', [])
         })
         return deferred.promise
       },
+      ////////////////////////////////////////////////
+      ////// Get all of the current user's action plans where they are either
+      ////// the Owner or Member
+      ////////////////////////////////////////////////
       getAllUserActionPlans: function() {
-        var deferred = $q.defer()
-
+        var deferred = $q.defer()        
         var query1 = new Parse.Query(ActionPlans)
         query1.exists("title")
         query1.exists("rows")
         query1.exists("columns")
         query1.descending("createdAt")
-        query1.equalTo("members", Parse.User.current().id)
-
+        query1.contains("members", Parse.User.current().id)
+        
         var query2 = new Parse.Query(ActionPlans)
         query2.exists("title")
         query2.exists("rows")
@@ -70,7 +166,7 @@ angular.module('garago.factory.parse', [])
         var mainQuery = Parse.Query.or(query1, query2);
         // query1.ascending("weight")
 
-        query1.find({
+        mainQuery.find({
           success: function(res) {
             console.log("Found All User Action Plans: ", [res])
           },
@@ -87,6 +183,9 @@ angular.module('garago.factory.parse', [])
         return deferred.promise
         
       },
+      ////////////////////////////////////////////////
+      ////// Get a specific Action Plan by ID
+      ////////////////////////////////////////////////
       getUsersActionPlanById: function(id) {
         var deferred = $q.defer()
         var query = new Parse.Query(ActionPlans)
@@ -107,6 +206,9 @@ angular.module('garago.factory.parse', [])
         })
         return deferred.promise
       },
+      ////////////////////////////////////////////////
+      ////// Get all user's messages
+      ////////////////////////////////////////////////
       getUserMessages: function(res){
         var deferred = $q.defer()
         var query1 = new Parse.Query(Messages)
@@ -122,7 +224,7 @@ angular.module('garago.factory.parse', [])
         mainQuery.include("sentFrom")
         mainQuery.find({
           success: function(res) {
-            console.log("FFound User Messages: ", [res])
+            console.log("Found User Messages: ", [res])
           },
           error: function(e, r) {
             console.log(e, r)

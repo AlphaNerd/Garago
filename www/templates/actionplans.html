@@ -1,4 +1,4 @@
-<ion-view view-title="">
+<ion-view view-title="My Plans">
   <ion-nav-bar class="bar-stable">
     <ion-nav-back-button>
     </ion-nav-back-button>
@@ -21,15 +21,20 @@
         <img ng-src="{{item.img}}">
         <h2>{{item.attributes.title}}</h2>
         <p>{{item.attributes.description}}</p>
+        <p class="last-updated">Last Updated: {{item.updatedAt | date:'short'}}</p>
+        <div class="acl-indicator">
+            <div ng-class="item.attributes.ACL.permissionsById[CurrentUser.id].read ? 'green':'grey'">R</div>
+            <div ng-class="item.attributes.ACL.permissionsById[CurrentUser.id].write ? 'green':'grey'">W</div>
+        </div>
         <ion-option-button class="button-positive" ng-click="share(item)">
           Share
         </ion-option-button>
-        <ion-option-button class="button-assertive" ng-click="deletePlan(item)">
+        <ion-option-button class="button-assertive" ng-click="deletePlan(item)" ng-if="item.attributes.ACL.permissionsById[CurrentUser.id].write">
           Delete
         </ion-option-button>
         <ion-delete-button class="fa fa-minus-circle" ng-click="deletePlan(item,$index)">
         </ion-delete-button>
-        <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(item, $fromIndex, $toIndex)">
+        <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(item, $fromIndex, $toIndex)" ng-if="item.attributes.ACL.permissionsById[CurrentUser.id].write">
         </ion-reorder-button>
       </ion-item>
     </ion-list>

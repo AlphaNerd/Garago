@@ -1,8 +1,8 @@
-#ActionPlansList{
+#ProjectsList{
 	
 }
 
-#ActionPlansList .warning h1 {
+#ProjectsList .warning h1 {
   color: #ddd;
   margin: 10px 2%;
   border: 5px dashed #f3f3f3;
@@ -10,22 +10,22 @@
   padding: 10px 3%;
 }
 
-#ActionPlansList .acl-indicator {
+#ProjectsList .acl-indicator {
   position: absolute;
   top: 5px;
   right: 10px;
 }
 
-#ActionPlansList .acl-indicator div {
+#ProjectsList .acl-indicator div {
   float: left;
   font-size: 11px;
   font-weight: 900;
 }
 
-#ActionPlansList .acl-indicator .green{
+#ProjectsList .acl-indicator .green{
   color:green;
 }
 
-#ActionPlansList .acl-indicator .grey{
+#ProjectsList .acl-indicator .grey{
   color:#bbb
 }

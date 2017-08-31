@@ -1,37 +1,38 @@
 angular.module('garago', [
-    'ionic',
-    'garago.controllers',
-    'garago.controllers.login',
-    'garago.controllers.actionplan',
-    'garago.controllers.actionplans',
-    'garago.controllers.dashboard',
-    'garago.controllers.library',
-    'garago.controllers.register',
-    'garago.controllers.intro',
-    'garago.factory.api',
-    'garago.factory.mockApi',
-    'garago.factory.utility',
-    'garago.factory.parse',
-    'garago.directives.contenteditable',
-    'garago.filters.keyboardShortcut',
-    'ngDraggable',
-    'ngMaterial',
-    'ngAnimate',
-    'mdColorPicker',
-    'ngDroplet',
-    'akoenig.deckgrid'
-  ])
+  'ionic',
+  'garago.controllers',
+  'garago.controllers.login',
+  'garago.controllers.actionplan',
+  'garago.controllers.actionplans',
+  'garago.controllers.dashboard',
+  'garago.controllers.library',
+  'garago.controllers.register',
+  'garago.controllers.intro',
+  'garago.controllers.projects',
+  'garago.factory.api',
+  'garago.factory.mockApi',
+  'garago.factory.utility',
+  'garago.factory.parse',
+  'garago.directives.contenteditable',
+  'garago.filters.keyboardShortcut',
+  'ngDraggable',
+  'ngMaterial',
+  'ngAnimate',
+  'mdColorPicker',
+  'ngDroplet',
+  'akoenig.deckgrid'
+])
 
   .constant('$ionicLoadingConfig', {
     template: '<div>' +
-      '<ion-spinner icon="lines" class="spinner-assertive"></ion-spinner>' +
-      '</div>' +
-      '<div>Loading View...</div>',
+    '<ion-spinner icon="lines" class="spinner-assertive"></ion-spinner>' +
+    '</div>' +
+    '<div>Loading View...</div>',
     duration: 1500,
   })
 
-  .run(function($ionicPlatform, $rootScope, $ionicSideMenuDelegate, $timeout) {
-    $ionicPlatform.ready(function() {
+  .run(function ($ionicPlatform, $rootScope, $ionicSideMenuDelegate, $timeout, $state) {
+    $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
       if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -47,15 +48,31 @@ angular.module('garago', [
 
       $rootScope.isMobile = ionic.Platform.isIOS() || ionic.Platform.isAndroid();
       if (!$rootScope.isMobile) {
-        $timeout(function() {
+        $timeout(function () {
           $ionicSideMenuDelegate.toggleLeft()
         }, 100)
+      }
+
+      $rootScope.$on('$locationChangeStart', function (event, next, current) {
+        checkAuth();
+      });
+      checkAuth()
+      function checkAuth(){
+        var currentUser = Parse.User.current();
+        if (currentUser) {
+          console.log("Welcome back: ",[currentUser])
+        } else {
+          // show the signup or login page
+          console.warn("you need to login!")
+          event.preventDefault();
+          $state.go("login")
+        }
       }
 
     });
   })
 
-  .config(function($stateProvider, $urlRouterProvider, $mdIconProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $mdIconProvider) {
     ////// Initialize Parse
     Parse.initialize("garagoapi");
     Parse.serverURL = 'https://garago-api-baas.herokuapp.com/parse';
@@ -133,17 +150,17 @@ angular.module('garago', [
             templateUrl: 'templates/actionplan.html',
             controller: 'ActionPlanCtrl',
             resolve: {
-              initData: function($garagoAPI, $ionicLoading, $parseAPI, $stateParams) {
+              initData: function ($garagoAPI, $ionicLoading, $parseAPI, $stateParams) {
                 $ionicLoading.show()
                 console.info($stateParams)
                 if ($stateParams.id != "") {
-                  return $parseAPI.getUsersActionPlanById($stateParams.id).then(function(res) {
+                  return $parseAPI.getUsersActionPlanById($stateParams.id).then(function (res) {
                     console.log("Action Plan View Resolve: ", [res])
                     $ionicLoading.hide()
                     return res
                   })
                 } else {
-                  return $parseAPI.getUsersLastActionPlan().then(function(res) {
+                  return $parseAPI.getUsersLastActionPlan().then(function (res) {
                     console.log("Action Plan View Resolve: ", [res])
                     $ionicLoading.hide()
                     return res
@@ -171,10 +188,38 @@ angular.module('garago', [
             templateUrl: 'templates/actionplans.html',
             controller: 'ActionPlansCtrl',
             resolve: {
-              initData: function($ionicLoading, $parseAPI) {
+              initData: function ($ionicLoading, $parseAPI) {
                 $ionicLoading.show()
-                return $parseAPI.getAllUserActionPlans().then(function(res) {
+                return $parseAPI.getAllUserActionPlans().then(function (res) {
                   console.log("Action Plans View Resolve: ", [res])
+                  $ionicLoading.hide()
+                  return res
+                })
+              }
+            }
+          }
+        }
+      })
+
+      ////////////////////////////////////////////////////////////////
+      //////////////// Multiple Action Plans View ///////////////////////
+      ////////////////////////////////////////////////////////////////
+      ///
+      ///   Route: /projects
+      ///   List all projects which the user is either a Member or Owner of
+      ///
+      ////////////////////////////////////////////////////////////////
+      .state('app.projects', {
+        url: '/projects',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/projects.html',
+            controller: 'ProjectsCtrl',
+            resolve: {
+              initData: function ($ionicLoading, $parseAPI) {
+                $ionicLoading.show()
+                return $parseAPI.getAllUserAProjects().then(function (res) {
+                  console.log("Projects List View Resolve: ", [res])
                   $ionicLoading.hide()
                   return res
                 })
@@ -189,8 +234,8 @@ angular.module('garago', [
       //////////////// Smart Library Route - In Dev ///////////////////////
       ////////////////////////////////////////////////////////////////
       ///
-      ///   Route: /actionplans
-      ///   List all action plans which the user is either a Member or Owner of
+      ///   Route: /library
+      ///   Searchable smart library for files. 
       ///
       ////////////////////////////////////////////////////////////////
       .state('app.library', {
@@ -200,9 +245,9 @@ angular.module('garago', [
             templateUrl: 'templates/library.html',
             controller: 'LibraryCtrl',
             resolve: {
-              userFilesData: function($garagoAPI, $mockApi, $ionicLoading) {
+              userFilesData: function ($garagoAPI, $mockApi, $ionicLoading) {
                 $ionicLoading.show()
-                return $garagoAPI.getAllUserFiles().then(function(res) {
+                return $garagoAPI.getAllUserFiles().then(function (res) {
                   console.log("Library View Resolve: ", res)
                   $ionicLoading.hide()
                   return res
@@ -214,5 +259,5 @@ angular.module('garago', [
       })
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/intro');
+    $urlRouterProvider.otherwise('/app/dashboard');
   });

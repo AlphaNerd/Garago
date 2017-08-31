@@ -13,7 +13,8 @@ angular.module('garago.controllers.actionplan', [])
     $mdBottomSheet,
     $mdToast,
     $ionicPopup,
-    $ionicLoading) {
+    $ionicLoading,
+    $state) {
 
     console.log("Action Plan Controller Loaded")
 
@@ -236,8 +237,8 @@ angular.module('garago.controllers.actionplan', [])
 
     if(!initData){
       var confirmPopup = $ionicPopup.confirm({
-          title: 'Warning',
-          template: 'You do not have any plans. Do you want to create one?'
+          title: 'Alert',
+          template: 'Would you like to create a new Action Plan?'
         });
 
         confirmPopup.then(function(res) {

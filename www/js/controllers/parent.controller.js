@@ -52,23 +52,43 @@ angular.module('garago.controllers', [])
         link: "#/app/actionplan/",
         class: "clock-o"
       }, {
-        title: "Comment",
-        link: "#/app/listplan/comments",
-        class: "comments-o"
-      }, {
         title: "Create New",
-        link: "#/app/listplan/new",
+        link: "#/app/actionplan/new",
         class: "plus"
       }]
-    }, {
+    },{
+      name: "Projects",
+      class: 'folder-o',
+      items: [{
+        title: "My Projects",
+        link: "#/app/projects",
+        class: "folder-open-o"
+      }, {
+        title: "Create new",
+        link: "#/app/myreports/tables,",
+        class: "plus"
+      }]
+    },{
+      name: "Activities",
+      class: 'folder-o',
+      items: [{
+        title: "My Activities",
+        link: "#/app/myreports/charts",
+        class: "folder-open-o"
+      }, {
+        title: "Create new",
+        link: "#/app/myreports/tables,",
+        class: "plus"
+      }]
+    },{
       name: "Forms",
       class: 'files-o',
       items: [{
-        title: "Saved",
+        title: "My Forms",
         link: "#/app/myforms",
         class: "floppy-o"
       }, {
-        title: "Create",
+        title: "Create Form",
         link: "#/app/newform",
         class: "plus"
       }]
@@ -90,18 +110,6 @@ angular.module('garago.controllers', [])
       }, {
         title: "Create New",
         link: "#/app/myreports/custom,",
-        class: "plus"
-      }]
-    }, {
-      name: "Projects",
-      class: 'folder-o',
-      items: [{
-        title: "View All",
-        link: "#/app/myreports/charts",
-        class: "folder-open-o"
-      }, {
-        title: "Create new",
-        link: "#/app/myreports/tables,",
         class: "plus"
       }]
     }];

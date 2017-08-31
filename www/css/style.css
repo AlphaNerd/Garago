@@ -534,3 +534,7 @@ ul {
 md-switch span {
     color: #fff;
 }
+
+.title.title-center.header-item {
+  color: #fff;
+}

@@ -93,8 +93,8 @@
 
 #intro ion-slide .slide-text{
     position: relative;
-    top: 35%;
-    background: rgba(255,255,255,0.85);
+    top: 50%;
+    background: rgba(255,255,255,0.65);
     padding: 30px 30px 10px 30px;
 }
 
@@ -134,8 +134,16 @@
     opacity: 0.3;
 }
 
+#intro .slide-text h1{
+    color:#fff;
+}
+
+#intro .slide-text p{
+    color:#004CAA;
+}
+
 #intro .slide1{
-    background: url(http://actionplanbuilder.com/wp-content/uploads/2017/08/shutterstock_114479137.jpg);
+    background: url(http://v2.garagosoftware.com/wp-content/uploads/revslider/blurslider/blurbg14.jpg);
     background-size: cover;
 }
 
