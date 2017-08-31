@@ -68,9 +68,9 @@ angular.module('garago.factory.parse', [])
         query2.equalTo("owners", Parse.User.current().id)
 
         var mainQuery = Parse.Query.or(query1, query2);
-        mainQuery.ascending("weight")
+        // query1.ascending("weight")
 
-        mainQuery.find({
+        query1.find({
           success: function(res) {
             console.log("Found All User Action Plans: ", [res])
           },
@@ -85,6 +85,7 @@ angular.module('garago.factory.parse', [])
           }
         })
         return deferred.promise
+        
       },
       getUsersActionPlanById: function(id) {
         var deferred = $q.defer()

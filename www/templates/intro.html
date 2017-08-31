@@ -2,54 +2,34 @@
   <div class="logo">
     <img src="../img/logo.png">
   </div>
+  <div class="skip button button-balanced" ng-hide="slideNum == (totalSlides-1)" ng-click="skipSlide()">Login</div>
   <ion-slide-box on-slide-changed="slideHasChanged($index)" active-slide="slideNum">
-    <ion-slide>
-      <br/>
-      <br/>
-      <br/>
-      <p>
-        Some business tag line here (1)
-        <div class="intro-image">
-          <img src="https://pas-wordpress-media.s3.amazonaws.com/content/uploads/2016/05/onboarding.jpg">
-        </div>
-      </p>
+    <ion-slide class="slide1">
+      <div class="slide-text animated fadeInUp">
+        <h1>Some business tag line here (1)</h1>
+        <p>Some other description of feature here.</p>
+      </div>
     </ion-slide>
-    <ion-slide>
-      <br/>
-      <br/>
-      <br/>
-      <p>
-        Some business tag line here (2)
-        <div class="intro-image">
-          <img src="https://www.appdopt.com/wp-content/uploads/2017/06/welcome-videos-and-introductions.png">
-        </div>
-      </p>
+    <ion-slide class="slide2">
+      <div class="slide-text animated fadeInUp">
+        <h1>Some business tag line here (1)</h1>
+        <p>Some other description of feature here.</p>
+      </div>
     </ion-slide>
-    <ion-slide>
-      <br/>
-      <br/>
-      <br/>
-      <p>
-        Some business tag line here (3)
-        <div class="intro-image">
-          <img src="https://www.appdopt.com/wp-content/uploads/2017/06/quiz-and-test-skills.png">
-        </div>
-      </p>
+    <ion-slide class="slide3">
+      <div class="slide-text animated fadeInUp">
+        <h1>Some business tag line here (1)</h1>
+        <p>Some other description of feature here.</p>
+      </div>
     </ion-slide>
-    <ion-slide>
-      <br/>
-      <br/>
-      <br/>
-      <p>
-        Some business tag line here (4)
-        <div class="intro-image">
-          <img src="https://www.appdopt.com/wp-content/uploads/2017/06/quiz-and-test-skills.png">
-        </div>
-      </p>
+    <ion-slide class="slide4">
+      <div class="slide-text animated fadeInUp">
+        <h1>Some business tag line here (1)</h1>
+        <p>Some other description of feature here.</p>
+      </div>
     </ion-slide>
   </ion-slide-box>
   <div class="intro-controls">
     <div class="button button-block button-balanced" ng-click="nextSlide()">{{buttonLabel}}</div>
-    <div class="skip" ng-hide="slideNum == (totalSlides-1)" ng-click="skipSlide()">Login</div>
   </div>
 </ion-view>

@@ -18,7 +18,11 @@
 }
 
 #intro .skip {
-    margin: 30px 0;
+    margin: 10px 0;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    right: 20px;
 }
 
 #intro.register .logo {
@@ -31,8 +35,8 @@
     margin: 10px auto;
 }
 
-.slider {
-    height: 60%;
+#intro .slider {
+    height: 100%;
     position: relative;
 }
 
@@ -78,8 +82,25 @@
 }
 
 .intro-controls {
-    max-width: 400px;
     margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    bottom: 120px;
+    width: 100%;
+    text-align: center;
+    max-width: 300px;
+}
+
+#intro ion-slide .slide-text{
+    position: relative;
+    top: 35%;
+    background: rgba(255,255,255,0.85);
+    padding: 30px 30px 10px 30px;
+}
+
+#intro ion-slide .slide-text p {
+    position: relative;
+    padding: 10px 30px 30px 30px;
 }
 .intro-image img{
     width:100%
@@ -91,5 +112,44 @@
 }
 
 #intro .logo {
-    margin: 80px auto 0 auto;
+    margin: 20px;
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    z-index: 2;
+}
+
+#intro .button.button-balanced {
+    border-color: transparent;
+    background-color: #005f98;
+    color: #fff;
+}
+
+#intro .slider-pager .slider-pager-page {
+    display: inline-block;
+    margin: 0px 3px;
+    width: 15px;
+    color: #005f98;
+    text-decoration: none;
+    opacity: 0.3;
+}
+
+#intro .slide1{
+    background: url(http://actionplanbuilder.com/wp-content/uploads/2017/08/shutterstock_114479137.jpg);
+    background-size: cover;
+}
+
+#intro .slide2{
+    background: url(http://actionplanbuilder.com/wp-content/uploads/2017/08/shutterstock_114479137.jpg);
+    background-size: cover;
+}
+
+#intro .slide3{
+    background: url(http://actionplanbuilder.com/wp-content/uploads/2017/08/shutterstock_114479137.jpg);
+    background-size: cover;
+}
+
+#intro .slide4{
+    background: url(http://actionplanbuilder.com/wp-content/uploads/2017/08/shutterstock_114479137.jpg);
+    background-size: cover;
 }
