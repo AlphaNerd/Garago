@@ -13,9 +13,9 @@
   <ion-content id="ActionPlan" scroll="true">
     <div class="action-plan">
       <div class="plan-settings">
-        <i class="fa" ng-class="docLock ? 'fa-lock locked':'fa-unlock' " ng-click="docLockToggle(docLock)" ng-if="DATA.attributes.ACL.permissionsById[CurrentUser.id].write"></i>&nbsp;&nbsp;&nbsp;
-        <i class="fa fa-cogs" ng-click="showGridBottomSheet()" ng-if="DATA.attributes.ACL.permissionsById[CurrentUser.id].write"></i>&nbsp;&nbsp;&nbsp;
-        <i class="fa fa-user-plus" ng-click="openShareModal(DATA)" ng-if="DATA.attributes.ACL.permissionsById[CurrentUser.id].write"></i>
+        <i class="fa" ng-class="DATA.attributes.published ? 'fa-lock locked':'fa-unlock' " ng-click="togglePublish(DATA)" ng-if="DATA.attributes.ACL.permissionsById[CurrentUser.id].write"></i>&nbsp;&nbsp;&nbsp;
+        <i class="fa fa-cogs" ng-click="showGridBottomSheet()" ng-if="DATA.attributes.ACL.permissionsById[CurrentUser.id].write && !DATA.attributes.published"></i>&nbsp;&nbsp;&nbsp;
+        <i class="fa fa-user-plus" ng-click="openShareModal(DATA)" ng-if="DATA.attributes.ACL.permissionsById[CurrentUser.id].write && !DATA.attributes.published"></i>
       </div>
       <div class="plan-owner">
         <div class="owner">Owner: {{CurrentUser.attributes.username}}</div>

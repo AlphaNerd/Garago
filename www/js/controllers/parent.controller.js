@@ -94,8 +94,12 @@ angular.module('garago.controllers', [])
       items: [{
         title: "My Forms",
         link: "#/app/myforms",
-        class: "floppy-o"
-      }, {
+        class: "folder-open-o"
+      },{
+        title: "Form Builder",
+        link: "#/app/formbuilder",
+        class: "cogs"
+      },{
         title: "Create Form",
         link: "#/app/newform",
         class: "plus"

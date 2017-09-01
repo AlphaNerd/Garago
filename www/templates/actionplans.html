@@ -16,12 +16,18 @@
     <div class="warning" ng-if="!DATA || DATA.length < 1">
       <h1>No Action Plans Found.</h1>
     </div>
+    <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+            <input type="text" placeholder="Search" ng-model="search.text">
+        </label>
+    </div>
     <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
-      <ion-item ng-repeat="item in DATA" class="item-thumbnail-left" href="#/app/actionplan/{{item.id}}" ng-class="item.attributes.class == 'animated bounceIn' ? 'new':''">
-        <img ng-src="{{item.img}}">
+      <ion-item ng-repeat="item in DATA | filter: {attributes: {title:search.text}}" class="item-thumbnail-left" href="#/app/actionplan/{{item.id}}" ng-class="item.attributes.class == 'animated bounceIn' ? 'new':''">
+        <img ng-src="{{item.img}}"> 
         <h2>{{item.attributes.title}}</h2>
         <p>{{item.attributes.description}}</p>
-        <p class="last-updated">Last Updated: {{item.updatedAt | date:'short'}}</p>
+        <p class="last-updated" ng-if="!item.attributes.published_date">Last Updated: {{item.updatedAt | date:'short'}}</p>
+        <p class="published" ng-if="item.attributes.published_date"><b>Published:</b> {{item.attributes.published_date | date:'short'}}</p>
         <div class="acl-indicator">
             <div ng-class="item.attributes.ACL.permissionsById[CurrentUser.id].read ? 'green':'grey'">R</div>
             <div ng-class="item.attributes.ACL.permissionsById[CurrentUser.id].write ? 'green':'grey'">W</div>

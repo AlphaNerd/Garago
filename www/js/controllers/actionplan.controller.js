@@ -172,7 +172,7 @@ angular.module('garago.controllers.actionplan', [])
       $scope.DATA.save()
     }
 
-    $scope.$toggleCellLock = function(item){
+    $scope.toggleCellLock = function(item){
       item.locked = !item.locked
       $scope.DATA.save()
     }
@@ -189,6 +189,19 @@ angular.module('garago.controllers.actionplan', [])
         }else{
           return false
         }
+      })
+    }
+
+    $scope.togglePublish = function(DATA) {
+      console.log(DATA)
+      $ionicLoading.show({
+        template: '<i class="icon ion-loading-c"></i><div>Creating new Action Plan...</div>',
+        duration: 1000
+      })
+      DATA.set("published",!DATA.attributes.published)
+      DATA.save().then(function(res){
+        $scope.DATA = res
+        $ionicLoading.hide()
       })
     }
 

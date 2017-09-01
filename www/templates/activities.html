@@ -7,7 +7,7 @@
                 </button>
         </ion-nav-buttons>
         <ion-nav-buttons side="right">
-            <button class="button button-icon button-clear" ng-click="createNewProject()"><i class="fa fa-icon fa-plus"></i></button>&nbsp;&nbsp;
+            <button class="button button-icon button-clear" ng-click="createNewActivity()"><i class="fa fa-icon fa-plus"></i></button>&nbsp;&nbsp;
             <button class="button button-icon button-clear" ng-click="showDelete()"><i class="fa fa-icon fa-minus"></i></button>&nbsp;&nbsp;
             <button class="button button-icon button-clear" ng-click="showReorder()"><i class="fa fa-icon fa-sort"></i></button>&nbsp;&nbsp;
         </ion-nav-buttons>
@@ -16,8 +16,13 @@
         <div class="warning" ng-if="!DATA || DATA.length < 1">
             <h1>No Activities Found.</h1>
         </div>
+        <div class="item item-input-inset">
+            <label class="item-input-wrapper">
+                <input type="text" placeholder="Search" ng-model="search.text">
+            </label>
+        </div>
         <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
-            <ion-item ng-repeat="item in DATA" class="item-thumbnail-left" href="#/app/activity/{{item.id}}" ng-class="item.attributes.class == 'animated bounceIn' ? 'new':''">
+            <ion-item ng-repeat="item in DATA | filter: {attributes: {title:search.text}}" class="item-thumbnail-left" href="#/app/activity/{{item.id}}" ng-class="item.attributes.class == 'animated bounceIn' ? 'new':''">
                 <img ng-src="{{item.img}}">
                 <h2>{{item.attributes.title}}</h2>
                 <p>{{item.attributes.description}}</p>
@@ -29,10 +34,10 @@
                 <ion-option-button class="button-positive" ng-click="share(item)">
                     Share
                 </ion-option-button>
-                <ion-option-button class="button-assertive" ng-click="deleteProject(item)" ng-if="item.attributes.ACL.permissionsById[CurrentUser.id].write">
+                <ion-option-button class="button-assertive" ng-click="deleteActivity(item)" ng-if="item.attributes.ACL.permissionsById[CurrentUser.id].write">
                     Delete
                 </ion-option-button>
-                <ion-delete-button class="fa fa-minus-circle" ng-click="deletePlan(item,$index)">
+                <ion-delete-button class="fa fa-minus-circle" ng-click="deleteActivity(item,$index)">
                 </ion-delete-button>
                 <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(item, $fromIndex, $toIndex)" ng-if="item.attributes.ACL.permissionsById[CurrentUser.id].write">
                 </ion-reorder-button>

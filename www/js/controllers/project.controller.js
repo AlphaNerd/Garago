@@ -21,18 +21,12 @@ angular.module('garago.controllers.project', [])
 
         $scope.DATA = initData
         console.log($scope.DATA)
-
+        
         //////// PARSE LIVE QUERY ////////////////
         var Projects = Parse.Object.extend("Projects")
-        var query1 = new Parse.Query(Projects)
-        query1.equalTo("members", Parse.User.current().id)
-
-        var query2 = new Parse.Query(Projects)
-        query2.equalTo("owners", Parse.User.current().id)
-
-        var mainQuery = Parse.Query.or(query1, query2);
-
-        var PROJECTS = mainQuery.subscribe();
+        var query = new Parse.Query(Projects)
+        query.equalTo("objectId", initData.id)
+        var PROJECTS = query.subscribe();
 
         PROJECTS.on('open', function () {
             console.log('subscription opened for PROJECT');

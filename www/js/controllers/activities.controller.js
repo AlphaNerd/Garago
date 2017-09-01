@@ -88,7 +88,7 @@ angular.module('garago.controllers.activities', [])
             return this; // for testing purposes
         };
 
-        $scope.deleteProject = function (myObject, index) {
+        $scope.deleteActivity = function (myObject, index) {
             console.log(myObject)
             myObject.destroy({
                 success: function (myObject) {
@@ -96,7 +96,7 @@ angular.module('garago.controllers.activities', [])
                     $scope.DATA.splice(index, 1)
                     console.log("deleted")
                     $ionicListDelegate.closeOptionButtons()
-                    $parseAPI.getAllUserActionPlans().then(function (res) {
+                    $parseAPI.getAllUserActivities().then(function (res) {
                         $scope.DATA = res
                     })
                 },
