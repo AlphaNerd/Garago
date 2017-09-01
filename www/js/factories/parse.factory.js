@@ -16,6 +16,7 @@ angular.module('garago.factory.parse', [])
     var Organizations = Parse.Object.extend("Organizations")
     var Teams = Parse.Object.extend("Teams")
     var Projects = Parse.Object.extend("Projects")
+    var Activities = Parse.Object.extend("Activities")
 
     var obj = {
       ////////////////////////////////////////////////
@@ -25,9 +26,11 @@ angular.module('garago.factory.parse', [])
         var deferred = $q.defer()
 
         var query1 = new Parse.Query(Projects)
+        query1.exists("total_budget")
         query1.equalTo("members", Parse.User.current().id)
 
         var query2 = new Parse.Query(Projects)
+        query2.exists("total_budget")
         query2.equalTo("owners", Parse.User.current().id)
 
         var mainQuery = Parse.Query.or(query1, query2);
@@ -42,6 +45,141 @@ angular.module('garago.factory.parse', [])
         }).then(function(res) {
           if (res[0]) {
             deferred.resolve(res)
+          } else {
+            deferred.resolve(false)
+          }
+        })
+        return deferred.promise
+      },
+      ////////////////////////////////////////////////
+      ////// Get a specific Project by ID
+      ////////////////////////////////////////////////
+      getUsersProjectById: function(id) {
+        var deferred = $q.defer()
+        var query = new Parse.Query(Projects)
+        query.equalTo("objectId",id)
+        query.find({
+          success: function(res) {
+            console.log("Found Project by ID: ", [res[0]])
+          },
+          error: function(e, r) {
+            console.log(e, r)
+          }
+        }).then(function(res) {
+          if (res[0]) {
+            deferred.resolve(res[0])
+          } else {
+            deferred.resolve(false)
+          }
+        })
+        return deferred.promise
+      },
+      ////////////////////////////////////////////////
+      ////// Get the current user's most recent project
+      ////////////////////////////////////////////////
+      getUsersLastProject: function() {
+        var deferred = $q.defer()
+        var query1 = new Parse.Query(Projects)
+        query1.equalTo("members", Parse.User.current().id)
+
+        var query2 = new Parse.Query(Projects)
+        query2.equalTo("owners", Parse.User.current().id)
+
+        var mainQuery = Parse.Query.or(query1, query2);
+        mainQuery.descending("updatedAt")
+        mainQuery.limit(1)
+        mainQuery.find({
+          success: function(res) {
+            console.log("Found latest Project: ", [res[0]])
+          },
+          error: function(e, r) {
+            console.log(e, r)
+          }
+        }).then(function(res) {
+          if (res[0]) {
+            deferred.resolve(res[0])
+          } else {
+            deferred.resolve(false)
+          }
+        })
+        return deferred.promise
+      },
+      ////////////////////////////////////////////////
+      ////// Get all activities the current user is a member or owner of
+      ////////////////////////////////////////////////
+      getAllUserActivities: function(){
+        var deferred = $q.defer()
+
+        var query1 = new Parse.Query(Activities)
+        query1.equalTo("members", Parse.User.current().id)
+
+        var query2 = new Parse.Query(Activities)
+        query2.equalTo("owners", Parse.User.current().id)
+
+        var mainQuery = Parse.Query.or(query1, query2);
+        mainQuery.find({
+          success: function(res) {
+            console.log("Found user's activities: ", [res[0]])
+          },
+          error: function(e, r) {
+            console.log(e, r)
+          }
+        }).then(function(res) {
+          if (res[0]) {
+            deferred.resolve(res)
+          } else {
+            deferred.resolve(false)
+          }
+        })
+        return deferred.promise
+      },
+      ////////////////////////////////////////////////
+      ////// Get a specific Activity by ID
+      ////////////////////////////////////////////////
+      getUsersActivityById: function(id) {
+        var deferred = $q.defer()
+        var query = new Parse.Query(Activities)
+        query.equalTo("objectId",id)
+        query.find({
+          success: function(res) {
+            console.log("Found Activity by ID: ", [res[0]])
+          },
+          error: function(e, r) {
+            console.log(e, r)
+          }
+        }).then(function(res) {
+          if (res[0]) {
+            deferred.resolve(res[0])
+          } else {
+            deferred.resolve(false)
+          }
+        })
+        return deferred.promise
+      },
+      ////////////////////////////////////////////////
+      ////// Get the current user's most recent Activity
+      ////////////////////////////////////////////////
+      getUsersLastActivity: function() {
+        var deferred = $q.defer()
+        var query1 = new Parse.Query(Activities)
+        query1.equalTo("members", Parse.User.current().id)
+
+        var query2 = new Parse.Query(Activities)
+        query2.equalTo("owners", Parse.User.current().id)
+
+        var mainQuery = Parse.Query.or(query1, query2);
+        mainQuery.descending("updatedAt")
+        mainQuery.limit(1)
+        mainQuery.find({
+          success: function(res) {
+            console.log("Found latest activity: ", [res[0]])
+          },
+          error: function(e, r) {
+            console.log(e, r)
+          }
+        }).then(function(res) {
+          if (res[0]) {
+            deferred.resolve(res[0])
           } else {
             deferred.resolve(false)
           }

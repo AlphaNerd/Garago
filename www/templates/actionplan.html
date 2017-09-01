@@ -13,8 +13,9 @@
   <ion-content id="ActionPlan" scroll="true">
     <div class="action-plan">
       <div class="plan-settings">
-        <i class="fa" ng-class="docLock ? 'fa-lock locked':'fa-unlock' " ng-click="docLockToggle(docLock)"></i>&nbsp;&nbsp;&nbsp;
-        <i class="fa fa-cogs" ng-click="showGridBottomSheet()"></i>
+        <i class="fa" ng-class="docLock ? 'fa-lock locked':'fa-unlock' " ng-click="docLockToggle(docLock)" ng-if="DATA.attributes.ACL.permissionsById[CurrentUser.id].write"></i>&nbsp;&nbsp;&nbsp;
+        <i class="fa fa-cogs" ng-click="showGridBottomSheet()" ng-if="DATA.attributes.ACL.permissionsById[CurrentUser.id].write"></i>&nbsp;&nbsp;&nbsp;
+        <i class="fa fa-user-plus" ng-click="openShareModal(DATA)" ng-if="DATA.attributes.ACL.permissionsById[CurrentUser.id].write"></i>
       </div>
       <div class="plan-owner">
         <div class="owner">Owner: {{CurrentUser.attributes.username}}</div>
@@ -24,13 +25,8 @@
       <div class="plan-title">
         <h1 ng-attr-contenteditable="{{DATA.attributes.ACL.permissionsById[CurrentUser.id].write}}" ng-model="DATA.attributes.title"></h1>
       </div>
-      <!-- <div class="milestones-containes">
-        <div class="milestone">
-          <i class="fa fa-map-pin" aria-hidden="true" ng-drag="true" ng-drag-move="onDragMove($event)" ng-drop="true"></i>
-        </div>
-      </div> -->
       <div class="columns">
-        <div class="column header" ng-drag-data="column" ng-repeat="column in DATA.attributes.columns track by $index" ng-drag="true" ng-drop="true" ng-drop-success="moveColumn($index,$data,$event)" ng-mouseenter="columnTools = true" ng-mouseleave="columnTools = false" col="{{$index}}">
+        <div class="column header" ng-drag-data="column" ng-repeat="column in DATA.attributes.columns track by $index" ng-drag="DATA.attributes.ACL.permissionsById[CurrentUser.id].write" ng-drop="true" ng-drop-success="moveColumn($index,$data,$event)" ng-mouseenter="columnTools = true" ng-mouseleave="columnTools = false" col="{{$index}}">
           <div class="title" ng-style="{{column.style}}" ng-model="column.title" ng-attr-contenteditable="{{DATA.attributes.ACL.permissionsById[CurrentUser.id].write}}"></div>
           <i class="fa fa-minus-circle" aria-hidden="true" ng-click="deleteColumn($index)" ng-show="columnTools" ng-if="DATA.attributes.ACL.permissionsById[CurrentUser.id].write"></i>
         </div>
@@ -38,7 +34,7 @@
       </div>
       <div class="rows">
         <div class="item warning" ng-show="DATA.attributes.rows.length == 0"> You need to add some rows of data.</div>
-        <div class="row-container" ng-repeat="row in DATA.attributes.rows track by $index" ng-drag="true" ng-drop="true" ng-drop-success="moveRow($index,$data,$event)" ng-drag-data="DATA" ng-mouseenter="rowTools = true" ng-mouseleave="rowTools = false" row="{{$index}}">
+        <div class="row-container" ng-repeat="row in DATA.attributes.rows track by $index" ng-drag="DATA.attributes.ACL.permissionsById[CurrentUser.id].write" ng-drop="true" ng-drop-success="moveRow($index,$data,$event)" ng-drag-data="DATA" ng-mouseenter="rowTools = true" ng-mouseleave="rowTools = false" row="{{$index}}">
           <div class="row-header" ng-model="row.title" ng-attr-contenteditable="{{DATA.attributes.ACL.permissionsById[CurrentUser.id].write}}"></div>
           <div class="row">
             <i class="fa fa-minus-circle" aria-hidden="true" ng-click="deleteRow($index)" ng-show="rowTools" ng-if="DATA.attributes.ACL.permissionsById[CurrentUser.id].write"></i>
@@ -47,7 +43,7 @@
               <div class="content" ng-model="item.text" ng-attr-contenteditable="{{DATA.attributes.ACL.permissionsById[CurrentUser.id].write}}"></div>
               
               <div class="controls">
-                <i class="fa" ng-class="!item.locked ? 'fa-unlock' : 'fa-lock locked'" aria-hidden="true" ng-click="$toggleCellLock(item)"></i>
+                <i class="fa" ng-class="!item.locked ? 'fa-unlock' : 'fa-lock locked'" aria-hidden="true" ng-click="$toggleCellLock(item)" ng-if="DATA.attributes.ACL.permissionsById[CurrentUser.id].write"></i>
               </div>
 
               <ul class="projects" ng-repeat="item in row.detail_planning[activityColumn].DetailPlan.projects" ng-if="$index == activityColumn">
@@ -68,7 +64,7 @@
 
             </div>
           </div>
-          <i class="fa fa-bars" aria-hidden="true" ng-attr-ng-drag-handle="{{DATA.attributes.ACL.permissionsById[CurrentUser.id].write}}"></i>
+          <i class="fa fa-bars" aria-hidden="true" ng-drag-handle ng-if="DATA.attributes.ACL.permissionsById[CurrentUser.id].write"></i>
         </div>
         <i class="fa fa-plus-circle" aria-hidden="true" ng-click="addRow(DATA)" ng-if="DATA.attributes.ACL.permissionsById[CurrentUser.id].write"></i>
       </div>

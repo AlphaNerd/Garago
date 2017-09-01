@@ -1,8 +1,67 @@
+<style>
+    #ShareModal div {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    #ShareModal .scroll {
+        height: 100%;
+        width: 100%;
+    }
+
+    #ShareModal .image {
+        height: 100%;
+        width: 50%;
+    }
+
+    #ShareModal .image img {
+        width: 100%;
+        padding-top: 40px;
+    }
+
+    #ShareModal .form {
+        width: 49%;
+        padding: 50px 10px;
+        height: 100%;
+        position: relative;
+    }
+</style>
 <ion-modal-view>
     <ion-header-bar>
-        <h1 class="title">Share Item</h1>
+        <h1 class="title">Add Collaborator</h1>
     </ion-header-bar>
-    <ion-content>
-        {{shareItem}}
+    <ion-content id="ShareModal" scroll="false">
+        <div class="image">
+            <img src="https://png.icons8.com/dotty/1600/673AB7/add-user-group-woman-man" alt="">
+        </div>
+        <div class="form">
+            <h3>Add A Collaborator Below</h3>
+            <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent varius pretium interdum. Aliquam auctor elit
+                non sodales vehicula. Suspendisse faucibus odio a volutpat bibendum. Aliquam nisl nisl, aliquet et sodales
+                sit amet, viverra sed nibh. Nulla facilisi. Phasellus maximus tincidunt quam vel ullamcorper. Sed tincidunt
+                efficitur mi. Praesent commodo commodo nisl nec sodales.</h5>
+            <!-- {{share_type}}
+            {{share_id}} -->
+            <h3>Share <b>{{DATA.attributes.title}}</b> with:</h3>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Organization
+                </div>
+                <select>
+                    <option selected>Select</option>
+                    <option ng-repeat="item in ORGANIZATIONS" value="item.id">{{item.attributes.name}}</option>
+                </select>
+            </label>
+            <label class="item item-input">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="text" placeholder="Search for person">
+            </label>
+            <h4>User Access</h4>
+            <ion-list>
+                <ion-checkbox ng-model="filter.red">Read</ion-checkbox>
+                <ion-checkbox ng-model="filter.yellow">Write</ion-checkbox>
+            </ion-list>
+            <div class="button button-block button-balanced">Add Collaborator</div>
+        </div>
     </ion-content>
 </ion-modal-view>

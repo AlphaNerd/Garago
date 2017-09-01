@@ -1,0 +1,21 @@
+<ion-view view-title="{{DATA.attributes.title}}">
+    <ion-nav-bar class="bar-stable">
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-clear ion-navicon menu-toggle" menu-toggle="left">
+                </button>
+        </ion-nav-buttons>
+        <ion-nav-buttons side="right">
+            <button class="button button-icon button-clear" ng-click="showDelete()"><i class="fa fa-icon fa-minus"></i></button>&nbsp;&nbsp;
+        </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-content id="Activity" scroll="true">
+        <div class="warning" ng-if="!DATA || DATA.length < 1">
+            <h1>No Projects Found.</h1>
+        </div>
+        <div class="project-header">
+            {{DATA.attributes}}
+        </div>
+    </ion-content>
+</ion-view>

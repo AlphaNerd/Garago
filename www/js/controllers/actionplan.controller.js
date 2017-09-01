@@ -222,18 +222,29 @@ angular.module('garago.controllers.actionplan', [])
     $scope.closeModal = function() {
       $scope.newProjectModal.hide();
     };
-    // Cleanup the modal when we're done with it!
-    $scope.$on('$destroy', function() {
-      $scope.newProjectModal.remove();
+    
+    $ionicModal.fromTemplateUrl('templates/modals/shareById.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.modal = modal;
     });
-    // Execute action on hide modal
-    $scope.$on('newProjectModal.hidden', function() {
-      // Execute action
-    });
-    // Execute action on remove modal
-    $scope.$on('newProjectModal.removed', function() {
-      // Execute action
-    });
+    $scope.openShareModal = function() {
+      $ionicLoading.show({
+        template: "Getting Organizations..."
+      })
+      var Organizations = Parse.Object.extend("Organizations")
+      var query = new Parse.Query(Organizations)
+      query.equalTo("owners",Parse.User.current().id)
+      query.find().then(function(res){
+        $scope.ORGANIZATIONS = res
+        $ionicLoading.hide()
+        $scope.modal.show();
+      })
+    };
+    $scope.closeModal = function() {
+      $scope.modal.hide();
+    };
 
     if(!initData){
       var confirmPopup = $ionicPopup.confirm({

@@ -13,3 +13,12 @@
 #Dashboard .card.my-projects i.fa.fa-retweet {
     float: right;
 }
+
+#Dashboard .card.my-projects .totals{
+    float:right;
+    color:green
+}
+
+#Dashboard .my-organizations .contacts{
+    margin:10px 0 0 0
+}

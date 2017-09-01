@@ -40,6 +40,14 @@ angular.module('garago.controllers.dashboard', [])
       $scope.PROJECTS.reverse()
     }
 
+    $scope.getTotalBudget = function(projects){
+      var total = 0
+      angular.forEach(projects,function(val,key){
+        total += val.attributes.total_budget
+      })
+      return total
+    }
+
     ////////////////////////////////////////////////////////////////
     //////// PARSE LIVE QUERY - ORGANIZATIONS ////////////////
     ////////////////////////////////////////////////////////////////

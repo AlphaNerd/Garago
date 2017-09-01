@@ -64,8 +64,12 @@ angular.module('garago.controllers', [])
         link: "#/app/projects",
         class: "folder-open-o"
       }, {
+        title: "Latest Project",
+        link: "#/app/project/",
+        class: "clock-o"
+      }, {
         title: "Create new",
-        link: "#/app/myreports/tables,",
+        link: "#/app/project/new,",
         class: "plus"
       }]
     },{
@@ -73,11 +77,15 @@ angular.module('garago.controllers', [])
       class: 'folder-o',
       items: [{
         title: "My Activities",
-        link: "#/app/myreports/charts",
+        link: "#/app/activities",
         class: "folder-open-o"
       }, {
+        title: "Latest Activity",
+        link: "#/app/activity/",
+        class: "clock-o"
+      }, {
         title: "Create new",
-        link: "#/app/myreports/tables,",
+        link: "#/app/activity/new",
         class: "plus"
       }]
     },{

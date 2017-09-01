@@ -22,9 +22,12 @@
             <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
                 <ion-item ng-repeat="item in ORGANIZATIONS" class="item-thumbnail-left">
 
-                    <img ng-src="{{item.img}}">
+                    <img ng-src="{{item.attributes.logo._url}}">
                     <h2><b>{{item.attributes.name}}</b></h2>
                     <p>{{item.attributes.description}}</p>
+                    <div class="contacts">
+                        <span><i class="fa fa-phone"></i></span> &nbsp; <span><i class="fa fa-envelope"></i></span> &nbsp; <span><i class="fa fa-globe"></i></span>
+                    </div>
                     <ion-option-button class="button-positive" ng-click="share(item)">
                         <i class="fa fa-user-plus"></i>
                     </ion-option-button>
@@ -72,6 +75,9 @@
             </div>
             <div class="item item-divider">
                 <i class="fa fa-ellipsis-h"></i>
+                <div class="totals">
+                    {{getTotalBudget(PROJECTS) | currency:'$'}}
+                </div>
             </div>
         </div>
 

@@ -1,10 +1,10 @@
-<ion-view view-title="My Projects">
+<ion-view view-title="My Activities">
     <ion-nav-bar class="bar-stable">
         <ion-nav-back-button>
         </ion-nav-back-button>
         <ion-nav-buttons side="left">
             <button class="button button-icon button-clear ion-navicon menu-toggle" menu-toggle="left">
-            </button>
+                </button>
         </ion-nav-buttons>
         <ion-nav-buttons side="right">
             <button class="button button-icon button-clear" ng-click="createNewProject()"><i class="fa fa-icon fa-plus"></i></button>&nbsp;&nbsp;
@@ -14,12 +14,12 @@
     </ion-nav-bar>
     <ion-content id="ProjectsList" scroll="true">
         <div class="warning" ng-if="!DATA || DATA.length < 1">
-            <h1>No Projects Found.</h1>
+            <h1>No Activities Found.</h1>
         </div>
         <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
-            <ion-item ng-repeat="item in DATA" class="item-thumbnail-left" href="#/app/project/{{item.id}}" ng-class="item.attributes.class == 'animated bounceIn' ? 'new':''">
+            <ion-item ng-repeat="item in DATA" class="item-thumbnail-left" href="#/app/activity/{{item.id}}" ng-class="item.attributes.class == 'animated bounceIn' ? 'new':''">
                 <img ng-src="{{item.img}}">
-                <h2>{{item.attributes.name}}</h2>  
+                <h2>{{item.attributes.title}}</h2>
                 <p>{{item.attributes.description}}</p>
                 <p class="last-updated">Last Updated: {{item.updatedAt | date:'short'}}</p>
                 <div class="acl-indicator">
