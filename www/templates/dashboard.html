@@ -14,7 +14,9 @@
 
     </ion-nav-bar>
     <ion-content id="Dashboard" scroll="true">
-
+        <div class="charts">
+            <!-- <hc-pie-chart title="Budget Breakdown" data="pieData">Placeholder for pie chart</hc-pie-chart> -->
+        </div>
         <div class="card my-organizations">
             <div class="item item-divider">
                 My Organizations
@@ -26,7 +28,8 @@
                     <h2><b>{{item.attributes.name}}</b></h2>
                     <p>{{item.attributes.description}}</p>
                     <div class="contacts">
-                        <span><i class="fa fa-phone"></i></span> &nbsp; <span><i class="fa fa-envelope"></i></span> &nbsp; <span><i class="fa fa-globe"></i></span>
+                        <span><i class="fa fa-phone"></i></span> &nbsp; <span><i class="fa fa-envelope"></i></span> &nbsp;
+                        <span><i class="fa fa-globe"></i></span>
                     </div>
                     <ion-option-button class="button-positive" ng-click="share(item)">
                         <i class="fa fa-user-plus"></i>
@@ -67,12 +70,17 @@
                 My Projects
                 <i class="fa fa-retweet" ng-click="toggleProjectOrder()"></i>
             </div>
-            <div class="item item-text-wrap" ng-repeat="item in PROJECTS track by $index">
-                <i class="fa fa-folder"></i> &nbsp; {{item.attributes.name}}
-                <div class="add-user">
-                        {{item.attributes.total_budget | currency:'$'}}
-                </div>
+            <div class="budget-chart">
+                <hc-pie-chart title="" data="pieData">Placeholder for pie chart</hc-pie-chart>
             </div>
+            <ion-list class="budget-list">
+                <div class="item item-text-wrap" ng-repeat="item in PROJECTS track by $index">
+                    <i class="fa fa-folder"></i> &nbsp; {{item.attributes.name}}
+                    <div class="add-user">
+                        {{item.attributes.total_budget | currency:'$'}}
+                    </div>
+                </div>
+            </ion-list>
             <div class="item item-divider">
                 <i class="fa fa-ellipsis-h"></i>
                 <div class="totals">

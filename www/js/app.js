@@ -17,6 +17,7 @@ angular.module('garago', [
   'garago.factory.utility',
   'garago.factory.parse',
   'garago.directives.contenteditable',
+  'garago.directives.piechart',
   'garago.filters.keyboardShortcut',
   'ngDraggable',
   'ngMaterial',
