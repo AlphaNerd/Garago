@@ -17,6 +17,7 @@ angular.module('garago.factory.parse', [])
     var Teams = Parse.Object.extend("Teams")
     var Projects = Parse.Object.extend("Projects")
     var Activities = Parse.Object.extend("Activities")
+    var Files = Parse.Object.extend("Files")
 
     var obj = {
       ////////////////////////////////////////////////
@@ -364,6 +365,109 @@ angular.module('garago.factory.parse', [])
         mainQuery.find({
           success: function(res) {
             console.log("Found User Messages: ", [res])
+          },
+          error: function(e, r) {
+            console.log(e, r)
+          }
+        }).then(function(res) {
+          if (res) {
+            deferred.resolve(res)
+          } else {
+            deferred.resolve(false)
+          }
+        })
+        return deferred.promise
+      },
+      saveUserFile: function(files,tags){
+        var deferred = $q.defer()
+        var promises = Object.keys(files).map(function(Key,Index){
+          var val = files[Key]
+          var promise = new Promise(function(resolve,reject){
+            var parseFile = new Parse.File(val.name, val);
+            parseFile.save().then(function() {
+    
+              var file = new Parse.Object("Files");
+              file.set("file", parseFile);
+              file.set("tags",tags)
+    
+              var acl = new Parse.ACL();
+              acl.setPublicReadAccess(false);
+              acl.setPublicWriteAccess(false);
+              acl.setReadAccess(Parse.User.current().id, true);
+              acl.setWriteAccess(Parse.User.current().id, true);
+              file.setACL(acl)
+    
+              file.save({
+                success: function(res){
+                  resolve(res)
+                },
+                error: function(e,r){
+                  reject({e,r})
+                }
+              });
+              // The file has been saved to Parse.
+            }, function(error) {
+              reject(error)
+              // The file either could not be read, or could not be saved to Parse.
+            });
+          })
+          return promise
+        })
+        
+        Promise.all(promises).then(function(res){
+          deferred.resolve(res) 
+        }).catch(function(error){
+          console.log(error)
+          deferred.reject(error) 
+        })
+
+        return deferred.promise        
+      },
+      getUserFiles: function(){
+        var deferred = $q.defer()
+        var query1 = new Parse.Query(Files)
+        query1.equalTo("owners", Parse.User.current().id)
+
+        var query2 = new Parse.Query(Files)
+        query2.equalTo("members", Parse.User.current().id)
+
+        var query3 = new Parse.Query(Files)
+        query3.equalTo("createdBy", Parse.User.current().id)
+
+        var mainQuery = Parse.Query.or(query1, query2, query3);
+        mainQuery.descending("createdAt")
+        mainQuery.limit(3)
+        mainQuery.find({
+          success: function(res) {
+            console.log("Found User Files: ", [res])
+          },
+          error: function(e, r) {
+            console.log(e, r)
+          }
+        }).then(function(res) {
+          if (res) {
+            deferred.resolve(res)
+          } else {
+            deferred.resolve(false)
+          }
+        })
+        return deferred.promise
+      },
+      searchFiles: function(search){
+        var deferred = $q.defer()
+
+        var query1 = new Parse.Query(Files)
+        query1.contains("title", search)
+
+        var query2 = new Parse.Query(Files)
+        query2.contains("tags", search)
+        
+        var mainQuery = Parse.Query.or(query1, query2);
+
+
+        mainQuery.find({
+          success: function(res) {
+            console.log("Found User Search Files: ", [res])
           },
           error: function(e, r) {
             console.log(e, r)

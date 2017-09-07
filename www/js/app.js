@@ -24,7 +24,8 @@ angular.module('garago', [
   'ngAnimate',
   'mdColorPicker',
   'ngDroplet',
-  'akoenig.deckgrid'
+  'akoenig.deckgrid',
+  'angularFileUpload'
 ])
 
   .constant('$ionicLoadingConfig', {
@@ -353,9 +354,9 @@ angular.module('garago', [
             templateUrl: 'templates/library.html',
             controller: 'LibraryCtrl',
             resolve: {
-              userFilesData: function ($garagoAPI, $mockApi, $ionicLoading) {
+              userFilesData: function ($parseAPI, $ionicLoading) {
                 $ionicLoading.show()
-                return $garagoAPI.getAllUserFiles().then(function (res) {
+                return $parseAPI.getUserFiles().then(function (res) {
                   console.log("Library View Resolve: ", res)
                   $ionicLoading.hide()
                   return res

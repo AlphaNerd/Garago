@@ -9,6 +9,7 @@
     "gulp-sass": "^3.1.0"
   },
   "dependencies": {
+    "angular-file-upload": "^2.5.0",
     "body-parser": "^1.17.2",
     "cheerio": "^1.0.0-rc.2",
     "cordova-plugin-console": "^1.0.5",
