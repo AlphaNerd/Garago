@@ -50,10 +50,10 @@
     </div>
 
     <div class="search-results">
-      <div class="warning" ng-if="!searchResults || searchResults.length < 1">
+      <!-- <div class="warning" ng-if="!searchResults || searchResults.length < 1">
         <h1>No search results.</h1>
-      </div>
-      <div class="list card" ng-repeat="item in searchResults track by $index" ng-if="item">
+      </div> -->
+      <div class="list card" ng-repeat="item in searchResults track by $index" ng-if="searchResults || searchResults.length > 0">
         <div class="item item-avatar">
             <i class="fa" ng-class="item.attributes.icon" aria-hidden="true"></i>
           <h2>{{item.attributes.title}}</h2>
@@ -86,7 +86,7 @@
         </div>
         <div class="item item-body">
           <p ng-repeat="item in userFiles">
-            <span>Filename: <a href="{{item.attributes.file._url}}" target="_blank">{{item.attributes.title}}</a></span>
+              <i class="fa" ng-class="item.attributes.icon" aria-hidden="true"></i> <span>Filename: <a href="{{item.attributes.file._url}}" target="_blank">{{item.attributes.title}}</a></span>
             <span class="modified">
                 <span>Modified: {{item.updatedAt | date:'shortDate'}}</span>
             </span>
