@@ -306,13 +306,13 @@ input.main-search {
 }
 
 #Library i.fa.fa-upload {
-  color: #59b373;
+  color: greenyellow;
   top: 20px;
   left: 20px;
 }
 
 #Library i.fa.fa-upload:hover{
-  color:green
+  color:#A5C6FF
 }
 
 #Library .search .fa-times-circle {
@@ -335,4 +335,8 @@ input.main-search {
   border-color: #ddd;
   background-color: #2b3a41;
 
+}
+
+#Library .search-results .item{
+  background:#fff
 }
