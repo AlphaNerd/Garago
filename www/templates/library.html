@@ -20,6 +20,7 @@
         <input class="main-search" type="text" placeholder="Search" ng-model="search.text" ng-change="searchFiles(search.text)">
       </label>
       <div class="filters">
+        <i class="fa fa-times-circle placeholder-icon" ng-click="clearSearch()"></i>
         <i class="fa fa-filter" ng-model="showFilters" ng-click="toggleFilters()"></i>
       </div>
     </div>
@@ -32,13 +33,14 @@
         </md-switch>
       </div>
     </div>
+
     <div class="list" id="upload-container">
       <div class="item item-avatar">
         <i class="fa fa-upload" ng-click="uploadFiles()"></i>
+        <i class="fa fa-tag"></i>
         <span class="file-input"><input type="file" accept="image/*,.pdf,.doc,.docx,.txt,.zip" id="upload" multiple/></span>
         <div class="chips">
-          
-          <md-chips ng-model="searchTags" name="tagName" readonly="false" md-removable="true" md-max-chips="10" placeholder="Add tag here...">
+          <md-chips ng-model="searchTags" name="tagName" readonly="false" md-removable="true" md-max-chips="10" placeholder="Add tag(s) here...">
             <md-chip-template>
               <strong>{{$chip}}</strong>
             </md-chip-template>
@@ -46,6 +48,7 @@
         </div>
       </div>
     </div>
+
     <div class="search-results">
       <div class="warning" ng-if="!searchResults || searchResults.length < 1">
         <h1>No results.</h1>
@@ -83,7 +86,7 @@
         </div>
         <div class="item item-body">
           <p ng-repeat="item in userFiles">
-            <span>Filename: <a href="{{item.attributes.file._url}}">{{item.attributes.title}}</a></span>
+            <span>Filename: <a href="{{item.attributes.file._url}}" target="_blank">{{item.attributes.title}}</a></span>
             <span class="modified">
                 <span>Modified: {{item.updatedAt | date:'shortDate'}}</span>
             </span>

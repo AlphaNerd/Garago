@@ -10,6 +10,9 @@ angular.module('garago.controllers.library', [])
       console.log("LibraryCtrl Loaded.")
     });
 
+    $scope.search = {
+      text: ""
+    }
     $scope.searchTags = []
 
     $scope.toggleFilters = function (data) {
@@ -17,6 +20,11 @@ angular.module('garago.controllers.library', [])
     }
 
     $scope.userFiles = userFilesData
+
+    $scope.clearSearch = function(){
+      $scope.search = {}
+      $scope.searchResults = []
+    }
 
     $scope.searchFiles = function (search) {
       if (search.length > 0) {
@@ -41,6 +49,7 @@ angular.module('garago.controllers.library', [])
         $parseAPI.getUserFiles().then(function (res) {
           console.log("Save returned: ", res)
           $scope.userFiles = res
+          $input.value = null;
         })
       })
     }
