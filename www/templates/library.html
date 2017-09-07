@@ -51,11 +51,11 @@
 
     <div class="search-results">
       <div class="warning" ng-if="!searchResults || searchResults.length < 1">
-        <h1>No results.</h1>
+        <h1>No search results.</h1>
       </div>
       <div class="list card" ng-repeat="item in searchResults track by $index" ng-if="item">
         <div class="item item-avatar">
-          <img src="https://cdn0.iconfinder.com/data/icons/HTML5/512/HTML_Logo.png">
+            <i class="fa" ng-class="item.attributes.icon" aria-hidden="true"></i>
           <h2>{{item.attributes.title}}</h2>
           <p>Modified: {{item.updatedAt | date:'fullDate'}}</p>
           <div class="options">

@@ -1,6 +1,6 @@
 angular.module('garago.controllers.library', [])
 
-  .controller('LibraryCtrl', function ($scope, $ionicModal, $timeout, $rootScope, $ionicSideMenuDelegate, $parseAPI, userFilesData, FileUploader) {
+  .controller('LibraryCtrl', function ($scope, $ionicModal, $timeout, $rootScope, $ionicSideMenuDelegate, $parseAPI, userFilesData, FileUploader, $ionicLoading) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -32,16 +32,15 @@ angular.module('garago.controllers.library', [])
           console.log("Search returned: ", res)
           $scope.searchResults = res
         })
-        // $garagoAPI.searchFiles(search.toLowerCase()).then(function (res) {
-        //   console.log("Search returned: ", res)
-        //   $scope.searchResults = res
-        // })
       } else {
         $scope.searchResults = []
       }
     }
 
     $scope.uploadFiles = function(){
+      $ionicLoading.show({
+        template: "Saving file(s)..."
+      })
       var $input = angular.element(document.getElementById('upload'));
       console.log($input[0].files)
       $parseAPI.saveUserFile($input[0].files,$scope.searchTags).then(function (res) {
@@ -49,7 +48,9 @@ angular.module('garago.controllers.library', [])
         $parseAPI.getUserFiles().then(function (res) {
           console.log("Save returned: ", res)
           $scope.userFiles = res
-          $input.value = null;
+          $input.val(null);
+          $scope.searchTags = []
+          $ionicLoading.hide()
         })
       })
     }
