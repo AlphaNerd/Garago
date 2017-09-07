@@ -38,6 +38,10 @@ angular.module('garago.controllers.library', [])
       console.log($input[0].files)
       $parseAPI.saveUserFile($input[0].files,$scope.searchTags).then(function (res) {
         console.log("Save returned: ", res)
+        $parseAPI.getUserFiles().then(function (res) {
+          console.log("Save returned: ", res)
+          $scope.userFiles = res
+        })
       })
     }
   })

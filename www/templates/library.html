@@ -32,6 +32,20 @@
         </md-switch>
       </div>
     </div>
+    <div class="list" id="upload-container">
+      <div class="item item-avatar">
+        <i class="fa fa-upload" ng-click="uploadFiles()"></i>
+        <span class="file-input"><input type="file" accept="image/*,.pdf,.doc,.docx,.txt,.zip" id="upload" multiple/></span>
+        <div class="chips">
+          
+          <md-chips ng-model="searchTags" name="tagName" readonly="false" md-removable="true" md-max-chips="10" placeholder="Add tag here...">
+            <md-chip-template>
+              <strong>{{$chip}}</strong>
+            </md-chip-template>
+          </md-chips>
+        </div>
+      </div>
+    </div>
     <div class="search-results">
       <div class="warning" ng-if="!searchResults || searchResults.length < 1">
         <h1>No results.</h1>
@@ -47,7 +61,7 @@
                 <i md-menu-origin md-svg-icon="call:textsms" class="fa fa-ellipsis-v"></i>
               </md-button>
               <md-menu-content width="4" ng-click="$mdMenu.close()">
-                <md-menu-item ng-repeat="item in ['Edit', 'Delete', 'Share']">  
+                <md-menu-item ng-repeat="item in ['Edit', 'Delete', 'Share']">
                   <md-button>
                     {{item}}
                   </md-button>
@@ -61,25 +75,6 @@
       </div>
     </div>
     <div class="file-dashboard animated fadeIn">
-      <div class="list card">
-        <div class="item item-avatar">
-          <i class="fa fa-upload" aria-hidden="true"></i>
-          <h2>Upload File</h2>
-          <!-- <p>doc,pdf,txt,jpg,png</p> -->
-        </div>
-        <div class="item item-body">
-
-          <input type="file" accept="image/*,.pdf,.doc,.docx,.txt,.zip" id="upload" multiple/>
-
-          <md-chips ng-model="searchTags" name="tagName" readonly="false" md-removable="true" md-max-chips="10" placeholder="Enter tag...">
-            <md-chip-template>
-              <strong>{{$chip}}</strong>
-            </md-chip-template>
-          </md-chips>
-          <!-- <p>Tags can help you find files quicker when searching. Add up to 10 tags.</p> -->
-          <div class="button button-balanced button-block" ng-click="uploadFiles()">Upload</div>
-        </div>
-      </div>
       <div class="list card">
         <div class="item item-avatar">
           <i class="fa fa-folder-o" aria-hidden="true"></i>

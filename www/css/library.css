@@ -37,7 +37,11 @@
 
 #Library i.icon.ion-search.placeholder-icon {
   font-size: 30px;
-  color: #2b3a41;
+  color: rgb(250,250,250);
+}
+
+#Library .item-input{
+  background:#2b3a41
 }
 
 .item-avatar>i:first-child {
@@ -87,31 +91,31 @@
 } 
 
 md-chips input::-webkit-input-placeholder {
-    color: #fff!important;
+    color: rgb(43, 58, 65)!important;
 }
 
 md-chips input::-moz-placeholder {
   /* Firefox 19+ */
-  color: #fff!important;
+  color: rgb(43, 58, 65)!important;
 }
 
 md-chips input:-ms-input-placeholder {
   /* IE 10+ */
-  color: #fff!important;
+  color: rgb(43, 58, 65)!important;
 }
 
 md-chips input:-moz-placeholder {
   /* Firefox 18- */
-  color: #fff!important;
+  color: rgb(43, 58, 65)!important;
 }
 
 
 md-chips-wrap {
-  margin: 20px 0!important;
+  margin: 0px 0!important;
 }
 
 md-chips .md-chips .md-chip-input-container input {
-  color: rgba(255, 255, 255, 0.87);
+  color: rgb(43, 58, 65);
 }
 
 md-chips .md-chips.md-focused {
@@ -236,9 +240,10 @@ input.md-input {
 }
 
 input.main-search {
-    color: #1c5481;
-    font-size: 26px;
-    font-family: 'Patua One', cursive;
+  color: rgba(255,255,255,0.87);
+  font-size: 26px;
+  font-family: 'Patua One', cursive;
+  background: #2b3a41;
 }
 
 .drop-box {
@@ -265,4 +270,45 @@ input.main-search {
   margin: 5px 2px 0 0px;
   text-align: center;
   display: inline-block;
+}
+
+#Library #upload-container{
+  width:100%
+}
+
+#Library span.file-input {
+  display: block;
+  width: 30%;
+  top: 10px;
+  position: relative;
+  float: left;
+  max-width: 220px;
+}
+
+#Library input[type="file"] {
+  line-height: 18px;
+  width: 100%;
+}
+
+#Library i.fa.fa-upload {
+  color: #59b373;
+}
+
+#Library .chips {
+  width: 100%;
+  float: left;
+  height: 52px;
+  position: relative;
+  top: 20px;
+  left: -56px;
+}
+
+#Library i.fa.fa-upload {
+  color: #59b373;
+  top: 20px;
+  left: 20px;
+}
+
+#Library i.fa.fa-upload:hover{
+  color:green
 }
