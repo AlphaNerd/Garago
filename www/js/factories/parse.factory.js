@@ -476,7 +476,7 @@ angular.module('garago.factory.parse', [])
       getUserFiles: function(){
         var deferred = $q.defer()
         var query = new Parse.Query(Files)
-        query.equalTo("createdBy", Parse.User.current().id)
+        query.contains("createdBy", Parse.User.current().id)
         query.descending("createdAt")
         query.limit(5)
         query.find({
