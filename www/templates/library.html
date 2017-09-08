@@ -34,21 +34,6 @@
       </div>
     </div>
 
-    <div class="list" id="upload-container">
-      <div class="item item-avatar">
-        <i class="fa fa-upload" ng-click="uploadFiles()"></i>
-        <i class="fa fa-tag"></i>
-        <span class="file-input"><input type="file" accept="image/*,.pdf,.doc,.docx,.txt,.zip" id="upload" multiple/></span>
-        <div class="chips">
-          <md-chips ng-model="searchTags" name="tagName" readonly="false" md-removable="true" md-max-chips="10" placeholder="Add tag(s) here...">
-            <md-chip-template>
-              <strong>{{$chip}}</strong>
-            </md-chip-template>
-          </md-chips>
-        </div>
-      </div>
-    </div>
-
     <div class="search-results">
       <!-- <div class="warning" ng-if="!searchResults || searchResults.length < 1">
         <h1>No search results.</h1>
@@ -104,26 +89,18 @@
         </div>
       </div>
       <div class="list card">
+        <div class="list" id="upload-container">
           <div class="item item-avatar">
-            <i class="fa fa-folder-o" aria-hidden="true"></i>
-            <h2>Shared Files</h2>
-            <!-- <p>Stats &amp; Quick Reference</p> -->
-          </div>
-          <div class="item item-body" ng-repeat="item in userSharedFiles">
-              <i class="fa" ng-class="item.icon" aria-hidden="true"></i><span> <a href="{{item.file._url}}" target="_blank">{{item.title}}</a></span>
-              <span class="modified">
-                  <span>Modified: {{item.updatedAt | date:'shortDate'}}</span>
-              </span>
-              <span class="tags">
-                  <span ng-repeat="tag in item.tags">
-                      {{tag}}
-                  </span>
-              </span>
-              <span class="shared-with">
-                  <span class="user" ng-repeat="item in item.members track by $index" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
-                    <div class="image" ng-style="{'background-image':'url({{item.attributes.image._url}})'}"></div>
-                  </span>
-              </span>
+            <i class="fa fa-upload" ng-click="uploadFiles()"></i>
+            <i class="fa fa-tag"></i>
+            <span class="file-input"><input type="file" accept="image/*,.pdf,.doc,.docx,.txt,.zip" id="upload" multiple/></span>
+            <div class="chips">
+              <md-chips ng-model="searchTags" name="tagName" readonly="false" md-removable="true" md-max-chips="10" placeholder="Add tag(s) here...">
+                <md-chip-template>
+                  <strong>{{$chip}}</strong>
+                </md-chip-template>
+              </md-chips>
+            </div>
           </div>
         </div>
     </div>

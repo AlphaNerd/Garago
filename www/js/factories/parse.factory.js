@@ -395,9 +395,8 @@ angular.module('garago.factory.parse', [])
               file.set("tags",tags)
     
               var acl = new Parse.ACL();
-              acl.setPublicReadAccess(false);
+              acl.setPublicReadAccess(true);
               acl.setPublicWriteAccess(false);
-              acl.setReadAccess(Parse.User.current().id, true);
               acl.setWriteAccess(Parse.User.current().id, true);
               file.setACL(acl)
     
