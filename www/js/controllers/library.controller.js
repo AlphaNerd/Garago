@@ -1,6 +1,6 @@
 angular.module('garago.controllers.library', [])
 
-  .controller('LibraryCtrl', function ($scope, $ionicModal, $timeout, $rootScope, $ionicSideMenuDelegate, $parseAPI, userFilesData, FileUploader, $ionicLoading) {
+  .controller('LibraryCtrl', function ($scope, $ionicModal, $timeout, $rootScope, $ionicSideMenuDelegate, $parseAPI, userFilesData, userSharedFilesData, FileUploader, $ionicLoading) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -20,6 +20,7 @@ angular.module('garago.controllers.library', [])
     }
 
     $scope.userFiles = userFilesData
+    $scope.userSharedFiles = userSharedFilesData
 
     $scope.clearSearch = function(){
       $scope.search = {}

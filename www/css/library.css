@@ -62,10 +62,6 @@
   font-size: 11px;
 }
 
-#Library .file-dashboard .item.item-body {
-  padding-top: 0!important;
-}
-
 #Library .drop-zone h3 {
   color: rgba(255, 255, 255, 0.25);
   border: 4px dashed rgba(255, 255, 255, 0.25);
@@ -340,4 +336,33 @@ input.main-search {
 
 #Library .search-results .item{
   background:#fff
+}
+
+#Library span.user-file-options {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+#Library .shared-with{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.shared-with .user .image {
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+  border-radius: 100%;
+  border:2px solid #fff;
+  box-shadow:1px 1px 1px rgba(0,0,0,0.25);
+  background-size:cover;
+  background-position-x:50%;
+  background-position-y: 50%;
+}
+
+.shared-with span.user {
+  display: inline-block;
+  position: relative;
 }

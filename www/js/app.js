@@ -357,7 +357,15 @@ angular.module('garago', [
               userFilesData: function ($parseAPI, $ionicLoading) {
                 $ionicLoading.show()
                 return $parseAPI.getUserFiles().then(function (res) {
-                  console.log("Library View Resolve: ", res)
+                  console.log("Library View 'User Files' Resolve: ", res)
+                  $ionicLoading.hide()
+                  return res
+                })
+              },
+              userSharedFilesData: function ($parseAPI, $ionicLoading) {
+                $ionicLoading.show()
+                return $parseAPI.getUserSharedFiles().then(function (res) {
+                  console.log("Library View 'User Shared Files' Resolve: ", res)
                   $ionicLoading.hide()
                   return res
                 })
