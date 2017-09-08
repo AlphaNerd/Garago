@@ -8,6 +8,7 @@ angular.module('garago.controllers', [])
     // listen for the $ionicView.enter event:
     $scope.$on('$ionicView.enter', function(e) {
       console.log("ParentCtrl Loaded.")
+      var myDelay = 0;
     });
 
     $scope.CurrentUser = Parse.User.current()
@@ -38,6 +39,11 @@ angular.module('garago.controllers', [])
         $scope.DATA = res
         $ionicLoading.hide()
       });
+    }
+
+    $scope.entryDelay = function(){
+      myDelay += 1
+      return myDelay
     }
 
     $scope.MENU_ACTIONPLAN = [{

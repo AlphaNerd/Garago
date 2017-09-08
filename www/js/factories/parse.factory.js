@@ -452,9 +452,29 @@ angular.module('garago.factory.parse', [])
           error: function(e, r) {
             console.log(e, r)
           }
-        }).then(function(res) {
-          if (res) {
-            deferred.resolve(res)
+        }).then(function(resp) {
+          if (resp) {
+            var promises = []
+            var files = []
+            angular.forEach(resp,function(val,key){
+              var obj = angular.copy(val.attributes)
+              obj.id = val.id
+              var promise = new Promise(function(resolve,reject){
+                var query = new Parse.Query(Users)
+                query.containedIn("objectId",val.attributes.members)
+                query.find().then(function(res){
+                  console.log(res)
+                  obj.members = res
+                  files.push(obj)
+                  resolve(res)
+                })
+              })
+              promises.push(promise)
+            })
+            Promise.all(promises).then(function(res){
+              console.log("Users for file: ",files)
+              deferred.resolve(files)
+            })
           } else {
             deferred.resolve(false)
           }
