@@ -427,24 +427,14 @@ angular.module('garago.factory.parse', [])
         return deferred.promise        
       },
       ////////////////////////////////////////////////
-      ////// Get All User Files from Parse
+      ////// Get ALL Public Files from Parse
       ////////////////////////////////////////////////
-      getUserFiles: function(){
+      getAllFiles: function(){
         var deferred = $q.defer()
-        var query1 = new Parse.Query(Files)
-        query1.equalTo("owners", Parse.User.current().id)
-
-        var query2 = new Parse.Query(Files)
-        query2.equalTo("members", Parse.User.current().id)
-
-        var query3 = new Parse.Query(Files)
-        query3.equalTo("createdBy", Parse.User.current().id)
-
-        var mainQuery = Parse.Query.or(query1, query2, query3);
-        mainQuery.descending("createdAt")
-        mainQuery.limit(5)
-        mainQuery.include("members")
-        mainQuery.find({
+        var query = new Parse.Query(Files)
+        query.descending("createdAt")
+        query.limit(5)
+        query.find({
           success: function(res) {
             console.log("Found User Files: ", [res])
           },
@@ -460,7 +450,52 @@ angular.module('garago.factory.parse', [])
               obj.id = val.id
               var promise = new Promise(function(resolve,reject){
                 var query = new Parse.Query(Users)
-                query.containedIn("objectId",val.attributes.members)
+                query.equalTo("objectId",val.attributes.createdBy)
+                query.find().then(function(res){
+                  console.log(res)
+                  obj.members = res
+                  files.push(obj)
+                  resolve(res)
+                })
+              })
+              promises.push(promise)
+            })
+            Promise.all(promises).then(function(res){
+              console.log("Users for file: ",files)
+              deferred.resolve(files)
+            })
+          } else {
+            deferred.resolve(false)
+          }
+        })
+        return deferred.promise
+      },
+      ////////////////////////////////////////////////
+      ////// Get All User Files from Parse
+      ////////////////////////////////////////////////
+      getUserFiles: function(){
+        var deferred = $q.defer()
+        var query = new Parse.Query(Files)
+        query.equalTo("createdBy", Parse.User.current().id)
+        query.descending("createdAt")
+        query.limit(5)
+        query.find({
+          success: function(res) {
+            console.log("Found User Files: ", [res])
+          },
+          error: function(e, r) {
+            console.log(e, r)
+          }
+        }).then(function(resp) {
+          if (resp) {
+            var promises = []
+            var files = []
+            angular.forEach(resp,function(val,key){
+              var obj = angular.copy(val.attributes)
+              obj.id = val.id
+              var promise = new Promise(function(resolve,reject){
+                var query = new Parse.Query(Users)
+                query.equalTo("objectId",val.attributes.createdBy)
                 query.find().then(function(res){
                   console.log(res)
                   obj.members = res
@@ -564,7 +599,7 @@ angular.module('garago.factory.parse', [])
               obj.id = val.id
               var promise = new Promise(function(resolve,reject){
                 var query = new Parse.Query(Users)
-                query.containedIn("objectId",val.attributes.members)
+                query.equalTo("objectId",val.attributes.createdBy)
                 query.find().then(function(res){
                   console.log(res)
                   obj.members = res

@@ -21,10 +21,11 @@
       </label>
       <div class="filters">
         <i class="fa fa-times-circle placeholder-icon" ng-click="clearSearch()"></i>
-        <i class="fa fa-filter" ng-model="showFilters" ng-click="toggleFilters()"></i>
+        <!-- <i class="fa fa-filter" ng-model="showFilters" ng-click="toggleFilters()"></i> -->
       </div>
     </div>
-    <div class="filter-panel" ng-class="showFilters ? 'open':'close'" ng-show="showFilters">
+    
+    <!-- <div class="filter-panel" ng-class="showFilters ? 'open':'close'" ng-show="showFilters">
       <i class="fa fa-retweet" ng-click=""></i>
       <i class="fa fa-calendar" ng-click=""></i>
       <div class="toggle" style="float:right">
@@ -32,15 +33,15 @@
           Filter
         </md-switch>
       </div>
-    </div>
+    </div> -->
 
-    <div class="search-results">
-      <!-- <div class="warning" ng-if="!searchResults || searchResults.length < 1">
+    <div class="search-results" ng-if="searchResults || searchResults.length > 0">
+      <div class="warning" ng-if="!searchResults || searchResults.length < 1">
         <h1>No search results.</h1>
-      </div> -->
-      <div class="list card" ng-repeat="item in searchResults track by $index" ng-if="searchResults || searchResults.length > 0">
+      </div>
+      <div class="list card" ng-repeat="item in searchResults track by $index">
         <div class="item item-avatar">
-            <i class="fa" ng-class="item.icon" aria-hidden="true"></i>
+          <i class="fa" ng-class="item.icon" aria-hidden="true"></i>
           <h2>{{item.title}}</h2>
           <p>Modified: {{item.updatedAt | date:'fullDate'}}</p>
           <span class="tags">
@@ -63,46 +64,71 @@
       <div class="list card">
         <div class="item item-avatar">
           <i class="fa fa-folder-o" aria-hidden="true"></i>
-          <h2>Recent Files</h2>
+          <h2>My Files</h2>
+          <p>Most recent uploads</p>
           <!-- <p>Stats &amp; Quick Reference</p> -->
         </div>
         <div class="item item-body" ng-repeat="item in userFiles">
-            <i class="fa" ng-class="item.icon" aria-hidden="true"></i> <span><a href="{{item.file._url}}" target="_blank">{{item.title}}</a></span>
-            <span class="modified">
+          <i class="fa" ng-class="item.icon" aria-hidden="true"></i> <span><a href="{{item.file._url}}" target="_blank">{{item.title}}</a></span>
+          <span class="modified">
                 <span>Modified: {{item.updatedAt | date:'shortDate'}}</span>
-            </span>
-            <span class="tags">
+          </span>
+          <span class="tags">
                 <span ng-repeat="tag in item.tags">
                     {{tag}}
                 </span>
-            </span>
-            <span class="user-file-options">
+          </span>
+          <span class="user-file-options">
                 <span class="shared-with">
                     <span class="user" ng-repeat="item in item.members track by $index" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
                       <div class="image" ng-style="{'background-image':'url({{item.attributes.image._url}})'}"></div>
                     </span>
-                </span>
-                <i class="fa fa-download" aria-hidden="true"></i>&nbsp;
-                <i class="fa fa-share-alt" aria-hidden="true"></i>&nbsp;
-                <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;
-            </span>
+          </span>
+          <i class="fa fa-download" aria-hidden="true"></i>&nbsp;
+          <i class="fa fa-share-alt" aria-hidden="true"></i>&nbsp;
+          <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;
+          </span>
         </div>
       </div>
-      <div class="list card">
+      <!-- Upload -->
+      <div class="list card upload-module">
         <div class="list" id="upload-container">
           <div class="item item-avatar">
+            <i class="fa fa-folder-o" aria-hidden="true"></i>
+            <h2>Upload</h2>
+            <p>(png, jpg, gif, pdf, doc, docx, txt)</p>
+            <!-- <p>Stats &amp; Quick Reference</p> -->
+          </div>
+          <div class="item item-avatar">
             <i class="fa fa-upload" ng-click="uploadFiles()"></i>
-            <i class="fa fa-tag"></i>
             <span class="file-input"><input type="file" accept="image/*,.pdf,.doc,.docx,.txt,.zip" id="upload" multiple/></span>
-            <div class="chips">
+            <div class="warning">
+              <h1>Drop Files Here </h1>
+            </div>
+            <!-- <div class="chips">
               <md-chips ng-model="searchTags" name="tagName" readonly="false" md-removable="true" md-max-chips="10" placeholder="Add tag(s) here...">
                 <md-chip-template>
                   <strong>{{$chip}}</strong>
                 </md-chip-template>
               </md-chips>
+            </div> -->
+            <div class="experimental-chips">
+              <i class="fa fa-tag"></i>
+              <md-chips ng-model="selectedVegetables" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-require-match="false">
+                <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name"
+                  placeholder="Tag with NOC code(s)">
+                  <span md-highlight-text="searchText">{{item.name}} :: {{item.type}}</span>
+                </md-autocomplete>
+                <md-chip-template>
+                  <span>
+            <strong>{{$chip.name}}</strong>
+            <em>({{$chip.type}})</em>
+          </span>
+                </md-chip-template>
+              </md-chips>
             </div>
           </div>
         </div>
-    </div>
+      </div>
   </ion-content>
 </ion-view>

@@ -21,24 +21,29 @@
   font-size: 18px;
 }
 
+#Library .upload-module .warning h1 {
+  min-height: 200px;
+  line-height: 15;
+}
+
 #Library .file-dashboard h2 {
-  color: #fff
+  color: #2b3a41
 }
 
 #Library .file-dashboard p,
 #Library .file-dashboard a {
-  color: #fff
+  color: #2b3a41
 }
 
 #Library .file-dashboard .item {
-  border-color: #162a3a;
-  background-color: #2b3a41;
-  color: #fff;
+  border-color: #ddd;
+  background-color: #fff;
+  color: #2b3a41;
 }
 
 #Library i.icon.ion-search.placeholder-icon {
   font-size: 30px;
-  color: rgb(250,250,250);
+  color: #2b3a41;
 }
 
 #Library .item-input{
@@ -87,25 +92,25 @@
   margin: 15px 0;
 } 
 md-chips .md-chips .md-chip-input-container input::-webkit-input-placeholder{
-  color:#fff
+  color:#2b3a41
 }
 md-chips input::-webkit-input-placeholder {
-    color: #fff;
+    color: #2b3a41;
 }
 
 md-chips input::-moz-placeholder {
   /* Firefox 19+ */
-  color: #fff;
+  color: #2b3a41;
 }
 
 md-chips input:-ms-input-placeholder {
   /* IE 10+ */
-  color: #fff;
+  color: #2b3a41;
 }
 
 md-chips input:-moz-placeholder {
   /* Firefox 18- */
-  color: #fff;
+  color: #2b3a41;
 }
 
 
@@ -114,7 +119,7 @@ md-chips-wrap {
 }
 
 md-chips .md-chips .md-chip-input-container input {
-  color: #fff;
+  color: #222;
 }
 
 md-chips .md-chips.md-focused {
@@ -239,10 +244,10 @@ input.md-input {
 }
 
 input.main-search {
-  color: rgba(255,255,255,0.87);
+  color: #2b3a41;
   font-size: 26px;
   font-family: 'Patua One', cursive;
-  background: #2b3a41;
+  background: #fff;
 }
 
 .drop-box {
@@ -258,8 +263,10 @@ input.main-search {
   border: 5px dashed blue;
 }
 
-.card .tags{
+.card .tags {
   font-size: 11px;
+  min-height: 30px;
+  display: block;
 }
 
 .card .tags span {
@@ -277,7 +284,6 @@ input.main-search {
 
 #Library span.file-input {
   display: block;
-  width: 30%;
   top: 10px;
   position: relative;
   float: left;
@@ -287,7 +293,7 @@ input.main-search {
 #Library input[type="file"] {
   line-height: 18px;
   width: 100%;
-  color: #fff;
+  color: #222;
 }
 
 #Library i.fa.fa-upload {
@@ -303,7 +309,7 @@ input.main-search {
 }
 
 #Library i.fa.fa-upload {
-  color: greenyellow;
+  color: #2b3a41
   top: 20px;
   left: 20px;
 }
@@ -324,13 +330,13 @@ input.main-search {
 #Library .list i.fa.fa-tag {
   position: absolute;
   left: 28px;
-  bottom: 13px;
-  color:#fff;
+  bottom: 25px;
+  color:#2b3a41;
 }
 
 #Library .item {
   border-color: #ddd;
-  background-color: #2b3a41;
+  background-color: #fff;
 
 }
 
@@ -371,4 +377,58 @@ input.main-search {
   position: absolute;
   top: 30px;
   right: 5px;
+}
+
+
+#Library .upload-module .warning {
+  clear: both;
+  margin: 60px 0 0 0;
+  position: relative;
+  left: -10px;
+}
+
+
+#Library .user .image{
+  width: 70px;
+  height: 70px;
+  background-size: cover;
+  border-radius: 100%;
+  position: absolute;
+  left: 15px;
+  top: 15px;
+}
+
+#Library .acl-indicator {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+#Library .acl-indicator div {
+  float: left;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+#Library .acl-indicator .green{
+  color:green;
+}
+
+#Library .acl-indicator .grey{
+  color:#bbb
+}
+
+.tags {
+  font-size: 11px;
+  min-height: 30px;
+  display: block;
+}
+
+.tags span {
+  padding: 0px 10px;
+  background: rgba(0,0,0,0.15);
+  border-radius: 10px;
+  margin: 5px 2px 0 0px;
+  text-align: center;
+  display: inline-block;
 }

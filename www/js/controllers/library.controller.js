@@ -56,4 +56,84 @@ angular.module('garago.controllers.library', [])
         })
       })
     }
+
+
+
+    ////// Experimental Chips    
+    $scope.readonly = false;
+    $scope.selectedItem = null;
+    $scope.searchText = null;
+    $scope.querySearch = $scope.querySearch;
+    $scope.vegetables = loadVegetables();
+    $scope.selectedVegetables = [];
+    $scope.numberChips = [];
+    $scope.numberChips2 = [];
+    $scope.numberBuffer = '';
+    $scope.autocompleteDemoRequireMatch = true;
+    $scope.transformChip = $scope.transformChip;
+
+    /**
+     * Return the proper object when the append is called.
+     */
+    $scope.transformChip = function(chip) {
+      // If it is an object, it's already a known chip
+      if (angular.isObject(chip)) {
+        return chip;
+      }
+
+      // Otherwise, create a new one
+      return { name: chip, type: 'new' }
+    }
+
+    /**
+     * Search for vegetables.
+     */
+    $scope.querySearch = function(query) {
+      var results = query ? $scope.vegetables.filter(createFilterFor(query)) : [];
+      return results;
+    }
+
+    /**
+     * Create filter function for a query string
+     */
+    function createFilterFor(query) {
+      var lowercaseQuery = angular.lowercase(query);
+
+      return function filterFn(vegetable) {
+        return (vegetable._lowername.indexOf(lowercaseQuery) === 0) ||
+            (vegetable._lowertype.indexOf(lowercaseQuery) === 0);
+      };
+
+    }
+
+    function loadVegetables(){
+      var veggies = [
+        {
+          'name': 'Research',
+          'type': '24531'
+        },
+        {
+          'name': 'Development',
+          'type': '65456'
+        },
+        {
+          'name': 'Marketing',
+          'type': '87684'
+        },
+        {
+          'name': 'Budgets',
+          'type': '542335'
+        },
+        {
+          'name': 'Activities',
+          'type': '8786756'
+        }
+      ];
+
+      return veggies.map(function (veg) {
+        veg._lowername = veg.name.toLowerCase();
+        veg._lowertype = veg.type.toLowerCase();
+        return veg;
+      });
+    }
   })

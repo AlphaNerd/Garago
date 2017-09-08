@@ -6,6 +6,7 @@ angular.module('garago', [
   'garago.controllers.actionplans',
   'garago.controllers.dashboard',
   'garago.controllers.library',
+  'garago.controllers.library_browse',
   'garago.controllers.register',
   'garago.controllers.intro',
   'garago.controllers.projects',
@@ -366,6 +367,34 @@ angular.module('garago', [
                 $ionicLoading.show()
                 return $parseAPI.getUserSharedFiles().then(function (res) {
                   console.log("Library View 'User Shared Files' Resolve: ", res)
+                  $ionicLoading.hide()
+                  return res
+                })
+              }
+            }
+          }
+        }
+      })
+
+      ////////////////////////////////////////////////////////////////
+      //////////////// Smart Library Route - In Dev ///////////////////////
+      ////////////////////////////////////////////////////////////////
+      ///
+      ///   Route: /library/browse
+      ///   Browse & Search smart library for files. 
+      ///
+      ////////////////////////////////////////////////////////////////
+      .state('app.library_browse', {
+        url: '/library/browse',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/library_browse.html',
+            controller: 'LibraryBrowseCtrl',
+            resolve: {
+              userFilesData: function ($parseAPI, $ionicLoading) {
+                $ionicLoading.show()
+                return $parseAPI.getAllFiles().then(function (res) {
+                  console.log("Library Browse View 'All Files' Resolve: ", res)
                   $ionicLoading.hide()
                   return res
                 })

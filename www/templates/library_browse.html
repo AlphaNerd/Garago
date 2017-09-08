@@ -1,0 +1,53 @@
+<ion-view view-title="Browse Library">
+    <ion-nav-bar class="bar-stable">
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-clear ion-navicon menu-toggle" menu-toggle="left">
+            </button>
+        </ion-nav-buttons>
+        <ion-nav-buttons side="right">
+            <button class="button button-icon button-clear" ng-click="createNewProject()"><i class="fa fa-icon fa-upload"></i></button>&nbsp;&nbsp;
+            <!-- <button class="button button-icon button-clear" ng-click="showDelete()"><i class="fa fa-icon fa-minus"></i></button>&nbsp;&nbsp; -->
+        </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-content id="Library" scroll="true">
+        <div class="warning" ng-if="!DATA || DATA.length < 1">
+            <h1>No Projects Found.</h1>
+        </div>
+        <div class="item item-input-inset">
+            <label class="item-input-wrapper">
+                <input type="text" placeholder="Search" ng-model="search.text">
+            </label>
+        </div>
+        <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
+            <ion-item ng-repeat="item in DATA | filter: {name: search.text}" class="item-thumbnail-left" href="#/app/project/{{item.id}}" ng-class="item.attributes.class == 'animated bounceIn' ? 'new':''">
+                <div class="user" ng-repeat="item in item.members track by $index" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
+                  <div class="image" ng-style="{'background-image':'url({{item.attributes.image._url}})'}"></div>
+                </div>
+                <h2>{{item.title}}</h2>
+                <p>{{item.description}}</p>
+                <p class="last-updated">Last Updated: {{item.updatedAt | date:'short'}}</p>
+                <p class="created-by">Created By: {{item.members[0].attributes.username}}</p>
+                    <span ng-repeat="tag in item.tags">
+                        {{tag}}
+                    </span>
+                </span>
+                <div class="acl-indicator">
+                    <div ng-class="item.ACL.permissionsById['*'].read ? 'green':'grey'">R</div>
+                    <div ng-class="item.ACL.permissionsById[CurrentUser.id].write ? 'green':'grey'">W</div>
+                </div>
+                <ion-option-button class="button-positive" ng-click="share(item)">
+                    Share
+                </ion-option-button>
+                <ion-option-button class="button-assertive" ng-click="deleteProject(item)" ng-if="item.ACL.permissionsById[CurrentUser.id].write">
+                    Delete
+                </ion-option-button>
+                <ion-delete-button class="fa fa-minus-circle" ng-click="deletePlan(item,$index)">
+                </ion-delete-button>
+                <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(item, $fromIndex, $toIndex)" ng-if="item.ACL.permissionsById[CurrentUser.id].write">
+                </ion-reorder-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

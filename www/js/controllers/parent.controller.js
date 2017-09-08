@@ -130,6 +130,26 @@ angular.module('garago.controllers', [])
         link: "#/app/myreports/custom,",
         class: "plus"
       }]
+    },{
+      name: "Smart Library",
+      class: 'folder-o',
+      items: [{
+        title: "Dashboard",
+        link: "#/app/library",
+        class: "windows"
+      }, {
+        title: "Browse All",
+        link: "#/app/library/browse",
+        class: "list"
+      }, {
+        title: "Upload",
+        link: "#/app/library/upload",
+        class: "upload"
+      }, {
+        title: "Share",
+        link: "#/app/library/share",
+        class: "share"
+      }]
     }];
 
     $scope.gotoSlide = function(num) {
