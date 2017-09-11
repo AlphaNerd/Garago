@@ -18,38 +18,40 @@
     <ion-content id="MainMenu">
       <ion-slide-box on-slide-changed="slideHasChanged($index)">
         <ion-slide id="Menu">
-          <div class="menu-header">
-            <div class="logo">
-              <img src="https://dev.goforms.ca/assets/img/app/profile/garago.png">
-            </div>
-            <div class="mail">
-              <i class="fa fa-envelope-o" aria-hidden="true" ng-click="gotoSlide(1)"></i>
-              <div class="badge animated bounceIn">5</div>
-            </div>
-            <div class="profile" ng-click="gotoSlide(2)">
-              <div class="image"></div>
-              <div class="badge animated bounceIn">1</div>
-            </div>
-          </div>
-          <ion-list class="menu-list" scroll="true">
-            <ion-item menu-close href="#/app/dashboard" ng-class="isActiveMenu('#/app/dashboard') ? 'active':''">
-              <i class="fa fa-tachometer" aria-hidden="true"></i> &nbsp; Dashboard
-            </ion-item>
-            <div class="menu-group" ng-repeat="group in MENU_ACTIONPLAN">
-              <ion-item class="item-stable header" ng-click="toggleGroup(group)" ng-class="{active: isGroupShown(group)}">
-                &nbsp;<i class="fa fa-{{group.class}}" aria-hidden="true"></i> &nbsp; {{group.name}} &nbsp; <i class="icon fa" ng-class="isGroupShown(group) ? 'fa-minus' : 'fa-plus'"></i>
-              </ion-item>
-              <ion-item class="item-accordion" menu-close ng-repeat="item in group.items" ng-show="isGroupShown(group)" href="{{item.link}}" ng-class="isActiveMenu(item.link) ? 'active':''">
-                <i class="fa fa-{{item.class}}" aria-hidden="true"></i> &nbsp;{{item.title}}
-              </ion-item>
-            </div>
-            <ion-item menu-close href="#/app/collaboration" ng-class="isActiveMenu('#/app/collaboration') ? 'active':''">
-              <i class="fa fa-users" aria-hidden="true"></i> &nbsp; Collaboration
-            </ion-item>
-            <ion-item menu-close href="#/app/contact" ng-class="isActiveMenu('#/app/contact') ? 'active':''">
-              <i class="fa fa-phone" aria-hidden="true"></i> &nbsp; Contacts
-            </ion-item>
-          </ion-list>
+          <ion-content scroll="true">
+              <div class="menu-header">
+                <div class="logo">
+                  <img src="https://dev.goforms.ca/assets/img/app/profile/garago.png">
+                </div>
+                <div class="mail">
+                  <i class="fa fa-envelope-o" aria-hidden="true" ng-click="gotoSlide(1)"></i>
+                  <div class="badge animated bounceIn">5</div>
+                </div>
+                <div class="profile" ng-click="gotoSlide(2)">
+                  <div class="image"></div>
+                  <div class="badge animated bounceIn">1</div>
+                </div>
+              </div>
+              <ion-list class="menu-list" scroll="true">
+                <ion-item menu-close href="#/app/dashboard" ng-class="isActiveMenu('#/app/dashboard') ? 'active':''">
+                  <i class="fa fa-tachometer" aria-hidden="true"></i> &nbsp; Dashboard
+                </ion-item>
+                <div class="menu-group" ng-repeat="group in MENU_ACTIONPLAN">
+                  <ion-item class="item-stable header" ng-click="toggleGroup(group)" ng-class="{active: isGroupShown(group)}">
+                    &nbsp;<i class="fa fa-{{group.class}}" aria-hidden="true"></i> &nbsp; {{group.name}} &nbsp; <i class="icon fa" ng-class="isGroupShown(group) ? 'fa-minus' : 'fa-plus'"></i>
+                  </ion-item>
+                  <ion-item class="item-accordion" menu-close ng-repeat="item in group.items" ng-show="isGroupShown(group)" href="{{item.link}}" ng-class="isActiveMenu(item.link) ? 'active':''">
+                    <i class="fa fa-{{item.class}}" aria-hidden="true"></i> &nbsp;{{item.title}}
+                  </ion-item>
+                </div>
+                <ion-item menu-close href="#/app/collaboration" ng-class="isActiveMenu('#/app/collaboration') ? 'active':''">
+                  <i class="fa fa-users" aria-hidden="true"></i> &nbsp; Collaboration
+                </ion-item>
+                <ion-item menu-close href="#/app/contact" ng-class="isActiveMenu('#/app/contact') ? 'active':''">
+                  <i class="fa fa-phone" aria-hidden="true"></i> &nbsp; Contacts
+                </ion-item>
+              </ion-list>
+          </ion-content>
         </ion-slide>
         <ion-slide id="Messages">
           <div class="user-messages">
@@ -75,7 +77,7 @@
           </div>
         </ion-slide>
         <ion-slide id="UserProfile">
-          <div class="user-messages">
+          <ion-content class="user-messages" scroll="true">
             <div class="menu-header">
               <div class="user-name">Jeffrey Coleman</div>
               <div class="logo">
@@ -97,7 +99,7 @@
             <div class="logout padding">
               <div class="button button-block button-assertive button-clear" ng-click="logout()">Logout</div>
             </div>
-          </div>
+          </ion-content>
         </ion-slide>
       </ion-slide-box>
     </ion-content>

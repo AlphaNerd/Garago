@@ -12,6 +12,7 @@
         </ion-nav-buttons>
     </ion-nav-bar>
     <ion-content id="Library" scroll="true" class="Browse">
+
         <div class="warning" ng-if="!DATA || DATA.length < 1">
             <h1>No Projects Found.</h1>
         </div>
@@ -36,6 +37,9 @@
                 <div class="acl-indicator">
                     <div ng-class="item.ACL.permissionsById['*'].read ? 'green':'grey'">R</div>
                     <div ng-class="item.ACL.permissionsById[CurrentUser.id].write ? 'green':'grey'">W</div>
+                </div>
+                <div class="favs-options">
+                    <i class="fa fa-star-o" ng-click="addToFavs(item.id)"></i>
                 </div>
                 <ion-option-button class="button-positive" ng-click="share(item)">
                     Share

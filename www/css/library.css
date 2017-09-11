@@ -432,3 +432,9 @@ input.main-search {
   text-align: center;
   display: inline-block;
 }
+
+.favs-options {
+    position: absolute;
+    top: 25px;
+    right: 10px;
+}
