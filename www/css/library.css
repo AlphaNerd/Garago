@@ -309,7 +309,7 @@ input.main-search {
 }
 
 #Library i.fa.fa-upload {
-  color: #2b3a41
+  color: #2b3a41;
   top: 20px;
   left: 20px;
 }
@@ -418,13 +418,13 @@ input.main-search {
   color:#bbb
 }
 
-.tags {
+#Library.Browse .tags {
   font-size: 11px;
   min-height: 30px;
   display: block;
 }
 
-.tags span {
+#Library.Browse .tags span {
   padding: 0px 10px;
   background: rgba(0,0,0,0.15);
   border-radius: 10px;
@@ -433,8 +433,44 @@ input.main-search {
   display: inline-block;
 }
 
-.favs-options {
+#Library.Browse .favs-options {
     position: absolute;
     top: 25px;
     right: 10px;
+}
+
+#Library.Browse .tag{
+  padding: 0px 10px;
+  background: rgba(0,0,0,0.15);
+  border-radius: 10px;
+  margin: 5px 2px 0 0px;
+  text-align: center;
+  display: inline-block;
+}
+
+#Library .share-options {
+    position: absolute;
+    top: 63px;
+    left: 20px;
+}
+
+#Library.Browse .share-options{
+  position: absolute;
+    top: 50px;
+    right: 10px;
+    left:unset;
+}
+
+
+
+#Library a{
+  color:#2b3a41;
+}
+
+.blue{
+  color:#2b3a41!important;
+}
+
+.green{
+  color:#83d20b!important;
 }

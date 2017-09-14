@@ -433,10 +433,10 @@ angular.module('garago.factory.parse', [])
         var deferred = $q.defer()
         var query = new Parse.Query(Files)
         query.descending("createdAt")
-        query.limit(5)
+        
         query.find({
           success: function(res) {
-            console.log("Found User Files: ", [res])
+            console.log("Found All Files: ", [res])
           },
           error: function(e, r) {
             console.log(e, r)
@@ -581,6 +581,7 @@ angular.module('garago.factory.parse', [])
         query2.contains("tags", search)
         
         var mainQuery = Parse.Query.or(query1, query2);
+        mainQuery.ascending("updatedAt")
 
 
         mainQuery.find({

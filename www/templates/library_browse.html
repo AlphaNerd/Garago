@@ -22,24 +22,28 @@
             </label>
         </div>
         <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
-            <ion-item ng-repeat="item in DATA | filter: {name: search.text}" class="item-thumbnail-left" href="#/app/project/{{item.id}}" ng-class="item.attributes.class == 'animated bounceIn' ? 'new':''">
+            <ion-item ng-repeat="item in DATA | filter:search.text" class="item-thumbnail-left" ng-class="item.attributes.class == 'animated bounceIn' ? 'new':''">
                 <div class="user" ng-repeat="item in item.members track by $index" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
                   <div class="image" ng-style="{'background-image':'url({{item.attributes.image._url}})'}"></div>
                 </div>
-                <h2>{{item.title}}</h2>
+                <h2><a href="{{item.file._url}}" target="_blank"">{{item.title}}</a></h2>
                 <p>{{item.description}}</p>
                 <p class="last-updated">Last Updated: {{item.updatedAt | date:'short'}}</p>
                 <p class="created-by">Created By: {{item.members[0].attributes.username}}</p>
-                    <span ng-repeat="tag in item.tags">
+                <div class="tags">
+                    <span ng-repeat="tag in item.tags" class="tag">
                         {{tag}}
                     </span>
-                </span>
+                </div>
                 <div class="acl-indicator">
                     <div ng-class="item.ACL.permissionsById['*'].read ? 'green':'grey'">R</div>
                     <div ng-class="item.ACL.permissionsById[CurrentUser.id].write ? 'green':'grey'">W</div>
                 </div>
                 <div class="favs-options">
-                    <i class="fa fa-star-o" ng-click="addToFavs(item.id)"></i>
+                    <i class="fa" ng-class="isFavFile(item) ? 'fa-star' : 'fa-star-o'" ng-click="addToFavs(item.id)"></i>
+                </div>
+                <div class="share-options">
+                    <a href="{{item.file._url}}" download><i class="fa fa-download" ng-click="addToFavs(item.id)"></i></a>
                 </div>
                 <ion-option-button class="button-positive" ng-click="share(item)">
                     Share

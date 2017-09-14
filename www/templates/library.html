@@ -42,7 +42,7 @@
       <div class="list card" ng-repeat="item in searchResults track by $index">
         <div class="item item-avatar">
           <i class="fa" ng-class="item.icon" aria-hidden="true"></i>
-          <h2>{{item.title}}</h2>
+          <h2><a href="{{item.file._url}}" target="_blank">{{item.title}}</a></h2>
           <p>Modified: {{item.updatedAt | date:'fullDate'}}</p>
           <span class="tags">
               <span ng-repeat="tag in item.tags">
@@ -54,6 +54,9 @@
                 <div class="image" ng-style="{'background-image':'url({{item.attributes.image._url}})'}"></div>
               </span>
           </span>
+          <div class="share-options">
+              <a href="{{item.file._url}}" download><i class="fa fa-download" ng-click="addToFavs(item.id)"></i></a>
+          </div>
         </div>
         <div class="item item-body" ng-if="item.description">
           <p>{{item.description}}</p>
@@ -100,8 +103,8 @@
             <!-- <p>Stats &amp; Quick Reference</p> -->
           </div>
           <div class="item item-avatar">
-            <i class="fa fa-upload" ng-click="uploadFiles()"></i>
-            <span class="file-input"><input type="file" accept="image/*,.pdf,.doc,.docx,.txt,.zip" id="upload" multiple/></span>
+            <i class="fa fa-upload" ng-class="filestoupload ? 'green': 'blue'" ng-click="uploadFiles()"></i>
+            <span class="file-input"><input ng-model="uploadfiles" type="file" accept="image/*,.pdf,.doc,.docx,.txt,.zip" id="upload" multiple onchange="angular.element(this).scope().fileNameChanged(this)"/></span>
             <div class="warning">
               <h1>Drop Files Here </h1>
             </div>

@@ -10,6 +10,13 @@ angular.module('garago.controllers.library', [])
       console.log("LibraryCtrl Loaded.")
     });
 
+    $scope.fileNameChanged = function(){
+      console.log("CHANGED")
+      $scope.filestoupload = true
+      $scope.$apply()
+    }
+    $scope.filestoupload = false
+
     $scope.search = {
       text: ""
     }
