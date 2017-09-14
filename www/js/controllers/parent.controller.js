@@ -138,6 +138,10 @@ angular.module('garago.controllers', [])
         link: "#/app/library",
         class: "windows"
       }, {
+        title: "My Favorites",
+        link: "#/app/library/favs",
+        class: "bookmark"
+      }, {
         title: "Browse All",
         link: "#/app/library/browse",
         class: "list"

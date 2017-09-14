@@ -404,6 +404,34 @@ angular.module('garago', [
         }
       })
 
+      ////////////////////////////////////////////////////////////////
+      //////////////// Smart Library Route - In Dev ///////////////////////
+      ////////////////////////////////////////////////////////////////
+      ///
+      ///   Route: /library/favorites
+      ///   Browse & Search smart library for files. 
+      ///
+      ////////////////////////////////////////////////////////////////
+      .state('app.library_favs', {
+        url: '/library/favs',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/library_browse.html',
+            controller: 'LibraryFavsCtrl',
+            resolve: {
+              userFilesData: function ($parseAPI, $ionicLoading) {
+                $ionicLoading.show()
+                return $parseAPI.getUserFavFiles().then(function (res) {
+                  console.log("Library Browse View 'All Files' Resolve: ", res)
+                  $ionicLoading.hide()
+                  return res
+                })
+              }
+            }
+          }
+        }
+      })
+
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/dashboard');
   });

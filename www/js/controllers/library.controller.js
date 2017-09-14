@@ -59,6 +59,7 @@ angular.module('garago.controllers.library', [])
           $scope.userFiles = res
           $input.val(null);
           $scope.searchTags = []
+          $scope.filestoupload = false
           $ionicLoading.hide()
         })
       })

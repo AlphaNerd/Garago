@@ -432,11 +432,57 @@ angular.module('garago.factory.parse', [])
       getAllFiles: function(){
         var deferred = $q.defer()
         var query = new Parse.Query(Files)
-        query.descending("createdAt")
+        query.descending("updatedAt")
         
         query.find({
           success: function(res) {
             console.log("Found All Files: ", [res])
+          },
+          error: function(e, r) {
+            console.log(e, r)
+          }
+        }).then(function(resp) {
+          if (resp) {
+            var promises = []
+            var files = []
+            angular.forEach(resp,function(val,key){
+              var obj = angular.copy(val.attributes)
+              obj.id = val.id
+              var promise = new Promise(function(resolve,reject){
+                var query = new Parse.Query(Users)
+                query.equalTo("objectId",val.attributes.createdBy)
+                query.descending("updatedAt")
+                query.find().then(function(res){
+                  console.log(res)
+                  obj.members = res
+                  files.push(obj)
+                  resolve(res)
+                })
+              })
+              promises.push(promise)
+            })
+            Promise.all(promises).then(function(res){
+              console.log("Users for file: ",files)
+              deferred.resolve(files)
+            })
+          } else {
+            deferred.resolve(false)
+          }
+        })
+        return deferred.promise
+      },
+      ////////////////////////////////////////////////
+      ////// Get All User Files from Parse
+      ////////////////////////////////////////////////
+      getUserFiles: function(){
+        var deferred = $q.defer()
+        var query = new Parse.Query(Files)
+        query.contains("createdBy", Parse.User.current().id)
+        query.descending("createdAt")
+        query.limit(5)
+        query.find({
+          success: function(res) {
+            console.log("Found User Files: ", [res])
           },
           error: function(e, r) {
             console.log(e, r)
@@ -470,18 +516,14 @@ angular.module('garago.factory.parse', [])
         })
         return deferred.promise
       },
-      ////////////////////////////////////////////////
-      ////// Get All User Files from Parse
-      ////////////////////////////////////////////////
-      getUserFiles: function(){
+      getUserFavFiles: function(){
         var deferred = $q.defer()
         var query = new Parse.Query(Files)
-        query.contains("createdBy", Parse.User.current().id)
+        query.contains("users_favorite", Parse.User.current().id)
         query.descending("createdAt")
-        query.limit(5)
         query.find({
           success: function(res) {
-            console.log("Found User Files: ", [res])
+            console.log("Found User Fav Files: ", [res])
           },
           error: function(e, r) {
             console.log(e, r)
