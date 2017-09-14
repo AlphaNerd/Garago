@@ -7,6 +7,7 @@ angular.module('garago', [
   'garago.controllers.dashboard',
   'garago.controllers.library',
   'garago.controllers.library_browse',
+  'garago.controllers.library_favs',
   'garago.controllers.register',
   'garago.controllers.intro',
   'garago.controllers.projects',
@@ -416,7 +417,7 @@ angular.module('garago', [
         url: '/library/favs',
         views: {
           'menuContent': {
-            templateUrl: 'templates/library_browse.html',
+            templateUrl: 'templates/library_favs.html',
             controller: 'LibraryFavsCtrl',
             resolve: {
               userFilesData: function ($parseAPI, $ionicLoading) {

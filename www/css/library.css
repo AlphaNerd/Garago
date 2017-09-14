@@ -474,3 +474,8 @@ input.main-search {
 .green{
   color:#83d20b!important;
 }
+
+#Library .button.button-full {
+    max-width: 95%;
+    margin: 10px auto;
+}

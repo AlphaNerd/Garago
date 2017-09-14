@@ -87,7 +87,7 @@
                       <div class="image" ng-style="{'background-image':'url({{item.attributes.image._url}})'}"></div>
                     </span>
           </span>
-          <i class="fa fa-download" aria-hidden="true"></i>&nbsp;
+          <a href="{{item.file._url}}" download><i class="fa fa-download" aria-hidden="true"></i></a>&nbsp;
           <i class="fa fa-share-alt" aria-hidden="true"></i>&nbsp;
           <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;
           </span>
@@ -131,6 +131,7 @@
               </md-chips>
             </div>
           </div>
+          <div class="button button-full button-balanced" ng-click="uploadFiles()">Upload</div>
         </div>
       </div>
   </ion-content>
