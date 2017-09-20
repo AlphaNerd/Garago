@@ -53,6 +53,10 @@
               <span class="user" ng-repeat="item in item.members track by $index" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
                 <div class="image" ng-style="{'background-image':'url({{item.attributes.image._url}})'}"></div>
               </span>
+              <div class="popularity" ng-if="item.users_favorite.length > 0">
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+                <span class="icon-count">{{item.users_favorite.length}}</span>
+              </div>
           </span>
           <div class="share-options">
               <a href="{{item.file._url}}" download><i class="fa fa-download" ng-click="addToFavs(item.id)"></i></a>
@@ -63,6 +67,7 @@
         </div>
       </div>
     </div>
+
     <div class="file-dashboard animated fadeIn">
       <div class="list card">
         <div class="item item-avatar">

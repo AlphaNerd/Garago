@@ -516,3 +516,14 @@ input.main-search {
 
 
 
+
+
+#Library .popularity i {
+    font-size: 16px;
+    text-align: center;
+    margin: 4px;
+}
+
+#Library .popularity .icon-star-o {
+    margin: 2px;
+}

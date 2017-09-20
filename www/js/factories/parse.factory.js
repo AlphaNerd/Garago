@@ -453,7 +453,7 @@ angular.module('garago.factory.parse', [])
                 query.equalTo("objectId",val.attributes.createdBy)
                 query.descending("updatedAt")
                 query.find().then(function(res){
-                  console.log(res)
+                  // console.log(res)
                   obj.members = res
                   files.push(obj)
                   resolve(res)
