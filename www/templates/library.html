@@ -1,4 +1,4 @@
-<ion-view view-title="Smart Library">
+  <ion-view view-title="Smart Library">
   <!-- <ion-nav-bar class="bar-stable">
         <ion-nav-back-button>
         </ion-nav-back-button>
@@ -17,7 +17,7 @@
     <div class="search animated slideInDown">
       <label class="item item-input">
         <i class="icon ion-search placeholder-icon"></i> &nbsp;
-        <input class="main-search" type="text" placeholder="Search" ng-model="search.text" ng-change="searchFiles(search.text)">
+        <input class="main-search" type="text" placeholder="Search for files..." ng-model="search.text" ng-change="searchFiles(search.text)">
       </label>
       <div class="filters">
         <i class="fa fa-times-circle placeholder-icon" ng-click="clearSearch()"></i>
@@ -66,8 +66,36 @@
     <div class="file-dashboard animated fadeIn">
       <div class="list card">
         <div class="item item-avatar">
-          <i class="fa fa-folder-o" aria-hidden="true"></i>
-          <h2>My Files</h2>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <h2>My Favorites</h2>
+          <p>Most recent uploads</p>
+          <!-- <p>Stats &amp; Quick Reference</p> -->
+        </div>
+        <div class="item item-body" ng-repeat="item in userFavFiles">
+          <i class="fa" ng-class="item.icon" aria-hidden="true"></i> <span><a href="{{item.file._url}}" target="_blank">{{item.title}}</a></span>
+          <span class="modified">
+                <span>Modified: {{item.updatedAt | date:'shortDate'}}</span>
+          </span>
+          <span class="tags">
+                <span ng-repeat="tag in item.tags">
+                    {{tag}}
+                </span>
+          </span>
+          <span class="user-file-options">
+                <span class="shared-with">
+                    <span class="user" ng-repeat="item in item.members track by $index" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
+                      <div class="image" ng-style="{'background-image':'url({{item.attributes.image._url}})'}"></div>
+                    </span>
+          </span>
+          <a href="{{item.file._url}}" download><i class="fa fa-download" aria-hidden="true"></i></a>&nbsp;
+          <i class="fa fa-share-alt" aria-hidden="true"></i>&nbsp;
+          </span>
+        </div>
+      </div>
+      <div class="list card">
+        <div class="item item-avatar">
+          <i class="fa fa-folder" aria-hidden="true"></i>
+          <h2>My Uploads</h2>
           <p>Most recent uploads</p>
           <!-- <p>Stats &amp; Quick Reference</p> -->
         </div>
@@ -97,7 +125,7 @@
       <div class="list card upload-module">
         <div class="list" id="upload-container">
           <div class="item item-avatar">
-            <i class="fa fa-folder-o" aria-hidden="true"></i>
+            <i class="fa fa-folder" aria-hidden="true"></i>
             <h2>Upload</h2>
             <p>(png, jpg, gif, pdf, doc, docx, txt)</p>
             <!-- <p>Stats &amp; Quick Reference</p> -->
@@ -105,9 +133,9 @@
           <div class="item item-avatar">
             <i class="fa fa-upload" ng-class="filestoupload ? 'green': 'blue'" ng-click="uploadFiles()"></i>
             <span class="file-input"><input ng-model="uploadfiles" type="file" accept="image/*,.pdf,.doc,.docx,.txt,.zip" id="upload" multiple onchange="angular.element(this).scope().fileNameChanged(this)"/></span>
-            <div class="warning">
+           <!--  <div class="warning">
               <h1>Drop Files Here </h1>
-            </div>
+            </div> -->
             <!-- <div class="chips">
               <md-chips ng-model="searchTags" name="tagName" readonly="false" md-removable="true" md-max-chips="10" placeholder="Add tag(s) here...">
                 <md-chip-template>

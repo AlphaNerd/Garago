@@ -1,6 +1,6 @@
 angular.module('garago.controllers.library', [])
 
-  .controller('LibraryCtrl', function ($scope, $ionicModal, $timeout, $rootScope, $ionicSideMenuDelegate, $parseAPI, userFilesData, userSharedFilesData, FileUploader, $ionicLoading) {
+  .controller('LibraryCtrl', function ($scope, $ionicModal, $timeout, $rootScope, $ionicSideMenuDelegate, $parseAPI, userFilesData, userSharedFilesData, userFavFilesData, FileUploader, $ionicLoading) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -26,7 +26,9 @@ angular.module('garago.controllers.library', [])
       $scope.showFilters = !$scope.showFilters
     }
 
+    //// Set Init Data
     $scope.userFiles = userFilesData
+    $scope.userFavFiles = userFavFilesData
     $scope.userSharedFiles = userSharedFilesData
 
     $scope.clearSearch = function(){
@@ -65,6 +67,18 @@ angular.module('garago.controllers.library', [])
       })
     }
 
+    /// drag and drop style change on dragentert
+    var drop = document.getElementById("upload");
+    drop.addEventListener("dragenter", change, false);
+    drop.addEventListener("dragleave",change_back,false);
+
+    function change() {
+      drop.style.backgroundColor = 'rgba(51, 205, 95, 0.1)';
+    };
+
+    function change_back() {
+      drop.style.backgroundColor = 'transparent';
+    };
 
 
     ////// Experimental Chips    

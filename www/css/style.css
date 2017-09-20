@@ -538,3 +538,7 @@ md-switch span {
 .title.title-center.header-item {
   color: #fff;
 }
+
+.card{
+  border-top:5px solid;
+}

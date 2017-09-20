@@ -371,6 +371,14 @@ angular.module('garago', [
                   $ionicLoading.hide()
                   return res
                 })
+              },
+              userFavFilesData: function ($parseAPI, $ionicLoading) {
+                $ionicLoading.show()
+                return $parseAPI.getUserFavFiles().then(function (res) {
+                  console.log("Library View 'User Fav Files' Resolve: ", res)
+                  $ionicLoading.hide()
+                  return res
+                })
               }
             }
           }
