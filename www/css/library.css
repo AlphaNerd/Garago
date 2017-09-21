@@ -527,3 +527,14 @@ input.main-search {
 #Library .popularity .icon-star-o {
     margin: 2px;
 }
+
+
+
+
+#Library .file-dashboard .list.my-uploads .item span.filename a {
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}

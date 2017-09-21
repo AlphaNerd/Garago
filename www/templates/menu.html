@@ -25,11 +25,11 @@
                 </div>
                 <div class="mail" ng-if="CurrentUser.attributes.isAdmin">
                   <i class="fa fa-envelope-o" aria-hidden="true" ng-click="gotoSlide(1)"></i>
-                  <div class="badge animated bounceIn">5</div>
+                  <!-- <div class="badge animated bounceIn">5</div> -->
                 </div>
                 <div class="profile" ng-click="gotoSlide(2)">
                   <div class="image"></div>
-                  <div class="badge animated bounceIn">1</div>
+                  <!-- <div class="badge animated bounceIn">1</div> -->
                 </div>
               </div>
               <ion-list class="menu-list" scroll="true">
@@ -81,7 +81,7 @@
             <div class="menu-header">
               <div class="user-name">Jeffrey Coleman</div>
               <div class="logo">
-                <img ng-src="{{CurrentUser.attributes.image._url}}" ng-click="getNewImage()">
+                <img ng-src="{{CurrentUser.attributes.image._url || '../img/no-image.jpg'}}" ng-click="getNewImage()">
               </div>
               <div class="menu">
                 <i class="fa fa-bars" aria-hidden="true" ng-click="gotoSlide(0)"></i>

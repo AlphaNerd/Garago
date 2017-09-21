@@ -47,7 +47,7 @@
           </span>
           <span class="shared-with">
               <span class="user" ng-repeat="item in item.members track by $index" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
-                <div class="image" ng-style="{'background-image':'url({{item.attributes.image._url}})'}"></div>
+                <div class="image" ng-style="{'background-image':'url({{item.attributes.image._url || '../img/no-image.jpg'}})'}"></div>
               </span>
           <div class="popularity" ng-if="item.users_favorite.length > 0">
             <i class="fa fa-star-o" aria-hidden="true"></i>
@@ -95,7 +95,7 @@
           </span>
         </div>
       </div>
-      <div class="list card">
+      <div class="list card my-uploads">
         <div class="item item-avatar">
           <i class="fa fa-folder" aria-hidden="true"></i>
           <h2>My Uploads</h2>
@@ -106,7 +106,7 @@
             <h1>No Uploads Found.</h1>
         </div>
         <div class="item item-body" ng-repeat="item in userFiles">
-          <i class="fa" ng-class="item.icon" aria-hidden="true"></i> <span><a href="{{item.file._url}}" target="_blank">{{item.title}}</a></span>
+          <i class="fa" ng-class="item.icon" aria-hidden="true"></i> <span class="filename"><a href="{{item.file._url}}" target="_blank">{{item.title}}</a></span>
           <span class="modified">
                 <span>Modified: {{item.updatedAt | date:'shortDate'}}</span>
           </span>
@@ -118,7 +118,7 @@
           <span class="user-file-options">
                 <span class="shared-with">
                     <span class="user" ng-repeat="item in item.members track by $index" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
-                      <div class="image" ng-style="{'background-image':'url({{item.attributes.image._url}})'}"></div>
+                      <div class="image" ng-style="{'background-image':'url({{item.attributes.image._url || '../img/no-image.jpg'}})'}"></div>
                     </span>
           </span>
           <a href="{{item.file._url}}" download><i class="fa fa-download" aria-hidden="true"></i></a>&nbsp;
