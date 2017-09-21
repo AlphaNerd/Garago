@@ -20,12 +20,8 @@ angular.module('garago.controllers.register', [])
             success: function(user) {
                 // console.log("Parse user registered: ",Parse.User.current())
                 $rootScope.USER = Parse.User.current();
-                var ruckus = {
-                    user: Parse.User.current()
-                }
-                $localstorage.setObject("ruckus", ruckus);
                 $scope.newUser = {}
-                $state.go("app.home")
+                $state.go("app.library")
             },
             error: function(user, error) {
                 // Show the error message somewhere and let the user try again.
