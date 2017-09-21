@@ -23,17 +23,17 @@
                 <div class="logo">
                   <img src="https://dev.goforms.ca/assets/img/app/profile/garago.png">
                 </div>
-                <div class="mail">
+                <div class="mail" ng-if="CurrentUser.attributes.isAdmin">
                   <i class="fa fa-envelope-o" aria-hidden="true" ng-click="gotoSlide(1)"></i>
                   <div class="badge animated bounceIn">5</div>
                 </div>
-                <div class="profile" ng-click="gotoSlide(2)">
+                <div class="profile" ng-click="gotoSlide(2)" ng-if="CurrentUser.attributes.isAdmin">
                   <div class="image"></div>
                   <div class="badge animated bounceIn">1</div>
                 </div>
               </div>
               <ion-list class="menu-list" scroll="true">
-                <ion-item menu-close href="#/app/dashboard" ng-class="isActiveMenu('#/app/dashboard') ? 'active':''">
+                <ion-item menu-close href="#/app/dashboard" ng-class="isActiveMenu('#/app/dashboard') ? 'active':''" ng-if="CurrentUser.attributes.isAdmin">
                   <i class="fa fa-tachometer" aria-hidden="true"></i> &nbsp; Dashboard
                 </ion-item>
                 <div class="menu-group" ng-repeat="group in MENU_ACTIONPLAN">
@@ -44,16 +44,16 @@
                     <i class="fa fa-{{item.class}}" aria-hidden="true"></i> &nbsp;{{item.title}}
                   </ion-item>
                 </div>
-                <ion-item menu-close href="#/app/collaboration" ng-class="isActiveMenu('#/app/collaboration') ? 'active':''">
+                <ion-item menu-close href="#/app/collaboration" ng-class="isActiveMenu('#/app/collaboration') ? 'active':''" ng-if="CurrentUser.attributes.isAdmin">
                   <i class="fa fa-users" aria-hidden="true"></i> &nbsp; Collaboration
                 </ion-item>
-                <ion-item menu-close href="#/app/contact" ng-class="isActiveMenu('#/app/contact') ? 'active':''">
+                <ion-item menu-close href="#/app/contact" ng-class="isActiveMenu('#/app/contact') ? 'active':''" ng-if="CurrentUser.attributes.isAdmin">
                   <i class="fa fa-phone" aria-hidden="true"></i> &nbsp; Contacts
                 </ion-item>
               </ion-list>
           </ion-content>
         </ion-slide>
-        <ion-slide id="Messages">
+        <ion-slide id="Messages" ng-if="CurrentUser.attributes.isAdmin">
           <div class="user-messages">
             <div class="menu-header">
               <div class="logo">
@@ -76,7 +76,7 @@
             </div>
           </div>
         </ion-slide>
-        <ion-slide id="UserProfile">
+        <ion-slide id="UserProfile" ng-if="CurrentUser.attributes.isAdmin">
           <ion-content class="user-messages" scroll="true">
             <div class="menu-header">
               <div class="user-name">Jeffrey Coleman</div>

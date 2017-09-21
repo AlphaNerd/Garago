@@ -16,7 +16,7 @@ angular.module('garago.controllers.login', [])
         success: function(user) {
           $rootScope.CurrentUser = user;
           $ionicLoading.hide()
-          $state.go("app.dashboard")
+          $state.go("app.library")
         },
         error: function(user, error) {
           // The login failed. Check error to see why.

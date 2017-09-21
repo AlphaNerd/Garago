@@ -11,7 +11,7 @@ angular.module('garago.controllers', [])
       var myDelay = 0;
     });
 
-    $scope.CurrentUser = Parse.User.current()
+    $rootScope.CurrentUser = Parse.User.current()
     //// logout current Parse User
     $scope.logout = function() {
       console.log("Logout User")
@@ -46,91 +46,93 @@ angular.module('garago.controllers', [])
       return myDelay
     }
 
-    $scope.MENU_ACTIONPLAN = [{
-      name: "Action Plans",
-      class: 'columns',
-      items: [{
-        title: "My Plans",
-        link: "#/app/actionplans",
-        class: "list"
-      },{
-        title: "Latest Plan",
-        link: "#/app/actionplan/",
-        class: "clock-o"
-      }, {
-        title: "Create New",
-        link: "#/app/actionplan/new",
-        class: "plus"
-      }]
-    },{
-      name: "Projects",
-      class: 'folder-o',
-      items: [{
-        title: "My Projects",
-        link: "#/app/projects",
-        class: "folder-open-o"
-      }, {
-        title: "Latest Project",
-        link: "#/app/project/",
-        class: "clock-o"
-      }, {
-        title: "Create new",
-        link: "#/app/project/new,",
-        class: "plus"
-      }]
-    },{
-      name: "Activities",
-      class: 'folder-o',
-      items: [{
-        title: "My Activities",
-        link: "#/app/activities",
-        class: "folder-open-o"
-      }, {
-        title: "Latest Activity",
-        link: "#/app/activity/",
-        class: "clock-o"
-      }, {
-        title: "Create new",
-        link: "#/app/activity/new",
-        class: "plus"
-      }]
-    },{
-      name: "Forms",
-      class: 'files-o',
-      items: [{
-        title: "My Forms",
-        link: "#/app/myforms",
-        class: "folder-open-o"
-      },{
-        title: "Form Builder",
-        link: "#/app/formbuilder",
-        class: "cogs"
-      },{
-        title: "Create Form",
-        link: "#/app/newform",
-        class: "plus"
-      }]
-    }, {
-      name: "Reports",
-      class: 'line-chart',
-      items: [{
-        title: "Charts",
-        link: "#/app/myreports/charts",
-        class: "pie-chart"
-      }, {
-        title: "Tables",
-        link: "#/app/myreports/tables,",
-        class: "signal"
-      }, {
-        title: "Custom",
-        link: "#/app/myreports/custom,",
-        class: "area-chart"
-      }, {
-        title: "Create New",
-        link: "#/app/myreports/custom,",
-        class: "plus"
-      }]
-    },{
+    $scope.MENU_ACTIONPLAN = [
+    // {
+    //   name: "Action Plans",
+    //   class: 'columns',
+    //   items: [{
+    //     title: "My Plans",
+    //     link: "#/app/actionplans",
+    //     class: "list"
+    //   },{
+    //     title: "Latest Plan",
+    //     link: "#/app/actionplan/",
+    //     class: "clock-o"
+    //   }, {
+    //     title: "Create New",
+    //     link: "#/app/actionplan/new",
+    //     class: "plus"
+    //   }]
+    // },{
+    //   name: "Projects",
+    //   class: 'folder-o',
+    //   items: [{
+    //     title: "My Projects",
+    //     link: "#/app/projects",
+    //     class: "folder-open-o"
+    //   }, {
+    //     title: "Latest Project",
+    //     link: "#/app/project/",
+    //     class: "clock-o"
+    //   }, {
+    //     title: "Create new",
+    //     link: "#/app/project/new,",
+    //     class: "plus"
+    //   }]
+    // },{
+    //   name: "Activities",
+    //   class: 'folder-o',
+    //   items: [{
+    //     title: "My Activities",
+    //     link: "#/app/activities",
+    //     class: "folder-open-o"
+    //   }, {
+    //     title: "Latest Activity",
+    //     link: "#/app/activity/",
+    //     class: "clock-o"
+    //   }, {
+    //     title: "Create new",
+    //     link: "#/app/activity/new",
+    //     class: "plus"
+    //   }]
+    // },{
+    //   name: "Forms",
+    //   class: 'files-o',
+    //   items: [{
+    //     title: "My Forms",
+    //     link: "#/app/myforms",
+    //     class: "folder-open-o"
+    //   },{
+    //     title: "Form Builder",
+    //     link: "#/app/formbuilder",
+    //     class: "cogs"
+    //   },{
+    //     title: "Create Form",
+    //     link: "#/app/newform",
+    //     class: "plus"
+    //   }]
+    // }, {
+    //   name: "Reports",
+    //   class: 'line-chart',
+    //   items: [{
+    //     title: "Charts",
+    //     link: "#/app/myreports/charts",
+    //     class: "pie-chart"
+    //   }, {
+    //     title: "Tables",
+    //     link: "#/app/myreports/tables,",
+    //     class: "signal"
+    //   }, {
+    //     title: "Custom",
+    //     link: "#/app/myreports/custom,",
+    //     class: "area-chart"
+    //   }, {
+    //     title: "Create New",
+    //     link: "#/app/myreports/custom,",
+    //     class: "plus"
+    //   }]
+    // },
+    {
       name: "Smart Library",
       class: 'folder-o',
       items: [{
@@ -145,15 +147,17 @@ angular.module('garago.controllers', [])
         title: "Browse All",
         link: "#/app/library/browse",
         class: "list"
-      }, {
-        title: "Upload",
-        link: "#/app/library/upload",
-        class: "upload"
-      }, {
-        title: "Share",
-        link: "#/app/library/share",
-        class: "share"
-      }]
+      },
+      // {
+      //   title: "Upload",
+      //   link: "#/app/library/upload",
+      //   class: "upload"
+      // }, {
+      //   title: "Share",
+      //   link: "#/app/library/share",
+      //   class: "share"
+      // }
+      ]
     }];
 
     $scope.gotoSlide = function(num) {
