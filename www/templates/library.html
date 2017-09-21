@@ -71,6 +71,9 @@
           <p></p>
           <!-- <p>Stats &amp; Quick Reference</p> -->
         </div>
+        <div class="warning" ng-if="!userFavFiles || userFavFiles.length < 1">
+            <h1>No Favorites Found.</h1>
+        </div>
         <div class="item item-body" ng-repeat="item in userFavFiles">
           <i class="fa" ng-class="item.icon" aria-hidden="true"></i> <span><a href="{{item.file._url}}" target="_blank">{{item.title}}</a></span>
           <span class="modified">
@@ -98,6 +101,9 @@
           <h2>My Uploads</h2>
           <p>Most recent uploads</p>
           <!-- <p>Stats &amp; Quick Reference</p> -->
+        </div>
+        <div class="warning" ng-if="!userFiles || userFiles.length < 1">
+            <h1>No Uploads Found.</h1>
         </div>
         <div class="item item-body" ng-repeat="item in userFiles">
           <i class="fa" ng-class="item.icon" aria-hidden="true"></i> <span><a href="{{item.file._url}}" target="_blank">{{item.title}}</a></span>
