@@ -1,18 +1,16 @@
-  <ion-view view-title="Smart Library">
-  <!-- <ion-nav-bar class="bar-stable">
-        <ion-nav-back-button>
-        </ion-nav-back-button>
-
-        <ion-nav-buttons side="left">
-            <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
-                </button>
-        </ion-nav-buttons>
-
-        <ion-nav-buttons side="right">
-            <button class="button button-icon button-clear" ng-click="createNewPlan()"><i class="fa fa-icon fa-plus"></i></button>
-        </ion-nav-buttons>
-
-    </ion-nav-bar> -->
+<ion-view view-title="Smart Library">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+    <ion-nav-buttons side="left">
+      <button class="button button-icon button-clear ion-navicon menu-toggle" menu-toggle="left">
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <!-- <button class="button button-icon button-clear" ng-click="createNewProject()"><i class="fa fa-icon fa-upload"></i></button>&nbsp;&nbsp; -->
+      <!-- <button class="button button-icon button-clear" ng-click="showDelete()"><i class="fa fa-icon fa-minus"></i></button>&nbsp;&nbsp; -->
+    </ion-nav-buttons>
+  </ion-nav-bar>
   <ion-content id="Library" scroll="true">
     <div class="search animated slideInDown">
       <label class="item item-input">
@@ -24,7 +22,6 @@
         <!-- <i class="fa fa-filter" ng-model="showFilters" ng-click="toggleFilters()"></i> -->
       </div>
     </div>
-    
     <!-- <div class="filter-panel" ng-class="showFilters ? 'open':'close'" ng-show="showFilters">
       <i class="fa fa-retweet" ng-click=""></i>
       <i class="fa fa-calendar" ng-click=""></i>
@@ -34,7 +31,6 @@
         </md-switch>
       </div>
     </div> -->
-
     <div class="search-results" ng-if="searchResults || searchResults.length > 0">
       <div class="warning" ng-if="!searchResults || searchResults.length < 1">
         <h1>No search results.</h1>
@@ -53,13 +49,13 @@
               <span class="user" ng-repeat="item in item.members track by $index" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
                 <div class="image" ng-style="{'background-image':'url({{item.attributes.image._url}})'}"></div>
               </span>
-              <div class="popularity" ng-if="item.users_favorite.length > 0">
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-                <span class="icon-count">{{item.users_favorite.length}}</span>
-              </div>
+          <div class="popularity" ng-if="item.users_favorite.length > 0">
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <span class="icon-count">{{item.users_favorite.length}}</span>
+          </div>
           </span>
           <div class="share-options">
-              <a href="{{item.file._url}}" download><i class="fa fa-download" ng-click="addToFavs(item.id)"></i></a>
+            <a href="{{item.file._url}}" download><i class="fa fa-download" ng-click="addToFavs(item.id)"></i></a>
           </div>
         </div>
         <div class="item item-body" ng-if="item.description">
@@ -67,13 +63,12 @@
         </div>
       </div>
     </div>
-
     <div class="file-dashboard animated fadeIn">
       <div class="list card">
         <div class="item item-avatar">
           <i class="fa fa-star" aria-hidden="true"></i>
           <h2>My Favorites</h2>
-          <p>Most recent uploads</p>
+          <p></p>
           <!-- <p>Stats &amp; Quick Reference</p> -->
         </div>
         <div class="item item-body" ng-repeat="item in userFavFiles">
@@ -138,7 +133,7 @@
           <div class="item item-avatar">
             <i class="fa fa-upload" ng-class="filestoupload ? 'green': 'blue'" ng-click="uploadFiles()"></i>
             <span class="file-input"><input ng-model="uploadfiles" type="file" accept="image/*,.pdf,.doc,.docx,.txt,.zip" id="upload" multiple onchange="angular.element(this).scope().fileNameChanged(this)"/></span>
-           <!--  <div class="warning">
+            <!--  <div class="warning">
               <h1>Drop Files Here </h1>
             </div> -->
             <!-- <div class="chips">
@@ -151,8 +146,7 @@
             <div class="experimental-chips">
               <i class="fa fa-tag"></i>
               <md-chips ng-model="selectedVegetables" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-require-match="false">
-                <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name"
-                  placeholder="Tag with NOC code(s)">
+                <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Tag with NOC code(s)">
                   <span md-highlight-text="searchText">{{item.name}} :: {{item.type}}</span>
                 </md-autocomplete>
                 <md-chip-template>

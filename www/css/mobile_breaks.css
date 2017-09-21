@@ -1,0 +1,14 @@
+@media (max-width:667px) {
+  #Library .search {
+    background: #ffffff;
+    margin-bottom: 10px;
+    max-width: 100%!important;
+    margin: 0px auto;
+    padding: 48px;
+  }
+  #Library .file-dashboard .list.card {
+    width: 98%;
+    float: left;
+    margin: 6px 1%;
+  }
+}

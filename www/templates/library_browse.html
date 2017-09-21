@@ -7,19 +7,18 @@
             </button>
         </ion-nav-buttons>
         <ion-nav-buttons side="right">
-            <button class="button button-icon button-clear" ng-click="createNewProject()"><i class="fa fa-icon fa-upload"></i></button>&nbsp;&nbsp;
+            <!-- <button class="button button-icon button-clear" ng-click="createNewProject()"><i class="fa fa-icon fa-upload"></i></button>&nbsp;&nbsp; -->
             <!-- <button class="button button-icon button-clear" ng-click="showDelete()"><i class="fa fa-icon fa-minus"></i></button>&nbsp;&nbsp; -->
         </ion-nav-buttons>
     </ion-nav-bar>
     <ion-content id="Library" scroll="true" class="Browse">
-
-        <div class="warning" ng-if="!DATA || DATA.length < 1">
-            <h1>No Projects Found.</h1>
-        </div>
         <div class="item item-input-inset">
             <label class="item-input-wrapper">
                 <input type="text" placeholder="Search" ng-model="search.text">
             </label>
+        </div>
+        <div class="warning" ng-if="!DATA || DATA.length < 1">
+            <h1>No Files Found.</h1>
         </div>
         <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
             <ion-item ng-repeat="item in DATA | filter:search.text" class="item-thumbnail-left" ng-class="item.attributes.class == 'animated bounceIn' ? 'new':''">
