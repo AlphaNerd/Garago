@@ -61,9 +61,12 @@ angular.module('garago', [
       }
 
       $rootScope.$on('$locationChangeStart', function (event, next, current) {
-        checkAuth();
+        console.log(next)
+        // checkAuth();
       });
+      
       checkAuth()
+
       function checkAuth(){
         var currentUser = Parse.User.current();
         if (currentUser) {
