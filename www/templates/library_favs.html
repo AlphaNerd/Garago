@@ -22,13 +22,13 @@
         </div>
         <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
             <ion-item ng-repeat="item in DATA | filter:search.text" class="item-thumbnail-left" ng-class="item.attributes.class == 'animated bounceIn' ? 'new':''">
-                <div class="user" ng-repeat="item in item.members track by $index" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
-                  <div class="image" ng-style="{'background-image':'url({{item.attributes.image._url || '../img/no-image.jpg'}})'}"></div>
+                <div class="user" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
+                  <div class="image" ng-style="{'background-image':'url({{item.attributes.createdByUser.attributes.image._url || '../img/no-image.jpg'}})'}"></div>
                 </div>
-                <h2><a href="{{item.file._url}}" target="_blank">{{item.title}}</a></h2>
-                <p>{{item.description}}</p>
+                <h2><a href="{{item.file._url}}" target="_blank">{{item.attributes.title}}</a></h2>
+                <p>{{item.attributes.description}}</p>
                 <p class="last-updated">Last Updated: {{item.updatedAt | date:'short'}}</p>
-                <p class="created-by">Created By: {{item.members[0].attributes.username}}</p>
+                <!-- <p class="created-by">Created By: {{item.attributes.createdByUser.attributes.email}}</p> -->
                 <div class="tags">
                     <span ng-repeat="tag in item.tags" class="tag">
                         {{tag}}

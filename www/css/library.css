@@ -538,3 +538,9 @@ input.main-search {
     text-overflow: ellipsis;
     display: block;
 }
+
+
+#Library .list.my-uploads .item > i {
+    float: left;
+    margin-right: 10px;
+}

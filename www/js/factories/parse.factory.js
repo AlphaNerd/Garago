@@ -392,8 +392,11 @@ angular.module('garago.factory.parse', [])
     
               var file = new Parse.Object("Files");
               file.set("file", parseFile);
-              file.set("tags",tags)
-    
+              console.log("TAGS IN: ",tags)
+              var tagArray = tags.map(function (item) {
+                  return item.name;
+              });
+              file.set("tags",tagArray)
               var acl = new Parse.ACL();
               acl.setPublicReadAccess(true);
               acl.setPublicWriteAccess(false);
@@ -477,7 +480,7 @@ angular.module('garago.factory.parse', [])
       getUserFiles: function(){
         var deferred = $q.defer()
         var query = new Parse.Query(Files)
-        query.contains("createdBy", Parse.User.current().id)
+        query.equalTo("createdByUser", Parse.User.current())
         query.descending("createdAt")
         query.limit(5)
         query.find({
@@ -518,9 +521,9 @@ angular.module('garago.factory.parse', [])
       },
       getUserFavFiles: function(){
         var deferred = $q.defer()
-        var query = new Parse.Query(Files)
-        query.contains("users_favorite", Parse.User.current().id)
-        query.descending("createdAt")
+        var query = new Parse.Query(Users)
+        query.equalTo("objectId", Parse.User.current().id)
+        query.include("favorite_files")
         query.find({
           success: function(res) {
             console.log("Found User Fav Files: ", [res])
@@ -530,27 +533,13 @@ angular.module('garago.factory.parse', [])
           }
         }).then(function(resp) {
           if (resp) {
-            var promises = []
-            var files = []
-            angular.forEach(resp,function(val,key){
-              var obj = angular.copy(val.attributes)
-              obj.id = val.id
-              var promise = new Promise(function(resolve,reject){
-                var query = new Parse.Query(Users)
-                query.equalTo("objectId",val.attributes.createdBy)
-                query.find().then(function(res){
-                  console.log(res)
-                  obj.members = res
-                  files.push(obj)
-                  resolve(res)
-                })
-              })
-              promises.push(promise)
-            })
-            Promise.all(promises).then(function(res){
-              console.log("Users for file: ",files)
-              deferred.resolve(files)
-            })
+            var files = resp[0].relation("favorite_files");
+            files.query().find().then(function(files){
+                console.log("FAVORITE FILES RESP: ",files)
+                
+                deferred.resolve(files)
+            });
+            
           } else {
             deferred.resolve(false)
           }
@@ -569,7 +558,7 @@ angular.module('garago.factory.parse', [])
         query2.exists("members")
 
         var mainQuery = Parse.Query.or(query1, query2);
-        mainQuery.equalTo("createdBy", Parse.User.current().id)
+        mainQuery.equalTo("createdByUser", Parse.User.current())
         
         mainQuery.descending("createdAt")
         mainQuery.limit(5)
