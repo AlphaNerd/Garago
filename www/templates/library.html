@@ -75,24 +75,24 @@
             <h1>No Favorites Found.</h1>
         </div>
         <div class="item item-body" ng-repeat="item in userFavFiles">
-          <i class="fa" ng-class="item.attributes.icon" aria-hidden="true"></i> 
-          <span><a href="{{item.attributes.file._url}}" target="_blank">{{item.attributes.title}}</a></span>
+          <i class="fa" ng-class="item.icon" aria-hidden="true"></i> 
+          <span><a href="{{item.file._url}}" target="_blank">{{item.title}}</a></span>
           <span class="modified">
                 <span>Modified: {{item.updatedAt | date:'shortDate'}}</span>
-                <div>Created by: {{item.attributes.createdByUser.attributes.email}}</div>
+                <div>Created by: {{item.createdByUser.attributes.username}}</div>
           </span>
           <span class="tags">
-                <span ng-repeat="tag in item.attributes.tags">
+                <span ng-repeat="tag in item.tags">
                     {{tag}}
                 </span>
           </span>
           <span class="user-file-options">
                 <span class="shared-with">
                     <span class="user" ng-repeat="item in item.atrubutes.members track by $index" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
-                      <div class="image" ng-style="{'background-image':'url({{item.attributes.image._url}})'}"></div>
+                      <div class="image" ng-style="{'background-image':'url({{item.image._url}})'}"></div>
                     </span>
           </span>
-          <a href="{{item.attributes.file._url}}" download><i class="fa fa-download" aria-hidden="true"></i></a>&nbsp;
+          <a href="{{item.file._url}}" download><i class="fa fa-download" aria-hidden="true"></i></a>&nbsp;
           <i class="fa fa-share-alt" aria-hidden="true"></i>&nbsp;
           </span>
         </div>

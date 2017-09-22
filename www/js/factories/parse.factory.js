@@ -521,30 +521,37 @@ angular.module('garago.factory.parse', [])
       },
       getUserFavFiles: function(){
         var deferred = $q.defer()
-        var query = new Parse.Query(Users)
-        query.equalTo("objectId", Parse.User.current().id)
-        query.include("favorite_files")
-        query.find({
-          success: function(res) {
-            console.log("Found User Fav Files: ", [res])
-          },
-          error: function(e, r) {
-            console.log(e, r)
-          }
-        }).then(function(resp) {
-          if (resp) {
-            var files = resp[0].relation("favorite_files");
-            files.query().find().then(function(files){
-                console.log("FAVORITE FILES RESP: ",files)
-                
-                deferred.resolve(files)
-            });
-            
-          } else {
-            deferred.resolve(false)
-          }
-        })
+
+        Parse.Cloud.run('getUserFavFiles').then(function(res) {
+          console.log("CLOUD GET FAVOURITE FILES: ",res)
+          deferred.resolve(res)
+        });
+
         return deferred.promise
+        // var deferred = $q.defer()
+        // var query = new Parse.Query(Users)
+        // query.equalTo("objectId", Parse.User.current().id)
+        // query.include("favorite_files")
+        // query.find({
+        //   success: function(res) {
+        //     console.log("Found User Fav Files: ", [res])
+        //   },
+        //   error: function(e, r) {
+        //     console.log(e, r)
+        //   }
+        // }).then(function(resp) {
+        //   if (resp) {
+        //     var files = resp[0].relation("favorite_files");
+        //     files.query().find().then(function(files){
+        //         console.log("FAVORITE FILES RESP: ",files)
+        //         deferred.resolve(files)
+        //     });
+            
+        //   } else {
+        //     deferred.resolve(false)
+        //   }
+        // })
+        // return deferred.promise
       },
       ////////////////////////////////////////////////
       ////// Get All User Shared Files from Parse
