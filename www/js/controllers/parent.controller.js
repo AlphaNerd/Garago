@@ -1,6 +1,6 @@
 angular.module('garago.controllers', [])
 
-  .controller('ParentCtrl', function($scope, $ionicModal, $timeout, $rootScope, $ionicSideMenuDelegate, $ionicSlideBoxDelegate, $garagoAPI, $parseAPI, $window, $ionicLoading, $state) {
+  .controller('ParentCtrl', function($scope, $ionicModal, $timeout, $rootScope, $ionicSideMenuDelegate, $ionicSlideBoxDelegate, $garagoAPI, $parseAPI, $window, $ionicLoading, $state, $ionicPopup) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -9,17 +9,30 @@ angular.module('garago.controllers', [])
     $scope.$on('$ionicView.enter', function(e) {
       console.log("ParentCtrl Loaded.")
       var myDelay = 0;
+      Parse.User.current().fetch()
     });
 
     $rootScope.CurrentUser = Parse.User.current()
     //// logout current Parse User
     $scope.logout = function() {
       console.log("Logout User")
-      Parse.User.logOut().then(function(res) {
-        console.log("User logged out", res)
-        $rootScope.CurrentUser = {}
-        $state.go("login")
-      })
+      var confirmPopup = $ionicPopup.confirm({
+        title: "You're about to sign out!",
+        template: "If this is what you really want to do, then click 'OK' to crush our hearts. Press 'Cancel' to remain friends."
+      });
+
+      confirmPopup.then(function(res) {
+        if (res) {
+          console.log('You are sure');
+          Parse.User.logOut().then(function(res) {
+            console.log("User logged out", res)
+            $rootScope.CurrentUser = {}
+            $state.go("login")
+          })
+        } else {
+          console.log('You are not sure');
+        }
+      });
     }
 
     $parseAPI.getUserMessages().then(function(res) {
@@ -32,7 +45,7 @@ angular.module('garago.controllers', [])
         template: '<i class="icon ion-loading-c"></i><div>Creating new Action Plan...</div>',
         duration: 1000
       })
-      Parse.Cloud.run('createNewActionPlan', { 
+      Parse.Cloud.run('createNewActionPlan', {
         title: 'My New Action Plan',
         description: 'Some example description'
       }).then(function(res) {
@@ -41,124 +54,125 @@ angular.module('garago.controllers', [])
       });
     }
 
-    $scope.entryDelay = function(){
+    $scope.entryDelay = function() {
       myDelay += 1
       return myDelay
     }
 
     $scope.MENU_ACTIONPLAN = [
-    // {
-    //   name: "Action Plans",
-    //   class: 'columns',
-    //   items: [{
-    //     title: "My Plans",
-    //     link: "#/app/actionplans",
-    //     class: "list"
-    //   },{
-    //     title: "Latest Plan",
-    //     link: "#/app/actionplan/",
-    //     class: "clock-o"
-    //   }, {
-    //     title: "Create New",
-    //     link: "#/app/actionplan/new",
-    //     class: "plus"
-    //   }]
-    // },{
-    //   name: "Projects",
-    //   class: 'folder-o',
-    //   items: [{
-    //     title: "My Projects",
-    //     link: "#/app/projects",
-    //     class: "folder-open-o"
-    //   }, {
-    //     title: "Latest Project",
-    //     link: "#/app/project/",
-    //     class: "clock-o"
-    //   }, {
-    //     title: "Create new",
-    //     link: "#/app/project/new,",
-    //     class: "plus"
-    //   }]
-    // },{
-    //   name: "Activities",
-    //   class: 'folder-o',
-    //   items: [{
-    //     title: "My Activities",
-    //     link: "#/app/activities",
-    //     class: "folder-open-o"
-    //   }, {
-    //     title: "Latest Activity",
-    //     link: "#/app/activity/",
-    //     class: "clock-o"
-    //   }, {
-    //     title: "Create new",
-    //     link: "#/app/activity/new",
-    //     class: "plus"
-    //   }]
-    // },{
-    //   name: "Forms",
-    //   class: 'files-o',
-    //   items: [{
-    //     title: "My Forms",
-    //     link: "#/app/myforms",
-    //     class: "folder-open-o"
-    //   },{
-    //     title: "Form Builder",
-    //     link: "#/app/formbuilder",
-    //     class: "cogs"
-    //   },{
-    //     title: "Create Form",
-    //     link: "#/app/newform",
-    //     class: "plus"
-    //   }]
-    // }, {
-    //   name: "Reports",
-    //   class: 'line-chart',
-    //   items: [{
-    //     title: "Charts",
-    //     link: "#/app/myreports/charts",
-    //     class: "pie-chart"
-    //   }, {
-    //     title: "Tables",
-    //     link: "#/app/myreports/tables,",
-    //     class: "signal"
-    //   }, {
-    //     title: "Custom",
-    //     link: "#/app/myreports/custom,",
-    //     class: "area-chart"
-    //   }, {
-    //     title: "Create New",
-    //     link: "#/app/myreports/custom,",
-    //     class: "plus"
-    //   }]
-    // },
-    {
-      name: "Smart Library",
-      class: 'folder-o',
-      items: [{
-        title: "Dashboard",
-        link: "#/app/library",
-        class: "windows"
-      }, {
-        title: "My Favorites",
-        link: "#/app/library/favs",
-        class: "bookmark"
-      }, {
-        title: "Browse All",
-        link: "#/app/library/browse",
-        class: "list"
-      },
       // {
-      //   title: "Upload",
-      //   link: "#/app/library/upload",
-      //   class: "upload"
+      //   name: "Action Plans",
+      //   class: 'columns',
+      //   items: [{
+      //     title: "My Plans",
+      //     link: "#/app/actionplans",
+      //     class: "list"
+      //   },{
+      //     title: "Latest Plan",
+      //     link: "#/app/actionplan/",
+      //     class: "clock-o"
+      //   }, {
+      //     title: "Create New",
+      //     link: "#/app/actionplan/new",
+      //     class: "plus"
+      //   }]
+      // },{
+      //   name: "Projects",
+      //   class: 'folder-o',
+      //   items: [{
+      //     title: "My Projects",
+      //     link: "#/app/projects",
+      //     class: "folder-open-o"
+      //   }, {
+      //     title: "Latest Project",
+      //     link: "#/app/project/",
+      //     class: "clock-o"
+      //   }, {
+      //     title: "Create new",
+      //     link: "#/app/project/new,",
+      //     class: "plus"
+      //   }]
+      // },{
+      //   name: "Activities",
+      //   class: 'folder-o',
+      //   items: [{
+      //     title: "My Activities",
+      //     link: "#/app/activities",
+      //     class: "folder-open-o"
+      //   }, {
+      //     title: "Latest Activity",
+      //     link: "#/app/activity/",
+      //     class: "clock-o"
+      //   }, {
+      //     title: "Create new",
+      //     link: "#/app/activity/new",
+      //     class: "plus"
+      //   }]
+      // },{
+      //   name: "Forms",
+      //   class: 'files-o',
+      //   items: [{
+      //     title: "My Forms",
+      //     link: "#/app/myforms",
+      //     class: "folder-open-o"
+      //   },{
+      //     title: "Form Builder",
+      //     link: "#/app/formbuilder",
+      //     class: "cogs"
+      //   },{
+      //     title: "Create Form",
+      //     link: "#/app/newform",
+      //     class: "plus"
+      //   }]
       // }, {
-      //   title: "Share",
-      //   link: "#/app/library/share",
-      //   class: "share"
-      // }
-      ]
-    }];
+      //   name: "Reports",
+      //   class: 'line-chart',
+      //   items: [{
+      //     title: "Charts",
+      //     link: "#/app/myreports/charts",
+      //     class: "pie-chart"
+      //   }, {
+      //     title: "Tables",
+      //     link: "#/app/myreports/tables,",
+      //     class: "signal"
+      //   }, {
+      //     title: "Custom",
+      //     link: "#/app/myreports/custom,",
+      //     class: "area-chart"
+      //   }, {
+      //     title: "Create New",
+      //     link: "#/app/myreports/custom,",
+      //     class: "plus"
+      //   }]
+      // },
+      {
+        name: "Smart Library",
+        class: 'folder-o',
+        items: [{
+            title: "Dashboard",
+            link: "#/app/library",
+            class: "windows"
+          }, {
+            title: "My Favorites",
+            link: "#/app/library/favs",
+            class: "bookmark"
+          }, {
+            title: "Browse All",
+            link: "#/app/library/browse",
+            class: "list"
+          },
+          // {
+          //   title: "Upload",
+          //   link: "#/app/library/upload",
+          //   class: "upload"
+          // }, {
+          //   title: "Share",
+          //   link: "#/app/library/share",
+          //   class: "share"
+          // }
+        ]
+      }
+    ];
 
     $scope.gotoSlide = function(num) {
       $ionicSlideBoxDelegate.slide(num, 500);

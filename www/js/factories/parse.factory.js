@@ -1,6 +1,6 @@
 angular.module('garago.factory.parse', [])
 
-  .factory('$parseAPI', ['$http', '$timeout', '$q', '$ionicLoading', '$rootScope', function($http, $timeout, $q, $ionicLoading, $rootScope) {
+  .factory('$parseAPI', ['$http', '$timeout', '$q', '$ionicLoading', '$rootScope', '$state', function($http, $timeout, $q, $ionicLoading, $rootScope, $state) {
     Array.prototype.move = function(old_index, new_index) {
       if (new_index >= this.length) {
         var k = new_index - this.length;
@@ -11,6 +11,14 @@ angular.module('garago.factory.parse', [])
       this.splice(new_index, 0, this.splice(old_index, 1)[0]);
       return this; // for testing purposes
     };
+    function handleParseError(err) {
+      switch (err.code) {
+        case Parse.Error.INVALID_SESSION_TOKEN:
+          Parse.User.logOut();
+          $state.go("login")
+          break;
+      }
+    }
     var ActionPlans = Parse.Object.extend("ActionPlans")
     var Messages = Parse.Object.extend("Messages")
     var Organizations = Parse.Object.extend("Organizations")
@@ -42,7 +50,7 @@ angular.module('garago.factory.parse', [])
             console.log("Found user's projects: ", [res[0]])
           },
           error: function(e, r) {
-            console.log(e, r)
+            handleParseError(e)
           }
         }).then(function(res) {
           if (res[0]) {
@@ -65,7 +73,7 @@ angular.module('garago.factory.parse', [])
             console.log("Found Project by ID: ", [res[0]])
           },
           error: function(e, r) {
-            console.log(e, r)
+            handleParseError(e)
           }
         }).then(function(res) {
           if (res[0]) {
@@ -95,7 +103,7 @@ angular.module('garago.factory.parse', [])
             console.log("Found latest Project: ", [res[0]])
           },
           error: function(e, r) {
-            console.log(e, r)
+            handleParseError(e)
           }
         }).then(function(res) {
           if (res[0]) {
@@ -124,7 +132,7 @@ angular.module('garago.factory.parse', [])
             console.log("Found user's activities: ", [res[0]])
           },
           error: function(e, r) {
-            console.log(e, r)
+            handleParseError(e)
           }
         }).then(function(res) {
           if (res[0]) {
@@ -147,7 +155,7 @@ angular.module('garago.factory.parse', [])
             console.log("Found Activity by ID: ", [res[0]])
           },
           error: function(e, r) {
-            console.log(e, r)
+            handleParseError(e)
           }
         }).then(function(res) {
           if (res[0]) {
@@ -177,7 +185,7 @@ angular.module('garago.factory.parse', [])
             console.log("Found latest activity: ", [res[0]])
           },
           error: function(e, r) {
-            console.log(e, r)
+            handleParseError(e)
           }
         }).then(function(res) {
           if (res[0]) {
@@ -206,7 +214,7 @@ angular.module('garago.factory.parse', [])
             console.log("Found user's organizations: ", [res[0]])
           },
           error: function(e, r) {
-            console.log(e, r)
+            handleParseError(e)
           }
         }).then(function(res) {
           if (res[0]) {
@@ -235,7 +243,7 @@ angular.module('garago.factory.parse', [])
             console.log("Found user's teams: ", [res[0]])
           },
           error: function(e, r) {
-            console.log(e, r)
+            handleParseError(e)
           }
         }).then(function(res) {
           if (res[0]) {
@@ -273,7 +281,7 @@ angular.module('garago.factory.parse', [])
             console.log("Found latest Action Plan: ", [res[0]])
           },
           error: function(e, r) {
-            console.log(e, r)
+            handleParseError(e)
           }
         }).then(function(res) {
           if (res[0]) {
@@ -312,7 +320,7 @@ angular.module('garago.factory.parse', [])
             console.log("Found All User Action Plans: ", [res])
           },
           error: function(e, r) {
-            console.log(e, r)
+            handleParseError(e)
           }
         }).then(function(res) {
           if (res[0]) {
@@ -336,7 +344,7 @@ angular.module('garago.factory.parse', [])
             console.log("Found Action Plan: ", [res[0]])
           },
           error: function(e, r) {
-            console.log(e, r)
+            handleParseError(e)
           }
         }).then(function(res) {
           if (res[0]) {
@@ -368,7 +376,7 @@ angular.module('garago.factory.parse', [])
             console.log("Found User Messages: ", [res])
           },
           error: function(e, r) {
-            console.log(e, r)
+            handleParseError(e)
           }
         }).then(function(res) {
           if (res) {
@@ -443,6 +451,7 @@ angular.module('garago.factory.parse', [])
           },
           error: function(e, r) {
             console.log(e, r)
+            handleParseError(e)
           }
         }).then(function(resp) {
           if (resp) {
@@ -468,6 +477,7 @@ angular.module('garago.factory.parse', [])
           },
           error: function(e, r) {
             console.log(e, r)
+            handleParseError(e)
           }
         }).then(function(resp) {
           if (resp) {
@@ -498,11 +508,12 @@ angular.module('garago.factory.parse', [])
         })
         return deferred.promise
       },
-      getUserFavFiles: function(){
+      getUserFavFiles: function(limit){
         var deferred = $q.defer()
         console.log(Parse.User.current().attributes.fav_files)
         var query = new Parse.Query(Files)
         query.containedIn("objectId",Parse.User.current().attributes.fav_files)
+        query.limit(limit ? limit : 20)
         query.find().then(function(resp) {
           if (resp) {
             deferred.resolve(resp)
@@ -535,6 +546,7 @@ angular.module('garago.factory.parse', [])
           },
           error: function(e, r) {
             console.log(e, r)
+            handleParseError(e)
           }
         }).then(function(resp) {
           if (resp) {
@@ -587,6 +599,7 @@ angular.module('garago.factory.parse', [])
           },
           error: function(e, r) {
             console.log(e, r)
+            handleParseError(e)
           }
         }).then(function(res) {
           if (res) {

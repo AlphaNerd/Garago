@@ -37,12 +37,13 @@ angular.module('garago.controllers.library', [])
       $parseAPI.getUserFiles().then(function(res) {
         console.log("Library View 'User Files' Resolve: ", res)
         $scope.userFiles = res
+        $scope.$broadcast('scroll.refreshComplete');
       })
       $parseAPI.getUserSharedFiles().then(function(res) {
         console.log("Library View 'User Shared Files' Resolve: ", res)
         $scope.userSharedFiles = res
       })
-      $parseAPI.getUserFavFiles().then(function(res) {
+      $parseAPI.getUserFavFiles(2).then(function(res) {
         console.log("Library View 'User Fav Files' Resolve: ", res)
         $scope.userFavFiles = res
       })

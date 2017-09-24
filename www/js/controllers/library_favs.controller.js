@@ -17,6 +17,7 @@ angular.module('garago.controllers.library_favs', [])
     $scope.refreshData = function(){
       $parseAPI.getUserFavFiles().then(function (res) {
         $scope.DATA = res
+        $scope.$broadcast('scroll.refreshComplete');
       })
     }
 

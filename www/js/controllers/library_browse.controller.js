@@ -55,6 +55,7 @@ angular.module('garago.controllers.library_browse', [])
     $scope.refreshData = function(){
       $parseAPI.getAllFiles().then(function (res) {
         $scope.DATA = res
+        $scope.$broadcast('scroll.refreshComplete');
       })
     }
     

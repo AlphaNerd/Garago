@@ -1,60 +1,62 @@
 <ion-view view-title="Browse Library">
-    <ion-nav-bar class="bar-stable">
-        <ion-nav-back-button>
-        </ion-nav-back-button>
-        <ion-nav-buttons side="left">
-            <button class="button button-icon button-clear ion-navicon menu-toggle" menu-toggle="left">
-            </button>
-        </ion-nav-buttons>
-        <ion-nav-buttons side="right">
-            <!-- <button class="button button-icon button-clear" ng-click="createNewProject()"><i class="fa fa-icon fa-upload"></i></button>&nbsp;&nbsp; -->
-            <!-- <button class="button button-icon button-clear" ng-click="showDelete()"><i class="fa fa-icon fa-minus"></i></button>&nbsp;&nbsp; -->
-        </ion-nav-buttons>
-    </ion-nav-bar>
-    <ion-content id="Library" scroll="true" class="Browse">
-        <div class="item item-input-inset">
-            <label class="item-input-wrapper">
-                <input type="text" placeholder="Search" ng-model="search.text">
-            </label>
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+    <ion-nav-buttons side="left">
+      <button class="button button-icon button-clear ion-navicon menu-toggle" menu-toggle="left">
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <!-- <button class="button button-icon button-clear" ng-click="createNewProject()"><i class="fa fa-icon fa-upload"></i></button>&nbsp;&nbsp; -->
+      <!-- <button class="button button-icon button-clear" ng-click="showDelete()"><i class="fa fa-icon fa-minus"></i></button>&nbsp;&nbsp; -->
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content id="Library" scroll="true" class="Browse">
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="refreshData()">
+    </ion-refresher>
+    <div class="item item-input-inset">
+      <label class="item-input-wrapper">
+        <input type="text" placeholder="Search" ng-model="search.text">
+      </label>
+    </div>
+    <div class="warning" ng-if="!DATA || DATA.length < 1">
+      <h1>No Files Found.</h1>
+    </div>
+    <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
+      <ion-item ng-repeat="item in DATA | filter:search.text" class="item-thumbnail-left" ng-class="item.attributes.class == 'animated bounceIn' ? 'new':''">
+        <div class="user" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
+          <div class="image" ng-style="{'background-image':'url({{item.attributes.createdBy.image._url || '../img/no-image.jpg'}})'}"></div>
         </div>
-        <div class="warning" ng-if="!DATA || DATA.length < 1">
-            <h1>No Files Found.</h1>
-        </div>
-        <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
-            <ion-item ng-repeat="item in DATA | filter:search.text" class="item-thumbnail-left" ng-class="item.attributes.class == 'animated bounceIn' ? 'new':''">
-                <div class="user" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
-                  <div class="image" ng-style="{'background-image':'url({{item.attributes.createdBy.image._url || '../img/no-image.jpg'}})'}"></div>
-                </div>
-                <h2><a href="{{item.file._url}}" target="_blank">{{item.attributes.title}}</a></h2>
-                <p>{{item.attributes.description}}</p>
-                <p class="last-updated">Last Updated: {{item.updatedAt | date:'short'}}</p>
-                <p class="created-by">Created By: {{item.attributes.createdBy.email}}</p>
-                <div class="tags">
-                    <span ng-repeat="tag in item.attributes.tags" class="tag">
+        <h2><a href="{{item.file._url}}" target="_blank">{{item.attributes.title}}</a></h2>
+        <p>{{item.attributes.description}}</p>
+        <p class="last-updated">Last Updated: {{item.updatedAt | date:'short'}}</p>
+        <p class="created-by">Created By: {{item.attributes.createdBy.email}}</p>
+        <div class="tags">
+          <span ng-repeat="tag in item.attributes.tags" class="tag">
                         {{tag}}
                     </span>
-                </div>
-                <div class="acl-indicator">
-                    <div ng-class="item.attributes.ACL.permissionsById['*'].read ? 'green':'grey'">R</div>
-                    <div ng-class="item.attributes.ACL.permissionsById[CurrentUser.id].write ? 'green':'grey'">W</div>
-                </div>
-                <div class="favs-options">
-                    <i class="fa" ng-class="isFavFile(item) ? 'fa-star' : 'fa-star-o'" ng-click="toggleFav(item,isFavFile(item))"></i>
-                </div>
-                <div class="share-options">
-                    <a href="{{item.attributes.file._url}}" download><i class="fa fa-download"></i></a>
-                </div>
-                <ion-option-button class="button-positive" ng-click="share(item)">
-                    Share
-                </ion-option-button>
-                <ion-option-button class="button-assertive" ng-click="deleteProject(item)" ng-if="item.ACL.permissionsById[CurrentUser.id].write">
-                    Delete
-                </ion-option-button>
-                <ion-delete-button class="fa fa-minus-circle" ng-click="deletePlan(item,$index)">
-                </ion-delete-button>
-                <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(item, $fromIndex, $toIndex)" ng-if="item.ACL.permissionsById[CurrentUser.id].write">
-                </ion-reorder-button>
-            </ion-item>
-        </ion-list>
-    </ion-content>
+        </div>
+        <div class="acl-indicator">
+          <div ng-class="item.attributes.ACL.permissionsById['*'].read ? 'green':'grey'">R</div>
+          <div ng-class="item.attributes.ACL.permissionsById[CurrentUser.id].write ? 'green':'grey'">W</div>
+        </div>
+        <div class="favs-options">
+          <i class="fa" ng-class="isFavFile(item) ? 'fa-star' : 'fa-star-o'" ng-click="toggleFav(item,isFavFile(item))"></i>
+        </div>
+        <div class="share-options">
+          <a href="{{item.attributes.file._url}}" download><i class="fa fa-download"></i></a>
+        </div>
+        <ion-option-button class="button-positive" ng-click="share(item)">
+          Share
+        </ion-option-button>
+        <ion-option-button class="button-assertive" ng-click="deleteProject(item)" ng-if="item.ACL.permissionsById[CurrentUser.id].write">
+          Delete
+        </ion-option-button>
+        <ion-delete-button class="fa fa-minus-circle" ng-click="deletePlan(item,$index)">
+        </ion-delete-button>
+        <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(item, $fromIndex, $toIndex)" ng-if="item.ACL.permissionsById[CurrentUser.id].write">
+        </ion-reorder-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
 </ion-view>

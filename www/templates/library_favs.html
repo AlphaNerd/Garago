@@ -12,6 +12,8 @@
         </ion-nav-buttons>
     </ion-nav-bar>
     <ion-content id="Library" scroll="true" class="Browse">
+        <ion-refresher pulling-text="Pull to refresh..." on-refresh="refreshData()">
+        </ion-refresher>
         <div class="item item-input-inset">
             <label class="item-input-wrapper">
                 <input type="text" placeholder="Search" ng-model="search.text">

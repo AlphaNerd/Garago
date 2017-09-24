@@ -12,6 +12,8 @@
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content id="Library" scroll="true">
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="refreshData()">
+    </ion-refresher>
     <div class="search animated slideInDown">
       <label class="item item-input">
         <i class="icon ion-search placeholder-icon"></i> &nbsp;

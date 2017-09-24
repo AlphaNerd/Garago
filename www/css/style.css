@@ -542,3 +542,10 @@ md-switch span {
 .card{
   border-top:5px solid;
 }
+
+.welcome-user {
+    position: absolute;
+    top: 20px;
+    left: 45px;
+    font-size: 12px;
+}

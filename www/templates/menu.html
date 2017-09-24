@@ -27,10 +27,11 @@
                   <i class="fa fa-envelope-o" aria-hidden="true" ng-click="gotoSlide(1)"></i>
                   <!-- <div class="badge animated bounceIn">5</div> -->
                 </div>
-                <div class="profile" ng-click="gotoSlide(2)">
+                <div class="profile" ng-click="gotoSlide(1)">
                   <div class="image"></div>
                   <!-- <div class="badge animated bounceIn">1</div> -->
                 </div>
+                <div class="welcome-user">{{CurrentUser.attributes.username}}</div>
               </div>
               <ion-list class="menu-list" scroll="true">
                 <ion-item menu-close href="#/app/dashboard" ng-class="isActiveMenu('#/app/dashboard') ? 'active':''" ng-if="CurrentUser.attributes.isAdmin">
@@ -50,10 +51,13 @@
                 <ion-item menu-close href="#/app/contact" ng-class="isActiveMenu('#/app/contact') ? 'active':''" ng-if="CurrentUser.attributes.isAdmin">
                   <i class="fa fa-phone" aria-hidden="true"></i> &nbsp; Contacts
                 </ion-item>
+                <ion-item menu-close href="#/app/contact" ng-click="logout()">
+                  <i class="fa fa-sign-out" aria-hidden="true"></i> &nbsp; Sign Out
+                </ion-item>
               </ion-list>
           </ion-content>
         </ion-slide>
-        <ion-slide id="Messages">
+        <ion-slide id="Messages" ng-if="CurrentUser.attributes.isAdmin">
           <div class="user-messages">
             <div class="menu-header">
               <div class="logo">
@@ -86,8 +90,8 @@
               <div class="menu">
                 <i class="fa fa-bars" aria-hidden="true" ng-click="gotoSlide(0)"></i>
               </div>
-              <div class="mail">
-                <i class="fa fa-envelope-o" aria-hidden="true" ng-click="gotoSlide(1)"></i>
+              <div class="mail" ng-if="CurrentUser.attributes.isAdmin">
+                <i class="fa fa-envelope-o" aria-hidden="true" ng-click="gotoSlide(1)" ></i>
                 <div class="badge animated bounceIn">5</div>
               </div>
             </div>
@@ -96,9 +100,9 @@
                 Notiifications: {{ data.cb2 || 'Off' }}
               </md-switch>
             </div>
-            <div class="logout padding">
+            <!-- <div class="logout padding">
               <div class="button button-block button-assertive button-clear" ng-click="logout()">Logout</div>
-            </div>
+            </div> -->
           </ion-content>
         </ion-slide>
       </ion-slide-box>
