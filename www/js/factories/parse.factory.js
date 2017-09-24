@@ -455,7 +455,7 @@ angular.module('garago.factory.parse', [])
           }
         }).then(function(resp) {
           if (resp) {
-              deferred.resolve(resp)
+            deferred.resolve(resp)
           } else {
             deferred.resolve(false)
           }

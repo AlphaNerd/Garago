@@ -27,7 +27,7 @@
         <div class="user" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
           <div class="image" ng-style="{'background-image':'url({{item.attributes.createdBy.image._url || '../img/no-image.jpg'}})'}"></div>
         </div>
-        <h2><a href="{{item.file._url}}" target="_blank">{{item.attributes.title}}</a></h2>
+        <h2><a href="{{item.attributes.file._url}}" target="_blank">{{item.attributes.title}}</a></h2>
         <p>{{item.attributes.description}}</p>
         <p class="last-updated">Last Updated: {{item.updatedAt | date:'short'}}</p>
         <p class="created-by">Created By: {{item.attributes.createdBy.email}}</p>
@@ -45,6 +45,24 @@
         </div>
         <div class="share-options">
           <a href="{{item.attributes.file._url}}" download><i class="fa fa-download"></i></a>
+        </div>
+        <div class="comment-options">
+          <i class="fa fa-comment" ng-click="showComments = !showComments"></i>
+        </div>
+        <div class="comments" ng-init="showComments = false" ng-if="showComments">
+          <div class="item" ng-repeat="comment in item.attributes.comments">{{comment}}</div>
+          <span class="new-comment">
+            <span class="text">
+              <div class="item item-input-inset">
+                <label class="item-input-wrapper">
+                  <input type="text" placeholder="Comment" ng-model="commentIn">
+                </label>
+                <button class="button button-small" ng-click="addComment(commentIn,item)">
+                  Add <i class="addComment fa fa-plus"></i>
+                </button>
+              </div>
+            </span>
+          </span>
         </div>
         <ion-option-button class="button-positive" ng-click="share(item)">
           Share

@@ -25,6 +25,38 @@ angular.module('garago.controllers.library_browse', [])
       }
     }
 
+    $scope.addComment = function(comment,file){
+      console.log(comment,file)
+      var Comment = Parse.Object.extend("Comments")
+      var myComment = new Comment()
+      myComment.set("text",comment)
+      var user = {
+        id: Parse.User.current().id,
+        name: {
+          first: Parse.User.current().attributes.firstname,
+          last: Parse.User.current().attributes.lastname,
+          username: Parse.User.current().attributes.username
+        },
+        email: Parse.User.current().attributes.email,
+        image: Parse.User.current().attributes.image
+      }
+      myComment.set("createdBy",user)
+      myComment.save().then(function(res){
+        var relation = file.get("comments")
+        relation.add(res)
+        file.save({
+          success:function(res){
+            console.log(res)
+          },
+          error: function(e,r){
+            console.log(e,r)
+          }
+        }).then(function(res){
+          console.log("SAVED COMMENT")
+        })
+      })
+    }
+
     $scope.toggleFav = function(file, state) {
       console.log(file.id)
       Parse.User.current().fetch()

@@ -550,3 +550,34 @@ input.main-search {
     position: absolute;
     right: 15px;
 }
+
+#Library .comment-options {
+    position: absolute;
+    top: 75px;
+    right: 10px;
+    left: unset;
+}
+
+
+#Library .item.item-input-inset {
+    border: none;
+    padding: 10px 0;
+}
+
+
+#Library .item.item-input-inset button i{
+  font-size: 10px
+}
+
+#Library .item.item-input-inset button {
+    background: #2b3a41;
+    color: #fff;
+    max-height: 28px;
+    line-height: 24px;
+    padding: 2px 20px;
+}
+
+#Library .item-input-inset input[type="text"] {
+    width: 100%;
+}
+
