@@ -47,7 +47,7 @@ angular.module('garago.controllers.library', [])
         console.log("Library View 'User Shared Files' Resolve: ", res)
         $scope.userSharedFiles = res
       })
-      $parseAPI.getUserFavFiles(2).then(function(res) {
+      $parseAPI.getUserFavFiles(5).then(function(res) {
         console.log("Library View 'User Fav Files' Resolve: ", res)
         $scope.userFavFiles = res
       })

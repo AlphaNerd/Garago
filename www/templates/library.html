@@ -54,10 +54,10 @@
               <span class="user" ng-repeat="item in item.members track by $index" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
                 <div class="image" ng-style="{'background-image':'url({{item.attributes.image._url || '../img/no-image.jpg'}})'}"></div>
               </span>
-              <div class="popularity" ng-if="item.users_favorite.length > 0">
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-                <span class="icon-count">{{item.users_favorite.length}}</span>
-              </div>
+          <div class="popularity" ng-if="item.users_favorite.length > 0">
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <span class="icon-count">{{item.users_favorite.length}}</span>
+          </div>
           </span>
           <div class="share-options">
             <a href="{{item.file._url}}" download><i class="fa fa-download" ng-click="addToFavs(item.id)"></i></a>
@@ -92,13 +92,15 @@
                 </span>
           </span>
           <span class="user-file-options">
-                <span class="shared-with">
-                    <span class="user" ng-repeat="item in item.atrubutes.members track by $index" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
-                      <div class="image" ng-style="{'background-image':'url({{item.image._url}})'}"></div>
-                    </span>
-          </span>
-          <a href="{{item.attributes.file._url}}" download><i class="fa fa-download" aria-hidden="true"></i></a>&nbsp;
-          <i class="fa fa-share-alt" aria-hidden="true"></i>&nbsp;
+            <!-- <span class="shared-with">
+                <span class="user" ng-repeat="item in item.atrubutes.members track by $index" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
+                  <div class="image" ng-style="{'background-image':'url({{item.image._url}})'}"></div>
+                </span>
+            </span> -->
+            <a href="{{item.attributes.file._url}}" download><i class="fa fa-download" aria-hidden="true"></i></a>&nbsp;
+            <div class="favs-options">
+              <i class="fa" ng-class="isFavFile(item) ? 'fa-star' : 'fa-star-o'" ng-click="toggleFav(item,isFavFile(item))"></i>
+            </div>&nbsp;
           </span>
         </div>
       </div>

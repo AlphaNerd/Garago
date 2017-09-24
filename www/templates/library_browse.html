@@ -14,11 +14,11 @@
   <ion-content id="Library" scroll="true" class="Browse">
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="refreshData()">
     </ion-refresher>
-    <div class="item item-input-inset">
+    <!-- <div class="item item-input-inset">
       <label class="item-input-wrapper">
-        <input type="text" placeholder="Search" ng-model="search.text">
+        <input type="text" placeholder="Search" ng-init="search" ng-model="search.text">
       </label>
-    </div>
+    </div> -->
     <div class="warning" ng-if="!DATA || DATA.length < 1">
       <h1>No Files Found.</h1>
     </div>
