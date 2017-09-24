@@ -12,6 +12,7 @@ angular.module('garago.controllers.library_browse', [])
 
     $scope.DATA = userFilesData
 
+    var Files = Parse.Object.extend("Files")
     $scope.refreshData = function(){
       $parseAPI.getUserFiles().then(function (res) {
         $scope.DATA = res
@@ -20,12 +21,7 @@ angular.module('garago.controllers.library_browse', [])
 
     $scope.addToFavs = function(fileID){
       console.log(fileID)
-      Parse.Cloud.run('addUserFavFile', { 
-        fileID: fileID
-      }).then(function(res) {
-        console.log(res)
-        $scope.refreshData()
-      });
+      
     }
 
     $scope.isFavFile = function(item){

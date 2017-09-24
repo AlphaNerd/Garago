@@ -434,7 +434,7 @@ angular.module('garago', [
               userFilesData: function ($parseAPI, $ionicLoading) {
                 $ionicLoading.show()
                 return $parseAPI.getUserFavFiles().then(function (res) {
-                  console.log("Library Browse View 'All Files' Resolve: ", res)
+                  console.log("Library Favorites View 'Fav Files' Resolve: ", res)
                   $ionicLoading.hide()
                   return res
                 })

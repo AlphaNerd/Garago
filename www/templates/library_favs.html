@@ -21,9 +21,9 @@
             <h1>No Favorites Found.</h1>
         </div>
         <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
-            <ion-item ng-repeat="item in DATA | filter:search.text" class="item-thumbnail-left" ng-class="item.attributes.class == 'animated bounceIn' ? 'new':''">
+            <ion-item ng-repeat="item in DATA | filter:search.text" class="item-thumbnail-left" ng-class="item.class == 'animated bounceIn' ? 'new':''">
                 <div class="user" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
-                  <div class="image" ng-style="{'background-image':'url({{item.attributes.createdByUser.attributes.image._url || '../img/no-image.jpg'}})'}"></div>
+                  <div class="image" ng-style="{'background-image':'url({{item.createdByUser.attributes.image._url || '../img/no-image.jpg'}})'}"></div>
                 </div>
                 <h2><a href="{{item.file._url}}" target="_blank">{{item.title}}</a></h2>
                 <p>{{item.description}}</p>
