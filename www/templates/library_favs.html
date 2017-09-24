@@ -28,7 +28,7 @@
                 <h2><a href="{{item.attributes.file._url}}" target="_blank">{{item.attributes.title}}</a></h2>
                 <p>{{item.attributes.description}}</p>
                 <p class="last-updated">Last Updated: {{item.updatedAt | date:'short'}}</p>
-                <p class="created-by">Created By: {{item.createdBy.username}}</p>
+                <p class="created-by">Created By: {{item.attributes.createdBy.email}}</p>
                 <div class="tags">
                     <span ng-repeat="tag in item.attributes.tags" class="tag">
                         {{tag}}

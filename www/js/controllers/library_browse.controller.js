@@ -12,7 +12,7 @@ angular.module('garago.controllers.library_browse', [])
     });
 
     $scope.isFavFile = function(file){
-      var array = Parse.User.current().attributes.fav_files
+      var array = Parse.User.current().attributes.fav_files || []
       for(i=0;i<array.length;i++){
         if(array[i] == file.id){
           return true
@@ -23,7 +23,7 @@ angular.module('garago.controllers.library_browse', [])
     $scope.toggleFav = function(file,state){
       console.log(file.id)
       Parse.User.current().fetch()
-      var favs = Parse.User.current().attributes.fav_files
+      var favs = Parse.User.current().attributes.fav_files || []
       if(state){
         console.log("REMOVE")
         var index = favs.indexOf(file.id);
