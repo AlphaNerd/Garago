@@ -544,3 +544,9 @@ input.main-search {
     float: left;
     margin-right: 10px;
 }
+
+
+#Library .search-results .item .favs-options {
+    position: absolute;
+    right: 15px;
+}

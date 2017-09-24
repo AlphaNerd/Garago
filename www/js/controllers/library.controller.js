@@ -12,6 +12,10 @@ angular.module('garago.controllers.library', [])
       $scope.refreshData()
     });
 
+    $scope.shouldShowDelete = false;
+    $scope.shouldShowReorder = false;
+    $scope.listCanSwipe = true
+
     $scope.fileNameChanged = function() {
       console.log("CHANGED")
       $scope.filestoupload = true
@@ -145,6 +149,44 @@ angular.module('garago.controllers.library', [])
           (vegetable._lowertype.indexOf(lowercaseQuery) === 0);
       };
 
+    }
+
+    $scope.toggleFav = function(file, state) {
+      console.log(file.id)
+      Parse.User.current().fetch()
+      var favs = Parse.User.current().attributes.fav_files || []
+      if (state) {
+        console.log("REMOVE")
+        var index = favs.indexOf(file.id);
+        favs.splice(index, 1);
+        Parse.User.current().set("fav_files", favs)
+        Parse.User.current().save()
+        Parse.User.current().fetch()
+        $scope.refreshData()
+      } else {
+        console.log("ADD")
+        favs.push(file.id)
+        Parse.User.current().set("fav_files", favs)
+        Parse.User.current().save({
+          success: function(res) {
+            console.log(res)
+          },
+          error: function(e, r) {
+            console.log(e, r)
+          }
+        })
+        Parse.User.current().fetch()
+        $scope.refreshData()
+      }
+    }
+
+    $scope.isFavFile = function(file) {
+      var array = Parse.User.current().attributes.fav_files || []
+      for (i = 0; i < array.length; i++) {
+        if (array[i] == file.id) {
+          return true
+        }
+      }
     }
 
     function loadVegetables() {

@@ -12,6 +12,10 @@ angular.module('garago.controllers.library_favs', [])
       $scope.refreshData()
     });
 
+    $scope.shouldShowDelete = false;
+    $scope.shouldShowReorder = false;
+    $scope.listCanSwipe = true
+    
     $scope.DATA = userFilesData
 
     $scope.refreshData = function(){

@@ -39,6 +39,9 @@
       </div>
       <div class="list card" ng-repeat="item in searchResults track by $index">
         <div class="item item-avatar">
+          <div class="favs-options">
+            <i class="fa" ng-class="isFavFile(item) ? 'fa-star' : 'fa-star-o'" ng-click="toggleFav(item,isFavFile(item))"></i>
+          </div>
           <i class="fa" ng-class="item.icon" aria-hidden="true"></i>
           <h2><a href="{{item.file._url}}" target="_blank">{{item.title}}</a></h2>
           <p>Modified: {{item.updatedAt | date:'fullDate'}}</p>
@@ -51,10 +54,10 @@
               <span class="user" ng-repeat="item in item.members track by $index" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
                 <div class="image" ng-style="{'background-image':'url({{item.attributes.image._url || '../img/no-image.jpg'}})'}"></div>
               </span>
-          <div class="popularity" ng-if="item.users_favorite.length > 0">
-            <i class="fa fa-star-o" aria-hidden="true"></i>
-            <span class="icon-count">{{item.users_favorite.length}}</span>
-          </div>
+              <div class="popularity" ng-if="item.users_favorite.length > 0">
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+                <span class="icon-count">{{item.users_favorite.length}}</span>
+              </div>
           </span>
           <div class="share-options">
             <a href="{{item.file._url}}" download><i class="fa fa-download" ng-click="addToFavs(item.id)"></i></a>
@@ -74,14 +77,14 @@
           <!-- <p>Stats &amp; Quick Reference</p> -->
         </div>
         <div class="warning" ng-if="!userFavFiles || userFavFiles.length < 1">
-            <h1>No Favorites Found.</h1>
+          <h1>No Favorites Found.</h1>
         </div>
         <div class="item item-body" ng-repeat="item in userFavFiles">
-          <i class="fa" ng-class="item.attributes.icon" aria-hidden="true"></i> 
+          <i class="fa" ng-class="item.attributes.icon" aria-hidden="true"></i>
           <span><a href="{{item.attributes.file._url}}" target="_blank">{{item.attributes.title}}</a></span>
           <span class="modified">
                 <span>Modified: {{item.updatedAt | date:'shortDate'}}</span>
-                <div>Created by: {{item.attributes.createdBy.email}}</div>
+          <div>Created by: {{item.attributes.createdBy.email}}</div>
           </span>
           <span class="tags">
                 <span ng-repeat="tag in item.attributes.tags">
@@ -107,7 +110,7 @@
           <!-- <p>Stats &amp; Quick Reference</p> -->
         </div>
         <div class="warning" ng-if="!userFiles || userFiles.length < 1">
-            <h1>No Uploads Found.</h1>
+          <h1>No Uploads Found.</h1>
         </div>
         <div class="item item-body" ng-repeat="item in userFiles">
           <i class="fa" ng-class="item.icon" aria-hidden="true"></i> <span class="filename"><a href="{{item.file._url}}" target="_blank">{{item.title}}</a></span>
