@@ -405,6 +405,7 @@ angular.module('garago', [
             resolve: {
               userFilesData: function ($parseAPI, $ionicLoading) {
                 $ionicLoading.show()
+                Parse.User.current().fetch()
                 return $parseAPI.getAllFiles().then(function (res) {
                   console.log("Library Browse View 'All Files' Resolve: ", res)
                   $ionicLoading.hide()
@@ -433,6 +434,7 @@ angular.module('garago', [
             resolve: {
               userFilesData: function ($parseAPI, $ionicLoading) {
                 $ionicLoading.show()
+                Parse.User.current().fetch()
                 return $parseAPI.getUserFavFiles().then(function (res) {
                   console.log("Library Favorites View 'Fav Files' Resolve: ", res)
                   $ionicLoading.hide()

@@ -446,28 +446,7 @@ angular.module('garago.factory.parse', [])
           }
         }).then(function(resp) {
           if (resp) {
-            var promises = []
-            var files = []
-            angular.forEach(resp,function(val,key){
-              var obj = angular.copy(val.attributes)
-              obj.id = val.id
-              var promise = new Promise(function(resolve,reject){
-                var query = new Parse.Query(Users)
-                query.equalTo("objectId",val.attributes.createdBy)
-                query.descending("updatedAt")
-                query.find().then(function(res){
-                  // console.log(res)
-                  obj.members = res
-                  files.push(obj)
-                  resolve(res)
-                })
-              })
-              promises.push(promise)
-            })
-            Promise.all(promises).then(function(res){
-              console.log("Users for file: ",files)
-              deferred.resolve(files)
-            })
+              deferred.resolve(resp)
           } else {
             deferred.resolve(false)
           }
@@ -521,37 +500,17 @@ angular.module('garago.factory.parse', [])
       },
       getUserFavFiles: function(){
         var deferred = $q.defer()
-
-        Parse.Cloud.run('getUserFavFiles').then(function(res) {
-          console.log("CLOUD GET FAVOURITE FILES: ",res)
-          deferred.resolve(res)
-        });
-
+        console.log(Parse.User.current().attributes.fav_files)
+        var query = new Parse.Query(Files)
+        query.containedIn("objectId",Parse.User.current().attributes.fav_files)
+        query.find().then(function(resp) {
+          if (resp) {
+            deferred.resolve(resp)
+          } else {
+            deferred.resolve(false)
+          }
+        })
         return deferred.promise
-        // var deferred = $q.defer()
-        // var query = new Parse.Query(Users)
-        // query.equalTo("objectId", Parse.User.current().id)
-        // query.include("favorite_files")
-        // query.find({
-        //   success: function(res) {
-        //     console.log("Found User Fav Files: ", [res])
-        //   },
-        //   error: function(e, r) {
-        //     console.log(e, r)
-        //   }
-        // }).then(function(resp) {
-        //   if (resp) {
-        //     var files = resp[0].relation("favorite_files");
-        //     files.query().find().then(function(files){
-        //         console.log("FAVORITE FILES RESP: ",files)
-        //         deferred.resolve(files)
-        //     });
-            
-        //   } else {
-        //     deferred.resolve(false)
-        //   }
-        // })
-        // return deferred.promise
       },
       ////////////////////////////////////////////////
       ////// Get All User Shared Files from Parse

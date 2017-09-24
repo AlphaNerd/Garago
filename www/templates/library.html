@@ -75,14 +75,14 @@
             <h1>No Favorites Found.</h1>
         </div>
         <div class="item item-body" ng-repeat="item in userFavFiles">
-          <i class="fa" ng-class="item.icon" aria-hidden="true"></i> 
-          <span><a href="{{item.file._url}}" target="_blank">{{item.title}}</a></span>
+          <i class="fa" ng-class="item.attributes.icon" aria-hidden="true"></i> 
+          <span><a href="{{item.file._url}}" target="_blank">{{item.attributes.title}}</a></span>
           <span class="modified">
                 <span>Modified: {{item.updatedAt | date:'shortDate'}}</span>
-                <div>Created by: {{item.createdByUser.attributes.username}}</div>
+                <div>Created by: {{item.attributes.createdBy.email}}</div>
           </span>
           <span class="tags">
-                <span ng-repeat="tag in item.tags">
+                <span ng-repeat="tag in item.attributes.tags">
                     {{tag}}
                 </span>
           </span>

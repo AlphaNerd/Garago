@@ -1,16 +1,18 @@
 angular.module('garago.controllers.library', [])
 
-  .controller('LibraryCtrl', function ($scope, $ionicModal, $timeout, $rootScope, $ionicSideMenuDelegate, $parseAPI, userFilesData, userSharedFilesData, userFavFilesData, FileUploader, $ionicLoading) {
+  .controller('LibraryCtrl', function($scope, $ionicModal, $timeout, $rootScope, $ionicSideMenuDelegate, $parseAPI, userFilesData, userSharedFilesData, userFavFilesData, FileUploader, $ionicLoading) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
     // To listen for when this page is active (for example, to refresh data),
     // listen for the $ionicView.enter event:
-    $scope.$on('$ionicView.enter', function (e) {
+    $scope.$on('$ionicView.enter', function(e) {
       console.log("LibraryCtrl Loaded.")
+      Parse.User.current().fetch()
+      $scope.refreshData()
     });
 
-    $scope.fileNameChanged = function(){
+    $scope.fileNameChanged = function() {
       console.log("CHANGED")
       $scope.filestoupload = true
       $scope.$apply()
@@ -22,7 +24,7 @@ angular.module('garago.controllers.library', [])
     }
     $scope.searchTags = []
 
-    $scope.toggleFilters = function (data) {
+    $scope.toggleFilters = function(data) {
       $scope.showFilters = !$scope.showFilters
     }
 
@@ -31,14 +33,29 @@ angular.module('garago.controllers.library', [])
     $scope.userFavFiles = userFavFilesData
     $scope.userSharedFiles = userSharedFilesData
 
-    $scope.clearSearch = function(){
+    $scope.refreshData = function() {
+      $parseAPI.getUserFiles().then(function(res) {
+        console.log("Library View 'User Files' Resolve: ", res)
+        $scope.userFiles = res
+      })
+      $parseAPI.getUserSharedFiles().then(function(res) {
+        console.log("Library View 'User Shared Files' Resolve: ", res)
+        $scope.userSharedFiles = res
+      })
+      $parseAPI.getUserFavFiles().then(function(res) {
+        console.log("Library View 'User Fav Files' Resolve: ", res)
+        $scope.userFavFiles = res
+      })
+    }
+
+    $scope.clearSearch = function() {
       $scope.search = {}
       $scope.searchResults = []
     }
 
-    $scope.searchFiles = function (search) {
+    $scope.searchFiles = function(search) {
       if (search.length > 0) {
-        $parseAPI.searchFiles(search).then(function (res) {
+        $parseAPI.searchFiles(search).then(function(res) {
           console.log("Search returned: ", res)
           $scope.searchResults = res
         })
@@ -47,16 +64,16 @@ angular.module('garago.controllers.library', [])
       }
     }
 
-    $scope.uploadFiles = function(){
+    $scope.uploadFiles = function() {
       $ionicLoading.show({
         template: "Saving file(s)...",
         duration: 3000
       })
       var $input = angular.element(document.getElementById('upload'));
       console.log($input[0].files)
-      $parseAPI.saveUserFile($input[0].files,$scope.searchTags).then(function (res) {
+      $parseAPI.saveUserFile($input[0].files, $scope.searchTags).then(function(res) {
         console.log("Save returned: ", res)
-        $parseAPI.getUserFiles().then(function (res) {
+        $parseAPI.getUserFiles().then(function(res) {
           console.log("Save returned: ", res)
           $scope.userFiles = res
           $input.val(null);
@@ -71,7 +88,7 @@ angular.module('garago.controllers.library', [])
     /// drag and drop style change on dragentert
     var drop = document.getElementById("upload");
     drop.addEventListener("dragenter", change, false);
-    drop.addEventListener("dragleave",change_back,false);
+    drop.addEventListener("dragleave", change_back, false);
 
     function change() {
       drop.style.backgroundColor = 'rgba(51, 205, 95, 0.1)';
@@ -124,14 +141,13 @@ angular.module('garago.controllers.library', [])
 
       return function filterFn(vegetable) {
         return (vegetable._lowername.indexOf(lowercaseQuery) === 0) ||
-            (vegetable._lowertype.indexOf(lowercaseQuery) === 0);
+          (vegetable._lowertype.indexOf(lowercaseQuery) === 0);
       };
 
     }
 
-    function loadVegetables(){
-      var veggies = [
-        {
+    function loadVegetables() {
+      var veggies = [{
           'name': 'Research',
           'type': '24531'
         },
@@ -153,7 +169,7 @@ angular.module('garago.controllers.library', [])
         }
       ];
 
-      return veggies.map(function (veg) {
+      return veggies.map(function(veg) {
         veg._lowername = veg.name.toLowerCase();
         veg._lowertype = veg.type.toLowerCase();
         return veg;
