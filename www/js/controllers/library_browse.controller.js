@@ -49,15 +49,24 @@ angular.module('garago.controllers.library_browse', [])
           console.log(e,r)
         }
       }).then(function(resp){
-        console.log(file)
+        console.log(resp)
         var Files = Parse.Object.extend("Files")
-        var files = new Parse.Query(Files)
-        files.equalTo("objectId",file.id)
-        files.find().then(function(res){
-          console.log(file,res)
-          var relation = res[0].relation("comments")
+        var query = new Parse.Query(Files)
+        query.equalTo("objectId",file.id)
+        query.include("comments")
+        query.find({
+          success: function(res){
+            console.log("Found File: ",res)
+          },
+          error: function(e,r){
+            console.loge,r
+          }
+        }).then(function(myFile){
+          console.log(myFile)
+          var relation = myFile[0].relation("comments")
+          console.log(relation,resp[0])
           relation.add(resp[0])
-          res[0].save({
+          myFile[0].save({
             success:function(res){
               $scope.commentIn = ""
               $scope.refreshData()

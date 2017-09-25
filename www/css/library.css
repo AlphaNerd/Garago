@@ -629,3 +629,11 @@ input.main-search {
   width:100%;
   height:auto;
 }
+
+
+
+#library .search-results i.fa.fa-file-image-o {
+    position: absolute;
+    left: 16px;
+    font-size: 30px;
+}

@@ -444,7 +444,7 @@ angular.module('garago.factory.parse', [])
         var deferred = $q.defer()
         var query = new Parse.Query(Files)
         query.include("comments")
-        query.descending("updatedAt")
+        query.descending("createdAt")
         
         query.find({
           success: function(res) {
