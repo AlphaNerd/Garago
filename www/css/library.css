@@ -581,3 +581,51 @@ input.main-search {
     width: 100%;
 }
 
+#Library h2 a {
+    font-weight: 700;
+}
+
+
+
+
+
+#Library .comment {
+    border-bottom: 2px dashed #ddd;
+    padding: 10px 0;
+}
+
+#Library .comments {
+    padding: 20px 0;
+}
+
+#Library .comment .user {
+    width: 20px;
+    display: inline-block;
+    border-radius: 100%;
+    overflow: hidden;
+    height: 20px;
+    margin-right:5px;
+}
+
+#Library .comment .username {
+    font-size: 12px;
+    vertical-align: top;
+}
+
+#Library .comment .text{
+    font-size: 14px;
+    font-weight: 700;
+    vertical-align: top;
+}
+
+#Library .comment .date{
+    font-size: 11px;
+    font-weight: 200;
+    vertical-align: top;
+    color:#333;
+}
+
+#Library .comment img{
+  width:100%;
+  height:auto;
+}

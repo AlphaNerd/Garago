@@ -50,7 +50,12 @@
           <i class="fa fa-comment" ng-click="showComments = !showComments"></i>
         </div>
         <div class="comments" ng-init="showComments = false" ng-if="showComments">
-          <div class="item" ng-repeat="comment in item.attributes.comments">{{comment}}</div>
+          <div class="comment" ng-repeat="comment in item.comments">
+            <span class="user"><img src="{{comment.attributes.createdBy.image._url || '../img/no-image.jpg'}}"></span>
+            <span class="username">{{comment.attributes.createdBy.name.username}}</span>
+            <span class="date">( {{comment.createdAt | date}} )</span>
+            <div class="text">{{comment.attributes.text}}</div>
+          </div>
           <span class="new-comment">
             <span class="text">
               <div class="item item-input-inset">

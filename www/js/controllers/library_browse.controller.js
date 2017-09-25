@@ -41,18 +41,34 @@ angular.module('garago.controllers.library_browse', [])
         image: Parse.User.current().attributes.image
       }
       myComment.set("createdBy",user)
-      myComment.save().then(function(res){
-        var relation = file.get("comments")
-        relation.add(res)
-        file.save({
-          success:function(res){
-            console.log(res)
-          },
-          error: function(e,r){
-            console.log(e,r)
-          }
-        }).then(function(res){
-          console.log("SAVED COMMENT")
+      myComment.save({
+        success: function(res){
+          console.log(res)
+        },
+        error: function(e,r){
+          console.log(e,r)
+        }
+      }).then(function(resp){
+        console.log(file)
+        var Files = Parse.Object.extend("Files")
+        var files = new Parse.Query(Files)
+        files.equalTo("objectId",file.id)
+        files.find().then(function(res){
+          console.log(file,res)
+          var relation = res[0].relation("comments")
+          relation.add(resp[0])
+          res[0].save({
+            success:function(res){
+              $scope.commentIn = ""
+              $scope.refreshData()
+              console.log(res)
+            },
+            error: function(e,r){
+              console.log(e,r)
+            }
+          }).then(function(res){
+            console.log("SAVED COMMENT")
+          })
         })
       })
     }

@@ -443,6 +443,7 @@ angular.module('garago.factory.parse', [])
       getAllFiles: function(){
         var deferred = $q.defer()
         var query = new Parse.Query(Files)
+        query.include("comments")
         query.descending("updatedAt")
         
         query.find({
@@ -455,7 +456,27 @@ angular.module('garago.factory.parse', [])
           }
         }).then(function(resp) {
           if (resp) {
-            deferred.resolve(resp)
+            var promises = []
+            var files = []
+            angular.forEach(resp,function(val,key){
+              var obj = {
+                id: val.id,
+                attributes: val.attributes,
+                comments: []
+              }
+              var promise = new Promise(function(resolve,reject){
+                val.get("comments").query().find().then(function(res){
+                  obj.comments = res
+                  files.push(obj)
+                  resolve(res)
+                })
+              })
+              promises.push(promise)
+            })
+            Promise.all(promises).then(function(res){
+              console.log("All Files: ",files)
+              deferred.resolve(files)
+            })
           } else {
             deferred.resolve(false)
           }
