@@ -7,8 +7,8 @@
       </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-      <!-- <button class="button button-icon button-clear" ng-click="createNewProject()"><i class="fa fa-icon fa-upload"></i></button>&nbsp;&nbsp; -->
-      <!-- <button class="button button-icon button-clear" ng-click="showDelete()"><i class="fa fa-icon fa-minus"></i></button>&nbsp;&nbsp; -->
+      <button class="button button-icon button-clear" ng-click="confirmSave()"><i class="fa fa-icon fa-save"></i>&nbsp;Save</button>&nbsp;
+      <button class="button button-icon button-clear" ng-click="confirmCancel()"><i class="fa fa-icon fa-times-circle"></i>&nbsp;Cancel</button>&nbsp;
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content id="Edit" scroll="true" class="File">
@@ -17,27 +17,44 @@
     <div class="list card">
       <div class="item item-avatar">
         <i class="fa" ng-class="FILE.attributes.icon" aria-hidden="true"></i>
-        <h2 contenteditable ng-model="FILE.attributes.title"></h2>
+        <h2><b>{{FILE.attributes.title}}</b></h2>
         <span class="modified">
             <span>Modified: {{FILE.updatedAt | moment}}</span>
             <div>Created by: {{FILE.attributes.createdBy.email}}</div>
         </span>
-        <span class="tags">
-            <span ng-repeat="tag in item.attributes.tags">
+        <!-- <span class="tags">
+            <span ng-repeat="tag in FILE.attributes.tags">
                 {{tag}}
             </span>
-        </span>
+        </span> -->
+        <div class="experimental-chips">
+          <i class="fa fa-tag"></i>
+          <md-chips ng-model="searchTags" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-require-match="false">
+            <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Tag with NOC code(s)">
+              <span md-highlight-text="searchText">{{item.name}} :: {{item.type}}</span>
+            </md-autocomplete>
+            <md-chip-template>
+              <span>
+                <strong>{{$chip.name}}</strong>
+                <!-- <em>({{$chip.type}})</em> -->
+              </span>
+            </md-chip-template>
+          </md-chips>
+        </div>
       </div>
       <div class="item item-body">
         <!-- <img class="full-image" src="delorean.jpg"> -->
         <p>
-          This is a "Facebook" styled Card. The header is created from a Thumbnail List item, the content is from a card-body consisting of an image and paragraph text. The footer consists of tabs, icons aligned left, within the card-footer.
+          Stats for file could go here
         </p>
         <p>
           <a href="#" class="subdued">1 Like</a>
           <a href="#" class="subdued">5 Comments</a>
         </p>
       </div>
+    </div>
+    <div class="delete-item button button-block button-assertive" ng-click="confirmDelete()">
+      Delete
     </div>
   </ion-content>
 </ion-view>
