@@ -665,6 +665,26 @@ angular.module('garago.factory.parse', [])
 
         return deferred.promise
       },
+      ////////////////////////////////////////////////
+      ////// Get User Data From ID
+      ////////////////////////////////////////////////
+      getFile: function(id){
+        console.log(id)
+        var deferred = $q.defer()
+        var query = new Parse.Query(Files)
+        query.equalTo("objectId",id).find({
+          success: function(res){
+            console.log(res)
+          },
+          error: function(e,r){
+            console.log(e,r)
+            handleParseError(e)
+          }
+        }).then(function(res){
+          deferred.resolve(res[0])
+        })
+        return deferred.promise
+      },
     }
     return obj
   }])

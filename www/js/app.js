@@ -14,6 +14,7 @@ angular.module('garago', [
   'garago.controllers.project',
   'garago.controllers.activity',
   'garago.controllers.activities',
+  'garago.controllers.editfile',
   'garago.factory.api',
   'garago.factory.mockApi',
   'garago.factory.utility',
@@ -21,6 +22,7 @@ angular.module('garago', [
   'garago.directives.contenteditable',
   'garago.directives.piechart',
   'garago.filters.keyboardShortcut',
+  'garago.filters.utilities',
   'ngDraggable',
   'ngMaterial',
   'ngAnimate',
@@ -437,6 +439,36 @@ angular.module('garago', [
                 Parse.User.current().fetch()
                 return $parseAPI.getUserFavFiles().then(function (res) {
                   console.log("Library Favorites View 'Fav Files' Resolve: ", res)
+                  $ionicLoading.hide()
+                  return res
+                })
+              }
+            }
+          }
+        }
+      })
+
+      ////////////////////////////////////////////////////////////////
+      //////////////// Smart Library Route - In Dev ///////////////////////
+      ////////////////////////////////////////////////////////////////
+      ///
+      ///   Route: /library/edit/file/:id
+      ///   Edit specific file by Id. 
+      ///
+      ////////////////////////////////////////////////////////////////
+      .state('app.edit_file', {
+        url: '/library/edit/file/:id',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/editFile.html',
+            controller: 'EditFileCtrl',
+            resolve: {
+              fileData: function ($parseAPI, $ionicLoading, $stateParams) {
+                $ionicLoading.show()
+                console.log("Edit file: ", $stateParams)
+                Parse.User.current().fetch()
+                return $parseAPI.getFile($stateParams.id).then(function (res) {
+                  console.log("Library 'Edit File' Resolve: ", res)
                   $ionicLoading.hide()
                   return res
                 })

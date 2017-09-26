@@ -637,3 +637,16 @@ input.main-search {
     left: 16px;
     font-size: 30px;
 }
+
+#Library.Browse .file .title i.fa-pencil:hover {
+    color: #2b3a41;
+    cursor: pointer;
+}
+
+
+#Library.Browse .file .title i.fa-pencil {
+    font-size: 14px;
+    margin-left: 10px;
+    color: #777;
+}
+

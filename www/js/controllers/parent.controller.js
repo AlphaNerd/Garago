@@ -35,6 +35,11 @@ angular.module('garago.controllers', [])
       });
     }
 
+    $scope.editFile = function(fileid){
+      console.log(fileid)
+      $state.go("app.edit_file",{id:fileid})
+    }
+
     $parseAPI.getUserMessages().then(function(res) {
       console.log("User Messages: ", [res])
       $scope.MESSAGES = res

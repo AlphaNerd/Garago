@@ -23,13 +23,13 @@
       <h1>No Files Found.</h1>
     </div>
     <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
-      <ion-item ng-repeat="item in DATA | filter:search.text" class="item-thumbnail-left" ng-class="item.attributes.class == 'animated bounceIn' ? 'new':''">
+      <ion-item ng-repeat="item in DATA | filter:search.text" class="item-thumbnail-left file" ng-class="item.attributes.class == 'animated bounceIn' ? 'new':''">
         <div class="user" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
           <div class="image" ng-style="{'background-image':'url({{item.attributes.createdBy.image._url || '../img/no-image.jpg'}})'}"></div>
         </div>
-        <h2><a href="{{item.attributes.file._url}}" target="_blank">{{item.attributes.title}}</a></h2>
+        <h2 class="title"><a href="{{item.attributes.file._url}}" target="_blank">{{item.attributes.title}}</a>&nbsp;<i class="fa fa-pencil" ng-if="item.attributes.ACL.permissionsById[CurrentUser.id].write" ng-click="editFile(item.id)"></i></h2>
         <p>{{item.attributes.description}}</p>
-        <p class="last-updated">Last Updated: {{item.updatedAt | date:'short'}}</p>
+        <p class="last-updated">Last Updated: {{item.attributes.updatedAt | moment}}</p>
         <p class="created-by">Created By: {{item.attributes.createdBy.email}}</p>
         <div class="tags">
           <span ng-repeat="tag in item.attributes.tags" class="tag">
