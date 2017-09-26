@@ -43,7 +43,7 @@
             <i class="fa" ng-class="isFavFile(item) ? 'fa-star' : 'fa-star-o'" ng-click="toggleFav(item,isFavFile(item))"></i>
           </div>
           <i class="fa" ng-class="item.icon" aria-hidden="true"></i>
-          <h2><a href="{{item.file._url}}" target="_blank">{{item.title}}</a>&nbsp;<i class="fa fa-pencil" ng-if="item.attributes.ACL.permissionsById[CurrentUser.id].write" ng-click="editFile(item.id)"></i></h2>
+          <h2><a href="{{item.file._url}}" target="_blank">{{item.title}}</a>&nbsp;<i class="fa fa-pencil" ng-if="item.ACL.permissionsById[CurrentUser.id].write" ng-click="editFile(item.id)"></i></h2>
           <p>Modified: {{item.updatedAt | date:'fullDate'}}</p>
           <span class="tags">
               <span ng-repeat="tag in item.tags">
@@ -115,7 +115,7 @@
           <h1>No Uploads Found.</h1>
         </div>
         <div class="item item-body" ng-repeat="item in userFiles">
-          <i class="fa" ng-class="item.icon" aria-hidden="true"></i> <span class="filename"><a href="{{item.file._url}}" target="_blank">{{item.title}}</a></span>
+          <i class="fa" ng-class="item.icon" aria-hidden="true"></i> <span class="filename"><a href="{{item.file._url}}" target="_blank">{{item.title}}</a><i class="fa fa-pencil" ng-if="item.ACL.permissionsById[CurrentUser.id].write" ng-click="editFile(item.id)"></i></span>
           <span class="modified">
                 <span>Modified: {{item.updatedAt | moment}}</span>
           </span>
@@ -125,10 +125,11 @@
                 </span>
           </span>
           <span class="user-file-options">
-                <span class="shared-with">
-                    <span class="user" ng-repeat="item in item.members track by $index" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
-                      <div class="image" ng-style="{'background-image':'url({{item.attributes.image._url || '../img/no-image.jpg'}})'}"></div>
-                    </span>
+              <span class="shared-with">
+                  <span class="user" ng-repeat="item in item.members track by $index" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
+                    <div class="image" ng-style="{'background-image':'url({{item.attributes.image._url || '../img/no-image.jpg'}})'}"></div>
+                  </span>
+              </span>
           </span>
           <a href="{{item.file._url}}" download><i class="fa fa-download" aria-hidden="true"></i></a>&nbsp;
           <i class="fa fa-share-alt" aria-hidden="true"></i>&nbsp;
