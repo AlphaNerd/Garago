@@ -513,7 +513,7 @@ angular.module('garago.factory.parse', [])
         var query = new Parse.Query(Files)
         query.equalTo("createdByUser", Parse.User.current())
         query.equalTo("active",true)
-        query.descending("createdAt")
+        query.descending("updatedAt")
         query.limit(5)
         query.find({
           success: function(res) {
@@ -632,7 +632,7 @@ angular.module('garago.factory.parse', [])
         query1.contains("title", search)
 
         var query2 = new Parse.Query(Files)
-        query2.contains("tags", search)
+        query2.startsWith("tags", search)
         
         var mainQuery = Parse.Query.or(query1, query2);
         mainQuery.ascending("updatedAt")

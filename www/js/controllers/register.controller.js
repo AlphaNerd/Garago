@@ -47,7 +47,7 @@ angular.module('garago.controllers.register', [])
                 console.log(e,r)
             }
         }).then(function(res){
-
+            
         })
     }
 
