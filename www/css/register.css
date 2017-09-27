@@ -53,3 +53,7 @@
     margin: 50px auto 0 auto;
 
 }
+
+#register .register.org .item{
+    border:none!important;
+}

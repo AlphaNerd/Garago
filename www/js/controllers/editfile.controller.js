@@ -1,6 +1,6 @@
 angular.module('garago.controllers.editfile', [])
 
-  .controller('EditFileCtrl', function ($scope, $ionicModal, $timeout, $rootScope, $parseAPI, fileData, $ionicLoading, $ionicPopup) {
+  .controller('EditFileCtrl', function ($scope, $ionicModal, $timeout, $rootScope, $parseAPI, fileData, $ionicLoading, $ionicPopup, $ionicHistory) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -36,13 +36,15 @@ angular.module('garago.controllers.editfile', [])
      confirmPopup.then(function(res) {
        if(res) {
          console.log('You are sure');
+         console.log($ionicHistory)// $ionicHistory
+         $ionicHistory.goBack()
        } else {
          console.log('You are not sure');
        }
      });
    };
 
-   $scope.confirmDelete = function() {
+   $scope.confirmDelete = function(file) {
      var confirmPopup = $ionicPopup.confirm({
        title: 'Warning',
        template: 'All changes will be lost. Are you sure you want to cancel?'
@@ -51,6 +53,10 @@ angular.module('garago.controllers.editfile', [])
      confirmPopup.then(function(res) {
        if(res) {
          console.log('You are sure');
+         $parseAPI.deleteUserFile(file).then(function(resp){
+          console.log(resp)
+          $ionicHistory.goBack()
+         })
        } else {
          console.log('You are not sure');
        }

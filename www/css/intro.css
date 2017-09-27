@@ -163,3 +163,8 @@
     background: url(https://cdn-images-1.medium.com/max/1920/1*TkH1UVz3PnXUxCQXmETTuQ.jpeg);
     background-size: cover;
 }
+
+
+#intro .slider-pager .slider-pager-page.active {
+    opacity: 1;
+}

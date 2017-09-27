@@ -35,6 +35,22 @@ angular.module('garago.controllers.register', [])
 
     }
 
+    $scope.searchOrgs = function(name){
+        var Orgs = Parse.Object.extend("Organizations")
+        var query = new Parse.Query(Orgs)
+        query.contains("name",name)
+        query.find({
+            success:function(res){
+                console.log(res)
+            },
+            error: function(e,r){
+                console.log(e,r)
+            }
+        }).then(function(res){
+
+        })
+    }
+
     $scope.cancelReg = function() {
         $state.go("login")
     }

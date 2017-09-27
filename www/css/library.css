@@ -247,7 +247,7 @@ input.md-input {
     top: 10px;
 }
 
-input.main-search {
+#Library input.main-search {
   color: #2b3a41;
   font-size: 26px;
   font-family: 'Patua One', cursive;

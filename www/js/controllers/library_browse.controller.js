@@ -9,7 +9,7 @@ angular.module('garago.controllers.library_browse', [])
     $scope.$on('$ionicView.enter', function(e) {
       console.log("LibraryBrowseCtrl Loaded.")
       Parse.User.current().fetch()
-      // $scope.refreshData()
+      $scope.refreshData()
     });
 
     $scope.shouldShowDelete = false;

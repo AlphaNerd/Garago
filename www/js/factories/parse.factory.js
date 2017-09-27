@@ -400,6 +400,7 @@ angular.module('garago.factory.parse', [])
     
               var file = new Parse.Object("Files");
               file.set("file", parseFile);
+              file.set("active", true);
               console.log("TAGS IN: ",tags)
               var tagArray = tags.map(function (item) {
                   return item.name;
@@ -438,12 +439,33 @@ angular.module('garago.factory.parse', [])
         return deferred.promise        
       },
       ////////////////////////////////////////////////
+      ////// Save User File to Parse
+      ////////////////////////////////////////////////
+      deleteUserFile: function(file){
+        var deferred = $q.defer()
+        var query = new Parse.Query(Files)
+        query.equalTo("objectId",file.id)
+        query.find().then(function(res){
+          res[0].set("active",false)
+          res[0].save({
+            success: function(res){
+              deferred.resolve(res)
+            },
+            error: function(e,r){
+              handleParseError(e)
+            }
+          })
+        })
+        return deferred.promise        
+      },
+      ////////////////////////////////////////////////
       ////// Get ALL Public Files from Parse
       ////////////////////////////////////////////////
       getAllFiles: function(){
         var deferred = $q.defer()
         var query = new Parse.Query(Files)
         query.exists("file")
+        query.equalTo("active",true)
         query.include("comments")
         query.descending("updatedAt")
         query.find({
@@ -490,6 +512,7 @@ angular.module('garago.factory.parse', [])
         var deferred = $q.defer()
         var query = new Parse.Query(Files)
         query.equalTo("createdByUser", Parse.User.current())
+        query.equalTo("active",true)
         query.descending("createdAt")
         query.limit(5)
         query.find({
@@ -535,6 +558,7 @@ angular.module('garago.factory.parse', [])
         var query = new Parse.Query(Files)
         query.containedIn("objectId",Parse.User.current().attributes.fav_files)
         query.limit(limit ? limit : 20)
+        query.equalTo("active",true)
         query.find().then(function(resp) {
           if (resp) {
             deferred.resolve(resp)
