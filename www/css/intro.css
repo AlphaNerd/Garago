@@ -121,7 +121,7 @@
 
 #intro .button.button-balanced {
     border-color: transparent;
-    background-color: #005f98;
+    /*background-color: #005f98;*/
     color: #fff;
 }
 
@@ -129,13 +129,15 @@
     display: inline-block;
     margin: 0px 3px;
     width: 15px;
-    color: #005f98;
+    /*color: #005f98;*/
     text-decoration: none;
     opacity: 0.3;
 }
 
-#intro .slide-text h1{
-    color:#fff;
+#intro .slide-text h1 {
+    color: rgb(43, 58, 65);
+    font-weight: 700;
+    text-shadow: 1px 1px 1px #fff;
 }
 
 #intro .slide-text p{
@@ -143,21 +145,21 @@
 }
 
 #intro .slide1{
-    background: url(http://v2.garagosoftware.com/wp-content/uploads/revslider/blurslider/blurbg14.jpg);
+    background: url(https://1040619273.rsc.cdn77.org/wp-content/uploads/2017/05/business-meeting-1300x650.jpg);
     background-size: cover;
 }
 
 #intro .slide2{
-    background: url(http://actionplanbuilder.com/wp-content/uploads/2017/08/shutterstock_114479137.jpg);
+    background: url(http://assetplanningpros.com/wp-content/uploads/2017/02/Older-business-man-with-3-people-in-background.jpg);
     background-size: cover;
 }
 
 #intro .slide3{
-    background: url(http://actionplanbuilder.com/wp-content/uploads/2017/08/shutterstock_114479137.jpg);
+    background: url(https://www.mexperience.com/wp-content/uploads/Business-Meeting-1200x851.jpg);
     background-size: cover;
 }
 
 #intro .slide4{
-    background: url(http://actionplanbuilder.com/wp-content/uploads/2017/08/shutterstock_114479137.jpg);
+    background: url(https://cdn-images-1.medium.com/max/1920/1*TkH1UVz3PnXUxCQXmETTuQ.jpeg);
     background-size: cover;
 }

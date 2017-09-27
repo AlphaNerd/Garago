@@ -40,7 +40,7 @@ angular.module('garago', [
     duration: 1500,
   })
 
-  .run(function ($ionicPlatform, $rootScope, $ionicSideMenuDelegate, $timeout, $state) {
+  .run(function ($ionicPlatform, $rootScope, $ionicSideMenuDelegate, $timeout, $state, $location) {
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -75,9 +75,14 @@ angular.module('garago', [
           console.log("Welcome back: ",[currentUser])
         } else {
           // show the signup or login page
-          console.warn("you need to login!")
-          event.preventDefault();
-          $state.go("login")
+          console.log($location.url())
+          if($location.url() != "/intro"){
+            console.warn("you need to login!")
+            event.preventDefault();
+            $state.go("login")  
+          }else{
+            event.preventDefault();
+          }
         }
       }
 

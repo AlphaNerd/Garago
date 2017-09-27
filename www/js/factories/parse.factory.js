@@ -443,9 +443,9 @@ angular.module('garago.factory.parse', [])
       getAllFiles: function(){
         var deferred = $q.defer()
         var query = new Parse.Query(Files)
+        query.exists("file")
         query.include("comments")
-        query.descending("createdAt")
-        
+        query.descending("updatedAt")
         query.find({
           success: function(res) {
             console.log("Found All Files: ", [res])
@@ -467,7 +467,7 @@ angular.module('garago.factory.parse', [])
               var promise = new Promise(function(resolve,reject){
                 val.get("comments").query().find().then(function(res){
                   obj.comments = res
-                  files.push(obj)
+                  files[key] = obj
                   resolve(res)
                 })
               })
