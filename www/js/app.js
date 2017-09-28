@@ -465,7 +465,7 @@ angular.module('garago', [
         url: '/library/edit/file/:id',
         views: {
           'menuContent': {
-            templateUrl: 'templates/editFile.html',
+            templateUrl: 'templates/editfile.html',
             controller: 'EditFileCtrl',
             resolve: {
               fileData: function ($parseAPI, $ionicLoading, $stateParams) {
