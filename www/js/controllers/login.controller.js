@@ -9,8 +9,7 @@ angular.module('garago.controllers.login', [])
       console.log("Log in user with: ",data)
       $ionicLoading.show({
         template: '<ion-spinner class="spinner-balanced"></ion-spinner>',
-        animation: 'fade-in',
-        delay: 500
+        animation: 'fade-in'
       });
       Parse.User.logIn(data.email, data.password, {
         success: function(user) {

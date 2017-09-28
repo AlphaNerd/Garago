@@ -47,7 +47,7 @@ angular.module('garago.controllers.editfile', [])
    $scope.confirmDelete = function(file) {
      var confirmPopup = $ionicPopup.confirm({
        title: 'Warning',
-       template: 'All changes will be lost. Are you sure you want to cancel?'
+       template: 'All changes will be lost. Are you sure you want to delete?'
      });
 
      confirmPopup.then(function(res) {

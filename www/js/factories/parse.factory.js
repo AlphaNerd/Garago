@@ -445,11 +445,19 @@ angular.module('garago.factory.parse', [])
         var deferred = $q.defer()
         var query = new Parse.Query(Files)
         query.equalTo("objectId",file.id)
-        query.find().then(function(res){
+        query.find({
+          success: function(res){
+            console.log("FOUND FILE TO DELETE: ",res)
+          },
+          error: function(e,r){
+            handleParseError(e)
+          }
+        }).then(function(res){
           res[0].set("active",false)
           res[0].save({
-            success: function(res){
-              deferred.resolve(res)
+            success: function(resp){
+              console.log("Changed Active to InActive: ", resp)
+              deferred.resolve(resp)
             },
             error: function(e,r){
               handleParseError(e)
@@ -696,6 +704,7 @@ angular.module('garago.factory.parse', [])
         console.log(id)
         var deferred = $q.defer()
         var query = new Parse.Query(Files)
+        query.equalTo("active",true)
         query.equalTo("objectId",id).find({
           success: function(res){
             console.log(res)
