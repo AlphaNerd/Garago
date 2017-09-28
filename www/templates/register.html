@@ -69,31 +69,6 @@
                 </form>
             </ion-content>
         </ion-slide>
-        <ion-slide>
-            <ion-content scroll="true" direction="y">
-                <div class="logo">
-                    <img src="../img/logo.png">
-                </div>
-                <form name="organizationRegister" class="list slide1 register org list-inset" ng-submit="register(newUser,newOrg)">
-                    <div class="list">
-                    <p>Join Organization</p>
-                       <div class="search">
-                          <label class="item item-input">
-                            <i class="icon ion-search placeholder-icon"></i> &nbsp;
-                            <input class="main-search" type="text" placeholder="Search for organization" ng-model="newOrg.name" ng-change="searchOrgs(newOrg.name)">
-                          </label>
-                        </div>
-                        <!-- <label class="item item-input item-floating-label">
-                            <span class="input-label">First Name</span>
-                            <input name="firstName" ng-model="newUser.firstName" type="text" placeholder="First Name" required>
-                            <p ng-show="userRegister.firstName.$invalid && !userRegister.firstName.$empty && !userRegister.firstName.$pristine" class="help-block">Your first name is required.</p>
-                        </label> -->
-                    </div>
-                    <!-- <div type="submit" class="button button-block button-balanced" ng-click="register(newUser)">Sign Up</div> -->
-                    <div class="button button-block button-balanced" ng-click="nextSlide()">{{buttonLabel}}</div>
-                    <div class="skip" ng-hide="slideNum == (totalSlides-1)" ng-click="cancelReg()">Cancel</div>
-                </form>
-            </ion-content>
-        </ion-slide>
+        
     </ion-slide-box>
 </ion-view>
