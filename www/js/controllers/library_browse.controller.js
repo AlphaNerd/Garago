@@ -25,6 +25,25 @@ angular.module('garago.controllers.library_browse', [])
       }
     }
 
+    $scope.confirmDelete = function(file) {
+     var confirmPopup = $ionicPopup.confirm({
+       title: 'Warning',
+       template: 'All changes will be lost. Are you sure you want to delete?'
+     });
+
+     confirmPopup.then(function(res) {
+       if(res) {
+         console.log('You are sure');
+         $parseAPI.deleteUserFile(file).then(function(resp){
+          console.log(resp)
+          $scope.refreshData()
+         })
+       } else {
+         console.log('You are not sure');
+       }
+     });
+   };
+
     $scope.addComment = function(comment,file){
       console.log(comment,file)
       var Comment = Parse.Object.extend("Comments")
