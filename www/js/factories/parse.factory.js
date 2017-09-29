@@ -643,7 +643,7 @@ angular.module('garago.factory.parse', [])
         query2.startsWith("tags", search.toLowerCase())
         
         var mainQuery = Parse.Query.or(query1, query2);
-        mainQuery.ascending("updatedAt")
+        mainQuery.descending("updatedAt")
 
 
         mainQuery.find({
