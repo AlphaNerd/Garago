@@ -86,6 +86,7 @@
   margin: 1%;
   border: 1px solid #ddd;
   border-radius: 8px;
+  background: rgb(43, 58, 66);
 }
 
 .drop-zone.dragover {
@@ -659,3 +660,16 @@ input.md-input {
 
 
 
+
+#Library .share-options i.fa.fa-share {
+    display: block;
+    margin: 5px 0;
+}
+
+.user-file-options .favs-options i {
+    margin: 3px 0px;
+}
+
+.user-file-options .favs-options {
+    max-width: 10px;
+}

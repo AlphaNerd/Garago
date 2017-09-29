@@ -637,10 +637,10 @@ angular.module('garago.factory.parse', [])
         var deferred = $q.defer()
 
         var query1 = new Parse.Query(Files)
-        query1.contains("title", search)
+        query1.contains("title", search.toLowerCase())
 
         var query2 = new Parse.Query(Files)
-        query2.startsWith("tags", search)
+        query2.startsWith("tags", search.toLowerCase())
         
         var mainQuery = Parse.Query.or(query1, query2);
         mainQuery.ascending("updatedAt")

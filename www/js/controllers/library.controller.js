@@ -127,14 +127,14 @@ angular.module('garago.controllers.library', [])
       }
 
       // Otherwise, create a new one
-      return { name: chip, type: 'new' }
+      return { name: chip.toLowerCase(), type: 'new' }
     }
 
     /**
      * Search for vegetables.
      */
     $scope.querySearch = function(query) {
-      var results = query ? $scope.vegetables.filter(createFilterFor(query)) : [];
+      var results = query.toLowerCase() ? $scope.vegetables.filter(createFilterFor(query.toLowerCase())) : [];
       return results;
     }
 
