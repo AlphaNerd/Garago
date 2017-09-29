@@ -86,7 +86,7 @@
     margin: -1px;
     border: 0px solid #ddd;
     border-radius: 0px;
-    background: rgb(43, 58, 66);
+    background: #ddd;
     overflow: hidden;
     max-height: 300px;
 }
