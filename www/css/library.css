@@ -82,11 +82,12 @@
 
 
 #Library .search-results {
-  padding: 0%;
-  margin: 1%;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background: rgb(43, 58, 66);
+    padding: 0%;
+    margin: -1px;
+    border: 0px solid #ddd;
+    border-radius: 0px;
+    background: rgb(43, 58, 66);
+    overflow: hidden;
 }
 
 .drop-zone.dragover {
@@ -672,4 +673,18 @@ input.md-input {
 
 .user-file-options .favs-options {
     max-width: 10px;
+}
+
+#Library .scroll-content {
+    position: relative;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    margin-top: -1px;
+    padding-top: 1px;
+    margin-bottom: -1px;
+    width: auto;
+    height: auto;
 }

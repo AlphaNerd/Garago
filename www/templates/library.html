@@ -23,6 +23,43 @@
         <i class="fa fa-times-circle placeholder-icon" ng-click="clearSearch()"></i>
         <!-- <i class="fa fa-filter" ng-model="showFilters" ng-click="toggleFilters()"></i> -->
       </div>
+      <div class="search-results" ng-if="searchResults || searchResults.length > 0" ng-mouseleave="clearSearch()">
+        <ion-content scroll="true">
+          <!-- <div class="warning" ng-if="!searchResults || searchResults.length < 1">
+            <h1>No search results.</h1>
+          </div> -->
+          <div class="list card" ng-repeat="item in searchResults track by $index">
+            <div class="item item-avatar">
+              <div class="favs-options">
+                <i class="fa" ng-class="isFavFile(item) ? 'fa-star' : 'fa-star-o'" ng-click="toggleFav(item,isFavFile(item))"></i>
+              </div>
+              <i class="fa" ng-class="item.icon" aria-hidden="true"></i>
+              <h2><a href="{{item.file._url}}" target="_blank">{{item.title}}</a>&nbsp;<i class="fa fa-pencil" ng-if="item.ACL.permissionsById[CurrentUser.id].write" ng-click="editFile(item.id)"></i></h2>
+              <p>Modified: {{item.updatedAt | date:'fullDate'}}</p>
+              <span class="tags">
+                <span ng-repeat="tag in item.tags">
+                    {{tag}}
+                </span>
+              </span>
+              <span class="shared-with">
+                <span class="user" ng-repeat="item in item.members track by $index" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
+                  <div class="image" ng-style="{'background-image':'url({{item.attributes.image._url || '../img/no-image.jpg'}})'}"></div>
+                </span>
+              <div class="popularity" ng-if="item.users_favorite.length > 0">
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+                <span class="icon-count">{{item.users_favorite.length}}</span>
+              </div>
+              </span>
+              <div class="share-options">
+                <a href="{{item.file._url}}" download><i class="fa fa-download" ng-click="addToFavs(item.id)"></i></a>
+              </div>
+            </div>
+            <div class="item item-body" ng-if="item.description">
+              <p>{{item.description}}</p>
+            </div>
+          </div>
+        </ion-content>
+      </div>
     </div>
     <!-- <div class="filter-panel" ng-class="showFilters ? 'open':'close'" ng-show="showFilters">
       <i class="fa fa-retweet" ng-click=""></i>
@@ -33,41 +70,6 @@
         </md-switch>
       </div>
     </div> -->
-    <div class="search-results" ng-if="searchResults || searchResults.length > 0">
-      <div class="warning" ng-if="!searchResults || searchResults.length < 1">
-        <h1>No search results.</h1>
-      </div>
-      <div class="list card" ng-repeat="item in searchResults track by $index">
-        <div class="item item-avatar">
-          <div class="favs-options">
-            <i class="fa" ng-class="isFavFile(item) ? 'fa-star' : 'fa-star-o'" ng-click="toggleFav(item,isFavFile(item))"></i>
-          </div>
-          <i class="fa" ng-class="item.icon" aria-hidden="true"></i>
-          <h2><a href="{{item.file._url}}" target="_blank">{{item.title}}</a>&nbsp;<i class="fa fa-pencil" ng-if="item.ACL.permissionsById[CurrentUser.id].write" ng-click="editFile(item.id)"></i></h2>
-          <p>Modified: {{item.updatedAt | date:'fullDate'}}</p>
-          <span class="tags">
-              <span ng-repeat="tag in item.tags">
-                  {{tag}}
-              </span>
-          </span>
-          <span class="shared-with">
-              <span class="user" ng-repeat="item in item.members track by $index" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
-                <div class="image" ng-style="{'background-image':'url({{item.attributes.image._url || '../img/no-image.jpg'}})'}"></div>
-              </span>
-          <div class="popularity" ng-if="item.users_favorite.length > 0">
-            <i class="fa fa-star-o" aria-hidden="true"></i>
-            <span class="icon-count">{{item.users_favorite.length}}</span>
-          </div>
-          </span>
-          <div class="share-options">
-            <a href="{{item.file._url}}" download><i class="fa fa-download" ng-click="addToFavs(item.id)"></i></a>
-          </div>
-        </div>
-        <div class="item item-body" ng-if="item.description">
-          <p>{{item.description}}</p>
-        </div>
-      </div>
-    </div>
     <div class="file-dashboard animated fadeIn">
       <div class="list card">
         <div class="item item-avatar">
@@ -96,13 +98,12 @@
                 <span class="user" ng-repeat="item in item.atrubutes.members track by $index" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
                   <div class="image" ng-style="{'background-image':'url({{item.image._url}})'}"></div>
                 </span>
-            </span> -->
-            <div class="favs-options">
-              <i class="fa" ng-class="isFavFile(item) ? 'fa-star' : 'fa-star-o'" ng-click="toggleFav(item,isFavFile(item))"></i>
-              <a href="{{item.attributes.file._url}}" download><i class="fa fa-download" aria-hidden="true"></i></a>
-              <i class="fa fa-share"></i>
-            </div>&nbsp;
-
+          </span> -->
+          <div class="favs-options">
+            <i class="fa" ng-class="isFavFile(item) ? 'fa-star' : 'fa-star-o'" ng-click="toggleFav(item,isFavFile(item))"></i>
+            <a href="{{item.attributes.file._url}}" download><i class="fa fa-download" aria-hidden="true"></i></a>
+            <i class="fa fa-share"></i>
+          </div>&nbsp;
           </span>
         </div>
       </div>
@@ -131,7 +132,7 @@
                   <span class="user" ng-repeat="item in item.members track by $index" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
                     <div class="image" ng-style="{'background-image':'url({{item.attributes.image._url || '../img/no-image.jpg'}})'}"></div>
                   </span>
-              </span>
+          </span>
           </span>
           <!-- <a class="download-button" href="{{item.file._url}}" download><i class="fa fa-download" aria-hidden="true"></i></a>&nbsp; -->
           <!-- <i class="fa fa-share-alt" aria-hidden="true"></i>&nbsp; -->
