@@ -1,6 +1,6 @@
 angular.module('garago.controllers', [])
 
-  .controller('ParentCtrl', function($scope, $ionicModal, $timeout, $rootScope, $ionicSideMenuDelegate, $ionicSlideBoxDelegate, $garagoAPI, $parseAPI, $window, $ionicLoading, $state, $ionicPopup) {
+  .controller('ParentCtrl', function($scope, $ionicModal, $timeout, $rootScope, $ionicSideMenuDelegate, $ionicSlideBoxDelegate, $garagoAPI, $parseAPI, $window, $ionicLoading, $state, $ionicPopup, $ionicHistory) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -34,6 +34,25 @@ angular.module('garago.controllers', [])
         }
       });
     }
+
+    $scope.confirmDelete = function(file) {
+     var confirmPopup = $ionicPopup.confirm({
+       title: 'Warning',
+       template: 'All changes will be lost. Are you sure you want to delete?'
+     });
+
+     confirmPopup.then(function(res) {
+       if(res) {
+         console.log('You are sure');
+         $parseAPI.deleteUserFile(file).then(function(resp){
+          console.log(resp)
+          $ionicHistory.goBack()
+         })
+       } else {
+         console.log('You are not sure');
+       }
+     });
+   };
 
     $scope.editFile = function(fileid){
       console.log(fileid)

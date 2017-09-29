@@ -1,6 +1,6 @@
 angular.module('garago.controllers.library_browse', [])
 
-  .controller('LibraryBrowseCtrl', function($scope, $ionicModal, $timeout, $rootScope, $parseAPI, userFilesData, $ionicLoading) {
+  .controller('LibraryBrowseCtrl', function($scope, $ionicModal, $timeout, $rootScope, $parseAPI, userFilesData, $ionicLoading, $ionicHistory, $ionicPopup) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
