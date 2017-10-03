@@ -102,7 +102,7 @@
           <div class="favs-options">
             <i class="fa" ng-class="isFavFile(item) ? 'fa-star' : 'fa-star-o'" ng-click="toggleFav(item,isFavFile(item))"></i>
             <a href="{{item.attributes.file._url}}" download><i class="fa fa-download" aria-hidden="true"></i></a>
-            <i class="fa fa-share"></i>
+            <!-- <i class="fa fa-share"></i> -->
           </div>&nbsp;
           </span>
         </div>
@@ -162,10 +162,14 @@
                 </md-chip-template>
               </md-chips>
             </div> -->
+          </div>
+          <div class="chip-container">
             <div class="experimental-chips">
               <i class="fa fa-tag"></i>
+              <h4>Tags</h4>
+              <span class="instructions">Search NOC codes below, press enter to attach to file(s).</span>
               <md-chips ng-model="searchTags" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-require-match="false">
-                <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Tag with NOC code(s)">
+                <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Search NOC code(s)...">
                   <span md-highlight-text="searchText">{{item.name}} :: {{item.type}}</span>
                 </md-autocomplete>
                 <md-chip-template>

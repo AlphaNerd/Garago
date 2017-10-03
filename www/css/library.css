@@ -363,10 +363,24 @@ input.md-input {
 }
 
 #Library .list i.fa.fa-tag {
-  position: absolute;
-  left: 28px;
-  bottom: 25px;
-  color:#2b3a41;
+    position: relative;
+ /*   top: 10px;*/
+    color: #2b3a41;
+    /*left: 10px;*/
+    margin-right:10px;
+}
+
+#Library .experimental-chips {
+    padding: 10px;
+    font-size: 11px;
+}
+
+#Library .experimental-chips h4 {
+    display: inline-block;
+}
+
+#Library .experimental-chips span.instructions {
+    display: block;
 }
 
 #Library .item {

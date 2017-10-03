@@ -12,13 +12,19 @@ angular.module('garago.controllers', [])
       Parse.User.current().fetch()
     });
 
+    $timeout(function(){
+      Parse.Cloud.run('getNocCodes',{}).then(function(res) {
+        console.info(res)
+      });
+    },500)
+
     $rootScope.CurrentUser = Parse.User.current()
     //// logout current Parse User
     $scope.logout = function() {
       console.log("Logout User")
       var confirmPopup = $ionicPopup.confirm({
         title: "You're about to sign out!",
-        template: "If this is what you really want to do, then click 'OK' to crush our hearts. Press 'Cancel' to remain friends."
+        template: "If this is what you really want to do, then click 'OK'. Press 'Cancel' to remain friends."
       });
 
       confirmPopup.then(function(res) {
