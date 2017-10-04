@@ -15,6 +15,7 @@ angular.module('garago', [
   'garago.controllers.activity',
   'garago.controllers.activities',
   'garago.controllers.editfile',
+  'garago.controllers.invite',
   'garago.factory.api',
   'garago.factory.mockApi',
   'garago.factory.utility',
@@ -477,6 +478,33 @@ angular.module('garago', [
                   $ionicLoading.hide()
                   return res
                 })
+              }
+            }
+          }
+        }
+      })
+
+
+
+
+
+      ////////////////////////////////////////////////////////////////
+      //////////////// User Management - In Dev ///////////////////////
+      ////////////////////////////////////////////////////////////////
+      ///
+      ///   Route: /invite
+      ///   Invite a user by email address 
+      ///
+      ////////////////////////////////////////////////////////////////
+      .state('app.invite', {
+        url: '/invite',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/invite.html',
+            controller: 'InviteCtrl',
+            resolve: {
+              resolveData: function ($parseAPI, $ionicLoading, $stateParams) {
+                return true
               }
             }
           }

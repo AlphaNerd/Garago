@@ -9,48 +9,44 @@ angular.module('garago.controllers.register', [])
 
     $scope.register = function(data) {
       // console.log("Register the user now: ", [data])
-      var user = new Parse.User();
-      user.set("firstName", data.firstName);
-      user.set("lastName", data.lastName);
-      user.set("username", data.email.toLowerCase());
-      user.set("password", data.password);
-      user.set("email", data.email.toLowerCase());
-      console.info("CHECK FOR BETA ACCESS")
-      /// temp check for beta users
-      Parse.Cloud.run('validateBetaUser', {
-        email: data.email.toLowerCase()
-      }).then(function(res) {
-        if (res) {
-          console.info(res)
-          user.set("betaTester", true);
-          user.signUp(null, {
-            success: function(user) {
-              // console.log("Parse user registered: ",Parse.User.current())
-              $rootScope.USER = Parse.User.current();
-              $scope.newUser = {}
-              $state.go("app.library")
-            },
-            error: function(user, error) {
-              // Show the error message somewhere and let the user try again.
-              var alertPopup = $ionicPopup.alert({
-                title: 'Error!',
-                template: error.message
-              });
-              // $state.go("register")
-            }
-          });
-        } else {
-          console.info("Sorry, not a valid beta user")
-          var alertPopup = $ionicPopup.alert({
-            title: 'Sorry :(',
-            template: "You've either misspelled your password, or you are not currently on our early beta user lists."
-          });
-
-          alertPopup.then(function(res) {
-            console.log('Thank you');
-          });
+      var Invites = Parse.Object.extend("Invites")
+      var query = new Parse.Query(Invites)
+      query.equalTo("email",data.email.toLowerCase())
+      query.find({
+        success: function(res){
+          console.log(res)
+          var canUpload = res[0].attributes.canUpload
+          if(res.length > 0){
+            var user = new Parse.User();
+            user.set("firstName", data.firstName);
+            user.set("lastName", data.lastName);
+            user.set("username", data.email.toLowerCase());
+            user.set("password", data.password);
+            user.set("email", data.email.toLowerCase());
+            user.signUp(null, {
+              success: function(user) {
+                // console.log("Parse user registered: ",Parse.User.current())
+                $rootScope.USER = Parse.User.current();
+                $scope.newUser = {}
+                $state.go("app.library")
+              },
+              error: function(user, error) {
+                // Show the error message somewhere and let the user try again.
+                var alertPopup = $ionicPopup.alert({
+                  title: 'Error!',
+                  template: error.message
+                });
+                // $state.go("register")
+              }
+            });
+          }else{
+            console.log("you have not been invited")
+          }
+        },
+        error: function(e,r){
+          console.log(e,r)
         }
-      });
+      })
     }
 
     $scope.searchOrgs = function(name) {

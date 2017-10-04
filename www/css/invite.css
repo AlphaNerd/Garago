@@ -1,0 +1,42 @@
+#Invite h1{
+	text-align: center;
+	font-family: 'Patua One', cursive;
+	color: #2b3a42;
+}
+
+#Invite .invite-box {
+    padding: 40px;
+    position: absolute;
+    width: 100%;
+    top: 15%;
+    text-align: center;
+}
+
+#Invite .invite-input input{
+    color: #2b3a41;
+    font-size: 26px;
+    font-family: 'Patua One', cursive;
+    background: #fff;
+}
+
+#Invite .invite-input{
+    margin: 40px;
+}
+
+#Invite .invite-input i{
+	font-size: 24px;
+}
+
+#Invite .canUpload {
+    margin-bottom: 20px;
+    color: #2b3a42;
+    font-family: 'Patua One', cursive;
+}
+
+md-checkbox.md-checked .md-ink-ripple {
+    color: rgb(22, 43, 59)!important;
+}
+
+md-checkbox.md-checked .md-icon {
+    background-color: rgb(22, 43, 59)!important;
+}

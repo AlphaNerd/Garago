@@ -34,9 +34,9 @@
                 <div class="welcome-user">{{CurrentUser.attributes.username}}</div>
               </div>
               <ion-list class="menu-list" scroll="true">
-                <ion-item menu-close href="#/app/dashboard" ng-class="isActiveMenu('#/app/dashboard') ? 'active':''" ng-if="CurrentUser.attributes.isAdmin">
+                <!-- <ion-item menu-close href="#/app/dashboard" ng-class="isActiveMenu('#/app/dashboard') ? 'active':''" ng-if="CurrentUser.attributes.isAdmin">
                   <i class="fa fa-tachometer" aria-hidden="true"></i> &nbsp; Dashboard
-                </ion-item>
+                </ion-item> -->
                 <div class="menu-group" ng-repeat="group in MENU_ACTIONPLAN">
                   <ion-item class="item-stable header" ng-click="toggleGroup(group)" ng-class="{active: isGroupShown(group)}">
                     &nbsp;<i class="fa fa-{{group.class}}" aria-hidden="true"></i> &nbsp; {{group.name}} &nbsp; <i class="icon fa" ng-class="isGroupShown(group) ? 'fa-minus' : 'fa-plus'"></i>
@@ -45,12 +45,6 @@
                     <i class="fa fa-{{item.class}}" aria-hidden="true"></i> &nbsp;{{item.title}}
                   </ion-item>
                 </div>
-                <ion-item menu-close href="#/app/collaboration" ng-class="isActiveMenu('#/app/collaboration') ? 'active':''" ng-if="CurrentUser.attributes.isAdmin">
-                  <i class="fa fa-users" aria-hidden="true"></i> &nbsp; Collaboration
-                </ion-item>
-                <ion-item menu-close href="#/app/contact" ng-class="isActiveMenu('#/app/contact') ? 'active':''" ng-if="CurrentUser.attributes.isAdmin">
-                  <i class="fa fa-phone" aria-hidden="true"></i> &nbsp; Contacts
-                </ion-item>
                 <ion-item menu-close href="#/app/contact" ng-click="logout()">
                   <i class="fa fa-sign-out" aria-hidden="true"></i> &nbsp; Sign Out
                 </ion-item>

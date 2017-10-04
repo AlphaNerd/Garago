@@ -12,11 +12,12 @@ angular.module('garago.controllers', [])
       Parse.User.current().fetch()
     });
 
-    $timeout(function(){
-      Parse.Cloud.run('getNocCodes',{}).then(function(res) {
-        console.info(res)
-      });
-    },500)
+    ///// this needs to be finished - parse large db provided by client
+    // $timeout(function(){
+    //   Parse.Cloud.run('getNocCodes',{}).then(function(res) {
+    //     console.info(res)
+    //   });
+    // },500)
 
     $rootScope.CurrentUser = Parse.User.current()
     //// logout current Parse User
@@ -181,6 +182,19 @@ angular.module('garago.controllers', [])
           //   link: "#/app/library/share",
           //   class: "share"
           // }
+        ]
+      },{
+        name: "Manage Users",
+        class: 'folder-o',
+        items: [{
+            title: "Invite User",
+            link: "#/app/invite",
+            class: "user"
+          }, {
+            title: "View All Users",
+            link: "#/app/users",
+            class: "users"
+          }
         ]
       }
     ];
