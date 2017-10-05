@@ -6,10 +6,10 @@ angular.module('garago.controllers.register', [])
     $scope.newUser = {};
     $scope.slideNum = 0;
     $scope.buttonLabel = 'Next'
+    var Invites = Parse.Object.extend("Invites")
 
     $scope.register = function(data) {
       // console.log("Register the user now: ", [data])
-      var Invites = Parse.Object.extend("Invites")
       var query = new Parse.Query(Invites)
       query.equalTo("email",data.email.toLowerCase())
       query.find({
@@ -23,11 +23,13 @@ angular.module('garago.controllers.register', [])
             user.set("username", data.email.toLowerCase());
             user.set("password", data.password);
             user.set("email", data.email.toLowerCase());
+            user.set("canUpload",data.canUpload || false)
             user.signUp(null, {
               success: function(user) {
                 // console.log("Parse user registered: ",Parse.User.current())
                 $rootScope.USER = Parse.User.current();
                 $scope.newUser = {}
+                removeInvite(data)
                 $state.go("app.library")
               },
               error: function(user, error) {
@@ -44,7 +46,7 @@ angular.module('garago.controllers.register', [])
           }
         },
         error: function(e,r){
-          console.log(e,r)
+          $scope.handleParseError(e,r)
         }
       })
     }
@@ -95,6 +97,15 @@ angular.module('garago.controllers.register', [])
 
     $scope.prevSlide = function() {
       $ionicSlideBoxDelegate.previous();
+    }
+
+    function removeInvite(data){
+      console.log(data)
+      Parse.Cloud.run('removeInvite',{
+        'email':data.email
+      }).then(function(res) {
+        console.info("Removed Invite: ",res)
+      })
     }
 
   }])

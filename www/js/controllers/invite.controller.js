@@ -7,6 +7,9 @@ angular.module('garago.controllers.invite', [])
     $scope.user = {}
 
     $scope.inviteUser = function(user){
+      $ionicLoading.show({
+        template: "Sending invite..."
+      })
       Parse.Cloud.run('inviteUser',{'email':user.email,'canUpload':user.canUpload}).then(function(res) {
         console.info("Invite Sent: ",res)
         $scope.user = {}
@@ -15,6 +18,7 @@ angular.module('garago.controllers.invite', [])
            template: "We've sent an email to "+user.email+ ". The user will now be able to register."
          });
         $scope.$apply()
+        $ionicLoading.hide()
       });
     }
 

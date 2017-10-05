@@ -12,6 +12,14 @@ angular.module('garago.controllers', [])
       Parse.User.current().fetch()
     });
 
+    $scope.handleParseError = function(err) {
+      switch (err.code) {
+        case Parse.Error.INVALID_SESSION_TOKEN:
+          Parse.User.logOut();
+          $state.go("login")
+          break;
+      }
+    }
     ///// this needs to be finished - parse large db provided by client
     // $timeout(function(){
     //   Parse.Cloud.run('getNocCodes',{}).then(function(res) {
@@ -172,28 +180,23 @@ angular.module('garago.controllers', [])
             title: "Browse All",
             link: "#/app/library/browse",
             class: "list"
-          },
-          // {
-          //   title: "Upload",
-          //   link: "#/app/library/upload",
-          //   class: "upload"
-          // }, {
-          //   title: "Share",
-          //   link: "#/app/library/share",
-          //   class: "share"
-          // }
+          }
         ]
       },{
         name: "Manage Users",
         class: 'folder-o',
         items: [{
             title: "Invite User",
-            link: "#/app/invite",
+            link: "#/app/users/invite",
             class: "user"
           }, {
-            title: "View All Users",
+            title: "Manage Users",
             link: "#/app/users",
             class: "users"
+          }, {
+            title: "Manage Invites",
+            link: "#/app/users/invites",
+            class: "ticket"
           }
         ]
       }

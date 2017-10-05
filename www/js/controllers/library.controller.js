@@ -128,8 +128,8 @@ angular.module('garago.controllers.library', [])
     $scope.selectedItem = null;
     $scope.searchText = null;
     $scope.querySearch = $scope.querySearch;
-    $scope.vegetables = loadVegetables();
-    $scope.selectedVegetables = [];
+    // $scope.NOCcodes = loadNOCcodes( );
+    $scope.selectedNOCcodes = [];
     $scope.numberChips = [];
     $scope.numberChips2 = [];
     $scope.numberBuffer = '';
@@ -150,25 +150,33 @@ angular.module('garago.controllers.library', [])
     }
 
     /**
-     * Search for vegetables.
+     * Search for NOCcodes.
      */
     $scope.querySearch = function(query) {
-      var results = query.toLowerCase() ? $scope.vegetables.filter(createFilterFor(query.toLowerCase())) : [];
+      var results = query.toLowerCase() ? queryCodes(query) : [];
+      // var results = query.toLowerCase() ? $scope.NOCcodes.filter(createFilterFor(query.toLowerCase())) : [];
       return results;
     }
 
-    /**
-     * Create filter function for a query string
-     */
-    function createFilterFor(query) {
-      var lowercaseQuery = angular.lowercase(query);
-
-      return function filterFn(vegetable) {
-        return (vegetable._lowername.indexOf(lowercaseQuery) === 0) ||
-          (vegetable._lowertype.indexOf(lowercaseQuery) === 0);
-      };
-
+    function queryCodes(query){
+      return Parse.Cloud.run('getNocCodes',{'searchTerm':query}).then(function(res) {
+        console.info("NOC CODES: ",res)
+        return res
+      })
     }
+
+    // /**
+    //  * Create filter function for a query string
+    //  */
+    // function createFilterFor(query) {
+    //   var lowercaseQuery = angular.lowercase(query);
+
+    //   return function filterFn(vegetable) {
+    //     return (vegetable._lowername.indexOf(lowercaseQuery) === 0) ||
+    //       (vegetable._lowertype.indexOf(lowercaseQuery) === 0);
+    //   };
+
+    // }
 
     $scope.toggleFav = function(file, state) {
       console.log(file.id)
@@ -208,33 +216,33 @@ angular.module('garago.controllers.library', [])
       }
     }
 
-    function loadVegetables() {
-      var veggies = [{
-          'name': 'Research',
-          'type': '24531'
-        },
-        {
-          'name': 'Development',
-          'type': '65456'
-        },
-        {
-          'name': 'Marketing',
-          'type': '87684'
-        },
-        {
-          'name': 'Budgets',
-          'type': '542335'
-        },
-        {
-          'name': 'Activities',
-          'type': '8786756'
-        }
-      ];
+    // function loadNOCcodes() {
+    //   var veggies = [{
+    //       'name': 'Research',
+    //       'type': '24531'
+    //     },
+    //     {
+    //       'name': 'Development',
+    //       'type': '65456'
+    //     },
+    //     {
+    //       'name': 'Marketing',
+    //       'type': '87684'
+    //     },
+    //     {
+    //       'name': 'Budgets',
+    //       'type': '542335'
+    //     },
+    //     {
+    //       'name': 'Activities',
+    //       'type': '8786756'
+    //     }
+    //   ];
 
-      return veggies.map(function(veg) {
-        veg._lowername = veg.name.toLowerCase();
-        veg._lowertype = veg.type.toLowerCase();
-        return veg;
-      });
-    }
+    //   return veggies.map(function(veg) {
+    //     veg._lowername = veg.name.toLowerCase();
+    //     veg._lowertype = veg.type.toLowerCase();
+    //     return veg;
+    //   });
+    // }
   })

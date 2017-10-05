@@ -703,3 +703,11 @@ input.md-input {
     width: auto;
     height: auto;
 }
+
+
+
+
+
+md-virtual-repeat-container{
+  min-width:250!important;
+}

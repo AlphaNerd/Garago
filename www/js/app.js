@@ -16,6 +16,7 @@ angular.module('garago', [
   'garago.controllers.activities',
   'garago.controllers.editfile',
   'garago.controllers.invite',
+  'garago.controllers.users',
   'garago.factory.api',
   'garago.factory.mockApi',
   'garago.factory.utility',
@@ -72,18 +73,24 @@ angular.module('garago', [
 
       function checkAuth(){
         var currentUser = Parse.User.current();
-        if (currentUser) {
-          console.log("Welcome back: ",[currentUser])
-        } else {
-          // show the signup or login page
-          console.log($location.url())
-          if($location.url() != "/intro"){
-            console.warn("you need to login!")
-            event.preventDefault();
-            $state.go("login")  
-          }else{
-            event.preventDefault();
+        try{
+          if (currentUser) {
+            console.log("Welcome back: ",[currentUser])
+            $state.go("app.library")  
+          } else {
+            // show the signup or login page
+            console.log($location.url())
+            if($location.url() != "/intro"){
+              console.warn("you need to login!")
+              event.preventDefault();
+              $state.go("login")  
+            }else{
+              event.preventDefault();
+            }
           }
+        }
+        catch(e){
+          console.warn(e)
         }
       }
 
@@ -497,7 +504,7 @@ angular.module('garago', [
       ///
       ////////////////////////////////////////////////////////////////
       .state('app.invite', {
-        url: '/invite',
+        url: '/users/invite',
         views: {
           'menuContent': {
             templateUrl: 'templates/invite.html',
@@ -510,6 +517,33 @@ angular.module('garago', [
           }
         }
       })
+
+
+      ////////////////////////////////////////////////////////////////
+      //////////////// User Management - In Dev ///////////////////////
+      ////////////////////////////////////////////////////////////////
+      ///
+      ///   Route: /users
+      ///   Get all users in app
+      ///
+      ////////////////////////////////////////////////////////////////
+      .state('app.users', {
+        url: '/users',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/users.html',
+            controller: 'UsersCtrl',
+            resolve: {
+              resolveData: function ($parseAPI, $ionicLoading, $stateParams) {
+                return Parse.Cloud.run('getAllUsers',{}).then(function(res) {
+                  console.log("Users resolve data: ",res)
+                  return res
+                })
+              }
+            }
+          }
+        }
+      })      
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/login');

@@ -562,7 +562,6 @@ angular.module('garago.factory.parse', [])
       },
       getUserFavFiles: function(limit){
         var deferred = $q.defer()
-        console.log(Parse.User.current().attributes.fav_files)
         var query = new Parse.Query(Files)
         query.containedIn("objectId",Parse.User.current().attributes.fav_files)
         query.limit(limit ? limit : 20)

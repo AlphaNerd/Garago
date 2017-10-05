@@ -170,12 +170,12 @@
               <span class="instructions">Search NOC codes below, press enter to attach to file(s).</span>
               <md-chips ng-model="searchTags" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-require-match="false">
                 <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Search NOC code(s)...">
-                  <span md-highlight-text="searchText">{{item.name}} :: {{item.type}}</span>
+                  <span md-highlight-text="searchText">{{item.attributes.title}} :: {{item.attributes.code}}</span>
                 </md-autocomplete>
                 <md-chip-template>
                   <span>
-                    <strong>{{$chip.name}}</strong>
-                    <em>({{$chip.type}})</em>
+                    <strong>{{$chip.attributes.title}}</strong>
+                    <em>({{$chip.attributes.code}})</em>
                   </span>
                 </md-chip-template>
               </md-chips>

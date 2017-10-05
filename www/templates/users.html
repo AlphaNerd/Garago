@@ -1,0 +1,35 @@
+<ion-view id="Users" class="padding" view-title="Manage Users">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+    <ion-nav-buttons side="left">
+      <button class="button button-icon button-clear ion-navicon menu-toggle" menu-toggle="left">
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <i class="fa fa-minus-circle" ng-click="showDelete()"></i>
+      <!-- <i class="fa fa-list" ng-click="showReOrder()"></i> -->
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content>
+    <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
+      <ion-item ng-repeat="user in users" class="item-thumbnail-left">
+        <img ng-src="{{user.attributes.image._url}}">
+        <h2>{{user.attributes.firstName}} {{user.attributes.lastName}}</h2>
+        <p>{{user.attributes.email}}</p>
+        <p>Joined: {{user.createdAt | moment}}</p>
+        <p>Access: {{user.attributes.canUpload ? 'Upload/Download' : 'Download Only'}}</p>
+        <ion-option-button class="button-info button-positive" ng-click="edit(user)">
+          Edit
+        </ion-option-button>
+        <ion-option-button class="button-info button-assertive" ng-click="users.splice($index, 1)">
+          Delete
+        </ion-option-button>
+        <ion-delete-button class="ion-minus-circled" ng-click="users.splice($index, 1)">
+        </ion-delete-button>
+        <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(user, $fromIndex, $toIndex)">
+        </ion-reorder-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
