@@ -7,7 +7,7 @@ angular.module('garago.controllers.library', [])
     // To listen for when this page is active (for example, to refresh data),
     // listen for the $ionicView.enter event:
     $scope.$on('$ionicView.enter', function(e) {
-      console.log("LibraryCtrl Loaded.")
+      // console.log("LibraryCtrl Loaded.")
       Parse.User.current().fetch()
       $scope.refreshData()
     });
@@ -17,7 +17,7 @@ angular.module('garago.controllers.library', [])
     $scope.listCanSwipe = true
 
     $scope.fileNameChanged = function() {
-      console.log("CHANGED")
+      // console.log("CHANGED")
       $scope.filestoupload = true
       $scope.$apply()
     }
@@ -39,16 +39,16 @@ angular.module('garago.controllers.library', [])
 
     $scope.refreshData = function() {
       $parseAPI.getUserFiles().then(function(res) {
-        console.log("Library View 'User Files' Resolve: ", res)
+        // console.log("Library View 'User Files' Resolve: ", res)
         $scope.userFiles = res
         $scope.$broadcast('scroll.refreshComplete');
       })
       $parseAPI.getUserSharedFiles().then(function(res) {
-        console.log("Library View 'User Shared Files' Resolve: ", res)
+        // console.log("Library View 'User Shared Files' Resolve: ", res)
         $scope.userSharedFiles = res
       })
       $parseAPI.getUserFavFiles(5).then(function(res) {
-        console.log("Library View 'User Fav Files' Resolve: ", res)
+        // console.log("Library View 'User Fav Files' Resolve: ", res)
         $scope.userFavFiles = res
       })
     }
@@ -61,7 +61,7 @@ angular.module('garago.controllers.library', [])
     $scope.searchFiles = function(search) {
       if (search.length > 0) {
         $parseAPI.searchFiles(search).then(function(res) {
-          console.log("Search returned: ", res)
+          // console.log("Search returned: ", res)
           $scope.searchResults = res
         })
       } else {
@@ -74,11 +74,11 @@ angular.module('garago.controllers.library', [])
         template: "Saving file(s)..."
       })
       var $input = angular.element(document.getElementById('upload'));
-      console.log($input[0].files,$scope.searchTags)
+      // console.log($input[0].files,$scope.searchTags)
       $parseAPI.saveUserFile($input[0].files, $scope.searchTags).then(function(res) {
-        console.log("Save returned: ", res)
+        // console.log("Save returned: ", res)
         $parseAPI.getUserFiles().then(function(res) {
-          console.log("Save returned: ", res)
+          // console.log("Save returned: ", res)
           $scope.userFiles = res
           $input.val(null);
           $scope.searchTags = []
@@ -97,13 +97,13 @@ angular.module('garago.controllers.library', [])
 
      confirmPopup.then(function(res) {
        if(res) {
-         console.log('You are sure');
+         // console.log('You are sure');
          $parseAPI.deleteUserFile(file).then(function(resp){
-          console.log(resp)
+          // console.log(resp)
           $ionicHistory.goBack()
          })
        } else {
-         console.log('You are not sure');
+         // console.log('You are not sure');
        }
      });
    };
@@ -160,7 +160,7 @@ angular.module('garago.controllers.library', [])
     function queryCodes(query){
       var myQuery = query.toLowerCase()
       return Parse.Cloud.run('getNocCodes',{'searchTerm':myQuery}).then(function(res) {
-        console.info("NOC CODES: ",res)
+        // console.info("NOC CODES: ",res)
         return res
       })
     }
@@ -179,11 +179,11 @@ angular.module('garago.controllers.library', [])
     // }
 
     $scope.toggleFav = function(file, state) {
-      console.log(file.id)
+      // console.log(file.id)
       Parse.User.current().fetch()
       var favs = Parse.User.current().attributes.fav_files || []
       if (state) {
-        console.log("REMOVE")
+        // console.log("REMOVE")
         var index = favs.indexOf(file.id);
         favs.splice(index, 1);
         Parse.User.current().set("fav_files", favs)
@@ -191,15 +191,15 @@ angular.module('garago.controllers.library', [])
         Parse.User.current().fetch()
         $scope.refreshData()
       } else {
-        console.log("ADD")
+        // console.log("ADD")
         favs.push(file.id)
         Parse.User.current().set("fav_files", favs)
         Parse.User.current().save({
           success: function(res) {
-            console.log(res)
+            // console.log(res)
           },
           error: function(e, r) {
-            console.log(e, r)
+            // console.log(e, r)
           }
         })
         Parse.User.current().fetch()

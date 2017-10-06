@@ -711,5 +711,41 @@ input.md-input {
 
 
 md-virtual-repeat-container{
-  min-width:250!important;
+  min-width:300px!important;
 }
+
+
+
+
+
+.md-autocomplete-suggestions li {
+    font-size: 14px;
+    overflow: hidden;
+    padding: 5px 5px 5px 5px!important;
+    line-height: 48px;
+    height: 60px!important;
+    -webkit-transition: background .15s linear;
+    transition: background .15s linear;
+    margin: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.md-autocomplete-suggestions li i{
+  font-size: 12px!important;
+}
+
+.autocomplete-custom-template li:last-child {
+  border-bottom-width: 0;
+}
+.autocomplete-custom-template .item-title,
+.autocomplete-custom-template .item-metadata {
+  display: block;
+  line-height: 2;
+  text-transform: capitalize;!important;
+}
+.autocomplete-custom-template .item-title md-icon {
+  height: 18px;
+  width: 18px;
+}
+

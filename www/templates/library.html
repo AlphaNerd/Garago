@@ -168,16 +168,35 @@
               <i class="fa fa-tag"></i>
               <h4>Tags</h4>
               <span class="instructions">Search NOC codes below, press enter to attach to file(s).</span>
+
               <md-chips ng-model="searchTags" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-require-match="false">
-                <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Search NOC code(s)...">
+                
+                <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Search NOC code(s)..." md-menu-class="autocomplete-custom-template">
+                  <md-item-template>
+                    <span class="item-title">
+                      <i class="fa fa-search"></i>
+                      <span> {{item.attributes.title}} </span>
+                    </span>
+                    <span class="item-metadata">
+                      <span>
+                        <span>NOC Code:<strong>{{item.attributes.code}}</strong></span>
+                      </span>
+                      <span>
+                        <!-- <strong>{{item.forks}}</strong> -->
+                      </span>
+                    </span>
+                  </md-item-template>
                   <span md-highlight-text="searchText">{{item.attributes.title}} :: {{item.attributes.code}}</span>
+
                 </md-autocomplete>
+
                 <md-chip-template>
                   <span>
                     <strong>{{$chip.attributes.title}}</strong>
                     <em>({{$chip.attributes.code}})</em>
                   </span>
                 </md-chip-template>
+
               </md-chips>
             </div>
           </div>

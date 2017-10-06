@@ -30,12 +30,17 @@
         <div class="experimental-chips">
           <i class="fa fa-tag"></i>
           <md-chips ng-model="searchTags" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-require-match="false">
-            <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Tag with NOC code(s)">
-              <span md-highlight-text="searchText">{{item.name}} :: {{item.type}}</span>
+            <md-autocomplete 
+                md-selected-item="selectedItem" 
+                md-search-text="searchText" 
+                md-items="item in querySearch(searchText)" 
+                md-item-text="item.name" 
+                placeholder="Tag with NOC code(s)">
+              <span md-highlight-text="searchText">{{item.title}} :: {{item.noc}}</span>
             </md-autocomplete>
             <md-chip-template>
               <span> 
-                <strong>{{$chip.name}}</strong>
+                <strong>{{$chip.title}}</strong>
                 <!-- <em>({{$chip.type}})</em> -->
               </span>
             </md-chip-template>

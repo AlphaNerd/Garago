@@ -65,7 +65,7 @@ angular.module('garago', [
       }
 
       $rootScope.$on('$locationChangeStart', function (event, next, current) {
-        console.log(next)
+        // console.log(next)
         // checkAuth();
       });
       
@@ -75,11 +75,11 @@ angular.module('garago', [
         var currentUser = Parse.User.current();
         try{
           if (currentUser) {
-            console.log("Welcome back: ",[currentUser])
+            // console.log("Welcome back: ",[currentUser])
             $state.go("app.library")  
           } else {
             // show the signup or login page
-            console.log($location.url())
+            // console.log($location.url())
             if($location.url() != "/intro"){
               console.warn("you need to login!")
               event.preventDefault();
@@ -180,13 +180,13 @@ angular.module('garago', [
                 console.info($stateParams)
                 if ($stateParams.id != "") {
                   return $parseAPI.getUsersActionPlanById($stateParams.id).then(function (res) {
-                    console.log("Action Plan View Resolve: ", [res])
+                    // console.log("Action Plan View Resolve: ", [res])
                     $ionicLoading.hide()
                     return res
                   })
                 } else {
                   return $parseAPI.getUsersLastActionPlan().then(function (res) {
-                    console.log("Action Plan View Resolve: ", [res])
+                    // console.log("Action Plan View Resolve: ", [res])
                     $ionicLoading.hide()
                     return res
                   })
@@ -216,7 +216,7 @@ angular.module('garago', [
               initData: function ($ionicLoading, $parseAPI) {
                 $ionicLoading.show()
                 return $parseAPI.getAllUserActionPlans().then(function (res) {
-                  console.log("Action Plans View Resolve: ", [res])
+                  // console.log("Action Plans View Resolve: ", [res])
                   $ionicLoading.hide()
                   return res
                 })
@@ -246,14 +246,14 @@ angular.module('garago', [
                 console.info($stateParams)
                 if ($stateParams.id != "") {
                   return $parseAPI.getUsersProjectById($stateParams.id).then(function (res) {
-                    console.log("Project View Resolve: ", [res])
+                    // console.log("Project View Resolve: ", [res])
                     $ionicLoading.hide()
                     return res
                   })
                 } else {
-                  console.log("no id supplied. Getting latest")
+                  // console.log("no id supplied. Getting latest")
                   return $parseAPI.getUsersLastProject().then(function (res) {
-                    console.log("Project View Resolve: ", [res])
+                    // console.log("Project View Resolve: ", [res])
                     $ionicLoading.hide()
                     return res
                   })
@@ -282,7 +282,7 @@ angular.module('garago', [
               initData: function ($ionicLoading, $parseAPI) {
                 $ionicLoading.show()
                 return $parseAPI.getAllUserProjects().then(function (res) {
-                  console.log("Projects List View Resolve: ", [res])
+                  // console.log("Projects List View Resolve: ", [res])
                   $ionicLoading.hide()
                   return res
                 })
@@ -312,14 +312,14 @@ angular.module('garago', [
                 console.info($stateParams)
                 if ($stateParams.id != "") {
                   return $parseAPI.getUsersActivityById($stateParams.id).then(function (res) {
-                    console.log("activity View Resolve: ", [res])
+                    // console.log("activity View Resolve: ", [res])
                     $ionicLoading.hide()
                     return res
                   })
                 } else {
-                  console.log("no id supplied. Getting latest")
+                  // console.log("no id supplied. Getting latest")
                   return $parseAPI.getUsersLastActivity().then(function (res) {
-                    console.log("activity View Resolve: ", [res])
+                    // console.log("activity View Resolve: ", [res])
                     $ionicLoading.hide()
                     return res
                   })
@@ -348,7 +348,7 @@ angular.module('garago', [
               initData: function ($ionicLoading, $parseAPI) {
                 $ionicLoading.show()
                 return $parseAPI.getAllUserActivities().then(function (res) {
-                  console.log("activities List View Resolve: ", [res])
+                  // console.log("activities List View Resolve: ", [res])
                   $ionicLoading.hide()
                   return res
                 })
@@ -377,7 +377,7 @@ angular.module('garago', [
               userFilesData: function ($parseAPI, $ionicLoading) {
                 $ionicLoading.show()
                 return $parseAPI.getUserFiles().then(function (res) {
-                  console.log("Library View 'User Files' Resolve: ", res)
+                  // console.log("Library View 'User Files' Resolve: ", res)
                   $ionicLoading.hide()
                   return res
                 })
@@ -385,7 +385,7 @@ angular.module('garago', [
               userSharedFilesData: function ($parseAPI, $ionicLoading) {
                 $ionicLoading.show()
                 return $parseAPI.getUserSharedFiles().then(function (res) {
-                  console.log("Library View 'User Shared Files' Resolve: ", res)
+                  // console.log("Library View 'User Shared Files' Resolve: ", res)
                   $ionicLoading.hide()
                   return res
                 })
@@ -393,7 +393,7 @@ angular.module('garago', [
               userFavFilesData: function ($parseAPI, $ionicLoading) {
                 $ionicLoading.show()
                 return $parseAPI.getUserFavFiles().then(function (res) {
-                  console.log("Library View 'User Fav Files' Resolve: ", res)
+                  // console.log("Library View 'User Fav Files' Resolve: ", res)
                   $ionicLoading.hide()
                   return res
                 })
@@ -422,7 +422,7 @@ angular.module('garago', [
                 $ionicLoading.show()
                 Parse.User.current().fetch()
                 return $parseAPI.getAllFiles().then(function (res) {
-                  console.log("Library Browse View 'All Files' Resolve: ", res)
+                  // console.log("Library Browse View 'All Files' Resolve: ", res)
                   $ionicLoading.hide()
                   return res
                 })
@@ -451,7 +451,7 @@ angular.module('garago', [
                 $ionicLoading.show()
                 Parse.User.current().fetch()
                 return $parseAPI.getUserFavFiles().then(function (res) {
-                  console.log("Library Favorites View 'Fav Files' Resolve: ", res)
+                  // console.log("Library Favorites View 'Fav Files' Resolve: ", res)
                   $ionicLoading.hide()
                   return res
                 })
@@ -478,10 +478,10 @@ angular.module('garago', [
             resolve: {
               fileData: function ($parseAPI, $ionicLoading, $stateParams) {
                 $ionicLoading.show()
-                console.log("Edit file: ", $stateParams)
+                // console.log("Edit file: ", $stateParams)
                 Parse.User.current().fetch()
                 return $parseAPI.getFile($stateParams.id).then(function (res) {
-                  console.log("Library 'Edit File' Resolve: ", res)
+                  // console.log("Library 'Edit File' Resolve: ", res)
                   $ionicLoading.hide()
                   return res
                 })
@@ -536,7 +536,7 @@ angular.module('garago', [
             resolve: {
               resolveData: function ($parseAPI, $ionicLoading, $stateParams) {
                 return Parse.Cloud.run('getAllUsers',{}).then(function(res) {
-                  console.log("Users resolve data: ",res)
+                  // console.log("Users resolve data: ",res)
                   return res
                 })
               }

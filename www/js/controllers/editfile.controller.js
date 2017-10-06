@@ -162,7 +162,7 @@ angular.module('garago.controllers.editfile', [])
     }
 
     function loadVegetables() {
-      var veggies = $scope.FILE.attributes.tags
+      var veggies = $scope.FILE.attributes.tagSearch
 
       return veggies.map(function(veg) {
         veg._lowername = veg.toLowerCase();

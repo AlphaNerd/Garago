@@ -47,7 +47,7 @@ angular.module('garago.factory.parse', [])
         mainQuery.descending("total_budget")
         mainQuery.find({
           success: function(res) {
-            console.log("Found user's projects: ", [res[0]])
+            // console.log("Found user's projects: ", [res[0]])
           },
           error: function(e, r) {
             handleParseError(e)
@@ -70,7 +70,7 @@ angular.module('garago.factory.parse', [])
         query.equalTo("objectId",id)
         query.find({
           success: function(res) {
-            console.log("Found Project by ID: ", [res[0]])
+            // console.log("Found Project by ID: ", [res[0]])
           },
           error: function(e, r) {
             handleParseError(e)
@@ -100,7 +100,7 @@ angular.module('garago.factory.parse', [])
         mainQuery.limit(1)
         mainQuery.find({
           success: function(res) {
-            console.log("Found latest Project: ", [res[0]])
+            // console.log("Found latest Project: ", [res[0]])
           },
           error: function(e, r) {
             handleParseError(e)
@@ -129,7 +129,7 @@ angular.module('garago.factory.parse', [])
         var mainQuery = Parse.Query.or(query1, query2);
         mainQuery.find({
           success: function(res) {
-            console.log("Found user's activities: ", [res[0]])
+            // console.log("Found user's activities: ", [res[0]])
           },
           error: function(e, r) {
             handleParseError(e)
@@ -152,7 +152,7 @@ angular.module('garago.factory.parse', [])
         query.equalTo("objectId",id)
         query.find({
           success: function(res) {
-            console.log("Found Activity by ID: ", [res[0]])
+            // console.log("Found Activity by ID: ", [res[0]])
           },
           error: function(e, r) {
             handleParseError(e)
@@ -182,7 +182,7 @@ angular.module('garago.factory.parse', [])
         mainQuery.limit(1)
         mainQuery.find({
           success: function(res) {
-            console.log("Found latest activity: ", [res[0]])
+            // console.log("Found latest activity: ", [res[0]])
           },
           error: function(e, r) {
             handleParseError(e)
@@ -211,7 +211,7 @@ angular.module('garago.factory.parse', [])
         var mainQuery = Parse.Query.or(query1, query2);
         mainQuery.find({
           success: function(res) {
-            console.log("Found user's organizations: ", [res[0]])
+            // console.log("Found user's organizations: ", [res[0]])
           },
           error: function(e, r) {
             handleParseError(e)
@@ -240,7 +240,7 @@ angular.module('garago.factory.parse', [])
         var mainQuery = Parse.Query.or(query1, query2);
         mainQuery.find({
           success: function(res) {
-            console.log("Found user's teams: ", [res[0]])
+            // console.log("Found user's teams: ", [res[0]])
           },
           error: function(e, r) {
             handleParseError(e)
@@ -278,7 +278,7 @@ angular.module('garago.factory.parse', [])
         mainQuery.limit(1)
         mainQuery.find({
           success: function(res) {
-            console.log("Found latest Action Plan: ", [res[0]])
+            // console.log("Found latest Action Plan: ", [res[0]])
           },
           error: function(e, r) {
             handleParseError(e)
@@ -317,7 +317,7 @@ angular.module('garago.factory.parse', [])
 
         mainQuery.find({
           success: function(res) {
-            console.log("Found All User Action Plans: ", [res])
+            // console.log("Found All User Action Plans: ", [res])
           },
           error: function(e, r) {
             handleParseError(e)
@@ -341,7 +341,7 @@ angular.module('garago.factory.parse', [])
         query.equalTo("objectId",id)
         query.find({
           success: function(res) {
-            console.log("Found Action Plan: ", [res[0]])
+            // console.log("Found Action Plan: ", [res[0]])
           },
           error: function(e, r) {
             handleParseError(e)
@@ -373,7 +373,7 @@ angular.module('garago.factory.parse', [])
         mainQuery.include("sentFrom")
         mainQuery.find({
           success: function(res) {
-            console.log("Found User Messages: ", [res])
+            // console.log("Found User Messages: ", [res])
           },
           error: function(e, r) {
             handleParseError(e)
@@ -401,7 +401,7 @@ angular.module('garago.factory.parse', [])
               var file = new Parse.Object("Files");
               file.set("file", parseFile);
               file.set("active", true);
-              console.log("TAGS IN: ",tags)
+              // console.log("TAGS IN: ",tags)
               var tagArray = tags.map(function (item) {
                 var obj = {
                   title: item.attributes.title,
@@ -440,7 +440,7 @@ angular.module('garago.factory.parse', [])
         Promise.all(promises).then(function(res){
           deferred.resolve(res) 
         }).catch(function(error){
-          console.log(error)
+          // console.log(error)
           deferred.reject(error) 
         })
 
@@ -455,7 +455,7 @@ angular.module('garago.factory.parse', [])
         query.equalTo("objectId",file.id)
         query.find({
           success: function(res){
-            console.log("FOUND FILE TO DELETE: ",res)
+            // console.log("FOUND FILE TO DELETE: ",res)
           },
           error: function(e,r){
             handleParseError(e)
@@ -464,7 +464,7 @@ angular.module('garago.factory.parse', [])
           res[0].set("active",false)
           res[0].save({
             success: function(resp){
-              console.log("Changed Active to InActive: ", resp)
+              // console.log("Changed Active to InActive: ", resp)
               deferred.resolve(resp)
             },
             error: function(e,r){
@@ -486,10 +486,10 @@ angular.module('garago.factory.parse', [])
         query.descending("updatedAt")
         query.find({
           success: function(res) {
-            console.log("Found All Files: ", [res])
+            // console.log("Found All Files: ", [res])
           },
           error: function(e, r) {
-            console.log(e, r)
+            // console.log(e, r)
             handleParseError(e)
           }
         }).then(function(resp) {
@@ -512,7 +512,7 @@ angular.module('garago.factory.parse', [])
               promises.push(promise)
             })
             Promise.all(promises).then(function(res){
-              console.log("All Files: ",files)
+              // console.log("All Files: ",files)
               deferred.resolve(files)
             })
           } else {
@@ -533,10 +533,10 @@ angular.module('garago.factory.parse', [])
         query.limit(5)
         query.find({
           success: function(res) {
-            console.log("Found User Files: ", [res])
+            // console.log("Found User Files: ", [res])
           },
           error: function(e, r) {
-            console.log(e, r)
+            // console.log(e, r)
             handleParseError(e)
           }
         }).then(function(resp) {
@@ -550,7 +550,7 @@ angular.module('garago.factory.parse', [])
                 var query = new Parse.Query(Users)
                 query.equalTo("objectId",val.attributes.createdBy)
                 query.find().then(function(res){
-                  console.log(res)
+                  // console.log(res)
                   obj.members = res
                   files.push(obj)
                   resolve(res)
@@ -559,7 +559,7 @@ angular.module('garago.factory.parse', [])
               promises.push(promise)
             })
             Promise.all(promises).then(function(res){
-              console.log("Users for file: ",files)
+              // console.log("Users for file: ",files)
               deferred.resolve(files)
             })
           } else {
@@ -602,10 +602,10 @@ angular.module('garago.factory.parse', [])
         mainQuery.include("members")
         mainQuery.find({
           success: function(res) {
-            console.log("Found User Shared Files: ", [res])
+            // console.log("Found User Shared Files: ", [res])
           },
           error: function(e, r) {
-            console.log(e, r)
+            // console.log(e, r)
             handleParseError(e)
           }
         }).then(function(resp) {
@@ -619,7 +619,7 @@ angular.module('garago.factory.parse', [])
                 var query = new Parse.Query(Users)
                 query.containedIn("objectId",val.attributes.members)
                 query.find().then(function(res){
-                  console.log(res)
+                  // console.log(res)
                   obj.members = res
                   files.push(obj)
                   resolve(res)
@@ -628,7 +628,7 @@ angular.module('garago.factory.parse', [])
               promises.push(promise)
             })
             Promise.all(promises).then(function(res){
-              console.log("Users for file: ",files)
+              // console.log("Users for file: ",files)
               deferred.resolve(files)
             })
           } else {  
@@ -650,16 +650,17 @@ angular.module('garago.factory.parse', [])
         query2.contains("tagSearch", search.toLowerCase())
         
         var mainQuery = Parse.Query.or(query1, query2);
+        // mainQuery.descending("title")
         mainQuery.equalTo("active",true)
         mainQuery.descending("updatedAt")
 
 
         mainQuery.find({
           success: function(res) {
-            console.log("Found User Search Files: ", [res])
+            // console.log("Found User Search Files: ", [res])
           },
           error: function(e, r) {
-            console.log(e, r)
+            // console.log(e, r)
             handleParseError(e)
           }
         }).then(function(res) {
@@ -673,7 +674,7 @@ angular.module('garago.factory.parse', [])
                 var query = new Parse.Query(Users)
                 query.equalTo("objectId",val.attributes.createdBy)
                 query.find().then(function(res){
-                  console.log(res)
+                  // console.log(res)
                   obj.members = res
                   files.push(obj)
                   resolve(res)
@@ -682,7 +683,7 @@ angular.module('garago.factory.parse', [])
               promises.push(promise)
             })
             Promise.all(promises).then(function(res){
-              console.log("Users for file: ",files)
+              // console.log("Users for file: ",files)
               deferred.resolve(files)
             })
           } else {
@@ -709,16 +710,16 @@ angular.module('garago.factory.parse', [])
       ////// Get User Data From ID
       ////////////////////////////////////////////////
       getFile: function(id){
-        console.log(id)
+        // console.log(id)
         var deferred = $q.defer()
         var query = new Parse.Query(Files)
         query.equalTo("active",true)
         query.equalTo("objectId",id).find({
           success: function(res){
-            console.log(res)
+            // console.log(res)
           },
           error: function(e,r){
-            console.log(e,r)
+            // console.log(e,r)
             handleParseError(e)
           }
         }).then(function(res){
