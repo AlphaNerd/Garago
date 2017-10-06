@@ -409,7 +409,11 @@ angular.module('garago.factory.parse', [])
                 }
                 return obj
               });
+              var tagSearch = tags.map(function (item) {
+                return item.attributes.title
+              });
               file.set("tags",tagArray)
+              file.set("tagSearch",tagSearch)
               var acl = new Parse.ACL();
               acl.setPublicReadAccess(true);
               acl.setPublicWriteAccess(false);
@@ -643,7 +647,7 @@ angular.module('garago.factory.parse', [])
         query1.contains("title", search.toLowerCase())
 
         var query2 = new Parse.Query(Files)
-        query2.startsWith("tags", search.toLowerCase())
+        query2.contains("tagSearch", search.toLowerCase())
         
         var mainQuery = Parse.Query.or(query1, query2);
         mainQuery.equalTo("active",true)
