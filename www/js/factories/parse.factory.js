@@ -403,7 +403,11 @@ angular.module('garago.factory.parse', [])
               file.set("active", true);
               console.log("TAGS IN: ",tags)
               var tagArray = tags.map(function (item) {
-                  return item.name;
+                var obj = {
+                  title: item.attributes.title,
+                  noc: item.attributes.noc
+                }
+                return obj
               });
               file.set("tags",tagArray)
               var acl = new Parse.ACL();

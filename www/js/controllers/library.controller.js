@@ -75,7 +75,7 @@ angular.module('garago.controllers.library', [])
         duration: 3000
       })
       var $input = angular.element(document.getElementById('upload'));
-      console.log($input[0].files)
+      console.log($input[0].files,$scope.searchTags)
       $parseAPI.saveUserFile($input[0].files, $scope.searchTags).then(function(res) {
         console.log("Save returned: ", res)
         $parseAPI.getUserFiles().then(function(res) {
@@ -159,7 +159,8 @@ angular.module('garago.controllers.library', [])
     }
 
     function queryCodes(query){
-      return Parse.Cloud.run('getNocCodes',{'searchTerm':query}).then(function(res) {
+      var myQuery = query.toLowerCase()
+      return Parse.Cloud.run('getNocCodes',{'searchTerm':myQuery}).then(function(res) {
         console.info("NOC CODES: ",res)
         return res
       })

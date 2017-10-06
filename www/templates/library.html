@@ -38,7 +38,7 @@
               <p>Modified: {{item.updatedAt | moment}}</p>
               <span class="tags">
                 <span ng-repeat="tag in item.tags">
-                    {{tag}}
+                    {{tag.title}}
                 </span>
               </span>
               <span class="shared-with">
@@ -90,7 +90,7 @@
           </span>
           <span class="tags">
                 <span ng-repeat="tag in item.attributes.tags">
-                    {{tag}}
+                    {{tag.title}}
                 </span>
           </span>
           <span class="user-file-options">
@@ -124,7 +124,7 @@
           </span>
           <span class="tags">
                 <span ng-repeat="tag in item.tags">
-                    {{tag}}
+                    {{tag.title}}
                 </span>
           </span>
           <span class="user-file-options">
