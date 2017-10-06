@@ -277,12 +277,13 @@ input.md-input {
 }
 
 .card .tags span {
-  padding: 0px 10px;
-  background: rgba(0,0,0,0.15);
-  border-radius: 10px;
-  margin: 5px 2px 0 0px;
-  text-align: center;
-  display: inline-block;
+    padding: 0px 10px;
+    background: rgba(0,0,0,0.15);
+    border-radius: 10px;
+    margin: 5px 2px 0 0px;
+    text-align: left;
+    display: inline-block;
+    text-transform: capitalize;
 }
 
 #Library #upload-container{
@@ -474,12 +475,13 @@ input.md-input {
 }
 
 #Library.Browse .tags span {
-  padding: 0px 10px;
-  background: rgba(0,0,0,0.15);
-  border-radius: 10px;
-  margin: 5px 2px 0 0px;
-  text-align: center;
-  display: inline-block;
+    padding: 0px 10px;
+    background: rgba(0,0,0,0.15);
+    border-radius: 10px;
+    margin: 5px 2px 0 0px;
+    text-align: left;
+    display: inline-block;
+    text-transform: capitalize;
 }
 
 #Library.Browse .favs-options {

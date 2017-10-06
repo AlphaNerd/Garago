@@ -71,8 +71,7 @@ angular.module('garago.controllers.library', [])
 
     $scope.uploadFiles = function() {
       $ionicLoading.show({
-        template: "Saving file(s)...",
-        duration: 3000
+        template: "Saving file(s)..."
       })
       var $input = angular.element(document.getElementById('upload'));
       console.log($input[0].files,$scope.searchTags)
