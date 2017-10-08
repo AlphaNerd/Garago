@@ -1,0 +1,27 @@
+<ion-view id="Invite" class="padding" view-title="Invite User">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+    <ion-nav-buttons side="left">
+      <button class="button button-icon button-clear ion-navicon menu-toggle" menu-toggle="left">
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-conent>
+    <div class="invite-box">
+      <!-- <h1>Send Invite</h1> -->
+      <div class="item item-input invite-input">
+        <i class="fa fa-envelope-o placeholder-icon"></i> &nbsp;
+        <input class="invite-email" type="text" placeholder="Email" ng-model="user.email">
+      </div>
+      <div class="canUpload">
+        <md-checkbox ng-model="user.canUpload" aria-label="Uploader">
+          User can upload: {{ user.canUpload ? 'Yes':'No'}}
+        </md-checkbox>
+      </div>
+      <div class="button button-block button-balanced" ng-click="inviteUser(user)">Invite</div>
+    </div>
+  </ion-conent>
+</ion-view>

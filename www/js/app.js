@@ -31,7 +31,8 @@ angular.module('garago', [
   'mdColorPicker',
   'ngDroplet',
   'akoenig.deckgrid',
-  'angularFileUpload'
+  'angularFileUpload',
+  'pascalprecht.translate'
 ])
 
   .constant('$ionicLoadingConfig', {
@@ -97,10 +98,23 @@ angular.module('garago', [
     });
   })
 
-  .config(function ($stateProvider, $urlRouterProvider, $mdIconProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $mdIconProvider, $translateProvider) {
     ////// Initialize Parse
     Parse.initialize("garagoapi");
     Parse.serverURL = 'https://garago-api-baas.herokuapp.com/parse';
+
+    /// Angular Translate
+    // $locationProvider.html5Mode({
+    //   enabled: true
+    // });
+
+    $translateProvider
+    .translations('en', translation_en)
+    .translations('fr', translation_fr)
+    .preferredLanguage('en');
+    /// security
+    $translateProvider.useSanitizeValueStrategy('sanitize');
+
     ////// Angular Material Icon stuff
     $mdIconProvider
       .iconSet('social', 'img/icons/sets/social-icons.svg', 24)
@@ -509,6 +523,29 @@ angular.module('garago', [
           'menuContent': {
             templateUrl: 'templates/invite.html',
             controller: 'InviteCtrl',
+            resolve: {
+              resolveData: function ($parseAPI, $ionicLoading, $stateParams) {
+                return true
+              }
+            }
+          }
+        }
+      })
+
+      ////////////////////////////////////////////////////////////////
+      //////////////// User Management - In Dev ///////////////////////
+      ////////////////////////////////////////////////////////////////
+      ///
+      ///   Route: /invite
+      ///   Invite a user by email address 
+      ///
+      ////////////////////////////////////////////////////////////////
+      .state('app.invites', {
+        url: '/users/invites',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/invites.html',
+            controller: 'InvitesCtrl',
             resolve: {
               resolveData: function ($parseAPI, $ionicLoading, $stateParams) {
                 return true

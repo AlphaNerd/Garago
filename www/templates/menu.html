@@ -51,7 +51,7 @@
               </ion-list>
           </ion-content>
         </ion-slide>
-        <ion-slide id="Messages" ng-if="CurrentUser.attributes.isAdmin">
+        <!-- <ion-slide id="Messages" ng-if="CurrentUser.attributes.isAdmin">
           <div class="user-messages">
             <div class="menu-header">
               <div class="logo">
@@ -73,7 +73,7 @@
               </a>
             </div>
           </div>
-        </ion-slide>
+        </ion-slide> -->
         <ion-slide id="UserProfile">
           <ion-content class="user-messages" scroll="true">
             <div class="menu-header">
@@ -90,9 +90,18 @@
               </div>
             </div>
             <div class="user-prefs">
-              <md-switch ng-model="data.cb2" aria-label="Switch 2" ng-true-value="'On'" ng-false-value="'Off'" class="md-warn">
+              <!-- <md-switch ng-model="data.cb2" aria-label="Switch 2" ng-true-value="'On'" ng-false-value="'Off'" class="md-warn">
                 Notiifications: {{ data.cb2 || 'Off' }}
-              </md-switch>
+              </md-switch> -->
+              <md-input-container>
+                <label>Language</label>
+                <md-select ng-model="userLang" ng-change="changeLanguage(userLang)">
+                  <md-option><em>None</em></md-option>
+                  <md-option ng-repeat="lang in ['English','French']" ng-value="lang">
+                    {{lang}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
             </div>
             <!-- <div class="logout padding">
               <div class="button button-block button-assertive button-clear" ng-click="logout()">Logout</div>

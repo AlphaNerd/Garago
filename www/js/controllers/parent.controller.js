@@ -1,6 +1,6 @@
 angular.module('garago.controllers', [])
 
-  .controller('ParentCtrl', function($scope, $ionicModal, $timeout, $rootScope, $ionicSideMenuDelegate, $ionicSlideBoxDelegate, $garagoAPI, $parseAPI, $window, $ionicLoading, $state, $ionicPopup, $ionicHistory) {
+  .controller('ParentCtrl', function($scope, $ionicModal, $timeout, $rootScope, $ionicSideMenuDelegate, $ionicSlideBoxDelegate, $garagoAPI, $parseAPI, $window, $ionicLoading, $state, $ionicPopup, $ionicHistory, $translate) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -26,6 +26,17 @@ angular.module('garago.controllers', [])
     //     console.info(res)
     //   });
     // },500)
+
+    $scope.changeLanguage = function (langKey) {
+      console.log("Change to ",langKey)
+      if(langKey == 'English'){
+        langKey = 'en'
+      }else{
+        langKey = 'fr'
+      }
+      console.log(langKey)
+      $translate.use(langKey);
+    };
 
     $rootScope.CurrentUser = Parse.User.current()
     //// logout current Parse User

@@ -549,3 +549,28 @@ md-switch span {
     left: 45px;
     font-size: 12px;
 }
+
+
+md-select.md-default-theme .md-select-icon, md-select .md-select-icon {
+    color: rgb(255, 255, 255)!important;
+}
+
+md-select .md-select-value.md-select-placeholder {
+    color: #fff!important;
+}
+
+md-input-container {
+    width: 100%!important;
+}
+
+md-select:not([disabled]):focus .md-select-value{
+  border-bottom-color:#fff!important;
+}
+
+md-input-container:not(.md-input-invalid).md-input-focused label{
+  color:#fff!important;
+}
+
+.md-select-value>span:not(.md-select-icon) .md-text {
+    color: #fff!important;
+}
