@@ -36,12 +36,13 @@ angular.module('garago.controllers', [])
       $translate.use(langKey);
     };
 
-    $scope.rateFile = function($event){
-      console.log($event)
-      Parse.Cloud.run('addRating', {
-        rating: $event.rating
+    $scope.rateFile = function($event,file){
+      console.log($event,file)
+      Parse.Cloud.run('updateRating', {
+        rating: $event.rating,
+        fileId: file.id
       }).then(function(res) {
-        $event.rating = res
+        console.log("Rating Resp: ",res)
       });
     }
 

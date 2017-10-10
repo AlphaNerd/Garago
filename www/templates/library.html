@@ -97,7 +97,7 @@
           
 
           <div class="ratings">
-            <star-rating-comp on-click="rateFile($event)"></star-rating-comp>
+            <star-rating-comp rating="item.attributes.rating" on-rating-change="rateFile($event,item)"></star-rating-comp>
           </div>
 
 

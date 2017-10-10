@@ -112,7 +112,7 @@ angular.module('garago', [
     $translateProvider
     .translations('en', translation_en)
     .translations('fr', translation_fr)
-    .preferredLanguage(Parse.User.current().attributes.language);
+    .preferredLanguage('en');
     /// security
     // $translateProvider.useSanitizeValueStrategy('sanitize');
     $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
