@@ -36,6 +36,9 @@
                         {{tag.title}}
                     </span>
                 </div>
+                <div class="ratings">
+                    <star-rating-comp on-click="rateFile($event)"></star-rating-comp>
+                </div>
                 <!-- <div class="acl-indicator">
                     <div ng-class="item.attributes.ACL.permissionsById['*'].read ? 'green':'grey'">R</div>
                     <div ng-class="item.attributes.ACL.permissionsById[CurrentUser.id].write ? 'green':'grey'">W</div>

@@ -20,23 +20,30 @@ angular.module('garago.controllers', [])
           break;
       }
     }
-    ///// this needs to be finished - parse large db provided by client
-    // $timeout(function(){
-    //   Parse.Cloud.run('getNocCodes',{}).then(function(res) {
-    //     console.info(res)
-    //   });
-    // },500)
 
     $scope.changeLanguage = function (langKey) {
       console.log("Change to ",langKey)
       if(langKey == 'English'){
         langKey = 'en'
+        Parse.User.current().set("language","en")
+        Parse.User.current().save()
       }else{
         langKey = 'fr'
+        Parse.User.current().set("language","fr")
+        Parse.User.current().save()
       }
       console.log(langKey)
       $translate.use(langKey);
     };
+
+    $scope.rateFile = function($event){
+      console.log($event)
+      Parse.Cloud.run('addRating', {
+        rating: $event.rating
+      }).then(function(res) {
+        $event.rating = res
+      });
+    }
 
     $rootScope.CurrentUser = Parse.User.current()
     //// logout current Parse User

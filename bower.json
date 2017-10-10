@@ -12,7 +12,8 @@
     "ng-file-upload-shim": "^12.2.13",
     "ng-droplet": "^0.7.0",
     "angular-deckgrid": "^0.5.0",
-    "moment": "^2.18.1"
+    "moment": "^2.18.1",
+    "angular-rating": "^3.1.0"
   },
   "resolutions": {
     "angular": "1.6.6"

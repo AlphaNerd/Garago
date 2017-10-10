@@ -32,7 +32,8 @@ angular.module('garago', [
   'ngDroplet',
   'akoenig.deckgrid',
   'angularFileUpload',
-  'pascalprecht.translate'
+  'pascalprecht.translate',
+  'star-rating'
 ])
 
   .constant('$ionicLoadingConfig', {
@@ -111,9 +112,10 @@ angular.module('garago', [
     $translateProvider
     .translations('en', translation_en)
     .translations('fr', translation_fr)
-    .preferredLanguage('en');
+    .preferredLanguage(Parse.User.current().attributes.language);
     /// security
-    $translateProvider.useSanitizeValueStrategy('sanitize');
+    // $translateProvider.useSanitizeValueStrategy('sanitize');
+    $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
 
     ////// Angular Material Icon stuff
     $mdIconProvider

@@ -574,3 +574,13 @@ md-input-container:not(.md-input-invalid).md-input-focused label{
 .md-select-value>span:not(.md-select-icon) .md-text {
     color: #fff!important;
 }
+
+
+
+.ratings{
+  float:left;
+}
+
+.rating.label-left .label-value+.star-container {
+    margin-left: 0px!important;
+}
