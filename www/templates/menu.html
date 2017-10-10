@@ -37,7 +37,7 @@
                 <!-- <ion-item menu-close href="#/app/dashboard" ng-class="isActiveMenu('#/app/dashboard') ? 'active':''" ng-if="CurrentUser.attributes.isAdmin">
                   <i class="fa fa-tachometer" aria-hidden="true"></i> &nbsp; Dashboard
                 </ion-item> -->
-                <div class="menu-group" ng-repeat="group in MENU_ACTIONPLAN">
+                <div class="menu-group" ng-if="!group.admin || currentUser.attributes.isAdmin" ng-repeat="group in MENU_ACTIONPLAN">
                   <ion-item class="item-stable header" ng-click="toggleGroup(group)" ng-class="{active: isGroupShown(group)}">
                     &nbsp;<i class="fa fa-{{group.class}}" aria-hidden="true"></i> &nbsp; {{ group.name | translate }} &nbsp; <i class="icon fa" ng-class="isGroupShown(group) ? 'fa-minus' : 'fa-plus'"></i>
                   </ion-item>

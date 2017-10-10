@@ -9,7 +9,8 @@ angular.module('garago.controllers', [])
     $scope.$on('$ionicView.enter', function(e) {
       // console.log("ParentCtrl Loaded.")
       var myDelay = 0;
-      Parse.User.current().fetch()
+      $scope.currentUser = Parse.User.current()
+      console.log($scope.currentUser)
     });
 
     $scope.handleParseError = function(err) {
@@ -43,11 +44,11 @@ angular.module('garago.controllers', [])
       $translate.use(langKey);
     };
 
-    $scope.rateFile = function($event, file) {
-      console.log($event, file)
+    $scope.rateFile = function($event, item) {
+      console.log($event, item.id)
       Parse.Cloud.run('updateRating', {
         rating: $event.rating,
-        fileId: file.id
+        fileId: item.id
       }).then(function(res) {
         console.log("Rating Resp: ", res)
       });
@@ -207,6 +208,7 @@ angular.module('garago.controllers', [])
       {
         name: "SMART_LIBRARY",
         class: 'folder-o',
+        admin: false,
         items: [{
           title: "DASHBOARD",
           link: "#/app/library",
@@ -223,6 +225,7 @@ angular.module('garago.controllers', [])
       }, {
         name: "MANAGE_USERS",
         class: 'folder-o',
+        admin: true,
         items: [{
           title: "INVITE_USERS",
           link: "#/app/users/invite",
@@ -231,10 +234,6 @@ angular.module('garago.controllers', [])
           title: "MANAGE_USERS",
           link: "#/app/users",
           class: "users"
-        }, {
-          title: "MANAGE_INVITES",
-          link: "#/app/users/invites",
-          class: "ticket"
         }]
       }
     ];

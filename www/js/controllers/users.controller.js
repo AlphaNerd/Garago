@@ -19,10 +19,15 @@ angular.module('garago.controllers.users', [])
       $scope.shouldShowReorder = !$scope.shouldShowReorder;
     }
 
-    $scope.deleteUser = function(user){
-      console.log("Delete this user: ",user)
+    $scope.deleteUser = function(index,user){
+      console.log("Delete this user: ",user.id)
       $parseAPI.deleteUserByID(user.id).then(function(res){
         console.log("User Deleted: ",res)
+        if(res){
+          $scope.users.splice(index, 1)
+        }else{
+          console.log("error deleting user")
+        }
       })
     }
 

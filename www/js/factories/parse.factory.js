@@ -401,6 +401,7 @@ angular.module('garago.factory.parse', [])
               var file = new Parse.Object("Files");
               file.set("file", parseFile);
               file.set("active", true);
+              file.set("rating", 0);
               // console.log("TAGS IN: ",tags)
               var tagArray = tags.map(function (item) {
                 var obj = {
@@ -709,7 +710,7 @@ angular.module('garago.factory.parse', [])
       ////////////////////////////////////////////////
       ////// DELETE User By ID
       ////////////////////////////////////////////////
-      deleteUserByID: function(id){
+      deleteUserByID: function(userid){
         var deferred = $q.defer()
 
         var confirmPopup = $ionicPopup.confirm({
@@ -720,7 +721,7 @@ angular.module('garago.factory.parse', [])
          confirmPopup.then(function(res) {
            if(res) {
              Parse.Cloud.run('deleteUserById', { 
-                ids: id
+                userid: userid
               }).then(function(res) {
                 deferred.resolve(res)
               });
