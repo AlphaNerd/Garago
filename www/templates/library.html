@@ -98,6 +98,7 @@
 
           <div class="ratings">
             <star-rating-comp rating="item.attributes.rating" on-click="rateFile($event,item)"></star-rating-comp>
+            <!-- <span>{{item.attributes.ratings.length}}</span> -->
           </div>
 
 
@@ -129,7 +130,7 @@
         <div class="item item-body" ng-repeat="item in userFiles">
           <i class="fa" ng-class="item.icon" aria-hidden="true"></i> <span class="filename"><a href="{{item.file._url}}" target="_blank">{{item.title}}</a><i class="fa fa-pencil" ng-if="item.ACL.permissionsById[CurrentUser.id].write" ng-click="editFile(item.id)"></i></span>
           <span class="modified">
-                <span>{{'LIBRARY_DASHBOARD.MODIFIED' | translate }}: {{item.updatedAt | moment}}</span>
+                <span>{{'MODIFIED' | translate }}: {{item.updatedAt | moment}}</span>
           </span>
           <span class="tags">
                 <span ng-repeat="tag in item.tags">
