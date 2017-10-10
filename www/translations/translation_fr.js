@@ -52,7 +52,7 @@ var translation_fr = {
     INVITE: 'Inviter'
   },
   REGISTER: {
-    HEADER: 'User Registration(FR)',
+    HEADER: 'Inscription utilisateur',
     FIRST_NAME: 'Prénom',
     LAST_NAME: 'Nom',
     CONFIRM_EMAIL: 'Confirmer le courriel',
