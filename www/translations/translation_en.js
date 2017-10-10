@@ -14,6 +14,7 @@ var translation_en = {
   MODIFIED: 'Modified',
   YES: 'Yes',
   NO: 'No',
+  CANCEL: 'Cancel',
   EMAIL: 'Email',
   PASSWORD: 'Password',
   RESET_PASSWORD: 'Reset Password',
@@ -23,6 +24,7 @@ var translation_en = {
   LOGIN: 'Login',
   LANGUAGE: 'Language',
   VIEW_ALL: 'View All',
+  NEXT: 'Next',
   LIBRARY_DASHBOARD: {
     HEADER: 'Smart Library',
     SEARCH_PLACEHOLDER: 'Search files...',
@@ -48,5 +50,12 @@ var translation_en = {
     HEADER: 'Invite User',
     USER_CAN_UPLOAD: 'User can upload',
     INVITE: 'Invite'
+  },
+  REGISTER: {
+    HEADER: 'User Registration',
+    FIRST_NAME: 'First Name',
+    LAST_NAME: 'Last Name',
+    CONFIRM_EMAIL: 'Confirm Email',
+    CONFIRM_PASSWORD: 'First Name',
   }
 };

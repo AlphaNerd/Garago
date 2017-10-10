@@ -11,46 +11,47 @@ angular.module('garago.controllers.register', [])
     $scope.register = function(data) {
       // console.log("Register the user now: ", [data])
       var query = new Parse.Query(Invites)
-      query.equalTo("email",data.email.toLowerCase())
+      query.equalTo("email", data.email.toLowerCase())
       query.find({
-        success: function(res){
+        success: function(res) {
           console.log(res)
-          var canUpload = res[0].attributes.canUpload
-          if(res.length > 0){
-            var user = new Parse.User();
-            user.set("firstName", data.firstName);
-            user.set("lastName", data.lastName);
-            user.set("username", data.email.toLowerCase());
-            user.set("password", data.password);
-            user.set("email", data.email.toLowerCase());
-            user.set("canUpload",data.canUpload || false)
-            user.signUp(null, {
-              success: function(user) {
-                // console.log("Parse user registered: ",Parse.User.current())
-                $rootScope.USER = Parse.User.current();
-                $scope.newUser = {}
-                removeInvite(data)
-                $state.go("app.library")
-              },
-              error: function(user, error) {
-                // Show the error message somewhere and let the user try again.
-                var alertPopup = $ionicPopup.alert({
-                  title: 'Error!',
-                  template: error.message
-                });
-                // $state.go("register")
-              }
-            });
-          }else{
-            console.log("you have not been invited")
-            var alertPopup = $ionicPopup.alert({
-               title: 'Sorry!',
-               template: 'You must be invited into this private app.'
-             });
-          }
         },
-        error: function(e,r){
-          $scope.handleParseError(e,r)
+        error: function(e, r) {
+          $scope.handleParseError(e, r)
+        }
+      }).then(function(res) {
+        if (res[0]) {
+          var canUpload = res[0].attributes.canUpload
+          var user = new Parse.User();
+          user.set("firstName", data.firstName);
+          user.set("lastName", data.lastName);
+          user.set("username", data.email.toLowerCase());
+          user.set("password", data.password);
+          user.set("email", data.email.toLowerCase());
+          user.set("canUpload", data.canUpload || false)
+          user.signUp(null, {
+            success: function(user) {
+              // console.log("Parse user registered: ",Parse.User.current())
+              $rootScope.USER = Parse.User.current();
+              $scope.newUser = {}
+              removeInvite(data)
+              $state.go("app.library")
+            },
+            error: function(user, error) {
+              // Show the error message somewhere and let the user try again.
+              var alertPopup = $ionicPopup.alert({
+                title: 'Error!',
+                template: error.message
+              });
+              // $state.go("register")
+            }
+          });
+        } else {
+          console.log("you have not been invited")
+          var alertPopup = $ionicPopup.alert({
+            title: 'Sorry!',
+            template: 'You must be invited into this private app.'
+          });
         }
       })
     }
@@ -103,12 +104,12 @@ angular.module('garago.controllers.register', [])
       $ionicSlideBoxDelegate.previous();
     }
 
-    function removeInvite(data){
+    function removeInvite(data) {
       console.log(data)
-      Parse.Cloud.run('removeInvite',{
-        'email':data.email
+      Parse.Cloud.run('removeInvite', {
+        'email': data.email
       }).then(function(res) {
-        console.info("Removed Invite: ",res)
+        console.info("Removed Invite: ", res)
       })
     }
 

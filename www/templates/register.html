@@ -7,9 +7,9 @@
                 </div>
                 <form name="userRegister" class="list slide1 register list-inset" ng-submit="register(newUser)">
                     <div class="list">
-                        <p>User Registration</p>
+                        <p>{{'REGISTER.HEADER' | translate }}</p>
                         <md-input-container class="md-block">
-                            <label>First Name</label>
+                            <label>{{'REGISTER.FIRST_NAME' | translate }}</label>
                             <input name="firstName" ng-model="newUser.firstName" type="text" required>
                         </md-input-container>
                         <!-- <label class="item item-input item-floating-label">
@@ -18,7 +18,7 @@
                             <p ng-show="userRegister.firstName.$invalid && !userRegister.firstName.$empty && !userRegister.firstName.$pristine" class="help-block">Your first name is required.</p>
                         </label> -->
                         <md-input-container class="md-block">
-                            <label>Last Name</label>
+                            <label>{{'REGISTER.LAST_NAME' | translate }}</label>
                             <input name="lastName" ng-model="newUser.lastName" type="text" required>
                         </md-input-container>
                         <!-- <label class="item item-input item-floating-label">
@@ -27,7 +27,7 @@
                             <p ng-show="userRegister.lastName.$invalid && !userRegister.lastName.$empty && !userRegister.lastName.$pristine" class="help-block">Your last name is required.</p>
                         </label> -->
                         <md-input-container class="md-block">
-                            <label>Email</label>
+                            <label>{{'EMAIL' | translate }}</label>
                             <input name="email" ng-model="newUser.email" type="email" required>
                         </md-input-container>
                        <!--  <label class="item item-input item-floating-label">
@@ -37,7 +37,7 @@
                             <p ng-show="userRegister.email.$invalid && !userRegister.email.$pristine" class="help-block">Enter a valid email.</p>
                         </label> -->
                         <md-input-container class="md-block">
-                            <label>Confirm Email</label>
+                            <label>{{'REGISTER.CONFIRM_EMAIL' | translate }}</label>
                             <input name="emailConfirm" ng-model="newUser.emailConfirm" type="email" required>
                         </md-input-container>
                         <!-- <label class="item item-input item-floating-label">
@@ -47,7 +47,7 @@
                             <p ng-show="newUser.email != newUser.emailConfirm && userRegister.email.$valid &&  !userRegister.emailConfirm.$pristine && !userRegister.emailConfirm.$empty" class="help-block">Emails do not match</p>
                         </label> -->
                         <md-input-container class="md-block">
-                            <label>Password</label>
+                            <label>{{'PASSWORD' | translate }}</label>
                             <input ng-model="newUser.password" type="password" required>
                         </md-input-container>
                         <!-- <label class="item item-input item-floating-label">
@@ -55,7 +55,7 @@
                             <input ng-model="newUser.password" type="password" placeholder="Password">
                         </label> -->
                         <md-input-container class="md-block">
-                            <label>Confirm Password</label>
+                            <label>{{'REGISTER.CONFIRM_PASSWORD' | translate }}</label>
                             <input ng-model="newUser.passwordConfirm" type="password" required>
                         </md-input-container>
                         <!-- <label class="item item-input item-floating-label">
@@ -64,8 +64,9 @@
                         </label> -->
                     </div>
                     <!-- <div type="submit" class="button button-block button-balanced" ng-click="register(newUser)">Sign Up</div> -->
-                    <div class="button button-block button-balanced" ng-click="nextSlide()">{{buttonLabel}}</div>
-                    <div class="skip" ng-hide="slideNum == (totalSlides-1)" ng-click="cancelReg()">Cancel</div>
+                    <div class="button button-block button-balanced" ng-click="nextSlide()">{{'NEXT' | translate }}</div>
+                    <!-- {{buttonLabel}} -->
+                    <div class="skip" ng-hide="slideNum == (totalSlides-1)" ng-click="cancelReg()">{{'CANCEL' | translate}}</div>
                 </form>
             </ion-content>
         </ion-slide>
