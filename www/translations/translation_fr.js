@@ -7,7 +7,7 @@ var translation_fr = {
   MY_FAVORITES: 'Mes favoris',
   BROWSE_ALL: 'Voir tous les documents',
   SHARE: 'Partager)',
-  DELETE: 'Effacer(FR)',
+  DELETE: 'Effacer',
   LAST_UPDATED: 'Dernière mise à jour',
   CREATED_BY: 'Créer par',
   UPLOAD: 'Télécharger',
@@ -22,6 +22,7 @@ var translation_fr = {
   SUBMIT: 'Submit(FR)',
   LOGIN: 'Entrer',
   LANGUAGE: 'Langue',
+  VIEW_ALL: 'View All(FR)',
   LIBRARY_DASHBOARD: {
     HEADER: 'Bibliothèque intelligente',
     SEARCH_PLACEHOLDER: 'Recherche',
@@ -47,8 +48,5 @@ var translation_fr = {
     HEADER: 'Inviter des utilisateurs',
     USER_CAN_UPLOAD: 'Utilisateur peut télécharger',
     INVITE: 'Inviter'
-  },
-  REGISTER: {
-
   }
 };

@@ -22,9 +22,11 @@ var translation_en = {
   SUBMIT: 'Submit(FR)',
   LOGIN: 'Login',
   LANGUAGE: 'Language',
+  VIEW_ALL: 'View All',
   LIBRARY_DASHBOARD: {
     HEADER: 'Smart Library',
     SEARCH_PLACEHOLDER: 'Search files...',
+    MY_FAVORITES: 'My Favorites',
     MY_UPLOADS: 'My Uploads',
     MOST_RECENT_UPLOADS: 'Most Recent Uploads',
     NO_UPLOADS: 'No uploads found',
@@ -46,8 +48,5 @@ var translation_en = {
     HEADER: 'Invite User',
     USER_CAN_UPLOAD: 'User can upload',
     INVITE: 'Invite'
-  },
-  LOGIN: {
-    
   }
 };

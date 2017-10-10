@@ -21,6 +21,8 @@ angular.module('garago.controllers', [])
       }
     }
 
+    $translate.use(Parse.User.current().attributes.language);
+
     $scope.changeLanguage = function (langKey) {
       console.log("Change to ",langKey)
       if(langKey == 'English'){

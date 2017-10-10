@@ -111,10 +111,7 @@ angular.module('garago', [
     $translateProvider
     .translations('en', translation_en)
     .translations('fr', translation_fr)
-    // .preferredLanguage('en');
-    $translateProvider.determinePreferredLanguage(); ///* This is a test and should be debugged
-    /// security
-    // $translateProvider.useSanitizeValueStrategy('sanitize');
+    .preferredLanguage('en');
     $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
 
     ////// Angular Material Icon stuff
