@@ -15,7 +15,11 @@ var translation_fr = {
   YES: 'Oui',
   NO: 'Non',
   EMAIL: 'Courriel',
+  PASSWORD: 'Password(FR)',
+  RESET_PASSWORD: 'Reset Password(FR)',
   SIGN_OUT: 'Quitter',
+  SIGN_UP: 'Sign Up (FR)',
+  SUBMIT: 'Submit(FR)',
   LOGIN: 'Entrer',
   LANGUAGE: 'Langue',
   LIBRARY_DASHBOARD: {
@@ -43,5 +47,8 @@ var translation_fr = {
     HEADER: 'Inviter des utilisateurs',
     USER_CAN_UPLOAD: 'Utilisateur peut télécharger',
     INVITE: 'Inviter'
+  },
+  REGISTER: {
+
   }
 };

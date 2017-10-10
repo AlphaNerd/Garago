@@ -15,7 +15,11 @@ var translation_en = {
   YES: 'Yes',
   NO: 'No',
   EMAIL: 'Email',
+  PASSWORD: 'Password',
+  RESET_PASSWORD: 'Reset Password',
   SIGN_OUT: 'Sign Out',
+  SIGN_UP: 'Sign Up',
+  SUBMIT: 'Submit(FR)',
   LOGIN: 'Login',
   LANGUAGE: 'Language',
   LIBRARY_DASHBOARD: {
@@ -42,5 +46,8 @@ var translation_en = {
     HEADER: 'Invite User',
     USER_CAN_UPLOAD: 'User can upload',
     INVITE: 'Invite'
+  },
+  LOGIN: {
+    
   }
 };

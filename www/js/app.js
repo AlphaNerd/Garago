@@ -108,11 +108,11 @@ angular.module('garago', [
     // $locationProvider.html5Mode({
     //   enabled: true
     // });
-
     $translateProvider
     .translations('en', translation_en)
     .translations('fr', translation_fr)
-    .preferredLanguage('en');
+    // .preferredLanguage('en');
+    $translateProvider.determinePreferredLanguage(); ///* This is a test and should be debugged
     /// security
     // $translateProvider.useSanitizeValueStrategy('sanitize');
     $translateProvider.useSanitizeValueStrategy('sanitizeParameters');

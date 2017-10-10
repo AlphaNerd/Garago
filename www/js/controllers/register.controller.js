@@ -43,6 +43,10 @@ angular.module('garago.controllers.register', [])
             });
           }else{
             console.log("you have not been invited")
+            var alertPopup = $ionicPopup.alert({
+               title: 'Sorry!',
+               template: 'You must be invited into this private app.'
+             });
           }
         },
         error: function(e,r){

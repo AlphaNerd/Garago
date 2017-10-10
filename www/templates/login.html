@@ -6,23 +6,23 @@
     </div>
     <form name="loginForm" class="login-field login-form list" ng-submit="login(user)" novalidate>
       <md-input-container class="md-block">
-        <label>Email</label>
+        <label>{{'EMAIL' | translate }}</label>
         <input name="email" ng-model="user.email" type="email" required>
       </md-input-container>
       <md-input-container class="md-block">
-        <label>Password</label>
+        <label>{{'PASSWORD' | translate }}</label>
         <input ng-model="user.password" type="password" required>
       </md-input-container>
       <button ng-if="touchIdAvailable" round text-center ng-click="checkTouchID">
         <div class="submit">
           <button type="submit" class="button button-block button-balanced" ng-disabled="loginForm.$invalid">
-            Submit
+            {{'SUBMIT' | translate }}
           </button>
         </div>
     </form>
     <div class="extra-account-functions">
-      <div ng-click="registerNewUser()">Sign Up</div>
-      <div ng-click="openPassReset()">Reset Password</div>
+      <div ng-click="registerNewUser()">{{'SIGN_UP' | translate }}</div>
+      <div ng-click="openPassReset()">{{'RESET_PASSWORD' | translate }}</div>
     </div>
   </div>
 </ion-view>
