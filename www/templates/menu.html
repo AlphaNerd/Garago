@@ -23,10 +23,10 @@
                 <div class="logo">
                   <img src="https://dev.goforms.ca/assets/img/app/profile/garago.png">
                 </div>
-                <div class="mail" ng-if="CurrentUser.attributes.isAdmin">
+                <!-- <div class="mail" ng-if="CurrentUser.attributes.isAdmin">
                   <i class="fa fa-envelope-o" aria-hidden="true" ng-click="gotoSlide(1)"></i>
                   <!-- <div class="badge animated bounceIn">5</div> -->
-                </div>
+                </div> -->
                 <div class="profile" ng-click="gotoSlide(1)">
                   <div class="image"></div>
                   <!-- <div class="badge animated bounceIn">1</div> -->
@@ -39,14 +39,14 @@
                 </ion-item> -->
                 <div class="menu-group" ng-repeat="group in MENU_ACTIONPLAN">
                   <ion-item class="item-stable header" ng-click="toggleGroup(group)" ng-class="{active: isGroupShown(group)}">
-                    &nbsp;<i class="fa fa-{{group.class}}" aria-hidden="true"></i> &nbsp; {{group.name}} &nbsp; <i class="icon fa" ng-class="isGroupShown(group) ? 'fa-minus' : 'fa-plus'"></i>
+                    &nbsp;<i class="fa fa-{{group.class}}" aria-hidden="true"></i> &nbsp; {{ group.name | translate }} &nbsp; <i class="icon fa" ng-class="isGroupShown(group) ? 'fa-minus' : 'fa-plus'"></i>
                   </ion-item>
                   <ion-item class="item-accordion" menu-close ng-repeat="item in group.items" ng-show="isGroupShown(group)" href="{{item.link}}" ng-class="isActiveMenu(item.link) ? 'active':''">
-                    <i class="fa fa-{{item.class}}" aria-hidden="true"></i> &nbsp;{{item.title}}
+                    <i class="fa fa-{{item.class}}" aria-hidden="true"></i> &nbsp;{{item.title | translate}}
                   </ion-item>
                 </div>
                 <ion-item menu-close href="#/app/contact" ng-click="logout()">
-                  <i class="fa fa-sign-out" aria-hidden="true"></i> &nbsp; Sign Out
+                  <i class="fa fa-sign-out" aria-hidden="true"></i> &nbsp; {{'SIGN_OUT' | translate}}
                 </ion-item>
               </ion-list>
           </ion-content>
@@ -84,17 +84,17 @@
               <div class="menu">
                 <i class="fa fa-bars" aria-hidden="true" ng-click="gotoSlide(0)"></i>
               </div>
-              <div class="mail" ng-if="CurrentUser.attributes.isAdmin">
+              <!-- <div class="mail" ng-if="CurrentUser.attributes.isAdmin">
                 <i class="fa fa-envelope-o" aria-hidden="true" ng-click="gotoSlide(1)" ></i>
                 <div class="badge animated bounceIn">5</div>
-              </div>
+              </div> -->
             </div>
             <div class="user-prefs">
               <!-- <md-switch ng-model="data.cb2" aria-label="Switch 2" ng-true-value="'On'" ng-false-value="'Off'" class="md-warn">
                 Notiifications: {{ data.cb2 || 'Off' }}
               </md-switch> -->
               <md-input-container>
-                <label>Language</label>
+                <label>{{ 'LANGUAGE' | translate}}</label>
                 <md-select ng-model="userLang" ng-change="changeLanguage(userLang)">
                   <md-option><em>None</em></md-option>
                   <md-option ng-repeat="lang in ['English','French']" ng-value="lang">

@@ -1,4 +1,4 @@
-<ion-view view-title="{{'LIBRARY_DASHBOARD  .HEADER' | translate}}">
+<ion-view view-title="{{'LIBRARY_DASHBOARD.HEADER' | translate}}">
   <ion-nav-bar class="bar-stable">
     <ion-nav-back-button>
     </ion-nav-back-button>
@@ -35,7 +35,7 @@
               </div>
               <i class="fa" ng-class="item.icon" aria-hidden="true"></i>
               <h2><a href="{{item.file._url}}" target="_blank">{{item.title}}</a>&nbsp;<i class="fa fa-pencil" ng-if="item.ACL.permissionsById[CurrentUser.id].write" ng-click="editFile(item.id)"></i></h2>
-              <p>{{'LIBRARY_DASHBOARD.SEARCH_MODIFIED' | translate }}: {{item.updatedAt | moment}}</p>
+              <p>{{'LIBRARY_DASHBOARD.MODIFIED' | translate }}: {{item.updatedAt | moment}}</p>
               <span class="tags">
                 <span ng-repeat="tag in item.tags">
                     {{tag.title}}
@@ -74,19 +74,19 @@
       <div class="list card">
         <div class="item item-avatar">
           <i class="fa fa-star" aria-hidden="true"></i>
-          <h2>My Favorites</h2>
+          <h2>{{'MY_FAVORITES' | translate }}</h2>
           <p><a href="/#/app/library/favs">View All</a></p>
           <!-- <p>Stats &amp; Quick Reference</p> -->
         </div>
         <div class="warning" ng-if="!userFavFiles || userFavFiles.length < 1">
-          <h1>No Favorites Found.</h1>
+          <h1>{{'LIBRARY_DASHBOARD.NO_FAVORITES' | translate }}</h1>
         </div>
         <div class="item item-body" ng-repeat="item in userFavFiles">
           <i class="fa" ng-class="item.attributes.icon" aria-hidden="true"></i>&nbsp;
           <span><a href="{{item.attributes.file._url}}" target="_blank">{{item.attributes.title}}</a>&nbsp;<i class="fa fa-pencil" ng-if="item.attributes.ACL.permissionsById[CurrentUser.id].write" ng-click="editFile(item.id)"></i></span>
           <span class="modified">
-                <span>Modified: {{item.updatedAt | moment}}</span>
-          <div>Created by: {{item.attributes.createdBy.email}}</div>
+                <span>{{'MODIFIED' | translate }}: {{item.updatedAt | moment}}</span>
+          <div>{{'CREATED_BY' | translate }}: {{item.attributes.createdBy.email}}</div>
           </span>
           <span class="tags">
                 <span ng-repeat="tag in item.attributes.tags">
@@ -110,17 +110,17 @@
       <div class="list card my-uploads">
         <div class="item item-avatar">
           <i class="fa fa-folder" aria-hidden="true"></i>
-          <h2>My Uploads</h2>
-          <p>Most recent uploads</p>
+          <h2>{{'LIBRARY_DASHBOARD.MY_UPLOADS' | translate }}</h2>
+          <p>{{'LIBRARY_DASHBOARD.MOST_RECENT_UPLOADS' | translate }}</p>
           <!-- <p>Stats &amp; Quick Reference</p> -->
         </div>
         <div class="warning" ng-if="!userFiles || userFiles.length < 1">
-          <h1>No Uploads Found.</h1>
+          <h1>{{'LIBRARY_DASHBOARD.NO_UPLOADS' | translate }}</h1>
         </div>
         <div class="item item-body" ng-repeat="item in userFiles">
           <i class="fa" ng-class="item.icon" aria-hidden="true"></i> <span class="filename"><a href="{{item.file._url}}" target="_blank">{{item.title}}</a><i class="fa fa-pencil" ng-if="item.ACL.permissionsById[CurrentUser.id].write" ng-click="editFile(item.id)"></i></span>
           <span class="modified">
-                <span>Modified: {{item.updatedAt | moment}}</span>
+                <span>{{'LIBRARY_DASHBOARD.MODIFIED' | translate }}: {{item.updatedAt | moment}}</span>
           </span>
           <span class="tags">
                 <span ng-repeat="tag in item.tags">
@@ -145,7 +145,7 @@
         <div class="list" id="upload-container">
           <div class="item item-avatar">
             <i class="fa fa-folder" aria-hidden="true"></i>
-            <h2>Upload</h2>
+            <h2>{{'UPLOAD' | translate }}</h2>
             <p>(png, jpg, gif, pdf, doc, docx, txt)</p>
             <!-- <p>Stats &amp; Quick Reference</p> -->
           </div>
@@ -166,12 +166,12 @@
           <div class="chip-container">
             <div class="experimental-chips">
               <i class="fa fa-tag"></i>
-              <h4>Tags</h4>
-              <span class="instructions">Search NOC codes below, press enter to attach to file(s).</span>
+              <h4>{{'LIBRARY_DASHBOARD.TAGS' | translate }}</h4>
+              <span class="instructions">{{'LIBRARY_DASHBOARD.TAGS_MESSAGE' | translate }}</span>
 
               <md-chips ng-model="searchTags" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-require-match="false">
                 
-                <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="Search NOC code(s)..." md-menu-class="autocomplete-custom-template">
+                <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="{{'LIBRARY_DASHBOARD.SEARCH_NOC_CODES' | translate }}" md-menu-class="autocomplete-custom-template">
                   <md-item-template>
                     <span class="item-title">
                       <i class="fa fa-search"></i>
@@ -179,7 +179,7 @@
                     </span>
                     <span class="item-metadata">
                       <span>
-                        <span>NOC Code:<strong>{{item.attributes.code}}</strong></span>
+                        <span>{{'LIBRARY_DASHBOARD.NOC_CODE' | translate }}:<strong>{{item.attributes.code}}</strong></span>
                       </span>
                       <span>
                         <!-- <strong>{{item.forks}}</strong> -->
@@ -200,7 +200,7 @@
               </md-chips>
             </div>
           </div>
-          <div class="button button-full button-balanced" ng-click="uploadFiles()">Upload</div>
+          <div class="button button-full button-balanced" ng-click="uploadFiles()">{{'UPLOAD' | translate }}</div>
         </div>
       </div>
   </ion-content>

@@ -177,35 +177,35 @@ angular.module('garago.controllers', [])
       //   }]
       // },
       {
-        name: "Smart Library",
+        name: "SMART_LIBRARY",
         class: 'folder-o',
         items: [{
-            title: "Dashboard",
+            title: "DASHBOARD",
             link: "#/app/library",
             class: "windows"
           }, {
-            title: "My Favorites",
+            title: "MY_FAVORITES",
             link: "#/app/library/favs",
             class: "bookmark"
           }, {
-            title: "Browse All",
+            title: "BROWSE_ALL",
             link: "#/app/library/browse",
             class: "list"
           }
         ]
       },{
-        name: "Manage Users",
+        name: "MANAGE_USERS",
         class: 'folder-o',
         items: [{
-            title: "Invite User",
+            title: "INVITE_USERS",
             link: "#/app/users/invite",
             class: "user"
           }, {
-            title: "Manage Users",
+            title: "MANAGE_USERS",
             link: "#/app/users",
             class: "users"
           }, {
-            title: "Manage Invites",
+            title: "MANAGE_INVITES",
             link: "#/app/users/invites",
             class: "ticket"
           }

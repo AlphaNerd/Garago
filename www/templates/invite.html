@@ -1,4 +1,4 @@
-<ion-view id="Invite" class="padding" view-title="Invite User">
+<ion-view id="Invite" class="padding" view-title="{{'INVITE.HEADER' | translate }}">
   <ion-nav-bar class="bar-stable">
     <ion-nav-back-button>
     </ion-nav-back-button>
@@ -14,14 +14,14 @@
       <!-- <h1>Send Invite</h1> -->
       <div class="item item-input invite-input">
         <i class="fa fa-envelope-o placeholder-icon"></i> &nbsp;
-        <input class="invite-email" type="text" placeholder="Email" ng-model="user.email">
+        <input class="invite-email" type="text" placeholder="{{'EMAIL' | translate }}" ng-model="user.email">
       </div>
       <div class="canUpload">
         <md-checkbox ng-model="user.canUpload" aria-label="Uploader">
-          User can upload: {{ user.canUpload ? 'Yes':'No'}}
+          {{'INVITE.USER_CAN_UPLOAD' | translate }}: {{ user.canUpload ? 'Yes':'No' }}
         </md-checkbox>
       </div>
-      <div class="button button-block button-balanced" ng-click="inviteUser(user)">Invite</div>
+      <div class="button button-block button-balanced" ng-click="inviteUser(user)">{{'INVITE.INVITE' | translate }}</div>
     </div>
   </ion-conent>
 </ion-view>
