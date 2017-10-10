@@ -75,11 +75,11 @@
         <div class="item item-avatar">
           <i class="fa fa-star" aria-hidden="true"></i>
           <h2>{{'MY_FAVORITES' | translate }}</h2>
-          <p><a href="/#/app/library/favs">View All</a></p>
+          <p><a href="/#/app/library/favs">{{'VIEW_ALL' | translate}}</a></p>
           <!-- <p>Stats &amp; Quick Reference</p> -->
         </div>
         <div class="warning" ng-if="!userFavFiles || userFavFiles.length < 1">
-          <h1>{{'LIBRARY_DASHBOARD.NO_FAVORITES' | translate }}</h1>
+          <h1>{{'LIBRARY_DASHBOARD.NO_FAVS' | translate }}</h1>
         </div>
         <div class="item item-body" ng-repeat="item in userFavFiles">
           <i class="fa" ng-class="item.attributes.icon" aria-hidden="true"></i>&nbsp;

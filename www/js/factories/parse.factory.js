@@ -1,6 +1,6 @@
 angular.module('garago.factory.parse', [])
 
-  .factory('$parseAPI', ['$http', '$timeout', '$q', '$ionicLoading', '$rootScope', '$state', function($http, $timeout, $q, $ionicLoading, $rootScope, $state) {
+  .factory('$parseAPI', ['$http', '$timeout', '$q', '$ionicLoading', '$rootScope', '$state', '$ionicPopup', function($http, $timeout, $q, $ionicLoading, $rootScope, $state, $ionicPopup) {
     Array.prototype.move = function(old_index, new_index) {
       if (new_index >= this.length) {
         var k = new_index - this.length;
@@ -703,6 +703,31 @@ angular.module('garago.factory.parse', [])
         }).then(function(res) {
           deferred.resolve(res)
         });
+
+        return deferred.promise
+      },
+      ////////////////////////////////////////////////
+      ////// DELETE User By ID
+      ////////////////////////////////////////////////
+      deleteUserByID: function(id){
+        var deferred = $q.defer()
+
+        var confirmPopup = $ionicPopup.confirm({
+           title: 'Warning',
+           template: 'Are you sure you want to delete this user?'
+         });
+
+         confirmPopup.then(function(res) {
+           if(res) {
+             Parse.Cloud.run('deleteUserById', { 
+                ids: id
+              }).then(function(res) {
+                deferred.resolve(res)
+              });
+           } else {
+             console.log('You are not sure');
+           }
+         });
 
         return deferred.promise
       },

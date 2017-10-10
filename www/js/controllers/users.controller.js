@@ -2,7 +2,7 @@ angular.module('garago.controllers.users', [])
   ////////////////////////
   /// LOGIN CONTROLLER //////////////////////////////////////////////////////
   ////////////////////////
-  .controller('UsersCtrl', ['$scope', '$state', '$ionicModal', '$ionicPopup', '$localstorage', '$rootScope', '$ionicLoading', 'resolveData', function($scope, $state, $ionicModal, $ionicPopup, $localstorage, $rootScope, $ionicLoading, resolveData) {
+  .controller('UsersCtrl', ['$scope', '$state', '$ionicModal', '$ionicPopup', '$localstorage', '$rootScope', '$ionicLoading', 'resolveData', '$parseAPI', function($scope, $state, $ionicModal, $ionicPopup, $localstorage, $rootScope, $ionicLoading, resolveData, $parseAPI) {
     console.log("UsersCtrl Loaded")
 
     $scope.users = resolveData
@@ -17,6 +17,13 @@ angular.module('garago.controllers.users', [])
 
     $scope.showReOrder = function(){
       $scope.shouldShowReorder = !$scope.shouldShowReorder;
+    }
+
+    $scope.deleteUser = function(user){
+      console.log("Delete this user: ",user)
+      $parseAPI.deleteUserByID(user.id).then(function(res){
+        console.log("User Deleted: ",res)
+      })
     }
 
   }])

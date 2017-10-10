@@ -7,7 +7,7 @@ angular.module('garago.controllers', [])
     // To listen for when this page is active (for example, to refresh data),
     // listen for the $ionicView.enter event:
     $scope.$on('$ionicView.enter', function(e) {
-      console.log("ParentCtrl Loaded.")
+      // console.log("ParentCtrl Loaded.")
       var myDelay = 0;
       Parse.User.current().fetch()
     });
@@ -21,30 +21,35 @@ angular.module('garago.controllers', [])
       }
     }
 
-    $translate.use(Parse.User.current().attributes.language);
 
-    $scope.changeLanguage = function (langKey) {
-      console.log("Change to ",langKey)
-      if(langKey == 'English'){
+    ///// Language init()
+    $translate.use(Parse.User.current().attributes.language);
+    moment.locale(Parse.User.current().attributes.language)
+
+    $scope.changeLanguage = function(langKey) {
+      console.log("Change to ", langKey)
+      if (langKey == 'English') {
         langKey = 'en'
-        Parse.User.current().set("language","en")
+        moment.locale(langKey)
+        Parse.User.current().set("language", "en")
         Parse.User.current().save()
-      }else{
+      } else {
         langKey = 'fr'
-        Parse.User.current().set("language","fr")
+        moment.locale(langKey)
+        Parse.User.current().set("language", "fr")
         Parse.User.current().save()
       }
       console.log(langKey)
       $translate.use(langKey);
     };
 
-    $scope.rateFile = function($event,file){
-      console.log($event,file)
+    $scope.rateFile = function($event, file) {
+      console.log($event, file)
       Parse.Cloud.run('updateRating', {
         rating: $event.rating,
         fileId: file.id
       }).then(function(res) {
-        console.log("Rating Resp: ",res)
+        console.log("Rating Resp: ", res)
       });
     }
 
@@ -52,34 +57,47 @@ angular.module('garago.controllers', [])
     //// logout current Parse User
     $scope.logout = function() {
       console.log("Logout User")
-      var confirmPopup = $ionicPopup.confirm({
-        title: "You're about to sign out!",
-        template: "If this is what you really want to do, then click 'OK'. Press 'Cancel' to remain friends."
+      var header = ''
+      var message = ''
+      $translate('ALERTS.SIGN_OUT_ALERT_HEADER').then(function(res) {
+        header = res;
+      }, function(translationId) {
+        header = translationId;
+      });
+      $translate('ALERTS.SIGN_OUT_MESSAGE').then(function(res) {
+        message = res;
+        var confirmPopup = $ionicPopup.confirm({
+          title: header,
+          template: message
+        });
+
+        confirmPopup.then(function(res) {
+          if (res) {
+            console.log('You are sure');
+            Parse.User.logOut().then(function(res) {
+              console.log("User logged out", res)
+              $rootScope.CurrentUser = {}
+              $state.go("login")
+            })
+          } else {
+            console.log('You are not sure');
+          }
+        });
+      }, function(translationId) {
+        message = translationId;
       });
 
-      confirmPopup.then(function(res) {
-        if (res) {
-          console.log('You are sure');
-          Parse.User.logOut().then(function(res) {
-            console.log("User logged out", res)
-            $rootScope.CurrentUser = {}
-            $state.go("login")
-          })
-        } else {
-          console.log('You are not sure');
-        }
-      });
     }
 
-    $scope.editFile = function(fileid){
+    $scope.editFile = function(fileid) {
       console.log(fileid)
-      $state.go("app.edit_file",{id:fileid})
+      $state.go("app.edit_file", { id: fileid })
     }
 
-    $parseAPI.getUserMessages().then(function(res) {
-      console.log("User Messages: ", [res])
-      $scope.MESSAGES = res
-    })
+    // $parseAPI.getUserMessages().then(function(res) {
+    //   console.log("User Messages: ", [res])
+    //   $scope.MESSAGES = res
+    // })
 
     $scope.createNewActionPlan = function() {
       $ionicLoading.show({
@@ -190,36 +208,34 @@ angular.module('garago.controllers', [])
         name: "SMART_LIBRARY",
         class: 'folder-o',
         items: [{
-            title: "DASHBOARD",
-            link: "#/app/library",
-            class: "windows"
-          }, {
-            title: "MY_FAVORITES",
-            link: "#/app/library/favs",
-            class: "bookmark"
-          }, {
-            title: "BROWSE_ALL",
-            link: "#/app/library/browse",
-            class: "list"
-          }
-        ]
-      },{
+          title: "DASHBOARD",
+          link: "#/app/library",
+          class: "windows"
+        }, {
+          title: "MY_FAVORITES",
+          link: "#/app/library/favs",
+          class: "bookmark"
+        }, {
+          title: "BROWSE_ALL",
+          link: "#/app/library/browse",
+          class: "list"
+        }]
+      }, {
         name: "MANAGE_USERS",
         class: 'folder-o',
         items: [{
-            title: "INVITE_USERS",
-            link: "#/app/users/invite",
-            class: "user"
-          }, {
-            title: "MANAGE_USERS",
-            link: "#/app/users",
-            class: "users"
-          }, {
-            title: "MANAGE_INVITES",
-            link: "#/app/users/invites",
-            class: "ticket"
-          }
-        ]
+          title: "INVITE_USERS",
+          link: "#/app/users/invite",
+          class: "user"
+        }, {
+          title: "MANAGE_USERS",
+          link: "#/app/users",
+          class: "users"
+        }, {
+          title: "MANAGE_INVITES",
+          link: "#/app/users/invites",
+          class: "ticket"
+        }]
       }
     ];
 

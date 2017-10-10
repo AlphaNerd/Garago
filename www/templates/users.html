@@ -22,10 +22,10 @@
         <ion-option-button class="button-info button-positive" ng-click="edit(user)">
           Edit
         </ion-option-button>
-        <ion-option-button class="button-info button-assertive" ng-click="users.splice($index, 1)">
+        <ion-option-button class="button-info button-assertive" ng-click="users.splice($index, 1);deleteUser(users[$index])">
           Delete
         </ion-option-button>
-        <ion-delete-button class="ion-minus-circled" ng-click="users.splice($index, 1)">
+        <ion-delete-button class="ion-minus-circled" ng-click="users.splice($index, 1);deleteUser(users[$index])">
         </ion-delete-button>
         <ion-reorder-button class="ion-navicon" on-reorder="reorderItem(user, $fromIndex, $toIndex)">
         </ion-reorder-button>

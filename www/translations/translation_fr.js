@@ -3,7 +3,7 @@ var translation_fr = {
   MANAGE_USERS: 'Gestion des utilisateurs',
   INVITE_USERS: 'inviter des utilisateurs ',
   MANAGE_INVITES: 'gestion des utilisateurs',
-  DASHBOARD: 'Tableau de bord)',
+  DASHBOARD: 'Tableau de bord',
   MY_FAVORITES: 'Mes favoris',
   BROWSE_ALL: 'Voir tous les documents',
   SHARE: 'Partager)',
@@ -14,16 +14,16 @@ var translation_fr = {
   MODIFIED: 'Modifié',
   YES: 'Oui',
   NO: 'Non',
-  CANCEL: 'Cancel(FR)',
+  CANCEL: 'Annuler',
   EMAIL: 'Courriel',
   PASSWORD: 'Password(FR)',
   RESET_PASSWORD: 'Reset Password(FR)',
   SIGN_OUT: 'Quitter',
   SIGN_UP: 'Sign Up (FR)',
-  SUBMIT: 'Submit(FR)',
+  SUBMIT: 'Soumettre',
   LOGIN: 'Entrer',
   LANGUAGE: 'Langue',
-  VIEW_ALL: 'View All(FR)',
+  VIEW_ALL: 'Voir tout',
   NEXT: 'Next(FR)',
   LIBRARY_DASHBOARD: {
     HEADER: 'Bibliothèque intelligente',
@@ -35,7 +35,8 @@ var translation_fr = {
     TAGS: 'Étiquette',
     TAGS_MESSAGE: 'Chercher la CNP ci-dessous et appuyer sur Entrer pour l’associer au(x) fichier(s).',
     SEARCH_NOC_CODES: 'Recherche de la CNP',
-    NOC_CODE: 'CNP'
+    NOC_CODE: 'CNP',
+    NO_FAVS: 'Aucun favoris trouvé',
   },
   LIBRARY_BROWSE: {
     HEADER: 'Visionner la bibliothèque',
@@ -44,7 +45,6 @@ var translation_fr = {
   LIBRARY_FAVS: {
     HEADER: 'Mes favoris)',
     NO_FAVS: 'Aucun favoris trouvé',
-
   },
   INVITE: {
     HEADER: 'Inviter des utilisateurs',
@@ -57,5 +57,10 @@ var translation_fr = {
     LAST_NAME: 'Last Name(FR)',
     CONFIRM_EMAIL: 'Confirm Email(FR)',
     CONFIRM_PASSWORD: 'First Name(FR)',
+  },
+  ALERTS: {
+    SIGN_OUT_ALERT_HEADER: 'Vous vous apprêtez à quitter!',
+    SIGN_OUT_MESSAGE:  "Si vous désirez sortir veuillez clicker sur 'Ok'. Clicker sur 'Annuler' si vous souhaitez rester connecté.",
+
   }
 };

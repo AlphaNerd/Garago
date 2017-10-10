@@ -20,7 +20,7 @@ var translation_en = {
   RESET_PASSWORD: 'Reset Password',
   SIGN_OUT: 'Sign Out',
   SIGN_UP: 'Sign Up',
-  SUBMIT: 'Submit(FR)',
+  SUBMIT: 'Submit',
   LOGIN: 'Login',
   LANGUAGE: 'Language',
   VIEW_ALL: 'View All',
@@ -35,7 +35,8 @@ var translation_en = {
     TAGS: 'Tags',
     TAGS_MESSAGE: 'Search NOC below, press enter to attach to file(s).',
     SEARCH_NOC_CODES: 'Search NOC...',
-    NOC_CODE: 'NOC'
+    NOC_CODE: 'NOC',
+    NO_FAVS: 'No favorites found.',
   },
   LIBRARY_BROWSE: {
     HEADER: 'Browse Library',
@@ -44,7 +45,6 @@ var translation_en = {
   LIBRARY_FAVS: {
     HEADER: 'My Favorites',
     NO_FAVS: 'No favorites found.',
-
   },
   INVITE: {
     HEADER: 'Invite User',
@@ -57,5 +57,10 @@ var translation_en = {
     LAST_NAME: 'Last Name',
     CONFIRM_EMAIL: 'Confirm Email',
     CONFIRM_PASSWORD: 'First Name',
+  },
+  ALERTS: {
+    SIGN_OUT_ALERT_HEADER: "You're about to sign out!",
+    SIGN_OUT_MESSAGE:  "If this is what you really want to do, then click 'OK'. Press 'Cancel' to remain connected.",
+    
   }
 };

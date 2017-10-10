@@ -20,7 +20,7 @@
             </label>
         </div> -->
         <div class="warning" ng-if="!DATA || DATA.length < 1">
-            <h1>{{'LIBRARY_BROWSE.NO_FAVS' | translate }}</h1>
+            <h1>{{'LIBRARY_FAVS.NO_FAVS' | translate }}</h1>
         </div>
         <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
             <ion-item ng-repeat="item in DATA | filter:search.text" class="item-thumbnail-left" ng-class="item.class == 'animated bounceIn' ? 'new':''">
