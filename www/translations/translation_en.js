@@ -25,9 +25,9 @@ var translation_en = {
     MOST_RECENT_UPLOADS: 'Most Recent Uploads',
     NO_UPLOADS: 'No uploads found',
     TAGS: 'Tags',
-    TAGS_MESSAGE: 'Search NOC codes below, press enter to attach to file(s).',
-    SEARCH_NOC_CODES: 'Search NOC Code(s)...',
-    NOC_CODE: 'NOC Code'
+    TAGS_MESSAGE: 'Search NOC below, press enter to attach to file(s).',
+    SEARCH_NOC_CODES: 'Search NOC...',
+    NOC_CODE: 'NOC'
   },
   LIBRARY_BROWSE: {
     HEADER: 'Browse Library',
