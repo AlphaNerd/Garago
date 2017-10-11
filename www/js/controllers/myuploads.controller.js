@@ -134,7 +134,7 @@ angular.module('garago.controllers.myuploads', [])
 
     var Files = Parse.Object.extend("Files")
     $scope.refreshData = function() {
-      $parseAPI.getAllFiles().then(function(res) {
+      $parseAPI.getUserFiles().then(function(res) {
         $scope.DATA = res
         $scope.$broadcast('scroll.refreshComplete');
       })

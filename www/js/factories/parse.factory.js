@@ -496,6 +496,7 @@ angular.module('garago.factory.parse', [])
             handleParseError(e)
           }
         }).then(function(resp) {
+          console.log("GET ALL FILES: ",resp)
           if (resp) {
             var promises = []
             var files = []
