@@ -41,13 +41,8 @@
                     {{tag.title}}
                 </span>
               </span>
-              <div class="ratings">
-                <div class="total-rating">
-                  <i class="fa fa-star"></i>{{item.attributes.rating | number:0}}<sub> / {{item.attributes.rating_count}} {{'TOTAL_VOTES' | translate}}</sub>
-                </div>
-                <star-rating-comp show-half-stars="true" on-click="rateFile($event,item)"></star-rating-comp>
-                <!-- <span>{{item.attributes.ratings.length}}</span> -->
-              </div>
+
+
               <span class="shared-with">
                 <span class="user" ng-repeat="item in item.members track by $index" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
                   <div class="image" ng-style="{'background-image':'url({{item.attributes.image._url || '../img/no-image.jpg'}})'}"></div>
