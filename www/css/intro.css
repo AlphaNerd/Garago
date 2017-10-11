@@ -145,22 +145,26 @@
 }
 
 #intro .slide1{
-    background: url(https://1040619273.rsc.cdn77.org/wp-content/uploads/2017/05/business-meeting-1300x650.jpg);
+    /*background: url(https://1040619273.rsc.cdn77.org/wp-content/uploads/2017/05/business-meeting-1300x650.jpg);*/
+    background:#f3f3f3;
     background-size: cover;
 }
 
 #intro .slide2{
-    background: url(http://assetplanningpros.com/wp-content/uploads/2017/02/Older-business-man-with-3-people-in-background.jpg);
+    /*background: url(http://assetplanningpros.com/wp-content/uploads/2017/02/Older-business-man-with-3-people-in-background.jpg);*/
+    background: #f3f3f3;
     background-size: cover;
 }
 
 #intro .slide3{
-    background: url(https://www.mexperience.com/wp-content/uploads/Business-Meeting-1200x851.jpg);
+    /*background: url(https://www.mexperience.com/wp-content/uploads/Business-Meeting-1200x851.jpg);*/
+    background: #f3f3f3;
     background-size: cover;
 }
 
 #intro .slide4{
-    background: url(https://cdn-images-1.medium.com/max/1920/1*TkH1UVz3PnXUxCQXmETTuQ.jpeg);
+    /*background: url(https://cdn-images-1.medium.com/max/1920/1*TkH1UVz3PnXUxCQXmETTuQ.jpeg);*/
+    background: #f3f3f3;
     background-size: cover;
 }
 
