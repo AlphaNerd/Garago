@@ -35,7 +35,7 @@
               </div>
               <i class="fa" ng-class="item.icon" aria-hidden="true"></i>
               <h2><a href="{{item.file._url}}" target="_blank">{{item.title}}</a>&nbsp;<i class="fa fa-pencil" ng-if="item.ACL.permissionsById[CurrentUser.id].write" ng-click="editFile(item.id)"></i></h2>
-              <p>{{'LIBRARY_DASHBOARD.MODIFIED' | translate }}: {{item.updatedAt | moment}}</p>
+              <p>{{'MODIFIED' | translate }}: {{item.updatedAt | moment}}</p>
               <span class="tags">
                 <span ng-repeat="tag in item.tags">
                     {{tag.title}}
