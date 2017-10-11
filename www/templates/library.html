@@ -70,90 +70,7 @@
         </md-switch>
       </div>
     </div> -->
-    <div class="file-dashboard animated fadeIn">
-      <div class="list card">
-        <div class="item item-avatar">
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <h2>{{'MY_FAVORITES' | translate }}</h2>
-          <p><a href="/#/app/library/favs">{{'VIEW_ALL' | translate}}</a></p>
-          <!-- <p>Stats &amp; Quick Reference</p> -->
-        </div>
-        <div class="warning" ng-if="!userFavFiles || userFavFiles.length < 1">
-          <h1>{{'LIBRARY_DASHBOARD.NO_FAVS' | translate }}</h1>
-        </div>
-        <div class="item item-body" ng-repeat="item in userFavFiles">
-          <i class="fa" ng-class="item.attributes.icon" aria-hidden="true"></i>&nbsp;
-          <span><a href="{{item.attributes.file._url}}" target="_blank">{{item.attributes.title}}</a>&nbsp;<i class="fa fa-pencil" ng-if="item.attributes.ACL.permissionsById[CurrentUser.id].write" ng-click="editFile(item.id)"></i></span>
-          <span class="modified">
-                <span>{{'MODIFIED' | translate }}: {{item.updatedAt | moment}}</span>
-          <div>{{'CREATED_BY' | translate }}: {{item.attributes.createdBy.email}}</div>
-          </span>
-          <span class="tags">
-                <span ng-repeat="tag in item.attributes.tags">
-                    {{tag.title}}
-                </span>
-          </span>
-
-          
-
-          <div class="ratings">
-            <div class="total-rating">
-              <i class="fa fa-star"></i>5
-            </div>
-            <star-rating-comp rating="item.attributes.rating" on-click="rateFile($event,item)"></star-rating-comp>
-            <!-- <span>{{item.attributes.ratings.length}}</span> -->
-          </div>
-
-
-
-          <span class="user-file-options">
-            <!-- <span class="shared-with">
-                <span class="user" ng-repeat="item in item.atrubutes.members track by $index" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
-                  <div class="image" ng-style="{'background-image':'url({{item.image._url}})'}"></div>
-                </span>
-          </span> -->
-          <div class="favs-options">
-            <i class="fa" ng-class="isFavFile(item) ? 'fa-star' : 'fa-star-o'" ng-click="toggleFav(item,isFavFile(item))"></i>
-            <a href="{{item.attributes.file._url}}" download><i class="fa fa-download" aria-hidden="true"></i></a>
-            <!-- <i class="fa fa-share"></i> -->
-          </div>&nbsp;
-          </span>
-        </div>
-      </div>
-      <div class="list card my-uploads">
-        <div class="item item-avatar">
-          <i class="fa fa-folder" aria-hidden="true"></i>
-          <h2>{{'LIBRARY_DASHBOARD.MY_UPLOADS' | translate }}</h2>
-          <p>{{'LIBRARY_DASHBOARD.MOST_RECENT_UPLOADS' | translate }}</p>
-          <!-- <p>Stats &amp; Quick Reference</p> -->
-        </div>
-        <div class="warning" ng-if="!userFiles || userFiles.length < 1">
-          <h1>{{'LIBRARY_DASHBOARD.NO_UPLOADS' | translate }}</h1>
-        </div>
-        <div class="item item-body" ng-repeat="item in userFiles">
-          <i class="fa" ng-class="item.icon" aria-hidden="true"></i> <span class="filename"><a href="{{item.file._url}}" target="_blank">{{item.title}}</a><i class="fa fa-pencil" ng-if="item.ACL.permissionsById[CurrentUser.id].write" ng-click="editFile(item.id)"></i></span>
-          <span class="modified">
-                <span>{{'MODIFIED' | translate }}: {{item.updatedAt | moment}}</span>
-          </span>
-          <span class="tags">
-                <span ng-repeat="tag in item.tags">
-                    {{tag.title}}
-                </span>
-          </span>
-          <span class="user-file-options">
-              <span class="shared-with">
-                  <span class="user" ng-repeat="item in item.members track by $index" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
-                    <div class="image" ng-style="{'background-image':'url({{item.attributes.image._url || '../img/no-image.jpg'}})'}"></div>
-                  </span>
-          </span>
-          </span>
-          <!-- <a class="download-button" href="{{item.file._url}}" download><i class="fa fa-download" aria-hidden="true"></i></a>&nbsp; -->
-          <!-- <i class="fa fa-share-alt" aria-hidden="true"></i>&nbsp; -->
-          <!-- <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp; -->
-          </span>
-        </div>
-      </div>
-      <!-- Upload -->
+    <!-- Upload -->
       <div class="list card upload-module">
         <div class="list" id="upload-container">
           <div class="item item-avatar">
@@ -216,5 +133,98 @@
           <div class="button button-full button-balanced" ng-click="uploadFiles()">{{'UPLOAD' | translate }}</div>
         </div>
       </div>
+    <div class="file-dashboard animated fadeIn">
+      <div class="list card">
+        <div class="item item-avatar">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <h2>{{'MY_FAVORITES' | translate }}</h2>
+          <p><a href="/#/app/library/favs">{{'VIEW_ALL' | translate}}</a></p>
+          <!-- <p>Stats &amp; Quick Reference</p> -->
+        </div>
+        <div class="warning" ng-if="!userFavFiles || userFavFiles.length < 1">
+          <h1>{{'LIBRARY_DASHBOARD.NO_FAVS' | translate }}</h1>
+        </div>
+        <div class="item item-body" ng-repeat="item in userFavFiles">
+          <i class="fa" ng-class="item.attributes.icon" aria-hidden="true"></i>&nbsp;
+          <span><a href="{{item.attributes.file._url}}" target="_blank">{{item.attributes.title}}</a>&nbsp;<i class="fa fa-pencil" ng-if="item.attributes.ACL.permissionsById[CurrentUser.id].write" ng-click="editFile(item.id)"></i></span>
+          <span class="modified">
+                <span>{{'MODIFIED' | translate }}: {{item.updatedAt | moment}}</span>
+          <div>{{'CREATED_BY' | translate }}: {{item.attributes.createdBy.email}}</div>
+          </span>
+          <span class="tags">
+                <span ng-repeat="tag in item.attributes.tags">
+                    {{tag.title}}
+                </span>
+          </span>
+
+          
+
+          <div class="ratings">
+            <div class="total-rating">
+              <i class="fa fa-star"></i>5
+            </div>
+            <star-rating-comp rating="item.attributes.rating" on-click="rateFile($event,item)"></star-rating-comp>
+            <!-- <span>{{item.attributes.ratings.length}}</span> -->
+          </div>
+
+
+
+          <span class="user-file-options">
+            <!-- <span class="shared-with">
+                <span class="user" ng-repeat="item in item.atrubutes.members track by $index" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
+                  <div class="image" ng-style="{'background-image':'url({{item.image._url}})'}"></div>
+                </span>
+          </span> -->
+          <div class="favs-options">
+            <i class="fa" ng-class="isFavFile(item) ? 'fa-star' : 'fa-star-o'" ng-click="toggleFav(item,isFavFile(item))"></i>
+            <a href="{{item.attributes.file._url}}" download><i class="fa fa-download" aria-hidden="true"></i></a>
+            <!-- <i class="fa fa-share"></i> -->
+          </div>&nbsp;
+          </span>
+        </div>
+      </div>
+      <div class="list card my-uploads">
+        <div class="item item-avatar">
+          <i class="fa fa-folder" aria-hidden="true"></i>
+          <h2>{{'LIBRARY_DASHBOARD.MY_UPLOADS' | translate }}</h2>
+          <p>{{'LIBRARY_DASHBOARD.MOST_RECENT_UPLOADS' | translate }}</p>
+          <!-- <p>Stats &amp; Quick Reference</p> -->
+        </div>
+        <div class="warning" ng-if="!userFiles || userFiles.length < 1">
+          <h1>{{'LIBRARY_DASHBOARD.NO_UPLOADS' | translate }}</h1>
+        </div>
+        <div class="item item-body" ng-repeat="item in userFiles">
+          <i class="fa" ng-class="item.attributes.icon" aria-hidden="true"></i> <span class="filename"><a href="{{item.attributes.file._url}}" target="_blank">{{item.attributes.title}}</a><i class="fa fa-pencil" ng-if="item.attributes.ACL.permissionsById[CurrentUser.id].write" ng-click="editFile(item.attributes.id)"></i></span>
+          <span class="modified">
+                <span>{{'MODIFIED' | translate }}: {{item.attributes.updatedAt | moment}}</span>
+          </span>
+          <span class="tags">
+                <span ng-repeat="tag in item.attributes.tags">
+                    {{tag.title}}
+                </span>
+          </span>
+
+          <div class="ratings">
+            <div class="total-rating">
+              <i class="fa fa-star"></i>5
+            </div>
+            <star-rating-comp rating="item.attributes.rating" on-click="rateFile($event,item)"></star-rating-comp>
+            <!-- <span>{{item.attributes.ratings.length}}</span> -->
+          </div>
+
+          <span class="user-file-options">
+              <span class="shared-with">
+                  <span class="user" ng-repeat="item in item.members track by $index" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
+                    <div class="image" ng-style="{'background-image':'url({{item.attributes.image._url || '../img/no-image.jpg'}})'}"></div>
+                  </span>
+          </span>
+          </span>
+          <!-- <a class="download-button" href="{{item.file._url}}" download><i class="fa fa-download" aria-hidden="true"></i></a>&nbsp; -->
+          <!-- <i class="fa fa-share-alt" aria-hidden="true"></i>&nbsp; -->
+          <!-- <i class="fa fa-pencil" aria-hidden="true"></i>&nbsp; -->
+          </span>
+        </div>
+      </div>
+      
   </ion-content>
 </ion-view>

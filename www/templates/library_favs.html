@@ -37,7 +37,7 @@
                     </span>
                 </div>
                 <div class="ratings">
-                    <star-rating-comp on-click="rateFile($event)"></star-rating-comp>
+                    <star-rating-comp rating="item.attributes.rating" on-click="rateFile($event,item)"></star-rating-comp>
                 </div>
                 <!-- <div class="acl-indicator">
                     <div ng-class="item.attributes.ACL.permissionsById['*'].read ? 'green':'grey'">R</div>

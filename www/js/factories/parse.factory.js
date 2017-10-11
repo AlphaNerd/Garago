@@ -417,7 +417,7 @@ angular.module('garago.factory.parse', [])
               file.set("tagSearch",tagSearch)
               var acl = new Parse.ACL();
               acl.setPublicReadAccess(true);
-              acl.setPublicWriteAccess(false);
+              acl.setPublicWriteAccess(true);
               acl.setWriteAccess(Parse.User.current().id, true);
               file.setACL(acl)
     
@@ -525,46 +525,23 @@ angular.module('garago.factory.parse', [])
       ////////////////////////////////////////////////
       ////// Get All User Files from Parse
       ////////////////////////////////////////////////
-      getUserFiles: function(){
+      getUserFiles: function(limit){
         var deferred = $q.defer()
         var query = new Parse.Query(Files)
         query.equalTo("createdByUser", Parse.User.current())
         query.equalTo("active",true)
         query.descending("updatedAt")
-        query.limit(5)
+        if(limit){
+          query.limit(limit)
+        }
         query.find({
           success: function(res) {
             // console.log("Found User Files: ", [res])
+            deferred.resolve(res)
           },
           error: function(e, r) {
             // console.log(e, r)
             handleParseError(e)
-          }
-        }).then(function(resp) {
-          if (resp) {
-            var promises = []
-            var files = []
-            angular.forEach(resp,function(val,key){
-              var obj = angular.copy(val.attributes)
-              obj.id = val.id
-              var promise = new Promise(function(resolve,reject){
-                var query = new Parse.Query(Users)
-                query.equalTo("objectId",val.attributes.createdBy)
-                query.find().then(function(res){
-                  // console.log(res)
-                  obj.members = res
-                  files.push(obj)
-                  resolve(res)
-                })
-              })
-              promises.push(promise)
-            })
-            Promise.all(promises).then(function(res){
-              // console.log("Users for file: ",files)
-              deferred.resolve(files)
-            })
-          } else {
-            deferred.resolve(false)
           }
         })
         return deferred.promise

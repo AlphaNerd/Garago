@@ -45,22 +45,11 @@ angular.module('garago.controllers', [])
     };
 
     $scope.rateFile = function($event, item) {
-      console.log($event, item.id)
-      // var rating = (item.get("rating") || 0)+$event.rating
-      // var ratings = item.get("ratings") || []
-
-      var File = Parse.Object.extend("Files")
-      var query = new Parse.Query(File)
-      query.contains("ratings",Parse.User.current().id)
-      query.find().then(function(res){
-        if(res.length != 0){
-          console.log("You already voted on this file")
-        }else{
-          ratings.push(Parse.User.current().id)
-          item.set("ratings",ratings)
-
-          item.save()
-        } 
+      console.log($event, item)
+      var rating = $event.rating
+      item.set("rating",rating)
+      item.save().then(function(res){
+        console.log("Saved: ",res)
       })
     }
 
@@ -227,6 +216,10 @@ angular.module('garago.controllers', [])
           title: "MY_FAVORITES",
           link: "#/app/library/favs",
           class: "star"
+        }, {
+          title: "MY_UPLOADS",
+          link: "#/app/library/myuploads",
+          class: "list"
         }, {
           title: "BROWSE_ALL",
           link: "#/app/library/browse",

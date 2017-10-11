@@ -12,9 +12,9 @@
   margin: 6px 1%;
 }
 
-#Library .file-dashboard .list.card:first-child{
+/*#Library .file-dashboard .list.card:first-child{
   width:98%;
-}
+}*/
 
 #Library .warning h1 {
   color: #ddd;
@@ -301,7 +301,7 @@ input.md-input {
 
 #Library input[type='file'] {
     border: 3px dashed #999;
-    padding: 140px 50px 10px 50px;
+    padding: 70px 50px 10px 50px;
     cursor: move;
     position:relative;
 }

@@ -61,6 +61,8 @@ var translation_fr = {
   ALERTS: {
     SIGN_OUT_ALERT_HEADER: 'Vous vous apprêtez à quitter!',
     SIGN_OUT_MESSAGE:  "Si vous désirez sortir veuillez clicker sur 'Ok'. Clicker sur 'Annuler' si vous souhaitez rester connecté.",
-
+  },
+  LIBRARY_MY_UPLOADS: {
+    HEADER: "My Uploads(FR)"
   }
 };

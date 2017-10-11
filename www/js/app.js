@@ -17,6 +17,7 @@ angular.module('garago', [
   'garago.controllers.editfile',
   'garago.controllers.invite',
   'garago.controllers.users',
+  'garago.controllers.myuploads',
   'garago.factory.api',
   'garago.factory.mockApi',
   'garago.factory.utility',
@@ -389,7 +390,7 @@ angular.module('garago', [
             resolve: {
               userFilesData: function ($parseAPI, $ionicLoading) {
                 $ionicLoading.show()
-                return $parseAPI.getUserFiles().then(function (res) {
+                return $parseAPI.getUserFiles(5).then(function (res) {
                   // console.log("Library View 'User Files' Resolve: ", res)
                   $ionicLoading.hide()
                   return res
@@ -464,6 +465,35 @@ angular.module('garago', [
                 $ionicLoading.show()
                 Parse.User.current().fetch()
                 return $parseAPI.getUserFavFiles().then(function (res) {
+                  // console.log("Library Favorites View 'Fav Files' Resolve: ", res)
+                  $ionicLoading.hide()
+                  return res
+                })
+              }
+            }
+          }
+        }
+      })
+
+      ////////////////////////////////////////////////////////////////
+      //////////////// Smart Library Route - In Dev ///////////////////////
+      ////////////////////////////////////////////////////////////////
+      ///
+      ///   Route: /libraryuploads
+      ///   Browse all user uploaded files. 
+      ///
+      ////////////////////////////////////////////////////////////////
+      .state('app.myuploads', {
+        url: '/library/myuploads',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/myuploads.html',
+            controller: 'MyUploadsCtrl',
+            resolve: {
+              userUploads: function ($parseAPI, $ionicLoading) {
+                $ionicLoading.show()
+                Parse.User.current().fetch()
+                return $parseAPI.getUserFiles().then(function (res) {
                   // console.log("Library Favorites View 'Fav Files' Resolve: ", res)
                   $ionicLoading.hide()
                   return res

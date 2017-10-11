@@ -61,6 +61,8 @@ var translation_en = {
   ALERTS: {
     SIGN_OUT_ALERT_HEADER: "You're about to sign out!",
     SIGN_OUT_MESSAGE:  "If this is what you really want to do, then click 'OK'. Press 'Cancel' to remain connected.",
-    
+  },
+  LIBRARY_MY_UPLOADS: {
+    HEADER: "My Uploads"
   }
 };
