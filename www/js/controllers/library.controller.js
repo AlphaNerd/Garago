@@ -82,51 +82,58 @@ angular.module('garago.controllers.library', [])
           $input.val(null);
           $scope.searchTags = []
           $scope.filestoupload = false
-          change_back()
+          try{
+            change_back()  
+          }
+          catch(e){
+            console.log(e)
+          }
         })
-      }).then(function(res){
+      }).then(function(res) {
         $ionicLoading.show({
-        template: "Successfully Saved."
-      })
+          template: "Successfully Saved."
+        })
       })
     }
 
     $scope.confirmDelete = function(file) {
-     var confirmPopup = $ionicPopup.confirm({
-       title: 'Warning',
-       template: 'All changes will be lost. Are you sure you want to delete?'
-     });
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Warning',
+        template: 'All changes will be lost. Are you sure you want to delete?'
+      });
 
-     confirmPopup.then(function(res) {
-       if(res) {
-         // console.log('You are sure');
-         $parseAPI.deleteUserFile(file).then(function(resp){
-          // console.log(resp)
-          $ionicHistory.goBack()
-         })
-       } else {
-         // console.log('You are not sure');
-       }
-     });
-   };
+      confirmPopup.then(function(res) {
+        if (res) {
+          // console.log('You are sure');
+          $parseAPI.deleteUserFile(file).then(function(resp) {
+            // console.log(resp)
+            $ionicHistory.goBack()
+          })
+        } else {
+          // console.log('You are not sure');
+        }
+      });
+    };
 
-    try{
+    try {
       /// drag and drop style change on dragentert
       var drop = document.getElementById("upload");
       drop.addEventListener("dragenter", change, false);
       drop.addEventListener("dragleave", change_back, false);
-    }
-    catch(e){
+
+      function change() {
+        drop.style.backgroundColor = 'rgba(51, 205, 95, 0.1)';
+      };
+
+      function change_back() {
+        drop.style.backgroundColor = 'transparent';
+      };
+
+    } catch (e) {
       console.log("User not able to upload")
     }
 
-    function change() {
-      drop.style.backgroundColor = 'rgba(51, 205, 95, 0.1)';
-    };
 
-    function change_back() {
-      drop.style.backgroundColor = 'transparent';
-    };
 
 
     ////// Experimental Chips    
@@ -155,7 +162,7 @@ angular.module('garago.controllers.library', [])
 
       // Otherwise, create a new one
       console.log("make new chip")
-      return { attributes: { title: chip.toLowerCase(), code: 0,lang:Parse.User.current().attributes.language,noc:"0" }}
+      return { attributes: { title: chip.toLowerCase(), code: 0, lang: Parse.User.current().attributes.language, noc: "0" } }
     }
 
     /**
@@ -167,7 +174,7 @@ angular.module('garago.controllers.library', [])
           title: query.toLowerCase(),
           noc: "",
           lang: Parse.User.current().attributes.language,
-          code:0
+          code: 0
         }
       }
       var results = myQuery ? queryCodes(query) : [];
@@ -175,10 +182,10 @@ angular.module('garago.controllers.library', [])
       return results;
     }
 
-    function queryCodes(query){
+    function queryCodes(query) {
       var myQuery = query.toLowerCase()
-      return Parse.Cloud.run('getNocCodes',{'searchTerm':myQuery}).then(function(res) {
-        console.info("NOC CODES: ",res)
+      return Parse.Cloud.run('getNocCodes', { 'searchTerm': myQuery }).then(function(res) {
+        console.info("NOC CODES: ", res)
         return res
       })
     }
