@@ -19,6 +19,10 @@ i.fa {
   font-size: 20px;
 }
 
+.user-file-options .favs-options  i.fa{
+  font-size:40px;
+}
+
 md-icon.fa.fa-bars {
   font-size: 23px;
 }
@@ -583,4 +587,14 @@ md-input-container:not(.md-input-invalid).md-input-focused label{
 
 .rating.label-left .label-value+.star-container {
     margin-left: 0px!important;
+}
+
+.garago-footer {
+    position: absolute;
+    bottom: 50px;
+    width: 100%;
+    display: block;
+    text-align: center;
+    color: #f3f3f3;
+    font-size: 11px;
 }

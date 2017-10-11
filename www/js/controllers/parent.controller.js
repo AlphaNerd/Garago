@@ -226,7 +226,7 @@ angular.module('garago.controllers', [])
         }, {
           title: "MY_FAVORITES",
           link: "#/app/library/favs",
-          class: "bookmark"
+          class: "star"
         }, {
           title: "BROWSE_ALL",
           link: "#/app/library/browse",

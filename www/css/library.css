@@ -490,6 +490,14 @@ input.md-input {
     right: 10px;
 }
 
+#Library.Browse .favs-options i{
+  font-size:40px;
+}
+
+#Library.Browse .share-options i{
+  font-size:40px;
+}
+
 #Library.Browse .tag{
   padding: 0px 10px;
   background: rgba(0,0,0,0.15);
@@ -507,7 +515,7 @@ input.md-input {
 
 #Library.Browse .share-options{
   position: absolute;
-    top: 50px;
+    top: 80px;
     right: 10px;
     left:unset;
 }
@@ -568,6 +576,10 @@ input.md-input {
 #Library .search-results .item .favs-options {
     position: absolute;
     right: 15px;
+}
+
+#Library .search-results .item .favs-options{
+  font-size:40px;
 }
 
 #Library .comment-options {
@@ -689,7 +701,7 @@ input.md-input {
 }
 
 .user-file-options .favs-options {
-    max-width: 10px;
+    max-width: 40px;
 }
 
 #Library .scroll-content {

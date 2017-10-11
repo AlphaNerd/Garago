@@ -1,7 +1,7 @@
 <ion-view view-title="{{'LIBRARY_DASHBOARD.HEADER' | translate}}">
   <ion-nav-bar class="bar-stable">
-    <ion-nav-back-button>
-    </ion-nav-back-button>
+    <!-- <ion-nav-back-button>
+    </ion-nav-back-button> -->
     <ion-nav-buttons side="left">
       <button class="button button-icon button-clear ion-navicon menu-toggle" menu-toggle="left">
       </button>
@@ -97,6 +97,9 @@
           
 
           <div class="ratings">
+            <div class="total-rating">
+              <i class="fa fa-star"></i>5
+            </div>
             <star-rating-comp rating="item.attributes.rating" on-click="rateFile($event,item)"></star-rating-comp>
             <!-- <span>{{item.attributes.ratings.length}}</span> -->
           </div>

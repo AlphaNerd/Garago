@@ -152,6 +152,13 @@ angular.module('garago.controllers.library', [])
      * Search for NOCcodes.
      */
     $scope.querySearch = function(query) {
+      var myQuery = {
+        attributes: {
+          title: query,
+          noc: "",
+          lang: Parse.User.current().attributes.language
+        }
+      }
       var results = query.toLowerCase() ? queryCodes(query) : [];
       // var results = query.toLowerCase() ? $scope.NOCcodes.filter(createFilterFor(query.toLowerCase())) : [];
       return results;
@@ -160,7 +167,7 @@ angular.module('garago.controllers.library', [])
     function queryCodes(query){
       var myQuery = query.toLowerCase()
       return Parse.Cloud.run('getNocCodes',{'searchTerm':myQuery}).then(function(res) {
-        // console.info("NOC CODES: ",res)
+        console.info("NOC CODES: ",res)
         return res
       })
     }

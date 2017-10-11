@@ -56,7 +56,7 @@ var translation_en = {
     FIRST_NAME: 'First Name',
     LAST_NAME: 'Last Name',
     CONFIRM_EMAIL: 'Confirm Email',
-    CONFIRM_PASSWORD: 'First Name',
+    CONFIRM_PASSWORD: 'Confirm Password',
   },
   ALERTS: {
     SIGN_OUT_ALERT_HEADER: "You're about to sign out!",
