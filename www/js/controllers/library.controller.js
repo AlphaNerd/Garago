@@ -162,7 +162,8 @@ angular.module('garago.controllers.library', [])
         attributes: {
           title: query.toLowerCase(),
           noc: "",
-          lang: Parse.User.current().attributes.language
+          lang: Parse.User.current().attributes.language,
+          code:0
         }
       }
       var results = myQuery ? queryCodes(query) : [];
