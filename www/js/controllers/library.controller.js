@@ -8,7 +8,6 @@ angular.module('garago.controllers.library', [])
     // listen for the $ionicView.enter event:
     $scope.$on('$ionicView.enter', function(e) {
       // console.log("LibraryCtrl Loaded.")
-      Parse.User.current().fetch()
       $scope.refreshData()
     });
 
@@ -111,10 +110,15 @@ angular.module('garago.controllers.library', [])
      });
    };
 
-    /// drag and drop style change on dragentert
-    var drop = document.getElementById("upload");
-    drop.addEventListener("dragenter", change, false);
-    drop.addEventListener("dragleave", change_back, false);
+    try{
+      /// drag and drop style change on dragentert
+      var drop = document.getElementById("upload");
+      drop.addEventListener("dragenter", change, false);
+      drop.addEventListener("dragleave", change_back, false);
+    }
+    catch(e){
+      console.log("User not able to upload")
+    }
 
     function change() {
       drop.style.backgroundColor = 'rgba(51, 205, 95, 0.1)';

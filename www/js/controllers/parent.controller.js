@@ -9,7 +9,7 @@ angular.module('garago.controllers', [])
     $scope.$on('$ionicView.enter', function(e) {
       // console.log("ParentCtrl Loaded.")
       var myDelay = 0;
-      $scope.currentUser = Parse.User.current()
+      $rootScope.currentUser = Parse.User.current()
       console.log($scope.currentUser)
     });
 
