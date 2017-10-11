@@ -8,6 +8,7 @@ angular.module('garago.controllers.library', [])
     // listen for the $ionicView.enter event:
     $scope.$on('$ionicView.enter', function(e) {
       // console.log("LibraryCtrl Loaded.")
+      Parse.User.current().fetch()
       $scope.refreshData()
     });
 
