@@ -764,3 +764,17 @@ md-virtual-repeat-container{
 md-input-container:not(.md-input-invalid).md-input-has-value label {
     color: #fff;
 }
+
+
+.total-rating i{
+  font-size: 32px;
+  margin: 5px 5px 5px 0;
+}
+
+.total-rating sub{
+  font-size: 12px;
+}
+
+.total-rating{
+  font-size: 24px
+}

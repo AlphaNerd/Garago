@@ -161,9 +161,9 @@
 
           <div class="ratings">
             <div class="total-rating">
-              <i class="fa fa-star"></i>5
+              <i class="fa fa-star"></i>{{item.attributes.rating | number:0}}<sub> / {{item.attributes.rating_count}} {{'TOTAL_VOTES' | translate}}</sub>
             </div>
-            <star-rating-comp rating="item.attributes.rating" on-click="rateFile($event,item)"></star-rating-comp>
+            <star-rating-comp show-half-stars="true" on-click="rateFile($event,item)"></star-rating-comp>
             <!-- <span>{{item.attributes.ratings.length}}</span> -->
           </div>
 
@@ -204,13 +204,13 @@
                 </span>
           </span>
 
-          <div class="ratings">
-            <div class="total-rating">
-              <i class="fa fa-star"></i>5
+            <div class="ratings">
+              <div class="total-rating">
+                <i class="fa fa-star"></i>{{item.attributes.rating | number:0}}<sub> / {{item.attributes.rating_count}} {{'TOTAL_VOTES' | translate}}</sub>
+              </div>
+              <star-rating-comp show-half-stars="true" on-click="rateFile($event,item)"></star-rating-comp>
+              <!-- <span>{{item.attributes.ratings.length}}</span> -->
             </div>
-            <star-rating-comp rating="item.attributes.rating" on-click="rateFile($event,item)"></star-rating-comp>
-            <!-- <span>{{item.attributes.ratings.length}}</span> -->
-          </div>
 
           <span class="user-file-options">
               <span class="shared-with">

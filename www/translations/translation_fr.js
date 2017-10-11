@@ -6,7 +6,7 @@ var translation_fr = {
   DASHBOARD: 'Tableau de bord',
   MY_FAVORITES: 'Mes favoris',
   BROWSE_ALL: 'Voir tous les documents',
-  SHARE: 'Partager)',
+  SHARE: 'Partager',
   DELETE: 'Effacer',
   LAST_UPDATED: 'Dernière mise à jour',
   CREATED_BY: 'Créer par',
@@ -25,6 +25,7 @@ var translation_fr = {
   LANGUAGE: 'Langue',
   VIEW_ALL: 'Voir tout',
   NEXT: 'Next(FR)',
+  TOTAL_VOTES: 'votes',
   LIBRARY_DASHBOARD: {
     HEADER: 'Bibliothèque intelligente',
     SEARCH_PLACEHOLDER: 'Recherche',
@@ -43,7 +44,7 @@ var translation_fr = {
     NO_FILES_FOUND: 'Aucun fichier trouvé'
   },
   LIBRARY_FAVS: {
-    HEADER: 'Mes favoris)',
+    HEADER: 'Mes favoris',
     NO_FAVS: 'Aucun favoris trouvé',
   },
   INVITE: {
@@ -62,7 +63,7 @@ var translation_fr = {
     SIGN_OUT_ALERT_HEADER: 'Vous vous apprêtez à quitter!',
     SIGN_OUT_MESSAGE:  "Si vous désirez sortir veuillez clicker sur 'Ok'. Clicker sur 'Annuler' si vous souhaitez rester connecté.",
   },
-  LIBRARY_MY_UPLOADS: {
+  MY_UPLOADS: {
     HEADER: "My Uploads(FR)"
   }
 };

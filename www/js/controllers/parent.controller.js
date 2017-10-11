@@ -47,7 +47,12 @@ angular.module('garago.controllers', [])
     $scope.rateFile = function($event, item) {
       console.log($event, item)
       var rating = $event.rating
-      item.set("rating",rating)
+      var rating_count = item.attributes.rating_count + 1
+      var total_ratings = item.attributes.total_ratings + rating
+      var average = total_ratings/rating_count
+      item.set("rating",average)
+      item.set("rating_count",rating_count)
+      item.set("total_ratings",total_ratings)
       item.save().then(function(res){
         console.log("Saved: ",res)
       })
@@ -217,9 +222,10 @@ angular.module('garago.controllers', [])
           link: "#/app/library/favs",
           class: "star"
         }, {
-          title: "MY_UPLOADS",
+          title: "MY_UPLOADS.HEADER",
           link: "#/app/library/myuploads",
-          class: "list"
+          class: "list",
+          admin:true
         }, {
           title: "BROWSE_ALL",
           link: "#/app/library/browse",

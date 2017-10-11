@@ -25,6 +25,7 @@ var translation_en = {
   LANGUAGE: 'Language',
   VIEW_ALL: 'View All',
   NEXT: 'Next',
+  TOTAL_VOTES: 'votes',
   LIBRARY_DASHBOARD: {
     HEADER: 'Smart Library',
     SEARCH_PLACEHOLDER: 'Search files...',
@@ -62,7 +63,7 @@ var translation_en = {
     SIGN_OUT_ALERT_HEADER: "You're about to sign out!",
     SIGN_OUT_MESSAGE:  "If this is what you really want to do, then click 'OK'. Press 'Cancel' to remain connected.",
   },
-  LIBRARY_MY_UPLOADS: {
+  MY_UPLOADS: {
     HEADER: "My Uploads"
   }
 };
