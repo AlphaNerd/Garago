@@ -77,7 +77,7 @@
         <ion-slide id="UserProfile">
           <ion-content class="user-messages" scroll="true">
             <div class="menu-header">
-              <div class="user-name">Jeffrey Coleman</div>
+              <div class="user-name">{{currentUser.attributes.firstName}} {{currentUser.attributes.lastName}}</div>
               <div class="logo">
                 <img ng-src="{{CurrentUser.attributes.image._url || '../img/no-image.jpg'}}" ng-click="getNewImage()">
               </div>

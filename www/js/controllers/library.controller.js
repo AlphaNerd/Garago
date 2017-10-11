@@ -84,8 +84,11 @@ angular.module('garago.controllers.library', [])
           $scope.searchTags = []
           $scope.filestoupload = false
           change_back()
-          $ionicLoading.hide()
         })
+      }).then(function(res){
+        $ionicLoading.show({
+        template: "Successfully Saved."
+      })
       })
     }
 
@@ -123,7 +126,7 @@ angular.module('garago.controllers.library', [])
 
 
     ////// Experimental Chips    
-    $scope.readonly = false;
+    $scope.readonly = true;
     $scope.selectedItem = null;
     $scope.searchText = null;
     $scope.querySearch = $scope.querySearch;
@@ -140,12 +143,15 @@ angular.module('garago.controllers.library', [])
      */
     $scope.transformChip = function(chip) {
       // If it is an object, it's already a known chip
+      console.log(chip)
       if (angular.isObject(chip)) {
+        console.log("return chip")
         return chip;
       }
 
       // Otherwise, create a new one
-      return { name: chip.toLowerCase(), type: 'new' }
+      console.log("make new chip")
+      return { attributes: { title: chip.toLowerCase(), code: 0,lang:Parse.User.current().attributes.language,noc:"0" }}
     }
 
     /**
@@ -154,12 +160,12 @@ angular.module('garago.controllers.library', [])
     $scope.querySearch = function(query) {
       var myQuery = {
         attributes: {
-          title: query,
+          title: query.toLowerCase(),
           noc: "",
           lang: Parse.User.current().attributes.language
         }
       }
-      var results = query.toLowerCase() ? queryCodes(query) : [];
+      var results = myQuery ? queryCodes(query) : [];
       // var results = query.toLowerCase() ? $scope.NOCcodes.filter(createFilterFor(query.toLowerCase())) : [];
       return results;
     }

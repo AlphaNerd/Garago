@@ -402,6 +402,8 @@ angular.module('garago.factory.parse', [])
               file.set("file", parseFile);
               file.set("active", true);
               file.set("rating", 0);
+              file.set("rating_count", 0);
+              file.set("total_ratings", 0);
               // console.log("TAGS IN: ",tags)
               var tagArray = tags.map(function (item) {
                 var obj = {
@@ -536,7 +538,7 @@ angular.module('garago.factory.parse', [])
         }
         query.find({
           success: function(res) {
-            // console.log("Found User Files: ", [res])
+            console.log("Found User Files: ", [res])
             deferred.resolve(res)
           },
           error: function(e, r) {
