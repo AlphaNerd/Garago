@@ -45,7 +45,7 @@ angular.module('garago', [
     duration: 1500,
   })
 
-  .run(function ($ionicPlatform, $rootScope, $ionicSideMenuDelegate, $timeout, $state, $location) {
+  .run(function ($ionicPlatform, $rootScope, $ionicSideMenuDelegate, $timeout, $state, $location, $parseAPI) {
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -67,19 +67,33 @@ angular.module('garago', [
         }, 100)
       }
 
+      console.log($parseAPI.isLoggedIn())
+      // $rootScope.$on('$routeChangeStart', function (event) {
+
+      //     if (!$parseAPI.isLoggedIn()) {
+      //         console.log('DENY');
+      //         event.preventDefault();
+      //         state.go('login');
+      //     }
+      //     else {
+      //         console.log('ALLOW');
+      //     }
+
+      //  });
+
       $rootScope.$on('$locationChangeStart', function (event, next, current) {
         // console.log(next)
-        // checkAuth();
+        checkAuth();
       });
       
-      // checkAuth()
+      checkAuth()
 
       function checkAuth(){
         var currentUser = Parse.User.current();
         try{
           if (currentUser) {
-            // console.log("Welcome back: ",[currentUser])
-            $state.go("app.library")  
+            console.log("Welcome back: ",[currentUser])
+            // $state.go("app.library")  
           } else {
             // show the signup or login page
             // console.log($location.url())

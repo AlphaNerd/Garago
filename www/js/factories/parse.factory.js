@@ -29,6 +29,13 @@ angular.module('garago.factory.parse', [])
     var Users = Parse.Object.extend("User")
 
     var obj = {
+      isLoggedIn: function(){
+        if(Parse.User.current()){
+          return true
+        }else{
+          return false
+        }
+      },
       ////////////////////////////////////////////////
       ////// Get all projects the current user is a member or owner of
       ////////////////////////////////////////////////

@@ -73,7 +73,7 @@
       </div>
     </div> -->
     <!-- Upload -->
-    <div class="list card upload-module" ng-show="currentUser.attributes.canUpload">
+    <div class="list card upload-module" ng-if="currentUser.attributes.canUpload">
       <div class="list" id="upload-container">
         <div class="item item-avatar">
           <i class="fa fa-folder" aria-hidden="true"></i>
@@ -134,7 +134,7 @@
       </div>
     </div>
     <div class="file-dashboard animated fadeIn">
-      <div class="list card">
+      <div class="list card" ng-style="{'width':currentUser.attributes.canUpload ? '48%' : '98%'}">
         <div class="item item-avatar">
           <i class="fa fa-star" aria-hidden="true"></i>
           <h2>{{'MY_FAVORITES' | translate }}</h2>
@@ -176,7 +176,7 @@
           </span>
         </div>
       </div>
-      <div class="list card my-uploads">
+      <div class="list card my-uploads" ng-if="currentUser.attributes.canUpload">
         <div class="item item-avatar">
           <i class="fa fa-folder" aria-hidden="true"></i>
           <h2>{{'LIBRARY_DASHBOARD.MY_UPLOADS' | translate }}</h2>
