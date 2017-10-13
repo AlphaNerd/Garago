@@ -312,7 +312,7 @@ input.md-input {
 }*/
 
 #Library input[type='file']:before {
-    content: "Drop file(s) here";
+/*    content: "Drop file(s) here";*/
     display: block;
     position: absolute;
     text-align: center;
@@ -778,3 +778,5 @@ md-input-container:not(.md-input-invalid).md-input-has-value label {
 .total-rating{
   font-size: 24px
 }
+
+

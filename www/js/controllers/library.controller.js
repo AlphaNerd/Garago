@@ -56,6 +56,7 @@ angular.module('garago.controllers.library', [])
     $scope.clearSearch = function() {
       $scope.search = {}
       $scope.searchResults = []
+      $scope.$apply()
     }
 
     $scope.searchFiles = function(search) {
@@ -66,6 +67,8 @@ angular.module('garago.controllers.library', [])
         })
       } else {
         $scope.searchResults = []
+        $scope.search = {}
+        $scope.$apply()
       }
     }
 
@@ -167,7 +170,7 @@ angular.module('garago.controllers.library', [])
     }
 
     /**
-     * Search for NOCcodes.
+     * Search for NOC.
      */
     $scope.querySearch = function(query) {
       var myQuery = {
@@ -184,8 +187,9 @@ angular.module('garago.controllers.library', [])
     }
 
     function queryCodes(query) {
+      Parse.User.current().fetch()
       var myQuery = query.toLowerCase()
-      return Parse.Cloud.run('getNocCodes', { 'searchTerm': myQuery }).then(function(res) {
+      return Parse.Cloud.run('getNocCodes', { 'searchTerm': myQuery, 'userlang': Parse.User.current().attributes.language }).then(function(res) {
         console.info("NOC CODES: ", res)
         return res
       })

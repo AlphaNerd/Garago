@@ -720,9 +720,10 @@ angular.module('garago.factory.parse', [])
         var deferred = $q.defer()
         var query = new Parse.Query(Files)
         query.equalTo("active",true)
+        query.include("tags")
         query.equalTo("objectId",id).find({
           success: function(res){
-            // console.log(res)
+            console.log("Edit this file: ",res)
           },
           error: function(e,r){
             // console.log(e,r)

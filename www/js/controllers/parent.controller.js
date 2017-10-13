@@ -10,7 +10,7 @@ angular.module('garago.controllers', [])
       // console.log("ParentCtrl Loaded.")
       var myDelay = 0;
       $rootScope.currentUser = Parse.User.current()
-      console.log($scope.currentUser)
+      // console.log($scope.currentUser)
     });
 
     $scope.handleParseError = function(err) {
@@ -34,14 +34,18 @@ angular.module('garago.controllers', [])
         moment.locale(langKey)
         Parse.User.current().set("language", "en")
         Parse.User.current().save()
+        console.log(langKey)
+        $translate.use(langKey);
+        Parse.User.current().fetch()
       } else {
         langKey = 'fr'
         moment.locale(langKey)
         Parse.User.current().set("language", "fr")
         Parse.User.current().save()
+        console.log(langKey)
+        $translate.use(langKey);
+        Parse.User.current().fetch()
       }
-      console.log(langKey)
-      $translate.use(langKey);
     };
 
     $scope.rateFile = function($event, item) {

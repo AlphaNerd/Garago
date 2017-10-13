@@ -83,7 +83,10 @@
         </div>
         <div class="item item-avatar">
           <i class="fa fa-upload" ng-class="filestoupload ? 'green': 'blue'" ng-click="uploadFiles()"></i>
-          <span class="file-input"><input ng-model="uploadfiles" type="file" accept="image/*,.pdf,.doc,.docx,.txt,.zip" id="upload" multiple onchange="angular.element(this).scope().fileNameChanged(this)"/></span>
+          <span class="file-input">
+
+            <input ng-model="uploadfiles" type="file" accept="image/*,.pdf,.doc,.docx,.txt,.zip" id="upload" multiple onchange="angular.element(this).scope().fileNameChanged(this)"/>
+          </span>
           <!--  <div class="warning">
               <h1>Drop Files Here </h1>
             </div> -->

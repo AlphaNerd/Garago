@@ -14,11 +14,11 @@
   <ion-content>
     <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
       <ion-item ng-repeat="user in users" class="item-thumbnail-left">
-        <img ng-src="{{user.attributes.image._url}}">
-        <h2>{{user.attributes.firstName}} {{user.attributes.lastName}}</h2>
+        <img ng-src="{{user.attributes.image._url || '../img/no-image.jpg'}}">
+        <h2>{{user.attributes.firstName}} {{user.attributes.lastName}} <p>{{user.attributes.isAdmin ? '(Admin)' : '(Member)'}}</p></h2>
         <p>{{user.attributes.email}}</p>
         <p>Joined: {{user.createdAt | moment}}</p>
-        <p>Access: {{user.attributes.canUpload ? 'Upload/Download' : 'Download Only'}}</p>
+        <span><div class="button button-small" ng-class="user.attributes.canUpload ? 'canUpload' : 'cantUpload'" ng-click="toggleUploadPrivileges(user)">{{user.attributes.canUpload ? 'Can Upload' : 'Cannot Upload'}}</div> </span>
         <ion-option-button class="button-info button-positive" ng-click="edit(user)">
           Edit
         </ion-option-button>

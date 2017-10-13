@@ -22,30 +22,11 @@
             <span>Modified: {{FILE.updatedAt | moment}}</span>
             <div>Created by: {{FILE.attributes.createdBy.email}}</div>
         </span>
-        <!-- <span class="tags">
+        <span class="tags">
             <span ng-repeat="tag in FILE.attributes.tags">
-                {{tag}}
+                {{tag.title}}
             </span>
-        </span> -->
-        <div class="experimental-chips">
-          <i class="fa fa-tag"></i>
-          <md-chips ng-model="searchTags" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-require-match="false">
-            <md-autocomplete 
-                md-selected-item="selectedItem" 
-                md-search-text="searchText" 
-                md-items="item in querySearch(searchText)" 
-                md-item-text="item.name" 
-                placeholder="Tag with NOC code(s)">
-              <span md-highlight-text="searchText">{{item.title}} :: {{item.noc}}</span>
-            </md-autocomplete>
-            <md-chip-template>
-              <span> 
-                <strong>{{$chip.title}}</strong>
-                <!-- <em>({{$chip.type}})</em> -->
-              </span>
-            </md-chip-template>
-          </md-chips>
-        </div>
+        </span>
       </div>
       <div class="item item-body">
         <!-- <img class="full-image" src="delorean.jpg"> -->

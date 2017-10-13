@@ -72,7 +72,7 @@ angular.module('garago', [
         // checkAuth();
       });
       
-      checkAuth()
+      // checkAuth()
 
       function checkAuth(){
         var currentUser = Parse.User.current();
