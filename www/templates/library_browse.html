@@ -34,6 +34,7 @@
         <p>{{item.attributes.description}}</p>  
         <p class="last-updated">{{'LAST_UPDATED' | translate }}: {{item.attributes.updatedAt | moment}}</p>
         <p class="created-by">{{'CREATED_BY' | translate }}: {{item.attributes.createdBy.name.first}} {{item.attributes.createdBy.name.last}} <a href="mailto:{{item.attributes.createdBy.email}}"><i class="fa fa-envelope"></i></a></p>
+        <p class="total-downoads">{{'TOTAL_DOWNLOADS' | translate }}: {{item.attributes.totalDownloads || '0'}}</p>
         <div class="tags">
           <span ng-repeat="tag in item.attributes.tags" class="tag">
               {{tag.title}}
@@ -53,7 +54,7 @@
           <i class="fa" ng-class="isFavFile(item) ? 'fa-star' : 'fa-star-o'" ng-click="toggleFav(item,isFavFile(item))"></i>
         </div>
         <div class="share-options">
-          <a href="{{item.attributes.file._url}}" download><i class="fa fa-download"></i></a>
+          <a href="{{item.attributes.file._url}}" download ng-click="countDownload(item)"><i class="fa fa-download"></i></a>
           <!-- <i class="fa fa-share"></i> -->
         </div>
         <!-- <div class="comment-options">

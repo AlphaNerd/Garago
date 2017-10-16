@@ -26,6 +26,7 @@ var translation_en = {
   VIEW_ALL: 'View All',
   NEXT: 'Next',
   TOTAL_VOTES: 'votes',
+  TOTAL_DOWNLOADS: 'Total Downloads',
   LIBRARY_DASHBOARD: {
     HEADER: 'Smart Library',
     SEARCH_PLACEHOLDER: 'Search files...',

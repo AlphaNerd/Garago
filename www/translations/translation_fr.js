@@ -26,6 +26,7 @@ var translation_fr = {
   VIEW_ALL: 'Voir tout',
   NEXT: 'Next(FR)',
   TOTAL_VOTES: 'votes',
+  TOTAL_DOWNLOADS: 'Total Downloads(FR)',
   LIBRARY_DASHBOARD: {
     HEADER: 'Bibliothèque intelligente',
     SEARCH_PLACEHOLDER: 'Recherche',
