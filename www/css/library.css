@@ -803,3 +803,7 @@ md-input-container:not(.md-input-invalid).md-input-has-value label {
 #Library .file-size{
   font-size: 11px;
 }
+
+/*#Library .search-header{
+  padding:15px 15px;
+}*/

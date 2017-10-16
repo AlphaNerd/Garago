@@ -12,12 +12,18 @@
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content>
+    <div class="item item-input search-header">
+      <label class="item-input-wrapper">
+        <input type="text" placeholder="Search" ng-init="search" ng-model="search.text">
+      </label>
+    </div>
     <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
-      <ion-item ng-repeat="user in users" class="item-thumbnail-left">
+      <ion-item ng-repeat="user in users | filter:search.text" class="item-thumbnail-left">
         <img ng-src="{{user.attributes.image._url || '../img/no-image.jpg'}}">
         <h2>{{user.attributes.firstName}} {{user.attributes.lastName}} <span>{{user.attributes.isAdmin ? '(Admin)' : '(Member)'}}</span></h2>
         <p>{{user.attributes.email}}</p>
         <p>Joined: {{user.createdAt | moment}}</p>
+        <p>Region: {{user.attributes.region}}</p>
         <span><div class="button button-small" ng-class="user.attributes.canUpload ? 'canUpload' : 'cantUpload'" ng-click="toggleUploadPrivileges(user)">{{user.attributes.canUpload ? 'Can Upload' : 'Cannot Upload'}}</div> </span>
         <ion-option-button class="button-info button-positive" ng-click="edit(user)">
           Edit

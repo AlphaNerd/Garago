@@ -598,3 +598,7 @@ md-input-container:not(.md-input-invalid).md-input-focused label{
     color: #f3f3f3;
     font-size: 11px;
 }
+
+.search-header{
+  padding:15px 15px;
+}

@@ -26,7 +26,8 @@ var translation_fr = {
   VIEW_ALL: 'Voir tout',
   NEXT: 'Next(FR)',
   TOTAL_VOTES: 'votes',
-  TOTAL_DOWNLOADS: 'Total Downloads(FR)',
+  TOTAL_DOWNLOADS: 'Nombre total de téléchargements',
+  POWERED_BY: "Produit par",
   LIBRARY_DASHBOARD: {
     HEADER: 'Bibliothèque intelligente',
     SEARCH_PLACEHOLDER: 'Recherche',
@@ -53,7 +54,7 @@ var translation_fr = {
     USER_CAN_UPLOAD: 'Utilisateur peut télécharger',
     USER_IS_ADMIN: 'User is Administrator(FR)',
     INVITE: 'Inviter',
-    ASSIGN_TO_REGION: 'Assign to region(FR)'
+    ASSIGN_TO_REGION: 'Assigner à la Région'
   },
   REGISTER: {
     HEADER: 'Inscription utilisateur',
