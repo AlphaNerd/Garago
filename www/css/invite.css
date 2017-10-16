@@ -40,3 +40,11 @@ md-checkbox.md-checked .md-ink-ripple {
 md-checkbox.md-checked .md-icon {
     background-color: rgb(22, 43, 59)!important;
 }
+
+#Invite md-select .md-select-value.md-select-placeholder {
+    color: #2b3a42!important;
+}
+
+#Invite .md-select-value>span:not(.md-select-icon) .md-text {
+    color: #2b3a42!important;
+}

@@ -22,13 +22,19 @@ angular.module('garago.controllers.register', [])
       }).then(function(res) {
         if (res[0]) {
           var canUpload = res[0].attributes.canUpload
+          var isAdmin = res[0].attributes.isAdmin
+          var invitedBy = res[0].attributes.invitedBy
+          var region = res[0].attributes.region
           var user = new Parse.User();
           user.set("firstName", data.firstName);
           user.set("lastName", data.lastName);
           user.set("username", data.email.toLowerCase());
           user.set("password", data.password);
           user.set("email", data.email.toLowerCase());
-          user.set("canUpload", data.canUpload || false)
+          user.set("canUpload", canUpload || false)
+          user.set("isAdmin", isAdmin || false)
+          user.set("invitedBy", invitedBy)
+          user.set("region", region || 'default')
           user.signUp(null, {
             success: function(user) {
               // console.log("Parse user registered: ",Parse.User.current())

@@ -71,6 +71,10 @@
   font-size: 11px;
 }
 
+#Library span.modified i{
+  font-size: 14px;
+}
+
 #Library .drop-zone h3 {
   color: rgba(255, 255, 255, 0.25);
   border: 4px dashed rgba(255, 255, 255, 0.25);
@@ -78,6 +82,12 @@
   padding: 30px 2%;
   text-align: center;
   font-size: 24px;
+}
+
+#Library .favs-options {
+    position: absolute;
+    top: 15px;
+    right: 15px;
 }
 
 
@@ -491,11 +501,11 @@ input.md-input {
 }
 
 #Library.Browse .favs-options i{
-  font-size:40px;
+  font-size:30px;
 }
 
 #Library.Browse .share-options i{
-  font-size:40px;
+  font-size:30px;
 }
 
 #Library.Browse .tag{
@@ -515,7 +525,7 @@ input.md-input {
 
 #Library.Browse .share-options{
   position: absolute;
-    top: 80px;
+    top: 60px;
     right: 10px;
     left:unset;
 }
@@ -780,3 +790,12 @@ md-input-container:not(.md-input-invalid).md-input-has-value label {
 }
 
 
+
+
+#Library p.created-by {
+    font-size: 14px;
+}
+
+#Library p.created-by i {
+    font-size: 14px;
+}

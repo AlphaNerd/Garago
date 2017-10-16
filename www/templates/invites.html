@@ -17,8 +17,11 @@
         <input class="invite-email" type="text" placeholder="Email" ng-model="user.email">
       </div>
       <div class="canUpload">
-        <md-checkbox ng-model="user.canUpload" aria-label="Uploader">
+        <md-checkbox ng-model="user.canUpload" aria-label="can upload">
           User can upload: {{ user.canUpload ? 'Yes':'No'}}
+        </md-checkbox>
+        <md-checkbox ng-model="user.isAdmin" aria-label="is admin">
+          User is Admin: {{ user.isAdmin ? 'Yes':'No'}}
         </md-checkbox>
       </div>
       <div class="button button-block button-balanced" ng-click="inviteUser(user)">Invite</div>

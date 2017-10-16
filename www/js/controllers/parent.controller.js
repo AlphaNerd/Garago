@@ -24,8 +24,9 @@ angular.module('garago.controllers', [])
 
 
     ///// Language init()
-    $translate.use(Parse.User.current().attributes.language);
-    moment.locale(Parse.User.current().attributes.language)
+    var defaultLanguage = Parse.User.current().attributes.language || 'en'
+    $translate.use(defaultLanguage);
+    moment.locale(defaultLanguage)
 
     $scope.changeLanguage = function(langKey) {
       console.log("Change to ", langKey)
@@ -229,7 +230,8 @@ angular.module('garago.controllers', [])
           title: "MY_UPLOADS.HEADER",
           link: "#/app/library/myuploads",
           class: "list",
-          admin:true
+          admin:true,
+          canUpload: true
         }, {
           title: "BROWSE_ALL",
           link: "#/app/library/browse",

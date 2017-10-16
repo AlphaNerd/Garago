@@ -30,7 +30,7 @@
         <h2 class="title"><a href="{{item.attributes.file._url}}" target="_blank">{{item.attributes.title}}</a>&nbsp;<i class="fa fa-pencil" ng-if="item.attributes.ACL.permissionsById[CurrentUser.id].write" ng-click="editFile(item.id)"></i></h2>
         <p>{{item.attributes.description}}</p>  
         <p class="last-updated">{{'LAST_UPDATED' | translate }}: {{item.attributes.updatedAt | moment}}</p>
-        <p class="created-by">{{'CREATED_BY' | translate }}: {{item.attributes.createdBy.email}}</p>
+        <p class="created-by">{{'CREATED_BY' | translate }}: {{item.attributes.createdBy.name.first}} {{item.attributes.createdBy.name.last}} <a href="mailto:{{item.attributes.createdBy.email}}"><i class="fa fa-envelope"></i></a></p>
         <div class="tags">
           <span ng-repeat="tag in item.attributes.tags" class="tag">
               {{tag.title}}

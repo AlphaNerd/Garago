@@ -134,7 +134,7 @@ angular.module('garago.controllers.library', [])
       };
 
     } catch (e) {
-      console.log("User not able to upload")
+      console.log(e)
     }
 
 

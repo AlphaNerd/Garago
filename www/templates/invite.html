@@ -17,9 +17,15 @@
         <input class="invite-email" type="text" placeholder="{{'EMAIL' | translate }}" ng-model="user.email">
       </div>
       <div class="canUpload">
-        <md-checkbox ng-model="user.canUpload" aria-label="Uploader">
+        <md-checkbox ng-model="user.canUpload" aria-label="can upload">
           {{'INVITE.USER_CAN_UPLOAD' | translate }}: {{ user.canUpload ? 'Yes':'No' }}
         </md-checkbox>
+        <md-checkbox ng-model="user.isAdmin" aria-label="is admin">
+          {{'INVITE.USER_IS_ADMIN' | translate }}: {{ user.isAdmin ? 'Yes':'No' }}
+        </md-checkbox>
+        <md-select placeholder="{{'INVITE.ASSIGN_TO_REGION' | translate }}" ng-model="user.region" md-on-open="getRegions()" style="min-width: 200px;">
+          <md-option ng-value="region" ng-repeat="region in regions">{{region.attributes.title}}</md-option>
+        </md-select>
       </div>
       <div class="button button-block button-balanced" ng-click="inviteUser(user)">{{'INVITE.INVITE' | translate }}</div>
     </div>

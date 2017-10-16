@@ -50,7 +50,9 @@ var translation_en = {
   INVITE: {
     HEADER: 'Invite User',
     USER_CAN_UPLOAD: 'User can upload',
-    INVITE: 'Invite'
+    USER_IS_ADMIN: 'User is Administrator',
+    INVITE: 'Invite',
+    ASSIGN_TO_REGION: 'Assign to region'
   },
   REGISTER: {
     HEADER: 'User Registration',

@@ -41,7 +41,7 @@
                   <ion-item class="item-stable header" ng-click="toggleGroup(group)" ng-class="{active: isGroupShown(group)}">
                     &nbsp;<i class="fa fa-{{group.class}}" aria-hidden="true"></i> &nbsp; {{ group.name | translate }} &nbsp; <i class="icon fa" ng-class="isGroupShown(group) ? 'fa-minus' : 'fa-plus'"></i>
                   </ion-item>
-                  <ion-item class="item-accordion" menu-close ng-repeat="item in group.items" ng-show="isGroupShown(group)" href="{{item.link}}" ng-class="isActiveMenu(item.link) ? 'active':''">
+                  <ion-item class="item-accordion" menu-close ng-repeat="item in group.items" ng-show="isGroupShown(group)" href="{{item.link}}" ng-class="isActiveMenu(item.link) ? 'active':''" ng-if="!item.canUpload || currentUser.attributes.canUpload">
                     <i class="fa fa-{{item.class}}" aria-hidden="true"></i> &nbsp;{{item.title | translate}}
                   </ion-item>
                 </div>

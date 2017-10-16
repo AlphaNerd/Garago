@@ -67,23 +67,19 @@ angular.module('garago', [
         }, 100)
       }
 
-      console.log($parseAPI.isLoggedIn())
       // $rootScope.$on('$routeChangeStart', function (event) {
 
       //     if (!$parseAPI.isLoggedIn()) {
-      //         console.log('DENY');
       //         event.preventDefault();
       //         state.go('login');
       //     }
       //     else {
-      //         console.log('ALLOW');
       //     }
 
       //  });
 
       $rootScope.$on('$locationChangeStart', function (event, next, current) {
-        // console.log(next)
-        checkAuth();
+        // checkAuth();
       });
       
       checkAuth()
@@ -92,11 +88,9 @@ angular.module('garago', [
         var currentUser = Parse.User.current();
         try{
           if (currentUser) {
-            console.log("Welcome back: ",[currentUser])
             // $state.go("app.library")  
           } else {
             // show the signup or login page
-            // console.log($location.url())
             if($location.url() != "/intro"){
               console.warn("you need to login!")
               event.preventDefault();
@@ -208,13 +202,11 @@ angular.module('garago', [
                 console.info($stateParams)
                 if ($stateParams.id != "") {
                   return $parseAPI.getUsersActionPlanById($stateParams.id).then(function (res) {
-                    // console.log("Action Plan View Resolve: ", [res])
                     $ionicLoading.hide()
                     return res
                   })
                 } else {
                   return $parseAPI.getUsersLastActionPlan().then(function (res) {
-                    // console.log("Action Plan View Resolve: ", [res])
                     $ionicLoading.hide()
                     return res
                   })
@@ -244,7 +236,6 @@ angular.module('garago', [
               initData: function ($ionicLoading, $parseAPI) {
                 $ionicLoading.show()
                 return $parseAPI.getAllUserActionPlans().then(function (res) {
-                  // console.log("Action Plans View Resolve: ", [res])
                   $ionicLoading.hide()
                   return res
                 })
@@ -274,14 +265,11 @@ angular.module('garago', [
                 console.info($stateParams)
                 if ($stateParams.id != "") {
                   return $parseAPI.getUsersProjectById($stateParams.id).then(function (res) {
-                    // console.log("Project View Resolve: ", [res])
                     $ionicLoading.hide()
                     return res
                   })
                 } else {
-                  // console.log("no id supplied. Getting latest")
                   return $parseAPI.getUsersLastProject().then(function (res) {
-                    // console.log("Project View Resolve: ", [res])
                     $ionicLoading.hide()
                     return res
                   })
@@ -310,7 +298,6 @@ angular.module('garago', [
               initData: function ($ionicLoading, $parseAPI) {
                 $ionicLoading.show()
                 return $parseAPI.getAllUserProjects().then(function (res) {
-                  // console.log("Projects List View Resolve: ", [res])
                   $ionicLoading.hide()
                   return res
                 })
@@ -340,14 +327,11 @@ angular.module('garago', [
                 console.info($stateParams)
                 if ($stateParams.id != "") {
                   return $parseAPI.getUsersActivityById($stateParams.id).then(function (res) {
-                    // console.log("activity View Resolve: ", [res])
                     $ionicLoading.hide()
                     return res
                   })
                 } else {
-                  // console.log("no id supplied. Getting latest")
                   return $parseAPI.getUsersLastActivity().then(function (res) {
-                    // console.log("activity View Resolve: ", [res])
                     $ionicLoading.hide()
                     return res
                   })
@@ -376,7 +360,6 @@ angular.module('garago', [
               initData: function ($ionicLoading, $parseAPI) {
                 $ionicLoading.show()
                 return $parseAPI.getAllUserActivities().then(function (res) {
-                  // console.log("activities List View Resolve: ", [res])
                   $ionicLoading.hide()
                   return res
                 })
@@ -405,7 +388,6 @@ angular.module('garago', [
               userFilesData: function ($parseAPI, $ionicLoading) {
                 $ionicLoading.show()
                 return $parseAPI.getUserFiles(5).then(function (res) {
-                  // console.log("Library View 'User Files' Resolve: ", res)
                   $ionicLoading.hide()
                   return res
                 })
@@ -413,7 +395,6 @@ angular.module('garago', [
               userSharedFilesData: function ($parseAPI, $ionicLoading) {
                 $ionicLoading.show()
                 return $parseAPI.getUserSharedFiles().then(function (res) {
-                  // console.log("Library View 'User Shared Files' Resolve: ", res)
                   $ionicLoading.hide()
                   return res
                 })
@@ -421,7 +402,6 @@ angular.module('garago', [
               userFavFilesData: function ($parseAPI, $ionicLoading) {
                 $ionicLoading.show()
                 return $parseAPI.getUserFavFiles().then(function (res) {
-                  // console.log("Library View 'User Fav Files' Resolve: ", res)
                   $ionicLoading.hide()
                   return res
                 })
@@ -450,7 +430,6 @@ angular.module('garago', [
                 $ionicLoading.show()
                 Parse.User.current().fetch()
                 return $parseAPI.getAllFiles().then(function (res) {
-                  // console.log("Library Browse View 'All Files' Resolve: ", res)
                   $ionicLoading.hide()
                   return res
                 })
@@ -479,7 +458,6 @@ angular.module('garago', [
                 $ionicLoading.show()
                 Parse.User.current().fetch()
                 return $parseAPI.getUserFavFiles().then(function (res) {
-                  // console.log("Library Favorites View 'Fav Files' Resolve: ", res)
                   $ionicLoading.hide()
                   return res
                 })
@@ -508,7 +486,6 @@ angular.module('garago', [
                 $ionicLoading.show()
                 Parse.User.current().fetch()
                 return $parseAPI.getUserFiles().then(function (res) {
-                  // console.log("Library Favorites View 'Fav Files' Resolve: ", res)
                   $ionicLoading.hide()
                   return res
                 })
@@ -535,10 +512,8 @@ angular.module('garago', [
             resolve: {
               fileData: function ($parseAPI, $ionicLoading, $stateParams) {
                 $ionicLoading.show()
-                // console.log("Edit file: ", $stateParams)
                 Parse.User.current().fetch()
                 return $parseAPI.getFile($stateParams.id).then(function (res) {
-                  // console.log("Library 'Edit File' Resolve: ", res)
                   $ionicLoading.hide()
                   return res
                 })
@@ -567,7 +542,7 @@ angular.module('garago', [
             templateUrl: 'templates/invite.html',
             controller: 'InviteCtrl',
             resolve: {
-              resolveData: function ($parseAPI, $ionicLoading, $stateParams) {
+              regionData: function ($parseAPI, $ionicLoading, $stateParams) {
                 return true
               }
             }
@@ -616,7 +591,6 @@ angular.module('garago', [
             resolve: {
               resolveData: function ($parseAPI, $ionicLoading, $stateParams) {
                 return Parse.Cloud.run('getAllUsers',{}).then(function(res) {
-                  // console.log("Users resolve data: ",res)
                   return res
                 })
               }

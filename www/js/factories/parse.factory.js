@@ -27,6 +27,7 @@ angular.module('garago.factory.parse', [])
     var Activities = Parse.Object.extend("Activities")
     var Files = Parse.Object.extend("Files")
     var Users = Parse.Object.extend("User")
+    var Regions = Parse.Object.extend("Regions")
 
     var obj = {
       isLoggedIn: function(){
@@ -503,7 +504,7 @@ angular.module('garago.factory.parse', [])
             handleParseError(e)
           }
         }).then(function(resp) {
-          console.log("GET ALL FILES: ",resp)
+          // console.log("GET ALL FILES: ",resp)
           if (resp) {
             var promises = []
             var files = []
@@ -546,7 +547,7 @@ angular.module('garago.factory.parse', [])
         }
         query.find({
           success: function(res) {
-            console.log("Found User Files: ", [res])
+            // console.log("Found User Files: ", [res])
             deferred.resolve(res)
           },
           error: function(e, r) {
@@ -741,6 +742,26 @@ angular.module('garago.factory.parse', [])
         })
         return deferred.promise
       },
+      ////////////////////////////////////////////////
+      ////// Get All Regions Available
+      ////////////////////////////////////////////////
+      getRegions: function(id){
+        // console.log(id)
+        var deferred = $q.defer()
+        var query = new Parse.Query(Regions)
+        query.exists("objectId").find({
+          success: function(res){
+            console.log("Found regions: ",res)
+          },
+          error: function(e,r){
+            // console.log(e,r)
+            handleParseError(e)
+          }
+        }).then(function(res){
+          deferred.resolve(res)
+        })
+        return deferred.promise
+      }
     }
     return obj
   }])
