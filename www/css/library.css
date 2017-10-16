@@ -799,3 +799,7 @@ md-input-container:not(.md-input-invalid).md-input-has-value label {
 #Library p.created-by i {
     font-size: 14px;
 }
+
+#Library .file-size{
+  font-size: 11px;
+}

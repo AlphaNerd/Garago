@@ -73,31 +73,37 @@ angular.module('garago.controllers.library', [])
     }
 
     $scope.uploadFiles = function() {
-      $ionicLoading.show({
-        template: "Saving file(s)..."
-      })
       var $input = angular.element(document.getElementById('upload'));
-      // console.log($input[0].files,$scope.searchTags)
-      $parseAPI.saveUserFile($input[0].files, $scope.searchTags).then(function(res) {
-        // console.log("Save returned: ", res)
-        $parseAPI.getUserFiles().then(function(res) {
-          // console.log("Save returned: ", res)
-          $scope.userFiles = res
-          $input.val(null);
-          $scope.searchTags = []
-          $scope.filestoupload = false
-          try{
-            change_back()  
-          }
-          catch(e){
-            console.log(e)
-          }
-        })
-      }).then(function(res) {
+      console.log($input.files)
+      if($input.files){
         $ionicLoading.show({
-          template: "Successfully Saved."
+          template: "Saving file(s)..."
         })
-      })
+        $parseAPI.saveUserFile($input[0].files, $scope.searchTags).then(function(res) {
+          // console.log("Save returned: ", res)
+          $parseAPI.getUserFiles().then(function(res) {
+            // console.log("Save returned: ", res)
+            $scope.userFiles = res
+            $input.val(null);
+            $scope.searchTags = []
+            $scope.filestoupload = false
+            try{
+              change_back()  
+            }
+            catch(e){
+              console.log(e)
+            }
+          })
+        }).then(function(res) {
+          $ionicLoading.show({
+            template: "Successfully Saved."
+          })
+        })
+      }else{
+        $ionicLoading.show({
+          template: "No files attached."
+        })
+      }
     }
 
     $scope.confirmDelete = function(file) {

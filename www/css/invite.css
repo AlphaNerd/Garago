@@ -48,3 +48,9 @@ md-checkbox.md-checked .md-icon {
 #Invite .md-select-value>span:not(.md-select-icon) .md-text {
     color: #2b3a42!important;
 }
+
+.region-button {
+    max-width: 360px;
+    margin: 0 auto 40px auto;
+    border: 1px solid #ddd;
+}

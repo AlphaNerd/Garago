@@ -19,6 +19,13 @@ angular.module('garago.factory.parse', [])
           break;
       }
     }
+    function formatBytes(bytes) {
+       var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+       if (bytes == 0) return '0 Byte';
+       var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+       return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+    };
+
     var ActionPlans = Parse.Object.extend("ActionPlans")
     var Messages = Parse.Object.extend("Messages")
     var Organizations = Parse.Object.extend("Organizations")
@@ -402,6 +409,8 @@ angular.module('garago.factory.parse', [])
         var deferred = $q.defer()
         var promises = Object.keys(files).map(function(Key,Index){
           var val = files[Key]
+          console.log("FILE SIZE: ",val.size/1024)
+          var fileSize = formatBytes(val.size)
           var promise = new Promise(function(resolve,reject){
             var parseFile = new Parse.File(val.name, val);
             parseFile.save().then(function() {
@@ -412,6 +421,7 @@ angular.module('garago.factory.parse', [])
               file.set("rating", 0);
               file.set("rating_count", 0);
               file.set("total_ratings", 0);
+              file.set("fileSize",fileSize)
               // console.log("TAGS IN: ",tags)
               var tagArray = tags.map(function (item) {
                 var obj = {
