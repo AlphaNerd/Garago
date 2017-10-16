@@ -13,7 +13,14 @@ angular.module('garago.controllers.invite', [])
       $ionicLoading.show({
         template: "Sending invite..."
       })
-      Parse.Cloud.run('inviteUser',{'email':user.email,'canUpload':user.canUpload,'isAdmin':user.isAdmin,'regionName':user.regionName}).then(function(res) {
+      var regionId = ""
+      for(i=0;i<$scope.regions.length;i++){
+        if($scope.regions[i].attributes.title == user.regionName){
+          regionId = $scope.regions[i].id
+        }
+      }
+      
+      Parse.Cloud.run('inviteUser',{'email':user.email,'canUpload':user.canUpload,'isAdmin':user.isAdmin,'regionName':user.regionName,'regionId':regionId}).then(function(res) {
         console.info("Invite Sent: ",res)
         $scope.user = {}
         var alertPopup = $ionicPopup.alert({
@@ -26,7 +33,6 @@ angular.module('garago.controllers.invite', [])
     }
 
     $scope.getRegions = function() {
-
       // Use timeout to simulate a 650ms request.
       return $parseAPI.getRegions().then(function(res){
         console.log
