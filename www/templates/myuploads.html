@@ -7,7 +7,7 @@
       </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-      <!-- <button class="button button-icon button-clear" ng-click="createNewProject()"><i class="fa fa-icon fa-upload"></i></button>&nbsp;&nbsp; -->
+      <button class="button button-icon button-clear" ng-click="openModal()"><i class="fa fa-icon fa-upload"></i></button>&nbsp;&nbsp;
       <!-- <button class="button button-icon button-clear" ng-click="showDelete()"><i class="fa fa-icon fa-minus"></i></button>&nbsp;&nbsp; -->
     </ion-nav-buttons>
   </ion-nav-bar>
@@ -19,70 +19,6 @@
         <input type="text" placeholder="Search" ng-init="search" ng-model="search.text">
       </label>
     </div> -->
-
-
-    <!-- Upload -->
-    <div class="list card upload-module my-uploads" ng-if="currentUser.attributes.canUpload">
-      <div class="list" id="upload-container">
-        <div class="item item-avatar">
-          <i class="fa fa-folder" aria-hidden="true"></i>
-          <h2>{{'UPLOAD' | translate }}</h2>
-          <p>(png, jpg, gif, pdf, doc, docx, txt)</p>
-          <!-- <p>Stats &amp; Quick Reference</p> -->
-        </div>
-        <div class="item item-avatar">
-          <i class="fa fa-upload" ng-class="filestoupload ? 'green': 'blue'" ng-click="uploadFiles()"></i>
-          <span class="file-input">
-
-            <input ng-model="uploadfiles" type="file" accept="image/*,.pdf,.doc,.docx,.txt,.zip,application/pdf" id="upload" multiple onchange="angular.element(this).scope().fileNameChanged(this)"/>
-          </span>
-          <!--  <div class="warning">
-              <h1>Drop Files Here </h1>
-            </div> -->
-          <!-- <div class="chips">
-              <md-chips ng-model="searchTags" name="tagName" readonly="false" md-removable="true" md-max-chips="10" placeholder="Add tag(s) here...">
-                <md-chip-template>
-                  <strong>{{$chip}}</strong>
-                </md-chip-template>
-              </md-chips>
-            </div> -->
-        </div>
-        <div class="chip-container">
-          <div class="experimental-chips">
-            <i class="fa fa-tag"></i>
-            <h4>{{'LIBRARY_DASHBOARD.TAGS' | translate }}</h4>
-            <span class="instructions">{{'LIBRARY_DASHBOARD.TAGS_MESSAGE' | translate }}</span>
-            <md-chips ng-model="searchTags" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-require-match="false">
-              <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="{{'LIBRARY_DASHBOARD.SEARCH_NOC_CODES' | translate }}" md-menu-class="autocomplete-custom-template">
-                <md-item-template>
-                  <span class="item-title">
-                      <i class="fa fa-search"></i>
-                      <span> {{item.attributes.title}} </span>
-                  </span>
-                  <span class="item-metadata">
-                      <span>
-                        <span>{{'LIBRARY_DASHBOARD.NOC_CODE' | translate }}:<strong>{{item.attributes.code}}</strong></span>
-                  </span>
-                  <span>
-                        <!-- <strong>{{item.forks}}</strong> -->
-                      </span>
-                  </span>
-                </md-item-template>
-                <span md-highlight-text="searchText">{{item.attributes.title}} :: {{item.attributes.code}}</span>
-              </md-autocomplete>
-              <md-chip-template>
-                <span>
-                    <strong>{{$chip.attributes.title}}</strong>
-                    <em>({{$chip.attributes.code}})</em>
-                  </span>
-              </md-chip-template>
-            </md-chips>
-          </div>
-        </div>
-        <div class="button button-full button-balanced" ng-click="uploadFiles()">{{'UPLOAD' | translate }}</div>
-      </div>
-    </div>
-
 
     <div class="warning" ng-if="!DATA || DATA.length < 1">
       <h1>{{'LIBRARY_BROWSE.NO_FILES_FOUND' | translate }}</h1>

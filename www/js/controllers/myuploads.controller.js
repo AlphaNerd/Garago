@@ -1,6 +1,6 @@
 angular.module('garago.controllers.myuploads', [])
 
-  .controller('MyUploadsCtrl', function($scope, $ionicModal, $timeout, $rootScope, $parseAPI, userUploads, $ionicLoading, $ionicHistory, $ionicPopup) {
+  .controller('MyUploadsCtrl', function($scope, $ionicModal, $timeout, $rootScope, $parseAPI, userUploads, $ionicLoading, $ionicHistory, $ionicPopup, $ionicModal) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -243,5 +243,18 @@ angular.module('garago.controllers.myuploads', [])
         $scope.$broadcast('scroll.refreshComplete');
       })
     }
+
+    $ionicModal.fromTemplateUrl('../../templates/modals/upload-modal.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.modal = modal;
+    });
+    $scope.openModal = function() {
+      $scope.modal.show();
+    };
+    $scope.closeModal = function() {
+      $scope.modal.hide();
+    };
 
   })
