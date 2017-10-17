@@ -32,7 +32,7 @@ var translation_fr = {
     HEADER: 'Bibliothèque intelligente',
     SEARCH_PLACEHOLDER: 'Recherche',
     MY_FAVORITES: 'Mes favoris',
-    MY_UPLOADS: 'Mes téléchargements',
+    MY_UPLOADS: 'Mes fichiers',
     MOST_RECENT_UPLOADS: 'Téléchargements récents',
     NO_UPLOADS: 'Aucun fichier trouvé',
     TAGS: 'Étiquette',
@@ -68,6 +68,6 @@ var translation_fr = {
     SIGN_OUT_MESSAGE:  "Si vous désirez sortir veuillez clicker sur 'Ok'. Clicker sur 'Annuler' si vous souhaitez rester connecté.",
   },
   MY_UPLOADS: {
-    HEADER: "My Uploads(FR)"
+    HEADER: "Mes fichiers"
   }
 };
