@@ -25,6 +25,7 @@ angular.module('garago.controllers.register', [])
           var isAdmin = res[0].attributes.isAdmin
           var invitedBy = res[0].attributes.invitedBy
           var region = res[0].attributes.region
+          var regionId = res[0].attributes.regionId
           var user = new Parse.User();
           user.set("firstName", data.firstName);
           user.set("lastName", data.lastName);
@@ -34,13 +35,14 @@ angular.module('garago.controllers.register', [])
           user.set("canUpload", canUpload || false)
           user.set("isAdmin", isAdmin || false)
           user.set("invitedBy", invitedBy)
-          user.set("region", region || 'default')
+          user.set("region", region || 'null')
+          user.set("regionId", regionId || 'null')
           user.signUp(null, {
             success: function(user) {
               // console.log("Parse user registered: ",Parse.User.current())
               $rootScope.USER = Parse.User.current();
               $scope.newUser = {}
-              removeInvite(data)
+              removeInvite(user)
               $state.go("app.library")
             },
             error: function(user, error) {
@@ -111,9 +113,9 @@ angular.module('garago.controllers.register', [])
     }
 
     function removeInvite(data) {
-      console.log(data)
+      console.log("Remove Invite for: ",data)
       Parse.Cloud.run('removeInvite', {
-        'email': data.email
+        'email': data.attributes.email
       }).then(function(res) {
         console.info("Removed Invite: ", res)
       })

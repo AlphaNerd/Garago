@@ -322,18 +322,19 @@ input.md-input {
 }*/
 
 #Library input[type='file']:before {
-/*    content: "Drop file(s) here";*/
+    content: "\f0ee";
+    font-family: 'FontAwesome';
     display: block;
     position: absolute;
     text-align: center;
-    top: 50%;
+    top: 70%;
     left: 50%;
     width: 200px;
     height: 40px;
     margin: -25px 0 0 -100px;
-    font-size: 18px;
     font-weight: bold;
-    color: #999;
+    color: #ddd;
+    font-size: 85px;
 }
 
 #Library input[type="file"] {
