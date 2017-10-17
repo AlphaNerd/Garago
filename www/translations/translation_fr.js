@@ -5,7 +5,7 @@ var translation_fr = {
   MANAGE_INVITES: 'gestion des utilisateurs',
   DASHBOARD: 'Tableau de bord',
   MY_FAVORITES: 'Mes favoris',
-  BROWSE_ALL: 'Voir tous les documents',
+  BROWSE_ALL: 'Tous les documents',
   SHARE: 'Partager',
   DELETE: 'Effacer',
   LAST_UPDATED: 'Dernière mise à jour',

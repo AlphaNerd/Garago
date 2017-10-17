@@ -333,7 +333,7 @@ input.md-input {
     height: 40px;
     margin: -25px 0 0 -100px;
     font-weight: bold;
-    color: #ddd;
+    color: rgba(221, 221, 221, 0.2);
     font-size: 85px;
 }
 

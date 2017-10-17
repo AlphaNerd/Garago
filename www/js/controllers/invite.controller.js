@@ -4,7 +4,7 @@ angular.module('garago.controllers.invite', [])
   ////////////////////////
   .controller('InviteCtrl', ['$scope', '$state', '$ionicModal', '$ionicPopup', '$localstorage', '$rootScope', '$ionicLoading', '$parseAPI', function($scope, $state, $ionicModal, $ionicPopup, $localstorage, $rootScope, $ionicLoading, $parseAPI) {
     console.log("Invite Ctrl Loaded")
-    $scope.currentUser = Parse.User.current().fetch()
+    $scope.currentUser = Parse.User.current()
     $scope.user = {}
 
     $scope.region = null;

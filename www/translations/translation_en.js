@@ -36,7 +36,7 @@ var translation_en = {
     MOST_RECENT_UPLOADS: 'Most Recent Uploads',
     NO_UPLOADS: 'No uploads found',
     TAGS: 'Tags',
-    TAGS_MESSAGE: 'Search NOC below, press enter to attach to file(s).',
+    TAGS_MESSAGE: 'Search NOC or type your own tags and press enter to attach to your files',
     SEARCH_NOC_CODES: 'Search NOC...',
     NOC_CODE: 'NOC',
     NO_FAVS: 'No favorites found.',
