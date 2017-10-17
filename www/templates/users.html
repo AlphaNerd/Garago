@@ -12,11 +12,11 @@
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content>
-    <div class="item item-input search-header">
+    <!-- <div class="item item-input search-header">
       <label class="item-input-wrapper">
         <input type="text" placeholder="Search" ng-init="search" ng-model="search.text">
       </label>
-    </div>
+    </div> -->
     <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
       <ion-item ng-repeat="user in users | filter:search.text" class="item-thumbnail-left">
         <img ng-src="{{user.attributes.image._url || '../img/no-image.jpg'}}">

@@ -52,7 +52,7 @@ var translation_fr = {
   INVITE: {
     HEADER: 'Inviter des utilisateurs',
     USER_CAN_UPLOAD: 'Utilisateur peut télécharger',
-    USER_IS_ADMIN: 'User is Administrator(FR)',
+    USER_IS_ADMIN: 'L\'utilisateur est un administrateur',
     INVITE: 'Inviter',
     ASSIGN_TO_REGION: 'Assigner à la Région'
   },

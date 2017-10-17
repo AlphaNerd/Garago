@@ -265,6 +265,7 @@ input.md-input {
   font-size: 26px;
   font-family: 'Patua One', cursive;
   background: #fff;
+  line-height: 28px;
 }
 
 .drop-box {
@@ -808,3 +809,18 @@ md-input-container:not(.md-input-invalid).md-input-has-value label {
 /*#Library .search-header{
   padding:15px 15px;
 }*/
+
+
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: pink;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: pink;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: pink;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: pink;
+}

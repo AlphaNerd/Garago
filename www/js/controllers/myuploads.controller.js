@@ -12,6 +12,18 @@ angular.module('garago.controllers.myuploads', [])
       $scope.refreshData()
     });
 
+    $scope.fileNameChanged = function() {
+      // console.log("CHANGED")
+      $scope.filestoupload = true
+      $scope.$apply()
+    }
+    $scope.filestoupload = false
+
+    $scope.search = {
+      text: ""
+    }
+    $scope.searchTags = []
+
     $scope.shouldShowDelete = false;
     $scope.shouldShowReorder = false;
     $scope.listCanSwipe = true
@@ -135,6 +147,98 @@ angular.module('garago.controllers.myuploads', [])
     var Files = Parse.Object.extend("Files")
     $scope.refreshData = function() {
       $parseAPI.getUserFiles().then(function(res) {
+        $scope.DATA = res
+        $scope.$broadcast('scroll.refreshComplete');
+      })
+    }
+
+    ////// Experimental Chips    
+    $scope.readonly = true;
+    $scope.selectedItem = null;
+    $scope.searchText = null;
+    $scope.querySearch = $scope.querySearch;
+    // $scope.NOCcodes = loadNOCcodes( );
+    $scope.selectedNOCcodes = [];
+    $scope.numberChips = [];
+    $scope.numberChips2 = [];
+    $scope.numberBuffer = '';
+    $scope.autocompleteDemoRequireMatch = true;
+    $scope.transformChip = $scope.transformChip;
+
+    /**
+     * Return the proper object when the append is called.
+     */
+    $scope.transformChip = function(chip) {
+      // If it is an object, it's already a known chip
+      console.log(chip)
+      if (angular.isObject(chip)) {
+        console.log("return chip")
+        return chip;
+      }
+
+      // Otherwise, create a new one
+      console.log("make new chip")
+      return { attributes: { title: chip.toLowerCase(), code: 0, lang: Parse.User.current().attributes.language, noc: "0" } }
+    }
+
+    /**
+     * Search for NOC.
+     */
+    $scope.querySearch = function(query) {
+      var myQuery = {
+        attributes: {
+          title: query.toLowerCase(),
+          noc: "",
+          lang: Parse.User.current().attributes.language,
+          code: 0
+        }
+      }
+      var results = myQuery ? queryCodes(query) : [];
+      // var results = query.toLowerCase() ? $scope.NOCcodes.filter(createFilterFor(query.toLowerCase())) : [];
+      return results;
+    }
+
+    function queryCodes(query) {
+      Parse.User.current().fetch()
+      var myQuery = query.toLowerCase()
+      return Parse.Cloud.run('getNocCodes', { 'searchTerm': myQuery, 'userlang': Parse.User.current().attributes.language }).then(function(res) {
+        console.info("NOC CODES: ", res)
+        return res
+      })
+    }
+
+    $scope.uploadFiles = function() {
+      var $input = angular.element(document.getElementById('upload'));
+      console.log($input.files)
+      $ionicLoading.show({
+        template: "Saving file(s)..."
+      })
+      $parseAPI.saveUserFile($input[0].files, $scope.searchTags).then(function(res) {
+        // console.log("Save returned: ", res)
+        $parseAPI.getUserFiles().then(function(res) {
+          // console.log("Save returned: ", res)
+          $scope.userFiles = res
+          $input.val(null);
+          $scope.searchTags = []
+          $scope.filestoupload = false
+          try{
+            change_back()  
+          }
+          catch(e){
+            console.log(e)
+          }
+        })
+      }).then(function(res) {
+        $ionicLoading.show({
+          template: "Successfully Saved."
+        })
+        $scope.refreshData()
+      })
+    }
+
+    $scope.refreshData = function() {
+      $parseAPI.getUserFiles().then(function(res) {
+        // console.log("Library View 'User Files' Resolve: ", res)
         $scope.DATA = res
         $scope.$broadcast('scroll.refreshComplete');
       })

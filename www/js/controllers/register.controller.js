@@ -40,6 +40,9 @@ angular.module('garago.controllers.register', [])
           user.signUp(null, {
             success: function(user) {
               // console.log("Parse user registered: ",Parse.User.current())
+              Parse.Cloud.run('newUserAdminNotify',{'invitedBy':invitedBy}).then(function(res) {
+                console.info("Notification Sent: ",res)
+              });
               $rootScope.USER = Parse.User.current();
               $scope.newUser = {}
               removeInvite(user)
