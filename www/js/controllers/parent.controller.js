@@ -37,9 +37,9 @@ angular.module('garago.controllers', [])
     }
 
     ///// Language init()
-    var defaultLanguage = Parse.User.current().attributes.language || 'en'
-    $translate.use(defaultLanguage);
-    moment.locale(defaultLanguage)
+    $rootScope.defaultLanguage = Parse.User.current().attributes.language || 'en'
+    $translate.use($rootScope.defaultLanguage);
+    moment.locale($rootScope.defaultLanguage)
 
     $scope.changeLanguage = function(langKey) {
       console.log("Change to ", langKey)

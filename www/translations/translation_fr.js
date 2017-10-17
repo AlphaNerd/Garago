@@ -24,7 +24,7 @@ var translation_fr = {
   LOGIN: 'Entrer',
   LANGUAGE: 'Langue',
   VIEW_ALL: 'Voir tout',
-  NEXT: 'Next(FR)',
+  NEXT: 'Prochain',
   TOTAL_VOTES: 'votes',
   TOTAL_DOWNLOADS: 'Nombre total de téléchargements',
   POWERED_BY: "Produit par",

@@ -2,8 +2,23 @@ angular.module('garago.controllers.login', [])
   ////////////////////////
   /// LOGIN CONTROLLER //////////////////////////////////////////////////////
   ////////////////////////
-  .controller('LoginCtrl', ['$scope', '$state', '$ionicModal', '$ionicPopup', '$localstorage', '$rootScope', '$ionicLoading', function($scope, $state, $ionicModal, $ionicPopup, $localstorage, $rootScope, $ionicLoading) {
+  .controller('LoginCtrl', ['$scope', '$state', '$ionicModal', '$ionicPopup', '$localstorage', '$rootScope', '$ionicLoading', '$translate',function($scope, $state, $ionicModal, $ionicPopup, $localstorage, $rootScope, $ionicLoading,$translate) {
     // console.log("Login Ctrl Loaded")
+    ///// Language init()
+    $scope.defaultLanguage = 'en'
+
+    $scope.changeLanguage = function() {
+      console.log("Current Lang: ", $scope.defaultLanguage)
+      if ($scope.defaultLanguage == 'en') {
+        $scope.defaultLanguage = 'fr'
+        moment.locale($scope.defaultLanguage)
+        $translate.use($scope.defaultLanguage);
+      } else {
+        $scope.defaultLanguage = 'en'
+        moment.locale($scope.defaultLanguage)
+        $translate.use($scope.defaultLanguage);
+      }
+    };
 
     $scope.login = function(data) {
       console.log("Log in user with: ",data)

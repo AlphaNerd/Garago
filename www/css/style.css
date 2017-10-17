@@ -602,3 +602,14 @@ md-input-container:not(.md-input-invalid).md-input-focused label{
 .search-header{
   padding:15px 15px;
 }
+
+.lang-switch {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    font-size: 18px;
+    color: #2c3b42;
+    background: #34cc5f;
+    padding: 10px;
+    z-index: 100;
+}

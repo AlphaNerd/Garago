@@ -1,11 +1,28 @@
 angular.module('garago.controllers.register', [])
 
-  .controller('RegisterUserCtrl', ['$scope', '$state', '$ionicSlideBoxDelegate', '$ionicPopup', '$rootScope', '$localstorage', '$q', '$timeout', function($scope, $state, $ionicSlideBoxDelegate, $ionicPopup, $rootScope, $localstorage, $q, $timeout) {
+  .controller('RegisterUserCtrl', ['$scope', '$state', '$ionicSlideBoxDelegate', '$ionicPopup', '$rootScope', '$localstorage', '$q', '$timeout','$translate', function($scope, $state, $ionicSlideBoxDelegate, $ionicPopup, $rootScope, $localstorage, $q, $timeout,$translate) {
     // console.log("Register a new user...")
 
     $scope.newUser = {};
     $scope.slideNum = 0;
     $scope.buttonLabel = 'Next'
+
+    $scope.defaultLanguage = 'en'
+
+    $scope.changeLanguage = function() {
+      console.log("Current Lang: ", $scope.defaultLanguage)
+      if ($scope.defaultLanguage == 'en') {
+        $scope.defaultLanguage = 'fr'
+        moment.locale($scope.defaultLanguage)
+        $translate.use($scope.defaultLanguage);
+      } else {
+        $scope.defaultLanguage = 'en'
+        moment.locale($scope.defaultLanguage)
+        $translate.use($scope.defaultLanguage);
+      }
+    };
+
+
     var Invites = Parse.Object.extend("Invites")
 
     $scope.register = function(data) {
