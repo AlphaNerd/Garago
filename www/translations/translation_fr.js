@@ -40,6 +40,7 @@ var translation_fr = {
     SEARCH_NOC_CODES: 'Recherche de la CNP',
     NOC_CODE: 'CNP',
     NO_FAVS: 'Aucun favoris trouvé',
+    TITLE: "Title(FR)"
   },
   LIBRARY_BROWSE: {
     HEADER: 'Visionner la bibliothèque',

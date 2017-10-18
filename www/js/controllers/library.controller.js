@@ -14,7 +14,7 @@ angular.module('garago.controllers.library', [])
 
     $scope.shouldShowDelete = false;
     $scope.shouldShowReorder = false;
-    $scope.listCanSwipe = true
+    $scope.listCanSwipe = false
 
     $scope.fileNameChanged = function() {
       // console.log("CHANGED")

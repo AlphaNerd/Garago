@@ -13,7 +13,7 @@ angular.module('garago.controllers.library_browse', [])
 
     $scope.shouldShowDelete = false;
     $scope.shouldShowReorder = false;
-    $scope.listCanSwipe = true
+    $scope.listCanSwipe = false
 
     $scope.isFavFile = function(file) {
       var array = Parse.User.current().attributes.fav_files || []

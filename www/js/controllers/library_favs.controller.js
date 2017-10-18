@@ -14,7 +14,7 @@ angular.module('garago.controllers.library_favs', [])
 
     $scope.shouldShowDelete = false;
     $scope.shouldShowReorder = false;
-    $scope.listCanSwipe = true
+    $scope.listCanSwipe = false
     
     $scope.DATA = userFilesData
 

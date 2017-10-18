@@ -40,6 +40,7 @@ var translation_en = {
     SEARCH_NOC_CODES: 'Search NOC...',
     NOC_CODE: 'NOC',
     NO_FAVS: 'No favorites found.',
+    TITLE: "Title"
   },
   LIBRARY_BROWSE: {
     HEADER: 'Browse Library',
