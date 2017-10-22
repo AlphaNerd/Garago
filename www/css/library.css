@@ -305,7 +305,7 @@ input.md-input {
   display: block;
   top: 10px;
   position: relative;
-  float: left;
+  /*float: left;*/
   width: 100%;
   margin-bottom: 20px;
 }
@@ -829,4 +829,37 @@ md-input-container:not(.md-input-invalid).md-input-has-value label {
 .upload-module.my-uploads {
     height: inherit;
     transition: all 0.5s ease;
+}
+
+
+.file-title {
+    padding: 10px;
+    margin-bottom: -25px;
+}
+
+.file-title h4{
+    display:inline-block;
+}
+
+.file-title md-input-container {
+    margin: 18px 0 0 0!important;
+}
+
+
+.attached-files {
+    display: block;
+    clear: initial;
+    /*position: absolute;*/
+    /*bottom: 0;*/
+}
+
+.attached-files .file i {
+    margin-right: 10px;
+}
+
+.attached-files .file input {
+    padding:3px;
+    border:1px solid #ddd;
+    border-radius: 3px;
+    margin:5px 10px 5px 0;
 }

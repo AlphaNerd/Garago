@@ -409,7 +409,10 @@ angular.module('garago.factory.parse', [])
         var deferred = $q.defer()
         var promises = Object.keys(files).map(function(Key,Index){
           var val = files[Key]
+          console.log("FILE: ",val)
           console.log("FILE SIZE: ",val.size/1024)
+          console.log("FILE NAME: ",val.name)
+          console.log("FILE TITLE: ",val.title)
           var fileSize = formatBytes(val.size)
           var promise = new Promise(function(resolve,reject){
             var parseFile = new Parse.File(val.name, val);
@@ -422,6 +425,7 @@ angular.module('garago.factory.parse', [])
               file.set("rating_count", 0);
               file.set("total_ratings", 0);
               file.set("fileSize",fileSize)
+              file.set("title",val.title || val.name)
               // console.log("TAGS IN: ",tags)
               var tagArray = tags.map(function (item) {
                 var obj = {

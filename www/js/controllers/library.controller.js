@@ -1,6 +1,6 @@
 angular.module('garago.controllers.library', [])
 
-  .controller('LibraryCtrl', function($scope, $ionicModal, $timeout, $rootScope, $ionicSideMenuDelegate, $parseAPI, userFilesData, userSharedFilesData, userFavFilesData, FileUploader, $ionicLoading) {
+  .controller('LibraryCtrl', function($scope, $ionicModal, $timeout, $rootScope, $ionicSideMenuDelegate, $parseAPI, userFilesData, userSharedFilesData, userFavFilesData, FileUploader, $ionicLoading, $ionicPopup) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -11,6 +11,13 @@ angular.module('garago.controllers.library', [])
       Parse.User.current().fetch()
       $scope.refreshData()
     });
+
+    $scope.formatBytes = function(bytes) {
+       var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+       if (bytes == 0) return '0 Byte';
+       var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+       return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+    };
 
     $scope.shouldShowDelete = false;
     $scope.shouldShowReorder = false;
@@ -72,32 +79,52 @@ angular.module('garago.controllers.library', [])
       }
     }
 
-    $scope.uploadFiles = function() {
+    $scope.updateFileList = function(elem){
+      console.log(elem.files)
+      $scope.attachedFiles = elem.files
+      $scope.$apply()
+    }
+
+    $scope.removeFileFromUploads = function($index){
+      var $input = angular.element(document.getElementById('upload'));
+      $input.splice($index,1)
+    }
+
+    $scope.uploadFiles = function(fileTitle) {
       var $input = angular.element(document.getElementById('upload'));
       console.log($input.files)
-      $ionicLoading.show({
-        template: "Saving file(s)..."
-      })
-      $parseAPI.saveUserFile($input[0].files, $scope.searchTags).then(function(res) {
-        // console.log("Save returned: ", res)
-        $parseAPI.getUserFiles().then(function(res) {
-          // console.log("Save returned: ", res)
-          $scope.userFiles = res
-          $input.val(null);
-          $scope.searchTags = []
-          $scope.filestoupload = false
-          try{
-            change_back()  
-          }
-          catch(e){
-            console.log(e)
-          }
-        })
-      }).then(function(res) {
+
+      if($scope.searchTags.length == 0){
+        console.log("You must attach a NOC to your file")
+        var alertPopup = $ionicPopup.alert({
+           title: 'Warning!',
+           template: 'You must attach a NOC to your upload(s)'
+         });
+      }else{
         $ionicLoading.show({
-          template: "Successfully Saved."
+          template: "Saving file(s)..."
         })
-      })
+        $parseAPI.saveUserFile($scope.attachedFiles, $scope.searchTags).then(function(res) {
+          // console.log("Save returned: ", res)
+          $parseAPI.getUserFiles().then(function(res) {
+            // console.log("Save returned: ", res)
+            $scope.userFiles = res
+            $input.val(null);
+            $scope.searchTags = []
+            $scope.filestoupload = false
+            try{
+              change_back()  
+            }
+            catch(e){
+              console.log(e)
+            }
+          })
+        }).then(function(res) {
+          $ionicLoading.show({
+            template: "Successfully Saved."
+          })
+        })
+      }
     }
 
     $scope.confirmDelete = function(file) {

@@ -24,6 +24,16 @@
               </md-chips>
             </div> -->
         </div>
+
+        <div class="file-title">
+          <i class="fa fa-tag"></i>
+          <h4>{{'LIBRARY_DASHBOARD.TITLE' | translate }}</h4>
+          <md-input-container>
+            <label>Title</label>
+            <input ng-model="fileTitle" ng-model="fileTitle">
+          </md-input-container>
+        </div>
+        
         <div class="chip-container">
           <div class="experimental-chips">
             <i class="fa fa-tag"></i>
@@ -56,7 +66,7 @@
             </md-chips>
           </div>
         </div>
-        <div class="button button-full button-balanced" ng-click="uploadFiles()">{{'UPLOAD' | translate }}</div>
+        <div class="button button-full button-balanced" ng-click="uploadFiles(fileTitle)">{{'UPLOAD' | translate }}</div>
       </div>
     </div>
   </ion-content>
