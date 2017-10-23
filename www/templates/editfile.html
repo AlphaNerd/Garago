@@ -7,7 +7,7 @@
       </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-      <button class="button button-icon button-clear" ng-click="updateFile(searchTags,newTitle)"><i class="fa fa-icon fa-save"></i>&nbsp;Done</button>&nbsp;
+      <button class="button button-icon button-clear button-assertive" ng-click="confirmDelete(FILE)">&nbsp;Delete</button>&nbsp;
       <!-- <button class="button button-icon button-clear" ng-click="confirmCancel()"><i class="fa fa-icon fa-times-circle"></i>&nbsp;Cancel</button>&nbsp; -->
     </ion-nav-buttons>
   </ion-nav-bar>
@@ -17,7 +17,7 @@
     <div class="list card">
       <div class="item item-avatar edit-file-title">
         <i class="fa" ng-class="FILE.attributes.icon" aria-hidden="true"></i>
-        <input class="title" placeholder="{{FILE.attributes.title}}" ng-model="newTitle"/><br/>
+        <input class="title" ng-model="newTitle"/><br/>
         <!-- <h2><b>{{FILE.attributes.title}}</b></h2> -->
         <span class="modified">
             <span>Modified: {{FILE.updatedAt | moment}}</span>
@@ -76,8 +76,8 @@
         </p> -->
       </div>
     </div>
-    <div class="delete-item button button-block button-assertive" ng-click="confirmDelete(FILE)">
-      Delete
+    <div class="delete-item button button-block button-balanced" ng-click="updateFile(searchTags)">
+      <i class="fa fa-icon fa-save"></i>&nbsp;Save
     </div>
   </ion-content>
 </ion-view>
