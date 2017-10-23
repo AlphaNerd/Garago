@@ -13,6 +13,24 @@ angular.module('garago.controllers', [])
       // console.log($scope.currentUser)
     });
 
+    $scope.updateProfilePic = function(elem){
+      console.log(elem.files)
+      $ionicLoading.show({
+        template: '<i class="icon ion-loading-c"></i><div>Changing Image</div>',
+        duration: 1000
+      })
+      var parseFile = new Parse.File(elem.files[0].name, elem.files[0]);
+      parseFile.save().then(function(res) {
+        Parse.User.current().set("image",res)
+        Parse.User.current().save()
+        Parse.User.current().fetch()
+        console.log("set")
+        $scope.$apply()
+        $ionicLoading.hide()
+      })
+    }
+
+
     $scope.handleParseError = function(err) {
       switch (err.code) {
         case Parse.Error.INVALID_SESSION_TOKEN:

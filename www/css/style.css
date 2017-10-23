@@ -613,3 +613,21 @@ md-input-container:not(.md-input-invalid).md-input-focused label{
     padding: 10px;
     z-index: 100;
 }
+
+
+
+#MainMenu input#upload {
+    opacity: 0;
+    display: block;
+    max-width: 100px;
+    margin: 0 auto;
+    padding: 20px;
+    position: absolute;
+    left: 32%;
+    top: 20px;
+    height: 100px;
+    z-index: 1;
+}
+
+#MainMenu input#upload:hover{
+  cursor: pointer;

@@ -7,27 +7,63 @@
       </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-      <button class="button button-icon button-clear" ng-click="confirmSave()"><i class="fa fa-icon fa-save"></i>&nbsp;Save</button>&nbsp;
-      <button class="button button-icon button-clear" ng-click="confirmCancel()"><i class="fa fa-icon fa-times-circle"></i>&nbsp;Cancel</button>&nbsp;
+      <button class="button button-icon button-clear" ng-click="updateFile(searchTags,newTitle)"><i class="fa fa-icon fa-save"></i>&nbsp;Done</button>&nbsp;
+      <!-- <button class="button button-icon button-clear" ng-click="confirmCancel()"><i class="fa fa-icon fa-times-circle"></i>&nbsp;Cancel</button>&nbsp; -->
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content id="Edit" scroll="true" class="File">
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="refreshData()">
     </ion-refresher>
-    <h3> ** Currently being edited</h3>
     <div class="list card">
-      <div class="item item-avatar">
+      <div class="item item-avatar edit-file-title">
         <i class="fa" ng-class="FILE.attributes.icon" aria-hidden="true"></i>
-        <h2><b>{{FILE.attributes.title}}</b></h2>
+        <input class="title" placeholder="{{FILE.attributes.title}}" ng-model="newTitle"/><br/>
+        <!-- <h2><b>{{FILE.attributes.title}}</b></h2> -->
         <span class="modified">
             <span>Modified: {{FILE.updatedAt | moment}}</span>
             <div>Created by: {{FILE.attributes.createdBy.email}}</div>
         </span>
-        <span class="tags">
+
+
+        <!-- <span class="tags">
             <span ng-repeat="tag in FILE.attributes.tags">
                 {{tag.title}}
             </span>
-        </span>
+        </span> -->
+
+        <div class="chip-container">
+          <div class="experimental-chips">
+            <!-- <i class="fa fa-tag"></i> -->
+            <!-- <h4>{{'LIBRARY_DASHBOARD.TAGS' | translate }}</h4> -->
+            <!-- <span class="instructions">{{'LIBRARY_DASHBOARD.TAGS_MESSAGE' | translate }}</span> -->
+            <md-chips ng-model="searchTags" md-autocomplete-snap md-transform-chip="transformChip($chip)" md-require-match="false">
+              <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.name" placeholder="{{'LIBRARY_DASHBOARD.SEARCH_NOC_CODES' | translate }}" md-menu-class="autocomplete-custom-template">
+                <md-item-template>
+                  <span class="item-title">
+                      <i class="fa fa-search"></i>
+                      <span> {{item.attributes.title}} </span>
+                  </span>
+                  <span class="item-metadata">
+                      <span>
+                        <span>{{'LIBRARY_DASHBOARD.NOC_CODE' | translate }}:<strong>{{item.attributes.code}}</strong></span>
+                  </span>
+                  <span>
+                        <!-- <strong>{{item.forks}}</strong> -->
+                      </span>
+                  </span>
+                </md-item-template>
+                <span md-highlight-text="searchText">{{item.attributes.title}} :: {{item.attributes.code}}</span>
+              </md-autocomplete>
+              <md-chip-template>
+                <span>
+                    <strong>{{$chip.attributes.title}}</strong>
+                    <!-- <em>({{$chip.attributes.code}})</em> -->
+                  </span>
+              </md-chip-template>
+            </md-chips>
+          </div>
+
+
       </div>
       <div class="item item-body">
         <!-- <img class="full-image" src="delorean.jpg"> -->

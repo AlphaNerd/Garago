@@ -200,6 +200,7 @@ angular.module('garago.controllers.library', [])
      * Search for NOC.
      */
     $scope.querySearch = function(query) {
+      console.log(query)
       var myQuery = {
         attributes: {
           title: query.toLowerCase(),

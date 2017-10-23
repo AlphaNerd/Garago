@@ -7,3 +7,26 @@
     display: inline-block;
 }
 
+#Edit .edit-file-title input {
+    border: 0px solid #fff;
+    margin-bottom: 5px;
+    font-size: 18px;
+    width:100%;
+    color:#444;
+}
+
+#Edit .title::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #444;
+  font-size:18px;
+}
+#Edit .title::-moz-placeholder { /* Firefox 19+ */
+  color: #444;
+  font-size:18px;
+}
+#Edit .title:-ms-input-placeholder { /* IE 10+ */
+  color: #444;
+  font-size:18px;
+}
+#Edit .title:-moz-placeholder { /* Firefox 18- */
+  color: #444;
+  font-size:18px;

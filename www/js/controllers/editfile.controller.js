@@ -27,23 +27,6 @@ angular.module('garago.controllers.editfile', [])
      });
    };
 
-   $scope.confirmCancel = function() {
-     var confirmPopup = $ionicPopup.confirm({
-       title: 'Warning',
-       template: 'All changes will be lost. Are you sure you want to cancel?'
-     });
-
-     confirmPopup.then(function(res) {
-       if(res) {
-         console.log('You are sure');
-         console.log($ionicHistory)// $ionicHistory
-         $ionicHistory.goBack()
-       } else {
-         console.log('You are not sure');
-       }
-     });
-   };
-
    $scope.confirmDelete = function(file) {
      var confirmPopup = $ionicPopup.confirm({
        title: 'Warning',
@@ -68,21 +51,27 @@ angular.module('garago.controllers.editfile', [])
     $scope.search = {
       text: ""
     }
+
     $scope.searchTags = $scope.FILE.attributes.tags.map(function(tag){
-      var mytag = {
-        name: tag,
-        type: tag
-      }
+      console.log(tag)
+      var mytag = {attributes: {
+        title: tag.title,
+        noc: "noc",
+        code: 0,
+        lang: 'en'
+      }}
       return mytag
     })
+    
+
 
     ////// Experimental Chips    
-    $scope.readonly = false;
+    $scope.readonly = true;
     $scope.selectedItem = null;
     $scope.searchText = null;
     $scope.querySearch = $scope.querySearch;
-    $scope.vegetables = loadVegetables();
-    $scope.selectedVegetables = [];
+    // $scope.NOCcodes = loadNOCcodes( );
+    $scope.selectedNOCcodes = [];
     $scope.numberChips = [];
     $scope.numberChips2 = [];
     $scope.numberBuffer = '';
@@ -94,34 +83,46 @@ angular.module('garago.controllers.editfile', [])
      */
     $scope.transformChip = function(chip) {
       // If it is an object, it's already a known chip
+      console.log(chip)
       if (angular.isObject(chip)) {
+        console.log("return chip")
         return chip;
       }
 
       // Otherwise, create a new one
-      return { name: chip, type: 'new' }
+      console.log("make new chip")
+      return { attributes: { title: chip.toLowerCase(), code: 0, lang: Parse.User.current().attributes.language, noc: "0" } }
     }
 
     /**
-     * Search for vegetables.
+     * Search for NOC.
      */
     $scope.querySearch = function(query) {
-      var results = query ? $scope.vegetables.filter(createFilterFor(query)) : [];
+      console.log(query)
+      var myQuery = {
+        attributes: {
+          title: query.toLowerCase(),
+          noc: "",
+          lang: Parse.User.current().attributes.language,
+          code: 0
+        }
+      }
+      var results = myQuery ? queryCodes(query) : [];
+      // var results = query.toLowerCase() ? $scope.NOCcodes.filter(createFilterFor(query.toLowerCase())) : [];
       return results;
     }
 
-    /**
-     * Create filter function for a query string
-     */
-    function createFilterFor(query) {
-      var lowercaseQuery = angular.lowercase(query);
-
-      return function filterFn(tag) {
-        return (tag.indexOf(lowercaseQuery) === 0) ||
-          (tag.indexOf(lowercaseQuery) === 0);
-      };
-
+    function queryCodes(query) {
+      Parse.User.current().fetch()
+      var myQuery = query.toLowerCase()
+      return Parse.Cloud.run('getNocCodes', { 'searchTerm': myQuery, 'userlang': Parse.User.current().attributes.language }).then(function(res) {
+        console.info("NOC CODES: ", res)
+        return res
+      })
     }
+
+
+
 
     $scope.toggleFav = function(file, state) {
       console.log(file.id)
@@ -161,14 +162,32 @@ angular.module('garago.controllers.editfile', [])
       }
     }
 
-    function loadVegetables() {
-      var veggies = $scope.FILE.attributes.tagSearch
+    $scope.updateFile = function(tags, newTitle) {
+      console.log($scope.FILE)
 
-      return veggies.map(function(veg) {
-        veg._lowername = veg.toLowerCase();
-        veg._lowertype = veg.toLowerCase();
-        return veg;
-      });
+      if($scope.searchTags.length == 0){
+        console.log("You must attach a NOC to your file")
+        var alertPopup = $ionicPopup.alert({
+           title: 'Warning!',
+           template: 'You must attach a NOC to your upload(s)'
+         });
+      }else{
+        $ionicLoading.show({
+          template: "Saving file..."
+        })
+        var tagArray = tags.map(function (item) {
+          var obj = {
+            title: item.attributes.title,
+            noc: item.attributes.noc
+          }
+          return obj
+        });
+        $scope.FILE.set("title",newTitle)
+        $scope.FILE.set("tags",tagArray)
+        $scope.FILE.save().then(function(res){
+          console.log("FILE UPDATED!")
+        })
+      }
     }
     
   })

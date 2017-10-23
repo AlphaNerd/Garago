@@ -12,6 +12,13 @@ angular.module('garago.controllers.myuploads', [])
       $scope.refreshData()
     });
 
+    $scope.updateFileList = function(elem){
+      console.log(elem.files)
+      $scope.attachedFiles = elem.files
+      $scope.$apply()
+    }
+
+
     $scope.fileNameChanged = function() {
       // console.log("CHANGED")
       $scope.filestoupload = true
@@ -26,7 +33,7 @@ angular.module('garago.controllers.myuploads', [])
 
     $scope.shouldShowDelete = false;
     $scope.shouldShowReorder = false;
-    $scope.listCanSwipe = true
+    $scope.listCanSwipe = false
 
     $scope.isFavFile = function(file) {
       var array = Parse.User.current().attributes.fav_files || []
@@ -35,82 +42,6 @@ angular.module('garago.controllers.myuploads', [])
           return true
         }
       }
-    }
-
-    $scope.confirmDelete = function(file) {
-     var confirmPopup = $ionicPopup.confirm({
-       title: 'Warning',
-       template: 'All changes will be lost. Are you sure you want to delete?'
-     });
-
-     confirmPopup.then(function(res) {
-       if(res) {
-         console.log('You are sure');
-         $parseAPI.deleteUserFile(file).then(function(resp){
-          console.log(resp)
-          $scope.refreshData()
-         })
-       } else {
-         console.log('You are not sure');
-       }
-     });
-   };
-
-    $scope.addComment = function(comment,file){
-      console.log(comment,file)
-      var Comment = Parse.Object.extend("Comments")
-      var myComment = new Comment()
-      myComment.set("text",comment)
-      var user = {
-        id: Parse.User.current().id,
-        name: {
-          first: Parse.User.current().attributes.firstname,
-          last: Parse.User.current().attributes.lastname,
-          username: Parse.User.current().attributes.username
-        },
-        email: Parse.User.current().attributes.email,
-        image: Parse.User.current().attributes.image
-      }
-      myComment.set("createdBy",user)
-      myComment.save({
-        success: function(res){
-          console.log(res)
-        },
-        error: function(e,r){
-          console.log(e,r)
-        }
-      }).then(function(resp){
-        console.log(resp)
-        var Files = Parse.Object.extend("Files")
-        var query = new Parse.Query(Files)
-        query.equalTo("objectId",file.id)
-        query.include("comments")
-        query.find({
-          success: function(res){
-            console.log("Found File: ",res)
-          },
-          error: function(e,r){
-            console.loge,r
-          }
-        }).then(function(myFile){
-          console.log(myFile)
-          var relation = myFile[0].relation("comments")
-          console.log(relation,resp[0])
-          relation.add(resp[0])
-          myFile[0].save({
-            success:function(res){
-              $scope.commentIn = ""
-              $scope.refreshData()
-              console.log(res)
-            },
-            error: function(e,r){
-              console.log(e,r)
-            }
-          }).then(function(res){
-            console.log("SAVED COMMENT")
-          })
-        })
-      })
     }
 
     $scope.toggleFav = function(file, state) {
@@ -207,33 +138,42 @@ angular.module('garago.controllers.myuploads', [])
       })
     }
 
-    $scope.uploadFiles = function() {
+    $scope.uploadFiles = function(fileTitle) {
       var $input = angular.element(document.getElementById('upload'));
       console.log($input.files)
-      $ionicLoading.show({
-        template: "Saving file(s)..."
-      })
-      $parseAPI.saveUserFile($input[0].files, $scope.searchTags).then(function(res) {
-        // console.log("Save returned: ", res)
-        $parseAPI.getUserFiles().then(function(res) {
-          // console.log("Save returned: ", res)
-          $scope.userFiles = res
-          $input.val(null);
-          $scope.searchTags = []
-          $scope.filestoupload = false
-          try{
-            change_back()  
-          }
-          catch(e){
-            console.log(e)
-          }
-        })
-      }).then(function(res) {
+
+      if($scope.searchTags.length == 0){
+        console.log("You must attach a NOC to your file")
+        var alertPopup = $ionicPopup.alert({
+           title: 'Warning!',
+           template: 'You must attach a NOC to your upload(s)'
+         });
+      }else{
         $ionicLoading.show({
-          template: "Successfully Saved."
+          template: "Saving file(s)..."
         })
-        $scope.refreshData()
-      })
+        $parseAPI.saveUserFile($scope.attachedFiles, $scope.searchTags).then(function(res) {
+          // console.log("Save returned: ", res)
+          $parseAPI.getUserFiles().then(function(res) {
+            // console.log("Save returned: ", res)
+            $scope.userFiles = res
+            $input.val(null);
+            $scope.searchTags = []
+            $scope.filestoupload = false
+            $scope.closeModal()
+            try{
+              change_back()
+            }
+            catch(e){
+              console.log(e)
+            }
+          })
+        }).then(function(res) {
+          $ionicLoading.show({
+            template: "Successfully Saved."
+          })
+        })
+      }
     }
 
     $scope.refreshData = function() {
@@ -242,6 +182,24 @@ angular.module('garago.controllers.myuploads', [])
         $scope.DATA = res
         $scope.$broadcast('scroll.refreshComplete');
       })
+    }
+
+    try {
+      /// drag and drop style change on dragentert
+      var drop = document.getElementById("upload");
+      drop.addEventListener("dragenter", change, false);
+      drop.addEventListener("dragleave", change_back, false);
+
+      function change() {
+        drop.style.backgroundColor = 'rgba(51, 205, 95, 0.1)';
+      };
+
+      function change_back() {
+        drop.style.backgroundColor = 'transparent';
+      };
+
+    } catch (e) {
+      console.log(e)
     }
 
     $ionicModal.fromTemplateUrl('../../templates/modals/upload-modal.html', {
