@@ -17,7 +17,7 @@
     <div class="list card">
       <div class="item item-avatar edit-file-title">
         <i class="fa" ng-class="FILE.attributes.icon" aria-hidden="true"></i>
-        <input class="title" ng-model="newTitle"/><br/>
+        <input class="title" placeholder="{{FILE.attributes.title}}" ng-model="UpdateTitle"/><br/>
         <!-- <h2><b>{{FILE.attributes.title}}</b></h2> -->
         <span class="modified">
             <span>Modified: {{FILE.updatedAt | moment}}</span>

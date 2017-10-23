@@ -11,7 +11,7 @@ angular.module('garago.controllers.editfile', [])
     });
 
     $scope.FILE = fileData
-    $scope.newTitle = angular.copy($scope.FILE.attributes.title)
+    
     $scope.confirmSave = function() {
      var confirmPopup = $ionicPopup.confirm({
        title: 'Confirm',
@@ -161,34 +161,38 @@ angular.module('garago.controllers.editfile', [])
         }
       }
     }
+  
 
+
+    $scope.UpdateTitle = ""
     $scope.updateFile = function(tags) {
       console.log($scope.FILE)
-      console.log($scope.newTitle)
+      console.log($scope.UpdateTitle)
       console.log(tags)
-      if($scope.searchTags.length == 0){
-        console.log("You must attach a NOC to your file")
-        var alertPopup = $ionicPopup.alert({
-           title: 'Warning!',
-           template: 'You must attach a NOC to your upload(s)'
-         });
-      }else{
-        $ionicLoading.show({
-          template: "Saving file..."
-        })
-        var tagArray = tags.map(function (item) {
-          var obj = {
-            title: item.attributes.title,
-            noc: item.attributes.noc
-          }
-          return obj
-        });
-        $scope.FILE.set("title",$scope.newTitle)
-        $scope.FILE.set("tags",tagArray)
-        $scope.FILE.save().then(function(res){
-          console.log("FILE UPDATED!")
-        })
-      }
+      // if($scope.searchTags.length == 0){
+      //   console.log("You must attach a NOC to your file")
+      //   var alertPopup = $ionicPopup.alert({
+      //      title: 'Warning!',
+      //      template: 'You must attach a NOC to your upload(s)'
+      //    });
+      // }else{
+      //   $ionicLoading.show({
+      //     template: "Saving file..."
+      //   })
+      //   var tagArray = tags.map(function (item) {
+      //     var obj = {
+      //       title: item.attributes.title,
+      //       noc: item.attributes.noc
+      //     }
+      //     return obj
+      //   });
+      //   $scope.FILE.set("title",$scope.newTitle)
+      //   $scope.FILE.set("tags",tagArray)
+      //   $scope.FILE.save().then(function(res){
+      //     console.log("FILE UPDATED!")
+      //   })
+      // }
     }
     
   })
+

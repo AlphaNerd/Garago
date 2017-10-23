@@ -167,6 +167,7 @@ angular.module('garago.controllers.myuploads', [])
             catch(e){
               console.log(e)
             }
+            $scope.refreshData()
           })
         }).then(function(res) {
           $ionicLoading.show({
