@@ -30,3 +30,8 @@
 #Edit .title:-moz-placeholder { /* Firefox 18- */
   color: #444;
   font-size:18px;
+}
+
+#Edit span.modified {
+    font-size: 12px;
+}

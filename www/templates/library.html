@@ -199,7 +199,7 @@
           <h1>{{'LIBRARY_DASHBOARD.NO_UPLOADS' | translate }}</h1>
         </div>
         <div class="item item-body" ng-repeat="item in userFiles">
-          <i class="fa" ng-class="item.attributes.icon" aria-hidden="true"></i> <span class="filename"><a href="{{item.attributes.file._url}}" target="_blank">{{item.attributes.title}}</a><i class="fa fa-pencil" ng-if="item.attributes.ACL.permissionsById[CurrentUser.id].write" ng-click="editFile(item.attributes.id)"></i></span>
+          <i class="fa" ng-class="item.attributes.icon" aria-hidden="true"></i> <span class="filename"><a href="{{item.attributes.file._url}}" target="_blank">{{item.attributes.title}}</a><i class="fa fa-pencil" ng-if="item.attributes.ACL.permissionsById[CurrentUser.id].write" ng-click="editFile(item.id)"></i></span>
           <span class="modified">
                 <span>{{'MODIFIED' | translate }}: {{item.attributes.updatedAt | moment}}</span>
           </span>

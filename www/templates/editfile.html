@@ -17,20 +17,18 @@
     <div class="list card">
       <div class="item item-avatar edit-file-title">
         <i class="fa" ng-class="FILE.attributes.icon" aria-hidden="true"></i>
-        <input class="title" placeholder="{{FILE.attributes.title}}" ng-model="UpdateTitle"/><br/>
+        <input class="title" placeholder="{{FILE.attributes.title}}" ng-model="NEW_TITLE" />
+        <br/>
         <!-- <h2><b>{{FILE.attributes.title}}</b></h2> -->
         <span class="modified">
             <span>Modified: {{FILE.updatedAt | moment}}</span>
-            <div>Created by: {{FILE.attributes.createdBy.email}}</div>
+        <div>Created by: {{FILE.attributes.createdBy.email}}</div>
         </span>
-
-
         <!-- <span class="tags">
             <span ng-repeat="tag in FILE.attributes.tags">
                 {{tag.title}}
             </span>
         </span> -->
-
         <div class="chip-container">
           <div class="experimental-chips">
             <!-- <i class="fa fa-tag"></i> -->
@@ -62,22 +60,20 @@
               </md-chip-template>
             </md-chips>
           </div>
-
-
-      </div>
-      <div class="item item-body">
-        <!-- <img class="full-image" src="delorean.jpg"> -->
-       <!--  <p>
+        </div>
+        <div class="item item-body">
+          <!-- <img class="full-image" src="delorean.jpg"> -->
+          <!--  <p>
           Stats for file could go here
         </p>
         <p>
           <a href="#" class="subdued">1 Like</a>
           <a href="#" class="subdued">5 Comments</a>
         </p> -->
+        </div>
       </div>
-    </div>
-    <div class="delete-item button button-block button-balanced" ng-click="updateFile(searchTags)">
-      <i class="fa fa-icon fa-save"></i>&nbsp;Save
-    </div>
+      <div class="delete-item button button-block button-balanced" ng-click="updateFile(searchTags,NEW_TITLE)">
+        <i class="fa fa-icon fa-save"></i>&nbsp;Save
+      </div>
   </ion-content>
 </ion-view>
