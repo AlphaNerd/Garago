@@ -120,4 +120,20 @@ angular.module('garago.controllers.library_browse', [])
       })
     }
 
+
+    $scope.countDownload = function(file){
+      console.log(file)
+      var Files = Parse.Object.extend("Files")
+      var query = new Parse.Query(Files)
+      query.equalTo("objectId",file.id)
+      query.find().then(function(res){
+        var count = (res[0].attributes.totalDownloads || 0) +1
+        res[0].set("totalDownloads",count)
+        res[0].save().then(function(res){
+          console.log("Added to download count")
+          $scope.refreshData()
+        })
+      })
+    }
+
   })

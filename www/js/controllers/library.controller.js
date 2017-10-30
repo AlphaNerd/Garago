@@ -92,9 +92,20 @@ angular.module('garago.controllers.library', [])
 
     $scope.uploadFiles = function(fileTitle) {
       var $input = angular.element(document.getElementById('upload'));
-      console.log($input.files)
+      console.log($input.files,$scope.searchTags)
 
-      if($scope.searchTags.length == 0){
+      ///// check to make sure at least one official NOC
+      var isValidNOC = $scope.searchTags.some(function(e,i){
+        if(e.attributes.code != 0){
+          console.log("YES")
+          return true
+        }else{
+          console.log("NO")
+          return false
+        }
+      })
+
+      if($scope.searchTags.length == 0 || !isValidNOC){
         console.log("You must attach a NOC to your file")
         var alertPopup = $ionicPopup.alert({
            title: 'Warning!',

@@ -111,7 +111,8 @@ angular.module('garago', [
   .config(function ($stateProvider, $urlRouterProvider, $mdIconProvider, $translateProvider) {
     ////// Initialize Parse
     Parse.initialize("garagoapi");
-    Parse.serverURL = 'https://garago-api-baas.herokuapp.com/parse';
+    // Parse.serverURL = 'https://garago-api-baas-dev.herokuapp.com/parse';
+    Parse.serverURL = 'http://localhost:1337/parse';
 
     /// Angular Translate
     // $locationProvider.html5Mode({
