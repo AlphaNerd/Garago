@@ -651,8 +651,11 @@ angular.module('garago.factory.parse', [])
 
         var query2 = new Parse.Query(Files)
         query2.contains("tagSearch", search.toLowerCase())
+
+        var query3 = new Parse.Query(Files)
+        query3.contains("keywords", search.toLowerCase())
         
-        var mainQuery = Parse.Query.or(query1, query2);
+        var mainQuery = Parse.Query.or(query1, query2, query3);
         // mainQuery.descending("title")
         mainQuery.equalTo("active",true)
         mainQuery.descending("updatedAt")
