@@ -132,7 +132,8 @@ angular.module('garago.controllers.library', [])
           })
         }).then(function(res) {
           $ionicLoading.show({
-            template: "Successfully Saved."
+            template: "Saved. Approval request has been sent.",
+            duration: 1000
           })
         })
       }

@@ -420,7 +420,7 @@ angular.module('garago.factory.parse', [])
     
               var file = new Parse.Object("Files");
               file.set("file", parseFile);
-              file.set("active", true);
+              file.set("active", false);
               file.set("rating", 0);
               file.set("rating_count", 0);
               file.set("total_ratings", 0);
