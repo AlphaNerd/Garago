@@ -28,6 +28,9 @@ var translation_fr = {
   TOTAL_VOTES: 'votes',
   TOTAL_DOWNLOADS: 'Nombre total de téléchargements',
   POWERED_BY: "Produit par",
+  NOC_CODE_REQUIRED: "[FRENCH]",
+  SAVED_REQ_SENT: "[FRENCH]",
+  WARNING: "Warning(FR)",
   LIBRARY_DASHBOARD: {
     HEADER: 'Bibliothèque intelligente',
     SEARCH_PLACEHOLDER: 'Recherche',

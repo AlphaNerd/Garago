@@ -420,7 +420,7 @@ angular.module('garago.factory.parse', [])
     
               var file = new Parse.Object("Files");
               file.set("file", parseFile);
-              file.set("active", true);
+              file.set("active", false);
               file.set("rating", 0);
               file.set("rating_count", 0);
               file.set("total_ratings", 0);
@@ -744,7 +744,7 @@ angular.module('garago.factory.parse', [])
         // console.log(id)
         var deferred = $q.defer()
         var query = new Parse.Query(Files)
-        query.equalTo("active",true)
+        // query.equalTo("active",true)
         query.include("tags")
         query.equalTo("objectId",id).find({
           success: function(res){

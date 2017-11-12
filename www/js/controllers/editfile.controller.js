@@ -46,6 +46,21 @@ angular.module('garago.controllers.editfile', [])
      });
    };
 
+    $scope.toggleApprove = function(file){
+      console.log("toggle approve for file ",file)
+      var state = file.attributes.active
+      file.set("active", !state)
+      file.save()
+    }
+
+    $scope.canApprove = function(file){
+      console.log(file)
+      if(file){
+        return true
+      }
+      return false
+    }
+
 
     ////// TAG RELATED JUNK
     $scope.search = {

@@ -28,6 +28,9 @@ var translation_en = {
   TOTAL_VOTES: 'votes',
   TOTAL_DOWNLOADS: 'Total Downloads',
   POWERED_BY: "Powered by",
+  NOC_CODE_REQUIRED: "You must attach a NOC to your upload(s)",
+  SAVED_REQ_SENT: "Saved. Approval request has been sent.",
+  WARNING: "Warning",
   LIBRARY_DASHBOARD: {
     HEADER: 'Smart Library',
     SEARCH_PLACEHOLDER: 'Search files...',

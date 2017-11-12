@@ -1,6 +1,6 @@
 angular.module('garago.controllers.library', [])
 
-  .controller('LibraryCtrl', function($scope, $ionicModal, $timeout, $rootScope, $ionicSideMenuDelegate, $parseAPI, userFilesData, userSharedFilesData, userFavFilesData, FileUploader, $ionicLoading, $ionicPopup) {
+  .controller('LibraryCtrl', function($scope, $ionicModal, $timeout, $rootScope, $ionicSideMenuDelegate, $parseAPI, userFilesData, userSharedFilesData, userFavFilesData, FileUploader, $ionicLoading, $ionicPopup, $translate) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -43,7 +43,7 @@ angular.module('garago.controllers.library', [])
     $scope.userFiles = userFilesData
     $scope.userFavFiles = userFavFilesData
     $scope.userSharedFiles = userSharedFilesData
-
+    console.log($scope.userFiles)
     $scope.refreshData = function() {
       $parseAPI.getUserFiles().then(function(res) {
         // console.log("Library View 'User Files' Resolve: ", res)
@@ -106,11 +106,17 @@ angular.module('garago.controllers.library', [])
       })
 
       if($scope.searchTags.length == 0 || !isValidNOC){
-        console.log("You must attach a NOC to your file")
-        var alertPopup = $ionicPopup.alert({
-           title: 'Warning!',
-           template: 'You must attach a NOC to your upload(s)'
-         });
+        $translate('NOC_CODE_REQUIRED').then(function (translation) {
+          $scope.translatedWarning = translation;
+          $translate('WARNING').then(function (translation) {
+            $scope.translatedHeader = translation;
+              var alertPopup = $ionicPopup.alert({
+               title: $scope.translatedHeader,
+               template: $scope.translatedWarning
+             });
+          });
+        });
+        
       }else{
         $ionicLoading.show({
           template: "Saving file(s)..."
@@ -131,10 +137,13 @@ angular.module('garago.controllers.library', [])
             }
           })
         }).then(function(res) {
-          $ionicLoading.show({
-            template: "Saved. Approval request has been sent.",
-            duration: 1000
-          })
+          $translate('SAVED_REQ_SENT').then(function (translation) {
+            $scope.translatedWarning = translation;
+            $ionicLoading.show({
+              template: $scope.translatedWarning,
+              duration: 1000
+            })
+          });
         })
       }
     }

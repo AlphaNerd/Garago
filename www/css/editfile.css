@@ -35,3 +35,18 @@
 #Edit span.modified {
     font-size: 12px;
 }
+
+#Edit .approval {
+    position: absolute;
+    right: 0;
+    background: #ddd;
+    text-align: right;
+    padding: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    font-size: 12px;
+}
+
+#Edit .approve{
+  background:green;
+}
