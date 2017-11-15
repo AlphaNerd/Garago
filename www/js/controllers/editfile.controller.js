@@ -52,7 +52,8 @@ angular.module('garago.controllers.editfile', [])
       file.set("active", !state)
       file.save().then(function(res){
         Parse.Cloud.run("fileapproved",{
-          title: file.attributes.title
+          title: file.attributes.title,
+          sendTo: file.attributes.createdBy.email
         })
       })
     }
