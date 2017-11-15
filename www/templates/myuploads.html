@@ -24,7 +24,7 @@
       <h1>{{'LIBRARY_BROWSE.NO_FILES_FOUND' | translate }}</h1>
     </div>
     <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
-      <ion-item ng-repeat="item in DATA | filter:search.text" class="item-thumbnail-left file" ng-class="item.attributes.class == 'animated bounceIn' ? 'new':''">
+      <ion-item ng-repeat="item in DATA | filter:search.text" class="item-thumbnail-left file" ng-class="item.attributes.class == 'animated bounceIn' ? 'new':''; item.attributes.active ? 'active':'disabled'">
         <div class="user" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
           <div class="image" ng-style="{'background-image':'url({{item.attributes.createdBy.image._url || '../img/no-image.jpg'}})'}"></div>
         </div>
