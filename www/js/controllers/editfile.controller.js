@@ -59,7 +59,6 @@ angular.module('garago.controllers.editfile', [])
     }
 
     $scope.canApprove = function(file){
-      console.log(file)
       if(file.attributes.approver == Parse.User.current().id){
         return true
       }
