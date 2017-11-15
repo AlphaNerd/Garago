@@ -50,7 +50,11 @@ angular.module('garago.controllers.editfile', [])
       console.log("toggle approve for file ",file)
       var state = file.attributes.active
       file.set("active", !state)
-      file.save()
+      file.save().then(function(res){
+        Parse.Cloud.run("fileapproved",{
+          title: file.attributes.title
+        })
+      })
     }
 
     $scope.canApprove = function(file){
