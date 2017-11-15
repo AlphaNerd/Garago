@@ -1,4 +1,4 @@
-<ion-view view-title="{{'MY_UPLOADS.HEADER' | translate }}">
+<ion-view view-title="{{'FILE_APPROVALS' | translate }}">
   <ion-nav-bar class="bar-stable">
     <!-- <ion-nav-back-button>
     </ion-nav-back-button> -->
@@ -7,48 +7,56 @@
       </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-      <button class="button button-icon button-clear" ng-click="openModal()"><i class="fa fa-icon fa-upload"></i></button>&nbsp;&nbsp;
+      <!-- <button class="button button-icon button-clear" ng-click="createNewProject()"><i class="fa fa-icon fa-upload"></i></button>&nbsp;&nbsp; -->
       <!-- <button class="button button-icon button-clear" ng-click="showDelete()"><i class="fa fa-icon fa-minus"></i></button>&nbsp;&nbsp; -->
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content id="Library" scroll="true" class="Browse">
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="refreshData()">
     </ion-refresher>
-    <!-- <div class="item item-input-inset">
+
+    <div class="item item-input search-header">
       <label class="item-input-wrapper">
         <input type="text" placeholder="Search" ng-init="search" ng-model="search.text">
       </label>
-    </div> -->
+    </div>
 
     <div class="warning" ng-if="!DATA || DATA.length < 1">
       <h1>{{'LIBRARY_BROWSE.NO_FILES_FOUND' | translate }}</h1>
     </div>
     <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
-      <ion-item ng-repeat="item in DATA | filter:search.text" class="item-thumbnail-left file" ng-class="item.attributes.class == 'animated bounceIn' ? 'new':''; item.attributes.active ? 'active':'disabled'">
+      <ion-item ng-repeat="item in DATA | filter:search.text" class="item-thumbnail-left file" ng-class="item.attributes.class == 'animated bounceIn' ? 'new':''">
         <div class="user" ng-style="{'z-index':'{{$index*-1}}','margin-left':'-{{$index*5}}px'}">
           <div class="image" ng-style="{'background-image':'url({{item.attributes.createdBy.image._url || '../img/no-image.jpg'}})'}"></div>
         </div>
-        <h2 class="title">
-          <a ng-if="item.attributes.active" href="{{item.attributes.file._url}}" target="_blank">{{item.attributes.title}}</a>&nbsp;
-          <span class="title" ng-if="!item.attributes.active">{{item.attributes.title}}</span>
-          <i class="fa fa-pencil" ng-if="item.attributes.ACL.permissionsById[CurrentUser.id].write" ng-click="editFile(item.id)"></i>
-        </h2>
-        <p>{{item.attributes.description}}</p>
+        <h2 class="title"><a href="{{item.attributes.file._url}}" target="_blank">{{item.attributes.title}}</a> <span class="file-size">{{item.attributes.fileSize}}</span>&nbsp;<i class="fa fa-pencil" ng-click="editFile(item.id)"></i></h2>
+        <p>{{item.attributes.description}}</p>  
         <p class="last-updated">{{'LAST_UPDATED' | translate }}: {{item.attributes.updatedAt | moment}}</p>
-        <p class="created-by">{{'CREATED_BY' | translate }}: {{item.attributes.createdBy.email}}</p>
+        <p class="created-by">{{'CREATED_BY' | translate }}: {{item.attributes.createdBy.name.first}} {{item.attributes.createdBy.name.last}} <a href="mailto:{{item.attributes.createdBy.email}}"><i class="fa fa-envelope"></i></a></p>
+        <p class="total-downoads">{{'TOTAL_DOWNLOADS' | translate }}: {{item.attributes.totalDownloads || '0'}}</p>
         <div class="tags">
           <span ng-repeat="tag in item.attributes.tags" class="tag">
               {{tag.title}}
           </span>
         </div>
-        
-        <div class="favs-options">
+        <!-- <div class="ratings">
+          <div class="total-rating">
+            <i class="fa fa-star"></i>{{item.attributes.rating | number:0}}<sub> / {{item.attributes.rating_count}} {{'TOTAL_VOTES' | translate}}</sub>
+          </div>
+          <star-rating-comp show-half-stars="true" on-click="rateFile($event,item)"></star-rating-comp>
+        </div> -->
+        <!-- <div class="acl-indicator">
+          <div ng-class="item.attributes.ACL.permissionsById['*'].read ? 'green':'grey'">R</div>
+          <div ng-class="item.attributes.ACL.permissionsById[CurrentUser.id].write ? 'green':'grey'">W</div>
+        </div> -->
+       
+        <!-- <div class="favs-options">
           <i class="fa" ng-class="isFavFile(item) ? 'fa-star' : 'fa-star-o'" ng-click="toggleFav(item,isFavFile(item))"></i>
         </div>
         <div class="share-options">
-          <a href="{{item.attributes.file._url}}" download><i class="fa fa-download"></i></a>
-          <!-- <i class="fa fa-share"></i> -->
-        </div>
+          <a href="{{item.attributes.file._url}}" download ng-click="countDownload(item)"><i class="fa fa-download"></i></a>
+        </div> -->
+
         <!-- <div class="comment-options">
           <i class="fa fa-comment" ng-click="showComments = !showComments"></i>
         </div>
@@ -72,9 +80,9 @@
             </span>
           </span>
         </div> -->
-        <ion-option-button class="button-positive" ng-click="share(item)">
+        <!-- <ion-option-button class="button-positive" ng-click="share(item)">
           {{'SHARE' | translate }}
-        </ion-option-button>
+        </ion-option-button> -->
         <ion-option-button class="button-assertive" ng-click="confirmDelete(item)" ng-if="item.attributes.ACL.permissionsById[CurrentUser.id].write">
           {{'DELETE' | translate }}
         </ion-option-button>

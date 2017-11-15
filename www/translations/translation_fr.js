@@ -1,4 +1,5 @@
 var translation_fr = {
+  FILE_APPROVALS: "File Approvals(FR)",
   SMART_LIBRARY: 'Bibliothèque Intelligente',
   MANAGE_USERS: 'Gestion des utilisateurs',
   INVITE_USERS: 'inviter des utilisateurs ',
@@ -28,8 +29,8 @@ var translation_fr = {
   TOTAL_VOTES: 'votes',
   TOTAL_DOWNLOADS: 'Nombre total de téléchargements',
   POWERED_BY: "Produit par",
-  NOC_CODE_REQUIRED: "[FRENCH]",
-  SAVED_REQ_SENT: "[FRENCH]",
+  NOC_CODE_REQUIRED: "Vous devez associer une CNP à votre (vos) téléchargement(s)",
+  SAVED_REQ_SENT: "Sauvegardé. Demande d'approbation de document(s) envoyée.",
   WARNING: "Warning(FR)",
   LIBRARY_DASHBOARD: {
     HEADER: 'Bibliothèque intelligente',
@@ -70,6 +71,8 @@ var translation_fr = {
   ALERTS: {
     SIGN_OUT_ALERT_HEADER: 'Vous vous apprêtez à quitter!',
     SIGN_OUT_MESSAGE:  "Si vous désirez sortir veuillez clicker sur 'Ok'. Clicker sur 'Annuler' si vous souhaitez rester connecté.",
+    WARNING: "Warning",
+    LOST_CHANGES: "Tout vos changements seront perdus. Êtes-vous certain de vouloir effacer?"
   },
   MY_UPLOADS: {
     HEADER: "Mes fichiers"

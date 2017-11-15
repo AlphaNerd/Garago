@@ -16,7 +16,7 @@
     </ion-refresher> -->
     <div class="list card">
       <div class="item item-avatar edit-file-title">
-        <div class="approval" ng-click="toggleApprove(FILE)" ng-if="canApprove(FILE)" ng-class="approved">{{FILE.attributes.active ? 'Approved' : 'Not Approved'}}</div>
+        <div class="approval" ng-click="toggleApprove(FILE)" ng-if="canApprove(FILE)" ng-class="FILE.attributes.active ? 'active' : 'inactive'">{{FILE.attributes.active ? 'Approved' : 'Not Approved'}}</div>
         <i class="fa" ng-class="FILE.attributes.icon" aria-hidden="true"></i>
         <input class="title" placeholder="{{FILE.attributes.title}}" ng-model="NEW_TITLE" />
         <br/>

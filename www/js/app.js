@@ -18,6 +18,7 @@ angular.module('garago', [
   'garago.controllers.invite',
   'garago.controllers.users',
   'garago.controllers.myuploads',
+  'garago.controllers.approvals',
   'garago.factory.api',
   'garago.factory.mockApi',
   'garago.factory.utility',
@@ -49,7 +50,7 @@ angular.module('garago', [
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
-      window.localStorage.clear()
+      // window.localStorage.clear()
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
@@ -600,7 +601,37 @@ angular.module('garago', [
             }
           }
         }
-      })      
+      })
+
+
+      ////////////////////////////////////////////////////////////////
+      //////////////// NEEDS APPROVAL - In Dev ///////////////////////
+      ////////////////////////////////////////////////////////////////
+      ///
+      ///   Route: /library/browse
+      ///   Browse & Search smart library for files. 
+      ///
+      ////////////////////////////////////////////////////////////////
+      .state('app.approvals', {
+        url: '/library/approvals',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/file_approvals.html',
+            controller: 'ApprovalsCtrl',
+            resolve: {
+              userFilesData: function ($parseAPI, $ionicLoading) {
+                $ionicLoading.show()
+                Parse.User.current().fetch()
+                return $parseAPI.getApprovals().then(function (res) {
+                  console.log(res)
+                  $ionicLoading.hide()
+                  return res
+                })
+              }
+            }
+          }
+        }
+      })
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/login');

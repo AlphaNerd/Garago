@@ -90,8 +90,6 @@ angular.module('garago.controllers', [])
       var message = ''
       $translate('ALERTS.SIGN_OUT_ALERT_HEADER').then(function(res) {
         header = res;
-      }, function(translationId) {
-        header = translationId;
       });
       $translate('ALERTS.SIGN_OUT_MESSAGE').then(function(res) {
         message = res;
@@ -264,10 +262,14 @@ angular.module('garago.controllers', [])
           title: "INVITE_USERS",
           link: "#/app/users/invite",
           class: "user"
-        }, {
+        },{
           title: "MANAGE_USERS",
           link: "#/app/users",
           class: "users"
+        },{
+          title: "Approvals",
+          link: "#/app/library/approvals",
+          class: "check"
         }]
       }
     ];

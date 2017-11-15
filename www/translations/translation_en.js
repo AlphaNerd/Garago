@@ -1,4 +1,5 @@
 var translation_en = {
+  FILE_APPROVALS: "File Approvals",
   SMART_LIBRARY: 'Smart Library',
   MANAGE_USERS: 'Manage Users',
   INVITE_USERS: 'Invite Users',
@@ -70,6 +71,8 @@ var translation_en = {
   ALERTS: {
     SIGN_OUT_ALERT_HEADER: "You're about to sign out!",
     SIGN_OUT_MESSAGE:  "If this is what you really want to do, then click 'OK'. Press 'Cancel' to remain connected.",
+    WARNING: "Warning",
+    LOST_CHANGES: "All changes will be lost. Are you sure you want to delete?"
   },
   MY_UPLOADS: {
     HEADER: "My Uploads"

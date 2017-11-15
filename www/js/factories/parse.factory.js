@@ -781,7 +781,31 @@ angular.module('garago.factory.parse', [])
           deferred.resolve(res)
         })
         return deferred.promise
-      }
+      },
+      ////////////////////////////////////////////////
+      ////// Get All User Files from Parse
+      ////////////////////////////////////////////////
+      getApprovals: function(limit){
+        var deferred = $q.defer()
+        var query = new Parse.Query(Files)
+        query.equalTo("approver", Parse.User.current().id)
+        query.equalTo("active",false)
+        query.descending("updatedAt")
+        if(limit){
+          query.limit(limit)
+        }
+        query.find({
+          success: function(res) {
+            // console.log("Found User Files: ", [res])
+            deferred.resolve(res)
+          },
+          error: function(e, r) {
+            // console.log(e, r)
+            handleParseError(e)
+          }
+        })
+        return deferred.promise
+      },
     }
     return obj
   }])

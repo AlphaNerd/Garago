@@ -1,6 +1,6 @@
 angular.module('garago.controllers.editfile', [])
 
-  .controller('EditFileCtrl', function ($scope, $ionicModal, $timeout, $rootScope, $parseAPI, fileData, $ionicLoading, $ionicPopup, $ionicHistory) {
+  .controller('EditFileCtrl', function ($scope, $ionicModal, $timeout, $rootScope, $parseAPI, fileData, $ionicLoading, $ionicPopup, $ionicHistory, $stateParams) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -11,6 +11,12 @@ angular.module('garago.controllers.editfile', [])
     });
 
     $scope.FILE = fileData
+
+    $scope.refreshData = function(){
+      $parseAPI.getFile($stateParams.id).then(function (res){
+        $scope.FILE = res
+      })
+    }
     
     $scope.confirmSave = function() {
      var confirmPopup = $ionicPopup.confirm({
@@ -53,7 +59,7 @@ angular.module('garago.controllers.editfile', [])
       file.save().then(function(res){
         Parse.Cloud.run("fileapproved",{
           title: file.attributes.title,
-          sendTo: file.attributes.createdBy.email
+          sendTo: file.attributes.createdByUser.email
         })
       })
     }
