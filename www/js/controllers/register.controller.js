@@ -54,6 +54,7 @@ angular.module('garago.controllers.register', [])
           user.set("invitedBy", invitedBy)
           user.set("region", region || 'null')
           user.set("regionId", regionId || 'null')
+          user.set("language", 'en')
           user.signUp(null, {
             success: function(user) {
               // console.log("Parse user registered: ",Parse.User.current())

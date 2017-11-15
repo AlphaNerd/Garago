@@ -447,6 +447,7 @@ angular.module('garago.factory.parse', [])
     
               file.save({
                 success: function(res){
+                  Parse.Cloud.run('requestApproval',{})
                   resolve(res)
                 },
                 error: function(e,r){
