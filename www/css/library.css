@@ -402,6 +402,10 @@ input.md-input {
 
 }
 
+#Library .item-content {
+    background: #fff;
+}
+
 #Library .search-results .item{
   background:#fff
 }

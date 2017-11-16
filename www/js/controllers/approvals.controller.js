@@ -12,6 +12,11 @@ angular.module('garago.controllers.approvals', [])
 
     $scope.DATA = userFilesData
 
-    
+    $scope.refreshData = function(){
+      $parseAPI.getApprovals().then(function (res) {
+        $scope.DATA = res
+        $scope.$broadcast('scroll.refreshComplete');
+      })
+    }
 
   })
