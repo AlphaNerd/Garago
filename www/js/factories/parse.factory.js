@@ -414,6 +414,7 @@ angular.module('garago.factory.parse', [])
           console.log("FILE NAME: ",val.name)
           console.log("FILE TITLE: ",val.title)
 
+
           var fileSize = formatBytes(val.size)
           var promise = new Promise(function(resolve,reject){
             var parseFile = new Parse.File(val.name, val);
