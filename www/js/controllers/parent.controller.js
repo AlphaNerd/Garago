@@ -267,7 +267,7 @@ angular.module('garago.controllers', [])
           link: "#/app/users",
           class: "users"
         },{
-          title: "Approvals",
+          title: "FILE_APPROVALS",
           link: "#/app/library/approvals",
           class: "check"
         }]

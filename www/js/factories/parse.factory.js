@@ -414,12 +414,13 @@ angular.module('garago.factory.parse', [])
           console.log("FILE NAME: ",val.name)
           console.log("FILE TITLE: ",val.title)
 
-
           var fileSize = formatBytes(val.size)
           var promise = new Promise(function(resolve,reject){
             var parseFile = new Parse.File(val.name, val);
+            console.log("create new file promise")
             parseFile.save().then(function() {
-    
+              console.log("parse file saved. Create reference....")
+
               var file = new Parse.Object("Files");
               file.set("file", parseFile);
               file.set("active", false);
@@ -447,13 +448,16 @@ angular.module('garago.factory.parse', [])
               acl.setPublicWriteAccess(true);
               acl.setWriteAccess(Parse.User.current().id, true);
               file.setACL(acl)
-    
+              console.log("file reference properties set. Save reference object.")
+
               file.save({
                 success: function(res){
+                  console.log(res)
                   Parse.Cloud.run('requestApproval',{})
                   resolve(res)
                 },
                 error: function(e,r){
+                  console.log(e,r)
                   reject({e,r})
                 }
               });
@@ -467,6 +471,7 @@ angular.module('garago.factory.parse', [])
         })
         
         Promise.all(promises).then(function(res){
+          console.log("All promises resolved")
           deferred.resolve(res) 
         }).catch(function(error){
           // console.log(error)

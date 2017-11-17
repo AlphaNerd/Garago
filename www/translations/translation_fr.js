@@ -7,6 +7,7 @@ var translation_fr = {
   DASHBOARD: 'Tableau de bord',
   MY_FAVORITES: 'Mes favoris',
   BROWSE_ALL: 'Tous les documents',
+  FILE_APPROVALS: 'File Approvals(FR)',
   SHARE: 'Partager',
   DELETE: 'Effacer',
   LAST_UPDATED: 'Dernière mise à jour',

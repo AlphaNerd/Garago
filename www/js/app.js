@@ -87,7 +87,7 @@ angular.module('garago', [
       checkAuth()
 
       function checkAuth(){
-        var currentUser = Parse.User.current();
+        var currentUser = Parse.User.current() || null;
         try{
           if (currentUser) {
             // $state.go("app.library")  

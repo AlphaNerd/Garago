@@ -7,6 +7,7 @@ var translation_en = {
   DASHBOARD: 'Dashboard',
   MY_FAVORITES: 'My Favorites',
   BROWSE_ALL: 'Browse All',
+  FILE_APPROVALS: 'File Approvals',
   SHARE: 'Share',
   DELETE: 'Delete',
   LAST_UPDATED: 'Last Updated',
