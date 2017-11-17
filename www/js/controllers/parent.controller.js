@@ -145,7 +145,7 @@ angular.module('garago.controllers', [])
       return myDelay
     }
 
-    $scope.directAccessFile = function(url){
+    $scope.openFile = function(url){
       console.log(url)
       var new_url = $state.href('url', {referer: "http://documents.garago.net"});
       window.open(new_url,'_blank');
