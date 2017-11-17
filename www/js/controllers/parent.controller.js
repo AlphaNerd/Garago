@@ -147,7 +147,7 @@ angular.module('garago.controllers', [])
 
     $scope.openFile = function(url){
       console.log(url)
-      window.open(url,"_blank",'toolbar=no,location=no,menubar=no')
+      window.open(url,"_blank",'toolbar=no,location=no,menubar=no,status=no,directories=no')
     }
 
     $scope.MENU_ACTIONPLAN = [
