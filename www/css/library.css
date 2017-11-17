@@ -867,3 +867,10 @@ md-input-container:not(.md-input-invalid).md-input-has-value label {
     border-radius: 3px;
     margin:5px 10px 5px 0;
 }
+
+
+#Library h2.title{
+  text-decoration: underline;
+  text-transform: uppercase;
+  font-weight: 700;
+}
