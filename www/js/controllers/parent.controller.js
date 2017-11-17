@@ -146,8 +146,9 @@ angular.module('garago.controllers', [])
     }
 
     $scope.directAccessFile = function(url){
-      var url = $state.href('url', {referer: "http://documents.garago.net"});
-      window.open(url,'_blank');
+      console.log(url)
+      var new_url = $state.href('url', {referer: "http://documents.garago.net"});
+      window.open(new_url,'_blank');
     }
 
     $scope.MENU_ACTIONPLAN = [
