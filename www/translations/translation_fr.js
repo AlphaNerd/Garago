@@ -1,5 +1,5 @@
 var translation_fr = {
-  FILE_APPROVALS: "File Approvals(FR)",
+  FILE_APPROVALS: "Approbations de fichiers",
   SMART_LIBRARY: 'Bibliothèque Intelligente',
   MANAGE_USERS: 'Gestion des utilisateurs',
   INVITE_USERS: 'inviter des utilisateurs ',

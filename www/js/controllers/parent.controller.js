@@ -145,6 +145,11 @@ angular.module('garago.controllers', [])
       return myDelay
     }
 
+    $scope.directAccessFile = function(url){
+      var url = $state.href('url', {referer: "http://documents.garago.net"});
+      window.open(url,'_blank');
+    }
+
     $scope.MENU_ACTIONPLAN = [
       // {
       //   name: "Action Plans",
