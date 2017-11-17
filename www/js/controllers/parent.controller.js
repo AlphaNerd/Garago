@@ -147,8 +147,7 @@ angular.module('garago.controllers', [])
 
     $scope.openFile = function(url){
       console.log(url)
-      var new_url = $state.href('url', {referer: "http://documents.garago.net"});
-      window.open(new_url,'_blank');
+      window.open(url,"_blank",'toolbar=no,location=no,menubar=no')
     }
 
     $scope.MENU_ACTIONPLAN = [
