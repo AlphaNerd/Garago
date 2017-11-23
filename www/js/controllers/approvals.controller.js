@@ -19,4 +19,44 @@ angular.module('garago.controllers.approvals', [])
       })
     }
 
+    $scope.approveFile = function(file){
+      console.log("toggle approve for file ",file)
+      var FILES = Parse.Object.extend("Files")
+      var query = new Parse.Query(FILES)
+      query.equalTo("objectId",file.id)
+      query.find().then(function(res){
+        console.log("Retreaved file: ",res)
+        res[0].set("active",true)
+        res[0].save().then(function(res){
+          console.log(res)
+            Parse.Cloud.run("fileapproved",{
+              title: file.attributes.title,
+              sendTo: file.attributes.createdByUser.email
+            })
+          $scope.refreshData()
+        })
+      })
+    }
+
+    $scope.declineFile = function(file){
+      console.log("toggle approve for file ",file)
+      var FILES = Parse.Object.extend("Files")
+      var query = new Parse.Query(FILES)
+      query.equalTo("objectId",file.id)
+      query.find().then(function(res){
+        console.log("Retreaved file: ",res)
+        res[0].set("active",false)
+        res[0].save().then(function(res){
+          console.log(res)
+            Parse.Cloud.run("filedeclined",{
+              title: file.attributes.title,
+              sendTo: file.attributes.createdByUser.email
+            })
+          $scope.refreshData()
+        })
+      })
+    }
+
+    
+
   })

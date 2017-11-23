@@ -1,0 +1,35 @@
+#Library.Browse.approvals .approve-functions {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+}
+
+#Library.Browse.approvals .approve-functions > div {
+    display: inline-block;
+    width: 80px;
+    text-align: center;
+    height: 100%;
+    float: right;
+}
+
+#Library.Browse.approvals .approve-functions i {
+    font-size: 60px;
+    vertical-align: middle;
+    top: 25%;
+    position: relative;
+    color: #ddd;
+}
+
+#Library.Browse .tags {
+    font-size: 11px;
+    min-height: 30px;
+    display: inline-block;
+    max-width: 400px;
+    width: 100%;
+}
+
+#Library.Browse.approvals .approve-functions > div:hover i {
+    color: #2c3a41;
+}
