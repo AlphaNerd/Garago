@@ -12,51 +12,65 @@ angular.module('garago.controllers.approvals', [])
 
     $scope.DATA = userFilesData
 
-    $scope.refreshData = function(){
-      $parseAPI.getApprovals().then(function (res) {
+
+
+    var confirmPopup = $ionicPopup.confirm({
+      title: 'Warning!',
+      template: 'Are you sure you want to decline this file?'
+    });
+
+
+    $scope.refreshData = function() {
+      $parseAPI.getApprovals().then(function(res) {
         $scope.DATA = res
         $scope.$broadcast('scroll.refreshComplete');
       })
     }
 
-    $scope.approveFile = function(file){
-      console.log("toggle approve for file ",file)
+    $scope.approveFile = function(file) {
+      console.log("toggle approve for file ", file)
       var FILES = Parse.Object.extend("Files")
       var query = new Parse.Query(FILES)
-      query.equalTo("objectId",file.id)
-      query.find().then(function(res){
-        console.log("Retreaved file: ",res)
-        res[0].set("active",true)
-        res[0].save().then(function(res){
+      query.equalTo("objectId", file.id)
+      query.find().then(function(res) {
+        console.log("Retreaved file: ", res)
+        res[0].set("active", true)
+        res[0].save().then(function(res) {
           console.log(res)
-            Parse.Cloud.run("fileapproved",{
-              title: file.attributes.title,
-              sendTo: file.attributes.createdByUser.email
-            })
           $scope.refreshData()
+          Parse.Cloud.run("fileapproved", {
+            title: file.attributes.title,
+            sendTo: file.attributes.createdByUser.email
+          })
         })
       })
     }
 
-    $scope.declineFile = function(file){
-      console.log("toggle approve for file ",file)
-      var FILES = Parse.Object.extend("Files")
-      var query = new Parse.Query(FILES)
-      query.equalTo("objectId",file.id)
-      query.find().then(function(res){
-        console.log("Retreaved file: ",res)
-        res[0].set("active",false)
-        res[0].save().then(function(res){
-          console.log(res)
-            Parse.Cloud.run("filedeclined",{
-              title: file.attributes.title,
-              sendTo: file.attributes.createdByUser.email
+    $scope.declineFile = function(file) {
+      console.log("toggle approve for file ", file)
+      confirmPopup.then(function(res) {
+        if (res) {
+          var FILES = Parse.Object.extend("Files")
+          var query = new Parse.Query(FILES)
+          query.equalTo("objectId",file.id)
+          query.find().then(function(res){
+            console.log("Retreaved file: ",res)
+            res[0].set("active",false)
+            res[0].save().then(function(res){
+              console.log(res)
+                Parse.Cloud.run("filedeclined",{
+                  title: file.attributes.title,
+                  sendTo: file.attributes.createdByUser.email
+                })
+              $scope.refreshData()
             })
-          $scope.refreshData()
-        })
+          })
+        } else {
+          console.log('You are not sure');
+        }
       })
     }
 
-    
+
 
   })
