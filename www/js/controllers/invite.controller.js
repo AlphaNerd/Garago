@@ -21,7 +21,7 @@ angular.module('garago.controllers.invite', [])
       })
       
       console.log($scope.region)
-      Parse.Cloud.run('inviteUser',{'email':user.email,'canUpload':user.canUpload,'isAdmin':user.isAdmin,'regionName':$scope.region.attributes.title,'regionId':$scope.region.id}).then(function(res) {
+      Parse.Cloud.run('inviteUser',{'email':user.email,'canUpload':user.canUpload,'isAdmin':user.isAdmin,'regionName':$scope.region.title,'regionId':$scope.region.id}).then(function(res) {
         console.info("Invite Sent: ",res)
         $scope.user = {}
         var alertPopup = $ionicPopup.alert({
