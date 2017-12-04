@@ -25,7 +25,7 @@
         </md-checkbox>
 
         <md-select placeholder="{{'INVITE.ASSIGN_TO_REGION' | translate }}" ng-model="region" md-on-open="getRegions()" style="min-width: 200px;" class="region-button">
-          <md-option ng-value="region" ng-repeat="region in regions">{{region.attributes.title}}</md-option>
+          <md-option ng-value="region" ng-repeat="region in regions">{{region.title}}</md-option>
         </md-select>
 
       </div>

@@ -778,6 +778,20 @@ angular.module('garago.factory.parse', [])
         query.exists("objectId").find({
           success: function(res){
             console.log("Found regions: ",res)
+            var regions = [{
+              title: "Bathurst"
+            },{
+              title: "Fredericton"
+            },{
+              title: "Saint-Jean"
+            },{
+              title: "Moncton"
+            },{
+              title: "Edmundson"
+            },{
+              title: "Péninsule Acadienne"
+            }]
+            return regions
           },
           error: function(e,r){
             // console.log(e,r)
