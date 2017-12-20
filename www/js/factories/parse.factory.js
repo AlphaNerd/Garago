@@ -564,7 +564,7 @@ angular.module('garago.factory.parse', [])
         var deferred = $q.defer()
         var query = new Parse.Query(Files)
         query.equalTo("createdByUser", Parse.User.current())
-        query.equalTo("owners", Parse.User.current().id)
+        query.equalTo("owners", [Parse.User.current().id])
         // query.equalTo("active",true)
         query.descending("updatedAt")
         if(limit){
