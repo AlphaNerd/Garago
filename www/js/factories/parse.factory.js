@@ -562,15 +562,27 @@ angular.module('garago.factory.parse', [])
       ////////////////////////////////////////////////
       getUserFiles: function(limit){
         var deferred = $q.defer()
-        var query = new Parse.Query(Files)
+        var query1 = new Parse.Query(Files)        
         // query.equalTo("createdByUser", Parse.User.current())
-        query.equalTo("owners", Parse.User.current().id)
+        query1.equalTo("owners", Parse.User.current().id)
         // query.equalTo("active",true)
-        query.descending("updatedAt")
+        query1.descending("updatedAt")
         if(limit){
-          query.limit(limit)
+          query1.limit(limit)
         }
-        query.find({
+
+        var query2 = new Parse.Query(Files)        
+        query2.equalTo("createdByUser", Parse.User.current())
+        // query.equalTo("owners", Parse.User.current().id)
+        // query.equalTo("active",true)
+        query2.descending("updatedAt")
+        if(limit){
+          query2.limit(limit)
+        }
+
+        var mainQuery = Parse.Query.or(query1, query2);
+
+        mainQuery.find({
           success: function(res) {
             // console.log("Found User Files: ", [res])
             deferred.resolve(res)
