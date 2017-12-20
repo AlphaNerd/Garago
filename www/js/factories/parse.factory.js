@@ -420,18 +420,18 @@ angular.module('garago.factory.parse', [])
             console.log("create new file promise")
             parseFile.save().then(function() {
               console.log("parse file saved. Create reference....")
-              var userObj = {
-                  id: Parse.User.current().id,
-                  name: {
-                      first: Parse.user.current().attributes.firstName,
-                      last: Parse.user.current().attributes.lastName,
-                      username: Parse.user.current().attributes.username
-                  },
-                  email: Parse.user.current().attributes.email,
-                  image: Parse.user.current().attributes.image,
-              }
+              // var userObj = {
+              //     id: Parse.User.current().id,
+              //     name: {
+              //         first: Parse.user.current().attributes.firstName,
+              //         last: Parse.user.current().attributes.lastName,
+              //         username: Parse.user.current().attributes.username
+              //     },
+              //     email: Parse.user.current().attributes.email,
+              //     image: Parse.user.current().attributes.image,
+              // }
               var file = new Parse.Object("Files");
-              file.set("createdBy", userObj)
+              // file.set("createdBy", userObj)
               file.set("file", parseFile);
               file.set("active", false);
               file.set("rating", 0);
