@@ -429,6 +429,7 @@ angular.module('garago.factory.parse', [])
               file.set("total_ratings", 0);
               file.set("fileSize",fileSize)
               file.set("title",val.title || val.name)
+              file.set("owners",Parse.User.current().id)
               file.set("approver",Parse.User.current().attributes.invitedBy.id)
               // console.log("TAGS IN: ",tags)
               var tagArray = tags.map(function (item) {
@@ -563,6 +564,7 @@ angular.module('garago.factory.parse', [])
         var deferred = $q.defer()
         var query = new Parse.Query(Files)
         query.equalTo("createdByUser", Parse.User.current())
+        query.contains("owners", Parse.User.current().id)
         // query.equalTo("active",true)
         query.descending("updatedAt")
         if(limit){
