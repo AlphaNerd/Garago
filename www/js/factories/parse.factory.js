@@ -421,7 +421,7 @@ angular.module('garago.factory.parse', [])
             parseFile.save().then(function() {
               console.log("parse file saved. Create reference....")
               var userObj = {
-                  id: request.user.id,
+                  id: Parse.User.current().id,
                   name: {
                       first: Parse.user.current().attributes.firstName,
                       last: Parse.user.current().attributes.lastName,
