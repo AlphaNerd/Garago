@@ -429,7 +429,7 @@ angular.module('garago.factory.parse', [])
               file.set("total_ratings", 0);
               file.set("fileSize",fileSize)
               file.set("title",val.title || val.name)
-              file.set("owners",Parse.User.current().id)
+              file.set("owners",[Parse.User.current().id])
               file.set("approver",Parse.User.current().attributes.invitedBy.id)
               // console.log("TAGS IN: ",tags)
               var tagArray = tags.map(function (item) {
