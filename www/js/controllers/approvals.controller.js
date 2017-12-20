@@ -13,13 +13,6 @@ angular.module('garago.controllers.approvals', [])
     $scope.DATA = userFilesData
 
 
-
-    var confirmPopup = $ionicPopup.confirm({
-      title: 'Warning!',
-      template: 'Are you sure you want to decline this file?'
-    });
-
-
     $scope.refreshData = function() {
       $parseAPI.getApprovals().then(function(res) {
         $scope.DATA = res
@@ -48,6 +41,10 @@ angular.module('garago.controllers.approvals', [])
 
     $scope.declineFile = function(file) {
       console.log("toggle approve for file ", file)
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Warning!',
+        template: 'Are you sure you want to decline this file?'
+      });
       confirmPopup.then(function(res) {
         if (res) {
           var FILES = Parse.Object.extend("Files")
