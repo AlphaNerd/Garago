@@ -33,7 +33,7 @@ angular.module('garago.controllers.approvals', [])
           $scope.refreshData()
           Parse.Cloud.run("fileapproved", {
             title: file.attributes.title,
-            sendTo: file.attributes.createdByUser.email
+            sendTo: file.attributes.createdBy.email
           })
         })
       })
